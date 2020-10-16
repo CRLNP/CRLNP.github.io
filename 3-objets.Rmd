@@ -7,7 +7,6 @@ output:
     highlight: pygments
     theme: lumen
     toc: true
-    number_sections: true
     toc_float: 
       collapsed: false
       Smooth_scroll: false
@@ -41,7 +40,7 @@ install.packages("package", dependencies=TRUE)
 
 <br>
 
-### Gestion de packages
+## Gestion de packages
 
 ```{r, eval=FALSE}
 ## Voir les modules téléchargés (chargés ou non)
@@ -65,7 +64,7 @@ detach(package:NomModule)     # pour éviter les conflits entre fonctions du mê
 
 <br>
 
-# Les objets
+# 1. Les objets
 
 <center>
 
@@ -125,7 +124,7 @@ Les noms d’objets:
 
 </center>
 
-# Les opérateurs
+# 2. Les opérateurs
 
 *  Opérateurs d'assignation: **<-**, = , ->
 *  Opérateurs de sélection: [], [[]], $, :
@@ -135,7 +134,7 @@ Les noms d’objets:
 
 <br>
 
-# Les fonctions
+# 3. Les fonctions
 
 *  Permettent d’effectuer des tâches prédéfinies comme des analyses, graphiques, calculs, … 
 *  Chaque fonction a un nom et plusieurs fonctions peuvent permettre d'effectuer la même tâche: Par exemple pour faire une correlation, on retrouve les fonctions cor(), cor.test(), ...
@@ -170,7 +169,7 @@ round(mean(age), 0)
 
 <br>
 
-# Les arguments
+# 4. Les arguments
 
 * Chaque fonction possède une liste plus ou moins longue d’arguments (paramètres ou options) permettant de paramétrer son fonctionnement.
 * Certains arguments ont une valeur par défaut. Si ces valeurs nous conviennent, pas besoin de les indiquer.
@@ -203,7 +202,7 @@ mean(age, na.rm=TRUE)
 
 <br>
 
-# Les types d'objets
+# 5. Les types d'objets
 
 - Les objets sont caractérisés par **différentes structures**
 - On retrouve **5 différents types de contenants** ayant chacun leurs propriétés 
@@ -218,9 +217,10 @@ mean(age, na.rm=TRUE)
 ![https://devopedia.org/r-data-structures](markdown/types.jpg)
 
 </center>
+
 <br>
 
-## Vecteurs
+## 5.1. Vecteurs
 
 Définition: 
 
@@ -269,7 +269,7 @@ IMC - mean(IMC) # Calculer la différence face à la moyenne
 
 <br>
 
-## Facteurs 
+## 5.2. Facteurs 
 
 * Définition: vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.
 * Les modalités de la variable correspondent à des "niveaux" (*levels*) uniques et fixes, ie impossible d’assigner une valeur qui n’a pas été préalablement définie comme une des modalités.
@@ -288,7 +288,7 @@ str(sexe)
 
 <br>
 
-## Dataframes
+## 5.3. Dataframes
 
 *  Définition: Tableau de données pouvant regrouper des vecteurs de différents types (numériques et textuels)
 * Structurellement, le dataframe est une **liste** composées de **vecteurs nommés** (noms de variables uniques) de même **longueur** (nombre d'observations) mais qui peuvent être de **modes différents** (variables numériques, textuelles)
