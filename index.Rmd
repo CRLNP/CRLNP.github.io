@@ -4,16 +4,17 @@ description: "Caroline Patenaude, Bibliothèque des lettres et sciences humaines
 site: distill::distill_website
 ---
 
-<div class = "right">
-
-
-![](markdown/colab2.png)
-</div>
-
 
 *Consultez et téléchargez les scripts utilisés dans le cadre des capsules de formation sous forme de documents Rmarkdown*
 
+
 **Contenu des capsules de formation**
+
+<div class = "right">
+
+<img src="markdown/colab2.png" width="200px">
+
+</div>
 
 - **Capsule préambule**: L'environnement *Google Colab*
 
@@ -33,11 +34,15 @@ site: distill::distill_website
 
 - **Capsule huit**: Les graphiques univariés et bivariés
 
+  
+
 
 <style>
 .right {
   position: absolute;
   right: 0px;
-  padding: 0px;
+  padding-right: 0px;!important;
+    margin-right: 0 ;!important;
 }
 </style>
+

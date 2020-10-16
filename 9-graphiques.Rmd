@@ -6,8 +6,10 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: false
+      Smooth_scroll: true
     code_download: true
 css: hide.css
 ---
@@ -43,7 +45,7 @@ bd <- hdv2003
 
 <br>
 
-##Deux principales familles de fonctions graphiques
+## Deux principales familles de fonctions graphiques
 
 1.   Fonctions natives
 2.   Fonctions GGplot2
@@ -153,11 +155,10 @@ plot(density(bd$heures.tv, na.rm = TRUE), main = "Heures d'écoute de télé")
 
 ```{r}
 # Ajout de la fonction lines() qui permet de superposer plusieurs éléments graphiques
+# lwd=  largeur des lignes
 
 plot(density(bd$age[bd$sexe == "Femme"]),  lwd = 3, col = "red", main = "Titre du graphique")
 lines(density(bd$age[bd$sexe == "Homme"]),  lwd = 3, col = "blue")
-
-# lwd=  largeur des lignes
 ```
 
 <br>
@@ -171,14 +172,14 @@ tb.prop <- cprop(tb.eff, total = FALSE) # tableau de proportions
 
 ```{r}
 # Graphique à barres avec table d'effectifs superposés
+# legend = levels pour faire apparaitre les catégories de la variable choisie
 
 barplot(tb.eff , legend = levels(bd$trav.satis))
-
-# legend = levels pour faire apparaitre les catégories de la variable choisie
 ```
 
 ```{r}
 # Graphique à barres avec table de proportions
+
 barplot(tb.prop, beside = TRUE, xlab = "Satisfaction", ylab = "pourcentages", las=2, ylim=c(0, 100),
 col = c("blue", "green", "orange"), legend = levels(bd$trav.satis))
 
@@ -196,6 +197,7 @@ hist(bd$age)
 
 ```{r}
 # Histogramme avec quelques arguments
+
 hist(bd$age, main = "Age", col="violetred2", breaks = 8, xlab = "Age", ylab = "Effectif", labels = TRUE)
 
 
@@ -208,7 +210,6 @@ hist(bd$age, main = "Age", col="violetred2", breaks = 8, xlab = "Age", ylab = "E
   # Pour ajouter une ligne de densité:
     ## argument prob = TRUE affichage de la ligne de densité
     ## fonction lines(density(bd$age, na.rm = TRUE), lwd = 4, col = "green")
-
 ```
 
 <br>
@@ -246,6 +247,7 @@ boxplot(age ~ hard.rock, bd)
 
 ```{r}
 # Graphique mosaique
+
 mosaicplot(sport ~ sexe, bd, las = 1, shade = TRUE, main="Niveau de qualification selon le sexe")
 # Chaque boite correspond à une cellule
 # largeur: pourcentages en colonnes
@@ -312,6 +314,7 @@ ylab("Effectifs")
 
 ```{r}
 # Le faceting permet d’effectuer plusieurs fois le même graphique selon les valeurs d’une ou plusieurs variables qualitatives, ICI (~sexe).
+
 ggplot(bd) +  
 geom_histogram(aes(x = age), fill="orchid1", colour = "white", breaks = c(0, 20, 40, 60, 80, 100)) +  
 facet_grid(~sexe) +
@@ -377,7 +380,8 @@ scale_y_continuous("Heures de télé", limits = c(0,15))
 ```
 
 ```{r}
-### ajouter une droite de régression + lignes de densité
+# ajouter une droite de régression + lignes de densité
+
 ggplot(bd, aes(x=age, y=freres.soeurs))+
   geom_point(col="steelblue2")+
   geom_smooth(method="lm", col="thistle3")+
@@ -390,20 +394,23 @@ ggplot(bd, aes(x=age, y=freres.soeurs))+
 ### 2.4. geom_boxplot - boite à moustache
 
 ```{r}
-### On passe en y la variable quanti et en x la variable quali
+# On passe en y la variable quanti et en x la variable quali
+
 ggplot(bd) + 
 geom_boxplot(aes(x = trav.satisf, y =age), varwidth = TRUE, fill = "midnightblue", color = "chartreuse1") + 
 ggtitle("Pratique de la religion")
 ```
 
 ```{r}
-### on fait varier la couleur selon une variable et on "flip" le tout
+# on fait varier la couleur selon une variable et on "flip" le tout
+
 ggplot(bd, aes(x = sexe, y = freres.soeurs, color = sexe)) + geom_boxplot() + coord_flip()
 ```
 
 ```{r}
-### Graphique de densité
+# Graphique de densité
 # test Comparer des distributions avec leur densité
+
 ggplot(bd, aes(x = age, color = sexe, fill=sexe)) + geom_density(alpha=0.55)
 ```
 

@@ -1,13 +1,15 @@
 ---
-title: "Atelier Premiers pas avec R <br> Capsule preambule: présentation de Google Colaboratory"
-author: "Caroline Patenaude <br> Bibliothécaire, BLSH"
+title: "Capsule preambule: présentation de Google Colaboratory"
+author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
 date: "`r Sys.Date()`"
 output: 
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: false
+      Smooth_scroll: true
     code_download: true
 ---
 
@@ -20,7 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 1. Principales caractéristiques
 
 *   Colab est une plateforme de programmation et d'analyse gratuite qui permet de créer et de partager du code dans l'environnement Google et qui ne nécessite donc aucune installation locale, ne nécessite qu'un compte Google!
-*   Comme Colab fait partie des services Google, les documents Colab peuvent être créés, enregistrés, copiés dans Google Drive et le partage et la collaboration se font de la même façon que pour les autres types de documents Google. Colab est aussi reliée à GitHub ce qui permet d'importer et d'exporter facilement des documents d'une plateforme à l'autre.
+*   Comme Colab fait partie des services Google, les documents Colab peuvent être créés, enregistrés, copiés dans Google Drive et le partage et la collaboration se font de la même façon que pour les autres types de documents Google. 
+*   Colab est aussi reliée à GitHub ce qui permet d'importer et d'exporter facilement des documents d'une plateforme à l'autre.
 *   Les fichiers créés dans Colab sont en fait des  _notebooks_: documents interactifs qui permettent de combiner code, résultats, texte, graphiques, images,... (même format que les _[Jupyter Notebook](https://jupyter.org/)_ et similaires aux documents RMarkdown).
 
 <br>
@@ -35,7 +38,7 @@ https://colab.research.google.com/notebook#create=true&language=r
 
 **En résumé:**
 
-*   Option intéressante à explorer pour se familiariser avec le langage R et créer des documents de présentation faciles à partager sans avoir quoi que ce soit à installer, mais pour travailler avec des données, RStudio est de loin préférable. 
+*   Option intéressante à explorer pour se familiariser avec le langage R et créer des documents de présentation faciles à partager sans avoir quoi que ce soit à installer, mais pour travailler avec des données, [RStudio](https://rstudio.com/) est de loin préférable. 
 * L'importation et l'exportation de fichiers de données est plus complexe dans Colab que dans RStudio car nécessite d'utiliser du code Python et peut demander d'interagir avec Github. Raison pour laquelle nous utiliserons dans les capsules suivantes une base de données directement accessible via un package R. 
 
 <br>
@@ -66,8 +69,8 @@ https://colab.research.google.com/notebook#create=true&language=r
 
 ### 4.1. Cellules de texte en format Markdown
 
-*   Le **formatage** des **blocs** de *texte* peut se **faire** directement avec le *balisage* Markdown ou *avec* les *options* d'édition **du** bloc de texte.
-*   La table des matières à **gauche** est créé en fonction des différents **niveaux** de titres et sous-titres notées en markdown (#, ##, ###)
+*   Le **formatage** des blocs de texte peut se faire directement avec le*balisage Markdown ou avec les options d'édition du bloc de texte.
+*   La table des matières à gauche est créé en fonction des différents niveaux de titres et sous-titres notées en markdown (#, ##, ###)
 
 <br>
 
@@ -76,14 +79,17 @@ https://colab.research.google.com/notebook#create=true&language=r
 ```{r}
 # Documente son code avec des commentaires débutant par #
 
-# Exécute les cellules de code avec le bouton à la gauche ou avec le raccourci ctrl + entrée (de nombreux autres raccourcis se trouvent sous Options).
+# Exécute les cellules de code avec le bouton à la gauche ou avec le raccourci ctrl + entrée 
+# (de nombreux autres raccourcis se trouvent dans les onglets du menu du haut).
 
 toto = 2+2
 toto
 ```
 
-## Pour aller plus loin
+<br>
 
-*   Bienvenue dans Colaboratory par Google: https://colab.research.google.com/notebooks/intro.ipynb#scrollTo=ufxBm1yRnruN
-*   Getting started in Google Colab: https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c
-*   DataProfessor: https://www.youtube.com/channel/UCV8e2g4IWQqK71bbzGDEI4Q
+## 5. Pour aller plus loin
+
+*   [Bienvenue dans Colaboratory par Google](https://colab.research.google.com/notebooks/intro.ipynb#scrollTo=ufxBm1yRnruN)
+*   [Getting started in Google Colab](https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c) 
+*   [DataProfessor](https://www.youtube.com/channel/UCV8e2g4IWQqK71bbzGDEI4Q)

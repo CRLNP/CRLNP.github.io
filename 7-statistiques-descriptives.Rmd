@@ -6,8 +6,11 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: true
+      Smooth_scroll: true
+    toc_depth: 3
 code_download: true
 css: hide.css
 ---
@@ -158,7 +161,7 @@ bd$age.scale <- scale(bd$age, center = TRUE, scale = TRUE)    # Standardisation:
 
 ```{r}
 ### Pour appliquer une fonction sur plusieurs variables à la fois
-apply(bd[ ,c("age", "heures.tv","freres.soeurs")], na.rm=TRUE, MARGIN=1, FUN=mean)
+apply(bd[ ,c("age", "heures.tv","freres.soeurs")], na.rm=TRUE, MARGIN=2, FUN=mean)
 
 # c() indique les variables à utiliser dans le calcul
 # MARGIN=2: calcul à travers les participants (ici moyenne de colonnes), =1 est à travers les rangées
@@ -280,9 +283,7 @@ cprop(tb, percent = TRUE)    # % en colonnes
 rprop(tb, percent = TRUE, digits = 0)    # % en lignes, argument digits pour arrondir
 ```
 
-
 <br>
-
 
 ### 2.2. Comparer des groupes : by() et tapply() 
 

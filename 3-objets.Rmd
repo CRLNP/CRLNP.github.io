@@ -6,8 +6,10 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: false
+      Smooth_scroll: false
     code_download: true
 css: hide.css
 ---
@@ -26,14 +28,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Cette étape peut prendre plusieurs minutes.
 
-# À noter, puisque qu'il est préférable de ne pas inclure le téléchargement dans un document de présentation Rmarkdown,
-# seuls les codes de chargement des modules sont inclus:
+# À NOTER, puisque qu'il est préférable de ne pas inclure le code de téléchargement 
+# des modules dans un document Rmarkdown, seuls les codes de chargement ont été indiqués:
 library("questionr")
 
-# Les commandes de téléchargement devront donc être ajoutées à son document COlab ou Rmarkdown:
+# Les commandes de téléchargement devront donc être ajoutées à son document Colab ou Rmarkdown:
 install.packages("package", dependencies=TRUE)
 
-# dep=TRUE: assure que tous les modules dépendants nécessaires seront aussi installés.
+# dependencies=TRUE: assure que tous les modules dépendants nécessaires seront aussi installés.
 ```
 
 <br>
@@ -69,6 +71,7 @@ detach(package:NomModule)     # pour éviter les conflits entre fonctions du mê
 ![](markdown/objet.jpg)
 
 </center>  
+
 ```{r}
 # R comme une grosse calculatrice
 
@@ -82,6 +85,8 @@ detach(package:NomModule)     # pour éviter les conflits entre fonctions du mê
 ![](markdown/assignation.jpg)
 
 </center>  
+
+<div class="fold o">
 
 ```{r}
 # Calcul simple
@@ -129,7 +134,7 @@ Les noms d’objets:
 
 <br>
 
-## 3.  Les fonctions
+## 3. Les fonctions
 
 *  Permettent d’effectuer des tâches prédéfinies comme des analyses, graphiques, calculs, … 
 *  Chaque fonction a un nom et plusieurs fonctions peuvent permettre d'effectuer la même tâche: Par exemple pour faire une correlation, on retrouve les fonctions cor(), cor.test(), ...
@@ -164,7 +169,7 @@ round(mean(age), 0)
 
 <br>
 
-## 4.  Les arguments
+## 4. Les arguments
 
 * Chaque fonction possède une liste plus ou moins longue d’arguments (paramètres ou options) permettant de paramétrer son fonctionnement.
 * Certains arguments ont une valeur par défaut. Si ces valeurs nous conviennent, pas besoin de les indiquer.
@@ -197,7 +202,7 @@ mean(age, na.rm=TRUE)
 
 <br>
 
-## 5.  Les types d'objets
+## 5. Les types d'objets
 
 - Les objets sont caractérisés par **différentes structures**
 - On retrouve **5 différents types de contenants** ayant chacun leurs propriétés 
@@ -304,4 +309,4 @@ bd
 ```
 
 
-
+</div>

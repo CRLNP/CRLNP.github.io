@@ -1,13 +1,16 @@
 ---
 title: "Capsule 1: Qu'est-ce que R?"
-author: "Caroline Patenaude <br> Bibliothécaire, BLSH"
+author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
 date: "`r Sys.Date()`"
 output: 
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: true
+      Smooth_scroll: true
+    toc_depth: 3
     code_download: true
 ---
 
@@ -138,8 +141,6 @@ knitr::opts_chunk$set(echo = FALSE)
     
 <br>
 
-## 5. Qu’est-ce qu’un *package*? (suite)  
-
 <br>
 
 - Les modules sont généralement évalués par les pairs - [Journal of Statistical Software](https://www.jstatsoft.org/index) – le choix doit se faire avec précautions.
@@ -182,7 +183,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 7. **R**: Langage de programmation  
 
-
 - **R** est avant tout un langage de programmation orienté objet.
 - Développé à partir du **langage S** par *Ross Ihaka* et *Robert Gentleman* au cours des années ‘90.
 - Permet de programmer ses propres fonctions et packages.  
@@ -191,14 +191,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ![](markdown/programmation.png)
 
->  - **Est-ce qu'il faut vraiment apprendre ça?**
 </center>  
 
 
 <br>
-
-
-## 7. **R**: Langage de programmation (suite)  
 
 
 **Particularités à savoir**:

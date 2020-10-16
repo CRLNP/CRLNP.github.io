@@ -6,8 +6,11 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: true
+      Smooth_scroll: true
+    toc_depth: 3
 code_download: true
 css: hide.css
 ---
@@ -38,6 +41,7 @@ bd <- hdv2003
 <br>
 
 <div class="fold o">
+
 # Manipuler des variables
 
 *   Dans la capsule précédente, nous avons utilisé l'indexation pour sélectionner et créer des éléments en plaçant l’opérateur d’indexation  [ ] à la droite de l’opérateur **<-** :  bd2 <- bd[1:100, ] 
@@ -297,4 +301,5 @@ bd$age.ecart <- bd$age - mean(bd$age, na.rm = TRUE) # écart entre l'âge du ré
 bd$sum <- rowSums (bd[ , c("var1", "var2", "var3")], na.rm=TRUE)
 bd$moy<- rowMeans (bd[ , c("var1", "var2", "var3")], na.rm=TRUE)
 ```
+
 </div>

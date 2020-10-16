@@ -6,8 +6,11 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: true
+      Smooth_scroll: true
+    toc_depth: 3
     code_download: true
 css: hide.css
 ---
@@ -44,7 +47,9 @@ bd <- hdv2003
 <div class="fold o">
 
 ```{r}
-dim(bd)
+# Un dataframe est composé de deux dimensions, rangées et colonnes
+# Chaque élément qui compose ces dimensions (observations/variables) est "indexé"
+dim(bd)  
 ```
 
 <br>
@@ -130,7 +135,9 @@ bd[ ,c("occup", "relig")] # Sélectionner deux variables
 On peut aussi mélanger les deux types d'indexation
 
 ```{r}
-bd[1:100, c("id", "age", "sexe", "nivetud", "relig")] # Sélectionner les 100 premières observations par position et 5 variables par nom
+# Sélectionner les 100 premières observations par position et 5 variables par nom
+
+bd[1:100, c("id", "age", "sexe", "nivetud", "relig")] 
 ```
 
 <br>
@@ -146,7 +153,7 @@ bd$sexe # Sélectionner la variable sexe
 ```{r}
 bd$sexe[10:20] # Sélectionner les observations de 10 à 20 par position de la variable sexe
 
-# La virgule n'est plus nécessaire puisque l'on applique notre condition à un élément qui n'a qu'une dimension, ie une variable
+# La virgule n'est plus ici nécessaire puisque la condition s'applique à un élément qui n'a qu'une dimension, ie une variable
 ```
 
 ```{r}

@@ -6,8 +6,11 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: false
+      Smooth_scroll: true
+    toc_depth: 2
     code_download: true
 css: hide.css
 ---
@@ -39,7 +42,7 @@ bd <- hdv2003
 
 <br>
 
-# Analyses statistiques
+# 1. Analyses statistiques
 
 * On retrouve une multitude de modules dédiés aux méthodes statistiques (comme stats, MASS, FactoMineR, plm, glm). 
 * La même méthode peut se trouver avec variantes dans plusieurs modules. 
@@ -84,7 +87,7 @@ mod$coefficients # Sélectionner l'élément individuel
  
 <br>
 
-## 1.2. Les modalités de référence:
+## 1.2. Les modalités de référence
 - Dans R, il n'est pas nécessaire de recoder ses variables en "dummy", les analyses s'en chargent par défaut lorsqu'on utilise des variables qualitatives.
 - Mais attention à la modalité de référence des facteurs définie par défaut: la première dans la liste des niveaux.
 
@@ -101,7 +104,7 @@ bd$sport <- relevel(bd$sport, ref = "Oui")
 
 <br>
 
-## 2. Intervalle de confiance
+# 2. Intervalle de confiance
 
 ```{r}
 # Intervalle de confiance d’une proportion
@@ -130,7 +133,7 @@ t.test(bd$age, conf.level=.99)
 
 <br>
 
-## 3.  Test du Khi-carré
+# 3.  Test du Khi-carré
 
 ```{r}
 # Passe la table comme argument à la fonction chisq.test() (Module questionr)
@@ -163,7 +166,7 @@ chisq.residuals(tab)
 
 <br>
 
-## 4. Test de fisher
+# 4. Test de fisher
 
 ```{r}
 fisher.test(bd$sport, bd$sexe)
@@ -171,7 +174,7 @@ fisher.test(bd$sport, bd$sexe)
 
 <br>
 
-## 5. Différence de moyennes entre deux groupes (Test T)
+# 5. Différence de moyennes entre deux groupes (Test T)
 
 *Vérifier si les moyennes d'une variable quantitative de deux groupes sont statistiquement différentes*
 
@@ -222,7 +225,7 @@ t.test(age ~ sport, data=bd, var.equal= TRUE)
 
 <br>
 
-### 6. Test Wilcoxon/Mann-Whitney (test non-paramétrique parmi d'autres)
+# 6. Test Wilcoxon/Mann-Whitney (test non-paramétrique parmi d'autres)
 
 ```{r}
 wilcox.test(age ~ sport, data = bd)
@@ -230,7 +233,7 @@ wilcox.test(age ~ sport, data = bd)
 
 <br>
 
-## 7. Différence de moyenne pour plus de deux groupes (ANOVA)
+# 7. Différence de moyenne pour plus de deux groupes (ANOVA)
 *Évaluer la relation entre une variable quantitative et une variable qualitative avec plus de deux modalités*
 
 ```{r}
@@ -298,7 +301,7 @@ anova(mod.lm)
 
 <br>
 
-## 7. Corrélations
+# 8. Corrélations
 
 ```{r}
 # Fonction cor()
@@ -321,10 +324,10 @@ cor.test(bd$age, bd$heures.tv)
 
 <br>
 
-## 8. Régression linéaire
+# 9. Régression linéaire
 *Prédire la valeur d'une variable dépendante continue sur la base des valeurs de variables indépendantes*
 
-#### Fonction lm()
+**Fonction lm()**
 
 ```{r}
 # Quelles variables prédisent les heures de télé écoutées
@@ -373,7 +376,7 @@ head(resid(mod1.lm))
 
 <br>
 
-## 9. Régression logistique binaire
+# 10. Régression logistique binaire
 
 *Prédire une variable dépendante dichotomique sur la base des valeurs de variables indépendantes*
 
@@ -406,7 +409,7 @@ exp(coef(mod.reg))
 
 <br>
 
-## 10. Visualiser les résultats d'un modèle
+# 11. Visualiser les résultats d'un modèle
 
 ```{r}
 # Résultat de l'ANOVA

@@ -1,10 +1,12 @@
-name: "rcolab"
-title: "Intro R"
-description: |
-  rcolab-git
 output_dir: "."
+creative_commons: CC BY
+description: |
+  Introduction au langage R dans l'environnement Google Colab
 navbar:
   title: Intro R
+  logo:
+    image: markdown/logo-udem-blanc.png
+    href: https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques
   right:
   - text: Preambule Google Colab
     href: 1-preambule-colab.html

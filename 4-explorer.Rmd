@@ -6,8 +6,11 @@ output:
   html_document: 
     highlight: pygments
     theme: lumen
-    toc: yes
-    toc_float: yes
+    toc: true
+    toc_float: 
+      collapsed: true
+      Smooth_scroll: true
+    toc_depth: 3
     code_download: true
 css: hide.css
 ---
@@ -88,9 +91,12 @@ read_spss("fichier.sav", user_na = TRUE)
   +  Les valeurs sont de quels formats (chaine de caractères ou numérique)?
   +  S’assurer que chaque ligne correspond à une observation et chaque colonne à une variable.
   +  Présence de caractères accentués, apostrophes? Attention à l'encodage du fichier, supprimer des noms de variables et d'observation.
+  
 <br>
 
 ## 1.3 Les bases de données intégrées aux modules
+
+<br>
 
 ### Voir toutes les bases de données intégrées aux modules (installés ou non)
 
@@ -100,7 +106,7 @@ data(package = .packages(all.available = TRUE))
 
 <br>
 
-Plusieurs modules ont été développés spécifiquement pour importer et travailler avec des données publiques 
+*   Plusieurs modules ont été développés spécifiquement pour importer et travailler avec des données publiques 
 
 *   [WDI](https://cran.r-project.org/web/packages/WDI/index.html) (Indicateurs de développement de la Banque mondiale)
 *   [cancensus](https://cran.r-project.org/web/packages/cancensus/vignettes/cancensus.html) (Recensements canadiens)
