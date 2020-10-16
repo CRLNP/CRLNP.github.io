@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
+
+<meta name="date" content="2020-10-16" />
+
+<title>Capsule 7: Tests statistiques</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      a.sourceLine { display: inline-block; line-height: 1.25; }
+  a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+  a.sourceLine:empty { height: 1.2em; }
+  .sourceCode { overflow: visible; }
+  code.sourceCode { white-space: pre; position: relative; }
+  div.sourceCode { margin: 1em 0; }
+  pre.sourceCode { margin: 0; }
+  @media screen {
+  div.sourceCode { overflow: auto; }
+  }
+  @media print {
+  code.sourceCode { white-space: pre-wrap; }
+  a.sourceLine { text-indent: -1em; padding-left: 1em; }
+  }
+  pre.numberSource a.sourceLine
+    { position: relative; left: -4em; }
+  pre.numberSource a.sourceLine::before
+    { content: attr(title);
+      position: relative; left: -1em; text-align: right; vertical-align: baseline;
+      border: none; pointer-events: all; display: inline-block;
+      -webkit-touch-callout: none; -webkit-user-select: none;
+      -khtml-user-select: none; -moz-user-select: none;
+      -ms-user-select: none; user-select: none;
+      padding: 0 4px; width: 4em;
+      color: #aaaaaa;
+    }
+  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  div.sourceCode
+    {  }
+  @media screen {
+  a.sourceLine::before { text-decoration: underline; }
+  }
+  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code span.at { color: #7d9029; } /* Attribute */
+  code span.bn { color: #40a070; } /* BaseN */
+  code span.bu { } /* BuiltIn */
+  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code span.ch { color: #4070a0; } /* Char */
+  code span.cn { color: #880000; } /* Constant */
+  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code span.dt { color: #902000; } /* DataType */
+  code span.dv { color: #40a070; } /* DecVal */
+  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.ex { } /* Extension */
+  code span.fl { color: #40a070; } /* Float */
+  code span.fu { color: #06287e; } /* Function */
+  code span.im { } /* Import */
+  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code span.op { color: #666666; } /* Operator */
+  code span.ot { color: #007020; } /* Other */
+  code span.pp { color: #bc7a00; } /* Preprocessor */
+  code span.sc { color: #4070a0; } /* SpecialChar */
+  code span.ss { color: #bb6688; } /* SpecialString */
+  code span.st { color: #4070a0; } /* String */
+  code span.va { color: #19177c; } /* Variable */
+  code span.vs { color: #4070a0; } /* VerbatimString */
+  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<link rel="stylesheet" href="hide.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+</li>
+<li>
+  <a href="2-langage-r.html">Qu'est-ce que R?</a>
+</li>
+<li>
+  <a href="3-objets.html">Objets</a>
+</li>
+<li>
+  <a href="4-explorer.html">Explorer</a>
+</li>
+<li>
+  <a href="5-indexation.html">Indexation</a>
+</li>
+<li>
+  <a href="6-manipuler.html">Manipuler</a>
+</li>
+<li>
+  <a href="7-statistiques-descriptives.html">Statistiques-descriptives</a>
+</li>
+<li>
+  <a href="8-analyses.html">Analyses</a>
+</li>
+<li>
+  <a href="9-graphiques.html">Graphiques</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Capsule 7: Tests statistiques</h1>
+<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
+<h4 class="date">2020-10-16</h4>
+
+</div>
+
+
+<script src="hideOutput.js"></script>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Chargement des modules nécessaires</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(questionr)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(effects)</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Ajouter la fonction de téléchargement si nécessaire:</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co"># install.packages(&quot;car&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co"># install.packages(&quot;questionr&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co"># install.packages(&quot;effects&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-10" title="10"></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co"># Téléchargement de la base de données hdv2003 du module questionr</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co"># (Extrait de l&#39;enquête &quot;Histoire de vie&quot; de l&#39;Insee - https://www.insee.fr/fr/statistiques/2532244)</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">data</span>(hdv2003)</a>
+<a class="sourceLine" id="cb1-14" title="14"></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co"># Copie de la base de données dans un objet (datatable) nommé bd</span></a>
+<a class="sourceLine" id="cb1-16" title="16">bd &lt;-<span class="st"> </span>hdv2003</a></code></pre></div>
+<p><br></p>
+<div id="analyses-statistiques" class="section level1">
+<h1>Analyses statistiques</h1>
+<ul>
+<li>On retrouve une multitude de modules dédiés aux méthodes statistiques (comme stats, MASS, FactoMineR, plm, glm).</li>
+<li>La même méthode peut se trouver avec variantes dans plusieurs modules.</li>
+<li>Les exemples ci-dessous proviennent principalement du module stats (module par défaut) où l’on retrouve de nombreuses fonctions pour différents types d’analyse</li>
+</ul>
+<p><br></p>
+<div id="notation-formule-et-objet-modèle" class="section level2">
+<h2>1.1. Notation formule et objet modèle</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mod &lt;-<span class="st"> </span><span class="kw">nom.test</span>(VD <span class="op">~</span><span class="st"> </span>VI)</a></code></pre></div>
+<ul>
+<li>Souvent utilisé dans les modèles d’analyse (régressions…) et les graphiques.</li>
+<li>Peut s’interpréter comme en “fonction de…”: variable dépendante (effet) en fonction (~) de la var indépendante (cause)</li>
+<li>Toutes les fonctions n’acceptent pas la notation formule, mais est utilisé pour la plupart des modèles d’analyse</li>
+<li>On stocke l’analyse dans un objet qui contiendra les résultats qui, selon l’analyse, inclueront un ensemble d’éléments d’information auxquels on pourra accéder de deux façons:</li>
+</ul>
+<p>En passant notre objet-modèle à différentes fonctions génériques (selon le type de test):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data=</span>NomObjet) <span class="co"># Créer son objet modèle</span></a>
+<a class="sourceLine" id="cb3-2" title="2">mod                             <span class="co"># résumé des résultats</span></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">summary</span>(mod)                    <span class="co"># ensemble des résultats détaillés</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw">coef</span>(mod)                       <span class="co"># coefficients et erreurs standards</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="kw">residuals</span>(mod)                  <span class="co"># résidus</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="kw">confint</span>(mod)                    <span class="co"># intervalles de confiance</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="kw">fitted</span>(mod)                     <span class="co"># valeurs ajustées</span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="kw">anova</span>(mod)                      <span class="co"># appliquer analyse de variance sur modèle</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="kw">predict</span>(mod)                    <span class="co"># calculer des valeurs prédites à partir d&#39;un modèle</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="kw">plot</span>(mod)                       <span class="co"># et nombreuses autres fonctions graphiques  </span></a></code></pre></div>
+<p>En utilisant la fonction names(mod) et en sélectionnant individuellement le nom de l’élément avec l’opérateur $:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x) <span class="co"># Créer son objet modèle</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">names</span>(mod)       <span class="co"># Voir les éléments du résultat</span></a>
+<a class="sourceLine" id="cb4-3" title="3">mod<span class="op">$</span>coefficients <span class="co"># Sélectionner l&#39;élément individuel</span></a></code></pre></div>
+<p><em>À noter: par défaut les résultats sont présentés selon la notation scientifique. Pour la désactiver utiliser l’instruction: options(scipen = 999)</em></p>
+<p><br></p>
+</div>
+<div id="les-modalités-de-référence" class="section level2">
+<h2>1.2. Les modalités de référence:</h2>
+<ul>
+<li>Dans R, il n’est pas nécessaire de recoder ses variables en “dummy”, les analyses s’en chargent par défaut lorsqu’on utilise des variables qualitatives.</li>
+<li>Mais attention à la modalité de référence des facteurs définie par défaut: la première dans la liste des niveaux.</li>
+</ul>
+<div class="fold o">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Pour voir la modalité de référence - première listée</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">levels</span>(bd<span class="op">$</span>sport)</a></code></pre></div>
+<pre><code>## [1] &quot;Non&quot; &quot;Oui&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Pour modifier la catégorie de référence</span></a>
+<a class="sourceLine" id="cb7-2" title="2">bd<span class="op">$</span>sport &lt;-<span class="st"> </span><span class="kw">relevel</span>(bd<span class="op">$</span>sport, <span class="dt">ref =</span> <span class="st">&quot;Oui&quot;</span>)</a></code></pre></div>
+<p><br></p>
+<h2 id="intervalle-de-confiance">2. Intervalle de confiance</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Intervalle de confiance d’une proportion</span></a>
+<a class="sourceLine" id="cb8-2" title="2"></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co"># fonction prop.test</span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="kw">prop.test</span>(<span class="kw">table</span>(bd<span class="op">$</span>sport))</a></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  table(bd$sport), null probability 0.5
+## X-squared = 152.9, df = 1, p-value &lt; 0.00000000000000022
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.3404821 0.3830553
+## sample estimates:
+##      p 
+## 0.3615</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Calcul l&#39;intervalle pour la première catégorie du tableau</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">prop.test</span>(<span class="kw">table</span>(<span class="kw">relevel</span>(bd<span class="op">$</span>sport, <span class="st">&quot;Oui&quot;</span>)))</a></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test with continuity correction
+## 
+## data:  table(relevel(bd$sport, &quot;Oui&quot;)), null probability 0.5
+## X-squared = 152.9, df = 1, p-value &lt; 0.00000000000000022
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.3404821 0.3830553
+## sample estimates:
+##      p 
+## 0.3615</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Modifier la catégorie de référence avec la fonction relevel directement dans la fonction table()</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Intervalle de confiance d&#39;une moyenne</span></a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="co"># Fonction t.test</span></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="co"># Changer le niveau de confiance avec l&#39;argument (bd$age, conf.level=.x)</span></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="kw">t.test</span>(bd<span class="op">$</span>age, <span class="dt">conf.level=</span>.<span class="dv">99</span>)</a></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  bd$age
+## t = 127.12, df = 1999, p-value &lt; 0.00000000000000022
+## alternative hypothesis: true mean is not equal to 0
+## 99 percent confidence interval:
+##  47.18027 49.13373
+## sample estimates:
+## mean of x 
+##    48.157</code></pre>
+<p><br></p>
+<h2 id="test-du-khi-carré">3. Test du Khi-carré</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Passe la table comme argument à la fonction chisq.test() (Module questionr)</span></a>
+<a class="sourceLine" id="cb16-2" title="2"></a>
+<a class="sourceLine" id="cb16-3" title="3">mod.chi &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe) </a>
+<a class="sourceLine" id="cb16-4" title="4"></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="co"># Applique correction par défaut, sinon ajouter argument: ,correct=FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">mod.chi</a></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  bd$sport and bd$sexe
+## X-squared = 16.574, df = 1, p-value = 0.00004679</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Fonction names() pour voir les éléments d&#39;information de nos résultats</span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">names</span>(mod.chi)</a></code></pre></div>
+<pre><code>## [1] &quot;statistic&quot; &quot;parameter&quot; &quot;p.value&quot;   &quot;method&quot;    &quot;data.name&quot; &quot;observed&quot; 
+## [7] &quot;expected&quot;  &quot;residuals&quot; &quot;stdres&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Voir les valeurs attendues</span></a>
+<a class="sourceLine" id="cb21-2" title="2">mod.chi<span class="op">$</span>expected</a></code></pre></div>
+<pre><code>##         bd$sexe
+## bd$sport    Homme    Femme
+##      Oui 324.9885 398.0115
+##      Non 574.0115 702.9885</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># Fonction chisq.residuals() du module questionr pour les résidus</span></a>
+<a class="sourceLine" id="cb23-2" title="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe)</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="kw">chisq.residuals</span>(tab) </a></code></pre></div>
+<pre><code>##      
+##       Homme Femme
+##   Oui  2.44 -2.21
+##   Non -1.84  1.66</code></pre>
+<p><br></p>
+<h2 id="test-de-fisher">4. Test de fisher</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">fisher.test</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe)</a></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  bd$sport and bd$sexe
+## p-value = 0.00004629
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  1.217630 1.772444
+## sample estimates:
+## odds ratio 
+##   1.468833</code></pre>
+<p><br></p>
+<h2 id="différence-de-moyennes-entre-deux-groupes-test-t">5. Différence de moyennes entre deux groupes (Test T)</h2>
+<p><em>Vérifier si les moyennes d’une variable quantitative de deux groupes sont statistiquement différentes</em></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Explorer les statistiques descriptives selon les groupes avec la fonction by()</span></a>
+<a class="sourceLine" id="cb27-2" title="2"></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>summary)</a></code></pre></div>
+<pre><code>## bd$sport: Oui
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   29.00   39.00   40.93   51.50   89.00 
+## ------------------------------------------------------------ 
+## bd$sport: Non
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   40.00   52.00   52.25   64.00   97.00</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>var)</a></code></pre></div>
+<pre><code>## bd$sport: Oui
+## [1] 231.8337
+## ------------------------------------------------------------ 
+## bd$sport: Non
+## [1] 272.0692</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Normalité des distributions - Test de Shapiro-Wilk</span></a>
+<a class="sourceLine" id="cb31-2" title="2"></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="co">## Avec la fonction by</span></a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>shapiro.test)</a></code></pre></div>
+<pre><code>## bd$sport: Oui
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  dd[x, ]
+## W = 0.96203, p-value = 0.0000000000009734
+## 
+## ------------------------------------------------------------ 
+## bd$sport: Non
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  dd[x, ]
+## W = 0.98844, p-value = 0.00000001654</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Égalité des variances - test F</span></a>
+<a class="sourceLine" id="cb33-2" title="2"></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="kw">var.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
+<pre><code>## 
+##  F test to compare two variances
+## 
+## data:  age by sport
+## F = 0.85211, num df = 722, denom df = 1276, p-value = 0.01621
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.7497388 0.9707395
+## sample estimates:
+## ratio of variances 
+##          0.8521131</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Test de Levene (module car)</span></a>
+<a class="sourceLine" id="cb35-2" title="2"></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="kw">leveneTest</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport) <span class="co"># Accepte aussi notation formule</span></a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##         Df F value   Pr(&gt;F)   
+## group    1  7.5237 0.006144 **
+##       1998                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Test T </span></a>
+<a class="sourceLine" id="cb37-2" title="2"></a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="kw">t.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  age by sport
+## t = -15.503, df = 1600.4, p-value &lt; 0.00000000000000022
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -12.759002  -9.893117
+## sample estimates:
+## mean in group Oui mean in group Non 
+##          40.92531          52.25137</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Par défaut, la fonction t.test est un test de Welsh qui ne suppose pas égalité des variances</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Pour un test t classique, ajouter l&#39;argument var.equal = TRUE</span></a>
+<a class="sourceLine" id="cb40-2" title="2"></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="kw">t.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data=</span>bd, <span class="dt">var.equal=</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  age by sport
+## t = -15.164, df = 1998, p-value &lt; 0.00000000000000022
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -12.790849  -9.861269
+## sample estimates:
+## mean in group Oui mean in group Non 
+##          40.92531          52.25137</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Pour un test d&#39;échantillons appariés (mesures répétées), ajouter argument paired=TRUE (sans notation formule)</span></a></code></pre></div>
+<p><br></p>
+<h3 id="test-wilcoxonmann-whitney-test-non-paramétrique-parmi-dautres">6. Test Wilcoxon/Mann-Whitney (test non-paramétrique parmi d’autres)</h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">wilcox.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  age by sport
+## W = 282694, p-value &lt; 0.00000000000000022
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p><br></p>
+<h2 id="différence-de-moyenne-pour-plus-de-deux-groupes-anova">7. Différence de moyenne pour plus de deux groupes (ANOVA)</h2>
+<p><em>Évaluer la relation entre une variable quantitative et une variable qualitative avec plus de deux modalités</em></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># Explorer les statistiques descriptives avec la fonction tapply()</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="kw">tapply</span>(bd<span class="op">$</span>heures.tv, bd<span class="op">$</span>occup, mean, <span class="dt">na.rm=</span>T)</a></code></pre></div>
+<pre><code>## Exerce une profession               Chomeur       Etudiant, eleve 
+##              1.821681              2.874809              1.329787 
+##              Retraite   Retire des affaires              Au foyer 
+##              2.850255              2.624675              2.822222 
+##         Autre inactif 
+##              3.265060</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co"># Vérifier si les moyennes semblent différentes entre les groupes</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Fonction aov</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3">mod.aov &lt;-<span class="st"> </span><span class="kw">aov</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup, <span class="dt">data=</span>bd)</a>
+<a class="sourceLine" id="cb48-4" title="4"></a>
+<a class="sourceLine" id="cb48-5" title="5"><span class="co"># Créé un objet contenant le modèle</span></a>
+<a class="sourceLine" id="cb48-6" title="6"><span class="co"># Pour voir effet combiné entre facteurs mod.aov &lt;- aov(heures.tv ~ occup*sexe, bd)</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">mod.aov   <span class="co"># Voir un résumé du modèle</span></a></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = heures.tv ~ occup, data = bd)
+## 
+## Terms:
+##                    occup Residuals
+## Sum of Squares   616.355  5672.029
+## Deg. of Freedom        6      1988
+## 
+## Residual standard error: 1.689122
+## Estimated effects may be unbalanced
+## 5 observations deleted due to missingness</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Applique la fonction summary à l&#39;objet modèle pour voir résultats détaillés</span></a>
+<a class="sourceLine" id="cb51-2" title="2"></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="kw">summary</span>(mod.aov)</a></code></pre></div>
+<pre><code>##               Df Sum Sq Mean Sq F value              Pr(&gt;F)    
+## occup          6    616  102.73   36.01 &lt;0.0000000000000002 ***
+## Residuals   1988   5672    2.85                                
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 5 observations deleted due to missingness</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Fonction lm </span></a>
+<a class="sourceLine" id="cb53-2" title="2"></a>
+<a class="sourceLine" id="cb53-3" title="3">mod.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup, bd)</a>
+<a class="sourceLine" id="cb53-4" title="4"></a>
+<a class="sourceLine" id="cb53-5" title="5"><span class="co"># Peut également utiliser fonction de régression linéaire pour analyse de variance</span></a>
+<a class="sourceLine" id="cb53-6" title="6"><span class="co"># Permet de voir les contrastes entre les différents groupes</span></a>
+<a class="sourceLine" id="cb53-7" title="7"><span class="co"># La modalité de référence est &quot;Exerce une profession&quot; (levels(bd$occup))</span></a>
+<a class="sourceLine" id="cb53-8" title="8"><span class="co"># Pour changer modalité de référence, utiliser la commande relevel: mod.lm &lt;- lm(diff ~ relevel(occup, ref=&quot;Etudiant, eleve&quot;), data=bd)</span></a>
+<a class="sourceLine" id="cb53-9" title="9"><span class="co"># Possède aussi un argument subset= permettant de sélectionner des modalités. Par exemple: </span></a>
+<a class="sourceLine" id="cb53-10" title="10"><span class="co"># mod2.lm &lt;- lm(heures.tv ~ occup, bd, subset = occup %in% c(&quot;Exerce une profession&quot;, &quot;Chomeur&quot;, &quot;Etudiant, eleve&quot;))</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Résumé de coefficients</span></a>
+<a class="sourceLine" id="cb54-2" title="2">mod.lm </a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = heures.tv ~ occup, data = bd)
+## 
+## Coefficients:
+##              (Intercept)              occupChomeur      occupEtudiant, eleve  
+##                   1.8217                    1.0531                   -0.4919  
+##            occupRetraite  occupRetire des affaires             occupAu foyer  
+##                   1.0286                    0.8030                    1.0005  
+##       occupAutre inactif  
+##                   1.4434</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Applique la fonction summary à l&#39;objet modèle:</span></a>
+<a class="sourceLine" id="cb56-2" title="2"><span class="co"># Coefficients + Tests associés (Test t, degré de significativité)</span></a>
+<a class="sourceLine" id="cb56-3" title="3"><span class="kw">summary</span>(mod.lm)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = heures.tv ~ occup, data = bd)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.2651 -0.8748  0.1497  1.1497  8.7349 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)                1.8217     0.0522  34.897 &lt; 0.0000000000000002 ***
+## occupChomeur               1.0531     0.1565   6.728    0.000000000022489 ***
+## occupEtudiant, eleve      -0.4919     0.1819  -2.705               0.0069 ** 
+## occupRetraite              1.0286     0.1000  10.284 &lt; 0.0000000000000002 ***
+## occupRetire des affaires   0.8030     0.1994   4.026    0.000058832091852 ***
+## occupAu foyer              1.0005     0.1393   7.182    0.000000000000969 ***
+## occupAutre inactif         1.4434     0.1926   7.494    0.000000000000100 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.689 on 1988 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.09801,    Adjusted R-squared:  0.09529 
+## F-statistic:    36 on 6 and 1988 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">anova</span>(mod.lm)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: heures.tv
+##             Df Sum Sq Mean Sq F value                Pr(&gt;F)    
+## occup        6  616.4 102.726  36.005 &lt; 0.00000000000000022 ***
+## Residuals 1988 5672.0   2.853                                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Peut aussi obtenir des résultats d&#39;analyse de variance (somme des carrés, degré de liberté,  valeur de F...) en appliquant anova à l&#39;objet modèle</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="co"># À noter: Les fonctions aov() et anova() retourne la somme des carrés de type I</span></a></code></pre></div>
+<p><br></p>
+<h2 id="corrélations">7. Corrélations</h2>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># Fonction cor()</span></a>
+<a class="sourceLine" id="cb61-2" title="2"></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="kw">cor</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>heures.tv, <span class="dt">use=</span><span class="st">&quot;pairwise&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] 0.1776249</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># Matrice de corrélations pour deux variables quanti ou plus</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="co"># pairwise: n&#39;utiliser que les paires d&#39;observations complètes</span></a>
+<a class="sourceLine" id="cb63-3" title="3"><span class="co"># pour Spearman, rajouter argument method = &quot;spearman&quot;</span></a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="co"># instruction suivante si plus de deux variables: cor(bd[,c(&quot;age&quot;, &quot;heures.tv&quot;, &quot;freres.soeurs&quot;)], use=&#39;pairwise&#39;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Fonction cor.test()</span></a>
+<a class="sourceLine" id="cb64-2" title="2"></a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="kw">cor.test</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>heures.tv)</a></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  bd$age and bd$heures.tv
+## t = 8.0578, df = 1993, p-value = 0.000000000000001324
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.1347898 0.2197974
+## sample estimates:
+##       cor 
+## 0.1776249</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Ou notation formule cor.test( ~ age + heures.tv, bd)</span></a></code></pre></div>
+<p><br></p>
+<h2 id="régression-linéaire">8. Régression linéaire</h2>
+<p><em>Prédire la valeur d’une variable dépendante continue sur la base des valeurs de variables indépendantes</em></p>
+<h4 id="fonction-lm">Fonction lm()</h4>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Quelles variables prédisent les heures de télé écoutées</span></a>
+<a class="sourceLine" id="cb67-2" title="2"></a>
+<a class="sourceLine" id="cb67-3" title="3">mod1.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup <span class="op">+</span><span class="st"> </span>nivetud <span class="op">+</span><span class="st"> </span>sexe, <span class="dt">data=</span>bd) </a>
+<a class="sourceLine" id="cb67-4" title="4"></a>
+<a class="sourceLine" id="cb67-5" title="5"><span class="co"># On stocke le résultat dans un objet modèle pour pouvoir le manipuler avec d&#39;autres fonctions</span></a>
+<a class="sourceLine" id="cb67-6" title="6"><span class="co"># Pour limiter à un sous-groupe: argument &quot;, subset=age&gt;50&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># Passe notre objet modèle à la fonction summary pour voir </span></a>
+<a class="sourceLine" id="cb68-2" title="2"><span class="co"># le tableau des coefficients et leur test de significativité</span></a>
+<a class="sourceLine" id="cb68-3" title="3"><span class="kw">summary</span>(mod1.lm)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = heures.tv ~ occup + nivetud + sexe, data = bd)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.5428 -1.0945 -0.0752  0.8701  8.5809 
+## 
+## Coefficients:
+##                                                                        Estimate
+## (Intercept)                                                             2.17632
+## occupChomeur                                                            0.98936
+## occupEtudiant, eleve                                                   -1.19169
+## occupRetraite                                                           0.78918
+## occupRetire des affaires                                                0.38809
+## occupAu foyer                                                           0.83212
+## occupAutre inactif                                                      1.07830
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires  0.36670
+## nivetudDerniere annee d&#39;etudes primaires                                0.24299
+## nivetud1er cycle                                                       -0.07118
+## nivetud2eme cycle                                                      -0.43234
+## nivetudEnseignement technique ou professionnel court                   -0.10108
+## nivetudEnseignement technique ou professionnel long                    -0.24726
+## nivetudEnseignement superieur y compris technique superieur            -0.77476
+## sexeFemme                                                              -0.07855
+##                                                                        Std. Error
+## (Intercept)                                                               0.28078
+## occupChomeur                                                              0.15680
+## occupEtudiant, eleve                                                      0.96901
+## occupRetraite                                                             0.10724
+## occupRetire des affaires                                                  0.20703
+## occupAu foyer                                                             0.14750
+## occupAutre inactif                                                        0.19833
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires    0.32344
+## nivetudDerniere annee d&#39;etudes primaires                                  0.28367
+## nivetud1er cycle                                                          0.29391
+## nivetud2eme cycle                                                         0.29839
+## nivetudEnseignement technique ou professionnel court                      0.28322
+## nivetudEnseignement technique ou professionnel long                       0.31042
+## nivetudEnseignement superieur y compris technique superieur               0.28492
+## sexeFemme                                                                 0.08173
+##                                                                        t value
+## (Intercept)                                                              7.751
+## occupChomeur                                                             6.310
+## occupEtudiant, eleve                                                    -1.230
+## occupRetraite                                                            7.359
+## occupRetire des affaires                                                 1.875
+## occupAu foyer                                                            5.642
+## occupAutre inactif                                                       5.437
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires   1.134
+## nivetudDerniere annee d&#39;etudes primaires                                 0.857
+## nivetud1er cycle                                                        -0.242
+## nivetud2eme cycle                                                       -1.449
+## nivetudEnseignement technique ou professionnel court                    -0.357
+## nivetudEnseignement technique ou professionnel long                     -0.797
+## nivetudEnseignement superieur y compris technique superieur             -2.719
+## sexeFemme                                                               -0.961
+##                                                                                  Pr(&gt;|t|)
+## (Intercept)                                                            0.0000000000000149
+## occupChomeur                                                           0.0000000003479586
+## occupEtudiant, eleve                                                               0.2189
+## occupRetraite                                                          0.0000000000002755
+## occupRetire des affaires                                                           0.0610
+## occupAu foyer                                                          0.0000000194364641
+## occupAutre inactif                                                     0.0000000613298073
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires             0.2571
+## nivetudDerniere annee d&#39;etudes primaires                                           0.3918
+## nivetud1er cycle                                                                   0.8087
+## nivetud2eme cycle                                                                  0.1475
+## nivetudEnseignement technique ou professionnel court                               0.7212
+## nivetudEnseignement technique ou professionnel long                                0.4258
+## nivetudEnseignement superieur y compris technique superieur                        0.0066
+## sexeFemme                                                                          0.3367
+##                                                                           
+## (Intercept)                                                            ***
+## occupChomeur                                                           ***
+## occupEtudiant, eleve                                                      
+## occupRetraite                                                          ***
+## occupRetire des affaires                                               .  
+## occupAu foyer                                                          ***
+## occupAutre inactif                                                     ***
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires    
+## nivetudDerniere annee d&#39;etudes primaires                                  
+## nivetud1er cycle                                                          
+## nivetud2eme cycle                                                         
+## nivetudEnseignement technique ou professionnel court                      
+## nivetudEnseignement technique ou professionnel long                       
+## nivetudEnseignement superieur y compris technique superieur            ** 
+## sexeFemme                                                                 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.673 on 1868 degrees of freedom
+##   (117 observations deleted due to missingness)
+## Multiple R-squared:  0.1303, Adjusted R-squared:  0.1237 
+## F-statistic: 19.98 on 14 and 1868 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># La fonction coef présente les coefficients du modèle de régression et peut s&#39;appliquer individuellement </span></a>
+<a class="sourceLine" id="cb70-2" title="2"><span class="kw">coef</span>(mod1.lm)</a></code></pre></div>
+<pre><code>##                                                            (Intercept) 
+##                                                             2.17631672 
+##                                                           occupChomeur 
+##                                                             0.98936350 
+##                                                   occupEtudiant, eleve 
+##                                                            -1.19169450 
+##                                                          occupRetraite 
+##                                                             0.78918380 
+##                                               occupRetire des affaires 
+##                                                             0.38809384 
+##                                                          occupAu foyer 
+##                                                             0.83212236 
+##                                                     occupAutre inactif 
+##                                                             1.07829812 
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires 
+##                                                             0.36669644 
+##                               nivetudDerniere annee d&#39;etudes primaires 
+##                                                             0.24298900 
+##                                                       nivetud1er cycle 
+##                                                            -0.07118351 
+##                                                      nivetud2eme cycle 
+##                                                            -0.43234458 
+##                   nivetudEnseignement technique ou professionnel court 
+##                                                            -0.10107621 
+##                    nivetudEnseignement technique ou professionnel long 
+##                                                            -0.24725960 
+##            nivetudEnseignement superieur y compris technique superieur 
+##                                                            -0.77475537 
+##                                                              sexeFemme 
+##                                                            -0.07854815</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># la fonction confint présente les intervalles de confiance (95% par défaut)</span></a>
+<a class="sourceLine" id="cb72-2" title="2"><span class="kw">confint</span>(mod1.lm)</a></code></pre></div>
+<pre><code>##                                                                             2.5 %
+## (Intercept)                                                             1.6256451
+## occupChomeur                                                            0.6818472
+## occupEtudiant, eleve                                                   -3.0921436
+## occupRetraite                                                           0.5788704
+## occupRetire des affaires                                               -0.0179321
+## occupAu foyer                                                           0.5428401
+## occupAutre inactif                                                      0.6893294
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires -0.2676530
+## nivetudDerniere annee d&#39;etudes primaires                               -0.3133502
+## nivetud1er cycle                                                       -0.6476130
+## nivetud2eme cycle                                                      -1.0175659
+## nivetudEnseignement technique ou professionnel court                   -0.6565276
+## nivetudEnseignement technique ou professionnel long                    -0.8560686
+## nivetudEnseignement superieur y compris technique superieur            -1.3335554
+## sexeFemme                                                              -0.2388450
+##                                                                             97.5 %
+## (Intercept)                                                             2.72698833
+## occupChomeur                                                            1.29687983
+## occupEtudiant, eleve                                                    0.70875456
+## occupRetraite                                                           0.99949726
+## occupRetire des affaires                                                0.79411978
+## occupAu foyer                                                           1.12140462
+## occupAutre inactif                                                      1.46726680
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires  1.00104588
+## nivetudDerniere annee d&#39;etudes primaires                                0.79932817
+## nivetud1er cycle                                                        0.50524595
+## nivetud2eme cycle                                                       0.15287678
+## nivetudEnseignement technique ou professionnel court                    0.45437523
+## nivetudEnseignement technique ou professionnel long                     0.36154943
+## nivetudEnseignement superieur y compris technique superieur            -0.21595530
+## sexeFemme                                                               0.08174873</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Pour le tableau ANOVA appliqué au modèle de régression</span></a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="kw">anova</span>(mod1.lm)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: heures.tv
+##             Df Sum Sq Mean Sq F value                Pr(&gt;F)    
+## occup        6  558.1  93.016 33.2303 &lt; 0.00000000000000022 ***
+## nivetud      7  222.5  31.780 11.3533   0.00000000000003633 ***
+## sexe         1    2.6   2.585  0.9236                0.3367    
+## Residuals 1868 5228.8   2.799                                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co"># La fonction fitted fournit les valeurs ajustées</span></a>
+<a class="sourceLine" id="cb76-2" title="2"><span class="kw">head</span>(<span class="kw">fitted</span>(mod1.lm))</a></code></pre></div>
+<pre><code>##        1        3        4        5        6        7 
+## 1.323013 2.419306 1.401561 3.129941 1.996692 3.172880</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># La fonction resid() founit les résidus de la régression</span></a>
+<a class="sourceLine" id="cb78-2" title="2"><span class="kw">head</span>(<span class="kw">resid</span>(mod1.lm))</a></code></pre></div>
+<pre><code>##            1            3            4            5            6            7 
+## -1.323013191 -2.419305719  0.598438657 -0.129941371  0.003307646 -0.272879932</code></pre>
+<p><br></p>
+<h2 id="régression-logistique-binaire">9. Régression logistique binaire</h2>
+<p><em>Prédire une variable dépendante dichotomique sur la base des valeurs de variables indépendantes</em></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co"># Fonction glm</span></a>
+<a class="sourceLine" id="cb80-2" title="2">mod.reg &lt;-<span class="st"> </span><span class="kw">glm</span>(sport <span class="op">~</span><span class="st"> </span>sexe <span class="op">+</span><span class="st"> </span>nivetud <span class="op">+</span><span class="st"> </span>qualif, bd, <span class="dt">family =</span> <span class="kw">binomial</span>(logit))</a>
+<a class="sourceLine" id="cb80-3" title="3"></a>
+<a class="sourceLine" id="cb80-4" title="4"><span class="co"># La fonction glm permet de calculer plusieurs modèles statistiques donc il faut indiquer à glm avec l’argument family=binomial(logit) </span></a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Applique fonction summary au modèle pour voir résultatsles valeurs des coefficients</span></a>
+<a class="sourceLine" id="cb81-2" title="2"><span class="kw">summary</span>(mod.reg)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = sport ~ sexe + nivetud + qualif, family = binomial(logit), 
+##     data = bd)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2994  -1.0993   0.5248   0.9188   1.4948  
+## 
+## Coefficients:
+##                                                                        Estimate
+## (Intercept)                                                             15.5105
+## sexeFemme                                                                0.3809
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires -13.4420
+## nivetudDerniere annee d&#39;etudes primaires                               -13.4444
+## nivetud1er cycle                                                       -14.1625
+## nivetud2eme cycle                                                      -14.9886
+## nivetudEnseignement technique ou professionnel court                   -14.7132
+## nivetudEnseignement technique ou professionnel long                    -15.1152
+## nivetudEnseignement superieur y compris technique superieur            -15.6145
+## qualifOuvrier qualifie                                                  -0.1532
+## qualifTechnicien                                                        -0.6169
+## qualifProfession intermediaire                                          -0.5741
+## qualifCadre                                                             -0.4636
+## qualifEmploye                                                           -0.4086
+## qualifAutre                                                              0.1229
+##                                                                        Std. Error
+## (Intercept)                                                              277.2085
+## sexeFemme                                                                  0.1298
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires   277.2088
+## nivetudDerniere annee d&#39;etudes primaires                                 277.2085
+## nivetud1er cycle                                                         277.2085
+## nivetud2eme cycle                                                        277.2085
+## nivetudEnseignement technique ou professionnel court                     277.2085
+## nivetudEnseignement technique ou professionnel long                      277.2085
+## nivetudEnseignement superieur y compris technique superieur              277.2085
+## qualifOuvrier qualifie                                                     0.2463
+## qualifTechnicien                                                           0.3101
+## qualifProfession intermediaire                                             0.2697
+## qualifCadre                                                                0.2651
+## qualifEmploye                                                              0.2286
+## qualifAutre                                                                0.3916
+##                                                                        z value
+## (Intercept)                                                              0.056
+## sexeFemme                                                                2.935
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires  -0.048
+## nivetudDerniere annee d&#39;etudes primaires                                -0.048
+## nivetud1er cycle                                                        -0.051
+## nivetud2eme cycle                                                       -0.054
+## nivetudEnseignement technique ou professionnel court                    -0.053
+## nivetudEnseignement technique ou professionnel long                     -0.055
+## nivetudEnseignement superieur y compris technique superieur             -0.056
+## qualifOuvrier qualifie                                                  -0.622
+## qualifTechnicien                                                        -1.990
+## qualifProfession intermediaire                                          -2.128
+## qualifCadre                                                             -1.749
+## qualifEmploye                                                           -1.787
+## qualifAutre                                                              0.314
+##                                                                        Pr(&gt;|z|)
+## (Intercept)                                                             0.95538
+## sexeFemme                                                               0.00334
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires  0.96133
+## nivetudDerniere annee d&#39;etudes primaires                                0.96132
+## nivetud1er cycle                                                        0.95925
+## nivetud2eme cycle                                                       0.95688
+## nivetudEnseignement technique ou professionnel court                    0.95767
+## nivetudEnseignement technique ou professionnel long                     0.95652
+## nivetudEnseignement superieur y compris technique superieur             0.95508
+## qualifOuvrier qualifie                                                  0.53390
+## qualifTechnicien                                                        0.04663
+## qualifProfession intermediaire                                          0.03331
+## qualifCadre                                                             0.08030
+## qualifEmploye                                                           0.07393
+## qualifAutre                                                             0.75369
+##                                                                          
+## (Intercept)                                                              
+## sexeFemme                                                              **
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires   
+## nivetudDerniere annee d&#39;etudes primaires                                 
+## nivetud1er cycle                                                         
+## nivetud2eme cycle                                                        
+## nivetudEnseignement technique ou professionnel court                     
+## nivetudEnseignement technique ou professionnel long                      
+## nivetudEnseignement superieur y compris technique superieur              
+## qualifOuvrier qualifie                                                   
+## qualifTechnicien                                                       * 
+## qualifProfession intermediaire                                         * 
+## qualifCadre                                                            . 
+## qualifEmploye                                                          . 
+## qualifAutre                                                              
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2107.1  on 1627  degrees of freedom
+## Residual deviance: 1857.0  on 1613  degrees of freedom
+##   (372 observations deleted due to missingness)
+## AIC: 1887
+## 
+## Number of Fisher Scoring iterations: 14</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># La fonction coef permet aussi d&#39;obtenir les coefficients individuellement</span></a>
+<a class="sourceLine" id="cb83-2" title="2"><span class="kw">coef</span>(mod.reg)[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## (Intercept) 
+##    15.51047</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># La fonction exp pour les odds ratio et leurs intervalles de confiance</span></a>
+<a class="sourceLine" id="cb85-2" title="2"><span class="kw">exp</span>(<span class="kw">coef</span>(mod.reg))</a></code></pre></div>
+<pre><code>##                                                            (Intercept) 
+##                                                  5446419.8378982935101 
+##                                                              sexeFemme 
+##                                                        1.4636734332397 
+## nivetudA arrete ses etudes, avant la derniere annee d&#39;etudes primaires 
+##                                                        0.0000014527840 
+##                               nivetudDerniere annee d&#39;etudes primaires 
+##                                                        0.0000014493674 
+##                                                       nivetud1er cycle 
+##                                                        0.0000007068312 
+##                                                      nivetud2eme cycle 
+##                                                        0.0000003094143 
+##                   nivetudEnseignement technique ou professionnel court 
+##                                                        0.0000004075176 
+##                    nivetudEnseignement technique ou professionnel long 
+##                                                        0.0000002726146 
+##            nivetudEnseignement superieur y compris technique superieur 
+##                                                        0.0000001654703 
+##                                                 qualifOuvrier qualifie 
+##                                                        0.8579696688054 
+##                                                       qualifTechnicien 
+##                                                        0.5395994094327 
+##                                         qualifProfession intermediaire 
+##                                                        0.5632193440074 
+##                                                            qualifCadre 
+##                                                        0.6290228726288 
+##                                                          qualifEmploye 
+##                                                        0.6645837426705 
+##                                                            qualifAutre 
+##                                                        1.1307466368239</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Aussi la fonction odds.ratio(mod.reg) du module questionr</span></a></code></pre></div>
+<p><br></p>
+<h2 id="visualiser-les-résultats-dun-modèle">10. Visualiser les résultats d’un modèle</h2>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># Résultat de l&#39;ANOVA</span></a>
+<a class="sourceLine" id="cb88-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(mod.aov))</a></code></pre></div>
+<p><img src="8-analyses_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># Résultat de la régression linéaire - effet de tous les prédicteurs</span></a>
+<a class="sourceLine" id="cb89-2" title="2"></a>
+<a class="sourceLine" id="cb89-3" title="3"><span class="kw">plot</span>(<span class="kw">allEffects</span>(mod1.lm))</a></code></pre></div>
+<p><img src="8-analyses_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># Résultat de la régression linéaire - effet d&#39;un seul prédicteur</span></a>
+<a class="sourceLine" id="cb90-2" title="2"></a>
+<a class="sourceLine" id="cb90-3" title="3"><span class="kw">plot</span>(<span class="kw">Effect</span>(<span class="st">&quot;occup&quot;</span>, <span class="dt">mod=</span>mod1.lm))</a></code></pre></div>
+<p><img src="8-analyses_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgNzogVGVzdHMgc3RhdGlzdGlxdWVzIg0KYXV0aG9yOiAiQ2Fyb2xpbmUgUGF0ZW5hdWRlIDxicj4gQmlibGlvdGjDqWNhaXJlIC0gQmlibGlvdGjDqHF1ZSBkZXMgbGV0dHJlcyBldCBzY2llbmNlcyBodW1haW5lcyINCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCm91dHB1dDogDQogIGh0bWxfZG9jdW1lbnQ6IA0KICAgIGhpZ2hsaWdodDogcHlnbWVudHMNCiAgICB0aGVtZTogbHVtZW4NCiAgICB0b2M6IHllcw0KICAgIHRvY19mbG9hdDogeWVzDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZQ0KY3NzOiBoaWRlLmNzcw0KLS0tDQoNCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQ0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQ0KYGBgDQoNCjxzY3JpcHQgc3JjPSJoaWRlT3V0cHV0LmpzIj48L3NjcmlwdD4NCg0KYGBge3J9DQojIENoYXJnZW1lbnQgZGVzIG1vZHVsZXMgbsOpY2Vzc2FpcmVzDQpsaWJyYXJ5KGNhcikNCmxpYnJhcnkocXVlc3Rpb25yKQ0KbGlicmFyeShlZmZlY3RzKQ0KDQojIEFqb3V0ZXIgbGEgZm9uY3Rpb24gZGUgdMOpbMOpY2hhcmdlbWVudCBzaSBuw6ljZXNzYWlyZToNCiMgaW5zdGFsbC5wYWNrYWdlcygiY2FyIiwgZGVwZW5kZW5jaWVzPVRSVUUpDQojIGluc3RhbGwucGFja2FnZXMoInF1ZXN0aW9uciIsIGRlcGVuZGVuY2llcz1UUlVFKQ0KIyBpbnN0YWxsLnBhY2thZ2VzKCJlZmZlY3RzIiwgZGVwZW5kZW5jaWVzPVRSVUUpDQoNCiMgVMOpbMOpY2hhcmdlbWVudCBkZSBsYSBiYXNlIGRlIGRvbm7DqWVzIGhkdjIwMDMgZHUgbW9kdWxlIHF1ZXN0aW9ucg0KIyAoRXh0cmFpdCBkZSBsJ2VucXXDqnRlICJIaXN0b2lyZSBkZSB2aWUiIGRlIGwnSW5zZWUgLSBodHRwczovL3d3dy5pbnNlZS5mci9mci9zdGF0aXN0aXF1ZXMvMjUzMjI0NCkNCmRhdGEoaGR2MjAwMykNCg0KIyBDb3BpZSBkZSBsYSBiYXNlIGRlIGRvbm7DqWVzIGRhbnMgdW4gb2JqZXQgKGRhdGF0YWJsZSkgbm9tbcOpIGJkDQpiZCA8LSBoZHYyMDAzDQpgYGANCg0KPGJyPg0KDQojIEFuYWx5c2VzIHN0YXRpc3RpcXVlcw0KDQoqIE9uIHJldHJvdXZlIHVuZSBtdWx0aXR1ZGUgZGUgbW9kdWxlcyBkw6lkacOpcyBhdXggbcOpdGhvZGVzIHN0YXRpc3RpcXVlcyAoY29tbWUgc3RhdHMsIE1BU1MsIEZhY3RvTWluZVIsIHBsbSwgZ2xtKS4gDQoqIExhIG3Dqm1lIG3DqXRob2RlIHBldXQgc2UgdHJvdXZlciBhdmVjIHZhcmlhbnRlcyBkYW5zIHBsdXNpZXVycyBtb2R1bGVzLiANCiogTGVzIGV4ZW1wbGVzIGNpLWRlc3NvdXMgcHJvdmllbm5lbnQgcHJpbmNpcGFsZW1lbnQgZHUgbW9kdWxlIHN0YXRzIChtb2R1bGUgcGFyIGTDqWZhdXQpIG/DuSBsJ29uIHJldHJvdXZlIGRlIG5vbWJyZXVzZXMgZm9uY3Rpb25zIHBvdXIgZGlmZsOpcmVudHMgdHlwZXMgZCdhbmFseXNlDQoNCjxicj4NCg0KIyMgMS4xLiBOb3RhdGlvbiBmb3JtdWxlIGV0IG9iamV0IG1vZMOobGUNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQptb2QgPC0gbm9tLnRlc3QoVkQgfiBWSSkNCmBgYA0KDQoqIFNvdXZlbnQgdXRpbGlzw6kgZGFucyBsZXMgbW9kw6hsZXMgZCdhbmFseXNlIChyw6lncmVzc2lvbnMuLi4pIGV0IGxlcyBncmFwaGlxdWVzLg0KKiBQZXV0IHMnaW50ZXJwcsOpdGVyIGNvbW1lIGVuICJmb25jdGlvbiBkZS4uLiI6IHZhcmlhYmxlIGTDqXBlbmRhbnRlIChlZmZldCkgZW4gZm9uY3Rpb24gKH4pIGRlIGxhIHZhciBpbmTDqXBlbmRhbnRlIChjYXVzZSkNCiogVG91dGVzIGxlcyBmb25jdGlvbnMgbidhY2NlcHRlbnQgcGFzIGxhIG5vdGF0aW9uIGZvcm11bGUsIG1haXMgZXN0IHV0aWxpc8OpIHBvdXIgbGEgcGx1cGFydCBkZXMgbW9kw6hsZXMgZCdhbmFseXNlDQoqIE9uIHN0b2NrZSBsJ2FuYWx5c2UgZGFucyB1biBvYmpldCBxdWkgY29udGllbmRyYSBsZXMgcsOpc3VsdGF0cyBxdWksIHNlbG9uIGwnYW5hbHlzZSwgaW5jbHVlcm9udCB1biBlbnNlbWJsZSBkJ8OpbMOpbWVudHMgZCdpbmZvcm1hdGlvbiBhdXhxdWVscyBvbiBwb3VycmEgYWNjw6lkZXIgZGUgZGV1eCBmYcOnb25zOg0KDQpFbiBwYXNzYW50IG5vdHJlIG9iamV0LW1vZMOobGUgw6AgZGlmZsOpcmVudGVzIGZvbmN0aW9ucyBnw6luw6lyaXF1ZXMgKHNlbG9uIGxlIHR5cGUgZGUgdGVzdCk6DQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KbW9kIDwtIGxtKHkgfiB4LCBkYXRhPU5vbU9iamV0KSAjIENyw6llciBzb24gb2JqZXQgbW9kw6hsZQ0KbW9kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIHLDqXN1bcOpIGRlcyByw6lzdWx0YXRzDQpzdW1tYXJ5KG1vZCkgICAgICAgICAgICAgICAgICAgICMgZW5zZW1ibGUgZGVzIHLDqXN1bHRhdHMgZMOpdGFpbGzDqXMNCmNvZWYobW9kKSAgICAgICAgICAgICAgICAgICAgICAgIyBjb2VmZmljaWVudHMgZXQgZXJyZXVycyBzdGFuZGFyZHMNCnJlc2lkdWFscyhtb2QpICAgICAgICAgICAgICAgICAgIyByw6lzaWR1cw0KY29uZmludChtb2QpICAgICAgICAgICAgICAgICAgICAjIGludGVydmFsbGVzIGRlIGNvbmZpYW5jZQ0KZml0dGVkKG1vZCkgICAgICAgICAgICAgICAgICAgICAjIHZhbGV1cnMgYWp1c3TDqWVzDQphbm92YShtb2QpICAgICAgICAgICAgICAgICAgICAgICMgYXBwbGlxdWVyIGFuYWx5c2UgZGUgdmFyaWFuY2Ugc3VyIG1vZMOobGUNCnByZWRpY3QobW9kKSAgICAgICAgICAgICAgICAgICAgIyBjYWxjdWxlciBkZXMgdmFsZXVycyBwcsOpZGl0ZXMgw6AgcGFydGlyIGQndW4gbW9kw6hsZQ0KcGxvdChtb2QpICAgICAgICAgICAgICAgICAgICAgICAjIGV0IG5vbWJyZXVzZXMgYXV0cmVzIGZvbmN0aW9ucyBncmFwaGlxdWVzICANCmBgYA0KDQogRW4gdXRpbGlzYW50IGxhIGZvbmN0aW9uIG5hbWVzKG1vZCkgZXQgZW4gc8OpbGVjdGlvbm5hbnQgaW5kaXZpZHVlbGxlbWVudCBsZSBub20gZGUgbCfDqWzDqW1lbnQgYXZlYyBsJ29ww6lyYXRldXIgJDoNCiANCmBgYHtyLCBldmFsPUZBTFNFfQ0KbW9kIDwtIGxtKHkgfiB4KSAjIENyw6llciBzb24gb2JqZXQgbW9kw6hsZQ0KbmFtZXMobW9kKSAgICAgICAjIFZvaXIgbGVzIMOpbMOpbWVudHMgZHUgcsOpc3VsdGF0DQptb2QkY29lZmZpY2llbnRzICMgU8OpbGVjdGlvbm5lciBsJ8OpbMOpbWVudCBpbmRpdmlkdWVsDQpgYGANCiAqw4Agbm90ZXI6IHBhciBkw6lmYXV0IGxlcyByw6lzdWx0YXRzIHNvbnQgcHLDqXNlbnTDqXMgc2Vsb24gbGEgbm90YXRpb24gc2NpZW50aWZpcXVlLiBQb3VyIGxhIGTDqXNhY3RpdmVyIHV0aWxpc2VyIGwnaW5zdHJ1Y3Rpb246IG9wdGlvbnMoc2NpcGVuID0gOTk5KSoNCiANCjxicj4NCg0KIyMgMS4yLiBMZXMgbW9kYWxpdMOpcyBkZSByw6lmw6lyZW5jZToNCi0gRGFucyBSLCBpbCBuJ2VzdCBwYXMgbsOpY2Vzc2FpcmUgZGUgcmVjb2RlciBzZXMgdmFyaWFibGVzIGVuICJkdW1teSIsIGxlcyBhbmFseXNlcyBzJ2VuIGNoYXJnZW50IHBhciBkw6lmYXV0IGxvcnNxdSdvbiB1dGlsaXNlIGRlcyB2YXJpYWJsZXMgcXVhbGl0YXRpdmVzLg0KLSBNYWlzIGF0dGVudGlvbiDDoCBsYSBtb2RhbGl0w6kgZGUgcsOpZsOpcmVuY2UgZGVzIGZhY3RldXJzIGTDqWZpbmllIHBhciBkw6lmYXV0OiBsYSBwcmVtacOocmUgZGFucyBsYSBsaXN0ZSBkZXMgbml2ZWF1eC4NCg0KPGRpdiBjbGFzcz0iZm9sZCBvIj4NCmBgYHtyfQ0KIyBQb3VyIHZvaXIgbGEgbW9kYWxpdMOpIGRlIHLDqWbDqXJlbmNlIC0gcHJlbWnDqHJlIGxpc3TDqWUNCmxldmVscyhiZCRzcG9ydCkNCmBgYA0KDQpgYGB7cn0NCiMgUG91ciBtb2RpZmllciBsYSBjYXTDqWdvcmllIGRlIHLDqWbDqXJlbmNlDQpiZCRzcG9ydCA8LSByZWxldmVsKGJkJHNwb3J0LCByZWYgPSAiT3VpIikNCmBgYA0KDQo8YnI+DQoNCiMjIDIuIEludGVydmFsbGUgZGUgY29uZmlhbmNlDQoNCmBgYHtyfQ0KIyBJbnRlcnZhbGxlIGRlIGNvbmZpYW5jZSBk4oCZdW5lIHByb3BvcnRpb24NCg0KIyBmb25jdGlvbiBwcm9wLnRlc3QNCnByb3AudGVzdCh0YWJsZShiZCRzcG9ydCkpDQoNCiMgQ2FsY3VsIGwnaW50ZXJ2YWxsZSBwb3VyIGxhIHByZW1pw6hyZSBjYXTDqWdvcmllIGR1IHRhYmxlYXUNCmBgYA0KDQpgYGB7cn0NCm9wdGlvbnMoc2NpcGVuID0gOTk5KQ0KcHJvcC50ZXN0KHRhYmxlKHJlbGV2ZWwoYmQkc3BvcnQsICJPdWkiKSkpDQoNCiMgTW9kaWZpZXIgbGEgY2F0w6lnb3JpZSBkZSByw6lmw6lyZW5jZSBhdmVjIGxhIGZvbmN0aW9uIHJlbGV2ZWwgZGlyZWN0ZW1lbnQgZGFucyBsYSBmb25jdGlvbiB0YWJsZSgpDQpgYGANCg0KDQpgYGB7cn0NCiMgSW50ZXJ2YWxsZSBkZSBjb25maWFuY2UgZCd1bmUgbW95ZW5uZQ0KDQojIEZvbmN0aW9uIHQudGVzdA0KIyBDaGFuZ2VyIGxlIG5pdmVhdSBkZSBjb25maWFuY2UgYXZlYyBsJ2FyZ3VtZW50IChiZCRhZ2UsIGNvbmYubGV2ZWw9LngpDQp0LnRlc3QoYmQkYWdlLCBjb25mLmxldmVsPS45OSkNCmBgYA0KDQo8YnI+DQoNCiMjIDMuICBUZXN0IGR1IEtoaS1jYXJyw6kNCg0KYGBge3J9DQojIFBhc3NlIGxhIHRhYmxlIGNvbW1lIGFyZ3VtZW50IMOgIGxhIGZvbmN0aW9uIGNoaXNxLnRlc3QoKSAoTW9kdWxlIHF1ZXN0aW9ucikNCg0KbW9kLmNoaSA8LSBjaGlzcS50ZXN0KGJkJHNwb3J0LCBiZCRzZXhlKSANCg0KIyBBcHBsaXF1ZSBjb3JyZWN0aW9uIHBhciBkw6lmYXV0LCBzaW5vbiBham91dGVyIGFyZ3VtZW50OiAsY29ycmVjdD1GQUxTRQ0KYGBgDQoNCmBgYHtyfQ0KbW9kLmNoaQ0KYGBgDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBuYW1lcygpIHBvdXIgdm9pciBsZXMgw6lsw6ltZW50cyBkJ2luZm9ybWF0aW9uIGRlIG5vcyByw6lzdWx0YXRzDQpuYW1lcyhtb2QuY2hpKQ0KYGBgDQoNCmBgYHtyfQ0KIyBWb2lyIGxlcyB2YWxldXJzIGF0dGVuZHVlcw0KbW9kLmNoaSRleHBlY3RlZA0KYGBgDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBjaGlzcS5yZXNpZHVhbHMoKSBkdSBtb2R1bGUgcXVlc3Rpb25yIHBvdXIgbGVzIHLDqXNpZHVzDQp0YWIgPC0gdGFibGUoYmQkc3BvcnQsIGJkJHNleGUpDQpjaGlzcS5yZXNpZHVhbHModGFiKSANCmBgYA0KDQoNCjxicj4NCg0KIyMgNC4gVGVzdCBkZSBmaXNoZXINCg0KYGBge3J9DQpmaXNoZXIudGVzdChiZCRzcG9ydCwgYmQkc2V4ZSkNCmBgYA0KDQo8YnI+DQoNCiMjIDUuIERpZmbDqXJlbmNlIGRlIG1veWVubmVzIGVudHJlIGRldXggZ3JvdXBlcyAoVGVzdCBUKQ0KDQoqVsOpcmlmaWVyIHNpIGxlcyBtb3llbm5lcyBkJ3VuZSB2YXJpYWJsZSBxdWFudGl0YXRpdmUgZGUgZGV1eCBncm91cGVzIHNvbnQgc3RhdGlzdGlxdWVtZW50IGRpZmbDqXJlbnRlcyoNCg0KYGBge3J9DQojIEV4cGxvcmVyIGxlcyBzdGF0aXN0aXF1ZXMgZGVzY3JpcHRpdmVzIHNlbG9uIGxlcyBncm91cGVzIGF2ZWMgbGEgZm9uY3Rpb24gYnkoKQ0KDQpieShiZCRhZ2UsIGJkJHNwb3J0LCBGVU49c3VtbWFyeSkNCmJ5KGJkJGFnZSwgYmQkc3BvcnQsIEZVTj12YXIpDQpgYGANCg0KYGBge3J9DQojIE5vcm1hbGl0w6kgZGVzIGRpc3RyaWJ1dGlvbnMgLSBUZXN0IGRlIFNoYXBpcm8tV2lsaw0KDQojIyBBdmVjIGxhIGZvbmN0aW9uIGJ5DQpieShiZCRhZ2UsIGJkJHNwb3J0LCBGVU49c2hhcGlyby50ZXN0KQ0KYGBgDQoNCmBgYHtyfQ0KIyDDiWdhbGl0w6kgZGVzIHZhcmlhbmNlcyAtIHRlc3QgRg0KDQp2YXIudGVzdChhZ2UgfiBzcG9ydCwgZGF0YSA9IGJkKQ0KYGBgDQoNCg0KYGBge3J9DQojIFRlc3QgZGUgTGV2ZW5lIChtb2R1bGUgY2FyKQ0KDQpsZXZlbmVUZXN0KGJkJGFnZSwgYmQkc3BvcnQpICMgQWNjZXB0ZSBhdXNzaSBub3RhdGlvbiBmb3JtdWxlDQpgYGANCg0KDQpgYGB7cn0NCiMgVGVzdCBUIA0KDQp0LnRlc3QoYWdlIH4gc3BvcnQsIGRhdGEgPSBiZCkNCg0KIyBQYXIgZMOpZmF1dCwgbGEgZm9uY3Rpb24gdC50ZXN0IGVzdCB1biB0ZXN0IGRlIFdlbHNoIHF1aSBuZSBzdXBwb3NlIHBhcyDDqWdhbGl0w6kgZGVzIHZhcmlhbmNlcw0KYGBgDQoNCg0KYGBge3J9DQojIFBvdXIgdW4gdGVzdCB0IGNsYXNzaXF1ZSwgYWpvdXRlciBsJ2FyZ3VtZW50IHZhci5lcXVhbCA9IFRSVUUNCg0KdC50ZXN0KGFnZSB+IHNwb3J0LCBkYXRhPWJkLCB2YXIuZXF1YWw9IFRSVUUpDQoNCiMgUG91ciB1biB0ZXN0IGQnw6ljaGFudGlsbG9ucyBhcHBhcmnDqXMgKG1lc3VyZXMgcsOpcMOpdMOpZXMpLCBham91dGVyIGFyZ3VtZW50IHBhaXJlZD1UUlVFIChzYW5zIG5vdGF0aW9uIGZvcm11bGUpDQpgYGANCg0KPGJyPg0KDQojIyMgNi4gVGVzdCBXaWxjb3hvbi9NYW5uLVdoaXRuZXkgKHRlc3Qgbm9uLXBhcmFtw6l0cmlxdWUgcGFybWkgZCdhdXRyZXMpDQoNCmBgYHtyfQ0Kd2lsY294LnRlc3QoYWdlIH4gc3BvcnQsIGRhdGEgPSBiZCkNCmBgYA0KDQo8YnI+DQoNCiMjIDcuIERpZmbDqXJlbmNlIGRlIG1veWVubmUgcG91ciBwbHVzIGRlIGRldXggZ3JvdXBlcyAoQU5PVkEpDQoqw4l2YWx1ZXIgbGEgcmVsYXRpb24gZW50cmUgdW5lIHZhcmlhYmxlIHF1YW50aXRhdGl2ZSBldCB1bmUgdmFyaWFibGUgcXVhbGl0YXRpdmUgYXZlYyBwbHVzIGRlIGRldXggbW9kYWxpdMOpcyoNCg0KYGBge3J9DQojIEV4cGxvcmVyIGxlcyBzdGF0aXN0aXF1ZXMgZGVzY3JpcHRpdmVzIGF2ZWMgbGEgZm9uY3Rpb24gdGFwcGx5KCkNCnRhcHBseShiZCRoZXVyZXMudHYsIGJkJG9jY3VwLCBtZWFuLCBuYS5ybT1UKQ0KDQojIFbDqXJpZmllciBzaSBsZXMgbW95ZW5uZXMgc2VtYmxlbnQgZGlmZsOpcmVudGVzIGVudHJlIGxlcyBncm91cGVzDQpgYGANCg0KDQpgYGB7cn0NCiMgRm9uY3Rpb24gYW92DQoNCm1vZC5hb3YgPC0gYW92KGhldXJlcy50diB+IG9jY3VwLCBkYXRhPWJkKQ0KDQojIENyw6nDqSB1biBvYmpldCBjb250ZW5hbnQgbGUgbW9kw6hsZQ0KIyBQb3VyIHZvaXIgZWZmZXQgY29tYmluw6kgZW50cmUgZmFjdGV1cnMgbW9kLmFvdiA8LSBhb3YoaGV1cmVzLnR2IH4gb2NjdXAqc2V4ZSwgYmQpDQpgYGANCg0KDQpgYGB7cn0NCm1vZC5hb3YgICAjIFZvaXIgdW4gcsOpc3Vtw6kgZHUgbW9kw6hsZQ0KYGBgDQoNCg0KYGBge3J9DQojIEFwcGxpcXVlIGxhIGZvbmN0aW9uIHN1bW1hcnkgw6AgbCdvYmpldCBtb2TDqGxlIHBvdXIgdm9pciByw6lzdWx0YXRzIGTDqXRhaWxsw6lzDQoNCnN1bW1hcnkobW9kLmFvdikNCmBgYA0KDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBsbSANCg0KbW9kLmxtIDwtIGxtKGhldXJlcy50diB+IG9jY3VwLCBiZCkNCg0KIyBQZXV0IMOpZ2FsZW1lbnQgdXRpbGlzZXIgZm9uY3Rpb24gZGUgcsOpZ3Jlc3Npb24gbGluw6lhaXJlIHBvdXIgYW5hbHlzZSBkZSB2YXJpYW5jZQ0KIyBQZXJtZXQgZGUgdm9pciBsZXMgY29udHJhc3RlcyBlbnRyZSBsZXMgZGlmZsOpcmVudHMgZ3JvdXBlcw0KIyBMYSBtb2RhbGl0w6kgZGUgcsOpZsOpcmVuY2UgZXN0ICJFeGVyY2UgdW5lIHByb2Zlc3Npb24iIChsZXZlbHMoYmQkb2NjdXApKQ0KIyBQb3VyIGNoYW5nZXIgbW9kYWxpdMOpIGRlIHLDqWbDqXJlbmNlLCB1dGlsaXNlciBsYSBjb21tYW5kZSByZWxldmVsOiBtb2QubG0gPC0gbG0oZGlmZiB+IHJlbGV2ZWwob2NjdXAsIHJlZj0iRXR1ZGlhbnQsIGVsZXZlIiksIGRhdGE9YmQpDQojIFBvc3PDqGRlIGF1c3NpIHVuIGFyZ3VtZW50IHN1YnNldD0gcGVybWV0dGFudCBkZSBzw6lsZWN0aW9ubmVyIGRlcyBtb2RhbGl0w6lzLiBQYXIgZXhlbXBsZTogDQojIG1vZDIubG0gPC0gbG0oaGV1cmVzLnR2IH4gb2NjdXAsIGJkLCBzdWJzZXQgPSBvY2N1cCAlaW4lIGMoIkV4ZXJjZSB1bmUgcHJvZmVzc2lvbiIsICJDaG9tZXVyIiwgIkV0dWRpYW50LCBlbGV2ZSIpKQ0KYGBgDQoNCmBgYHtyfQ0KIyBSw6lzdW3DqSBkZSBjb2VmZmljaWVudHMNCm1vZC5sbSANCmBgYA0KDQoNCmBgYHtyfQ0KIyBBcHBsaXF1ZSBsYSBmb25jdGlvbiBzdW1tYXJ5IMOgIGwnb2JqZXQgbW9kw6hsZToNCiMgQ29lZmZpY2llbnRzICsgVGVzdHMgYXNzb2Npw6lzIChUZXN0IHQsIGRlZ3LDqSBkZSBzaWduaWZpY2F0aXZpdMOpKQ0Kc3VtbWFyeShtb2QubG0pDQpgYGANCg0KDQpgYGB7cn0NCmFub3ZhKG1vZC5sbSkNCg0KIyBQZXV0IGF1c3NpIG9idGVuaXIgZGVzIHLDqXN1bHRhdHMgZCdhbmFseXNlIGRlIHZhcmlhbmNlIChzb21tZSBkZXMgY2FycsOpcywgZGVncsOpIGRlIGxpYmVydMOpLCAgdmFsZXVyIGRlIEYuLi4pIGVuIGFwcGxpcXVhbnQgYW5vdmEgw6AgbCdvYmpldCBtb2TDqGxlDQojIMOAIG5vdGVyOiBMZXMgZm9uY3Rpb25zIGFvdigpIGV0IGFub3ZhKCkgcmV0b3VybmUgbGEgc29tbWUgZGVzIGNhcnLDqXMgZGUgdHlwZSBJDQpgYGANCg0KPGJyPg0KDQojIyA3LiBDb3Jyw6lsYXRpb25zDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBjb3IoKQ0KDQpjb3IoYmQkYWdlLCBiZCRoZXVyZXMudHYsIHVzZT0icGFpcndpc2UiKQ0KDQojIE1hdHJpY2UgZGUgY29ycsOpbGF0aW9ucyBwb3VyIGRldXggdmFyaWFibGVzIHF1YW50aSBvdSBwbHVzDQojIHBhaXJ3aXNlOiBuJ3V0aWxpc2VyIHF1ZSBsZXMgcGFpcmVzIGQnb2JzZXJ2YXRpb25zIGNvbXBsw6h0ZXMNCiMgcG91ciBTcGVhcm1hbiwgcmFqb3V0ZXIgYXJndW1lbnQgbWV0aG9kID0gInNwZWFybWFuIg0KIyBpbnN0cnVjdGlvbiBzdWl2YW50ZSBzaSBwbHVzIGRlIGRldXggdmFyaWFibGVzOiBjb3IoYmRbLGMoImFnZSIsICJoZXVyZXMudHYiLCAiZnJlcmVzLnNvZXVycyIpXSwgdXNlPSdwYWlyd2lzZScpDQpgYGANCg0KYGBge3J9DQojIEZvbmN0aW9uIGNvci50ZXN0KCkNCg0KY29yLnRlc3QoYmQkYWdlLCBiZCRoZXVyZXMudHYpDQoNCiMgT3Ugbm90YXRpb24gZm9ybXVsZSBjb3IudGVzdCggfiBhZ2UgKyBoZXVyZXMudHYsIGJkKQ0KYGBgDQoNCjxicj4NCg0KIyMgOC4gUsOpZ3Jlc3Npb24gbGluw6lhaXJlDQoqUHLDqWRpcmUgbGEgdmFsZXVyIGQndW5lIHZhcmlhYmxlIGTDqXBlbmRhbnRlIGNvbnRpbnVlIHN1ciBsYSBiYXNlIGRlcyB2YWxldXJzIGRlIHZhcmlhYmxlcyBpbmTDqXBlbmRhbnRlcyoNCg0KIyMjIyBGb25jdGlvbiBsbSgpDQoNCmBgYHtyfQ0KIyBRdWVsbGVzIHZhcmlhYmxlcyBwcsOpZGlzZW50IGxlcyBoZXVyZXMgZGUgdMOpbMOpIMOpY291dMOpZXMNCg0KbW9kMS5sbSA8LSBsbShoZXVyZXMudHYgfiBvY2N1cCArIG5pdmV0dWQgKyBzZXhlLCBkYXRhPWJkKSANCg0KIyBPbiBzdG9ja2UgbGUgcsOpc3VsdGF0IGRhbnMgdW4gb2JqZXQgbW9kw6hsZSBwb3VyIHBvdXZvaXIgbGUgbWFuaXB1bGVyIGF2ZWMgZCdhdXRyZXMgZm9uY3Rpb25zDQojIFBvdXIgbGltaXRlciDDoCB1biBzb3VzLWdyb3VwZTogYXJndW1lbnQgIiwgc3Vic2V0PWFnZT41MCINCmBgYA0KDQoNCmBgYHtyfQ0KIyBQYXNzZSBub3RyZSBvYmpldCBtb2TDqGxlIMOgIGxhIGZvbmN0aW9uIHN1bW1hcnkgcG91ciB2b2lyIA0KIyBsZSB0YWJsZWF1IGRlcyBjb2VmZmljaWVudHMgZXQgbGV1ciB0ZXN0IGRlIHNpZ25pZmljYXRpdml0w6kNCnN1bW1hcnkobW9kMS5sbSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBMYSBmb25jdGlvbiBjb2VmIHByw6lzZW50ZSBsZXMgY29lZmZpY2llbnRzIGR1IG1vZMOobGUgZGUgcsOpZ3Jlc3Npb24gZXQgcGV1dCBzJ2FwcGxpcXVlciBpbmRpdmlkdWVsbGVtZW50IA0KY29lZihtb2QxLmxtKQ0KYGBgDQoNCg0KYGBge3J9DQojIGxhIGZvbmN0aW9uIGNvbmZpbnQgcHLDqXNlbnRlIGxlcyBpbnRlcnZhbGxlcyBkZSBjb25maWFuY2UgKDk1JSBwYXIgZMOpZmF1dCkNCmNvbmZpbnQobW9kMS5sbSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBQb3VyIGxlIHRhYmxlYXUgQU5PVkEgYXBwbGlxdcOpIGF1IG1vZMOobGUgZGUgcsOpZ3Jlc3Npb24NCmFub3ZhKG1vZDEubG0pDQpgYGANCg0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gZml0dGVkIGZvdXJuaXQgbGVzIHZhbGV1cnMgYWp1c3TDqWVzDQpoZWFkKGZpdHRlZChtb2QxLmxtKSkNCmBgYA0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gcmVzaWQoKSBmb3VuaXQgbGVzIHLDqXNpZHVzIGRlIGxhIHLDqWdyZXNzaW9uDQpoZWFkKHJlc2lkKG1vZDEubG0pKQ0KYGBgDQoNCjxicj4NCg0KIyMgOS4gUsOpZ3Jlc3Npb24gbG9naXN0aXF1ZSBiaW5haXJlDQoNCipQcsOpZGlyZSB1bmUgdmFyaWFibGUgZMOpcGVuZGFudGUgZGljaG90b21pcXVlIHN1ciBsYSBiYXNlIGRlcyB2YWxldXJzIGRlIHZhcmlhYmxlcyBpbmTDqXBlbmRhbnRlcyoNCg0KYGBge3J9DQojIEZvbmN0aW9uIGdsbQ0KbW9kLnJlZyA8LSBnbG0oc3BvcnQgfiBzZXhlICsgbml2ZXR1ZCArIHF1YWxpZiwgYmQsIGZhbWlseSA9IGJpbm9taWFsKGxvZ2l0KSkNCg0KIyBMYSBmb25jdGlvbiBnbG0gcGVybWV0IGRlIGNhbGN1bGVyIHBsdXNpZXVycyBtb2TDqGxlcyBzdGF0aXN0aXF1ZXMgZG9uYyBpbCBmYXV0IGluZGlxdWVyIMOgIGdsbSBhdmVjIGzigJlhcmd1bWVudCBmYW1pbHk9Ymlub21pYWwobG9naXQpIA0KYGBgDQoNCg0KYGBge3J9DQojIEFwcGxpcXVlIGZvbmN0aW9uIHN1bW1hcnkgYXUgbW9kw6hsZSBwb3VyIHZvaXIgcsOpc3VsdGF0c2xlcyB2YWxldXJzIGRlcyBjb2VmZmljaWVudHMNCnN1bW1hcnkobW9kLnJlZykNCmBgYA0KDQoNCmBgYHtyfQ0KIyBMYSBmb25jdGlvbiBjb2VmIHBlcm1ldCBhdXNzaSBkJ29idGVuaXIgbGVzIGNvZWZmaWNpZW50cyBpbmRpdmlkdWVsbGVtZW50DQpjb2VmKG1vZC5yZWcpWzFdDQpgYGANCg0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gZXhwIHBvdXIgbGVzIG9kZHMgcmF0aW8gZXQgbGV1cnMgaW50ZXJ2YWxsZXMgZGUgY29uZmlhbmNlDQpleHAoY29lZihtb2QucmVnKSkNCg0KIyBBdXNzaSBsYSBmb25jdGlvbiBvZGRzLnJhdGlvKG1vZC5yZWcpIGR1IG1vZHVsZSBxdWVzdGlvbnINCmBgYA0KDQo8YnI+DQoNCiMjIDEwLiBWaXN1YWxpc2VyIGxlcyByw6lzdWx0YXRzIGQndW4gbW9kw6hsZQ0KDQpgYGB7cn0NCiMgUsOpc3VsdGF0IGRlIGwnQU5PVkENCnBsb3QoYWxsRWZmZWN0cyhtb2QuYW92KSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBSw6lzdWx0YXQgZGUgbGEgcsOpZ3Jlc3Npb24gbGluw6lhaXJlIC0gZWZmZXQgZGUgdG91cyBsZXMgcHLDqWRpY3RldXJzDQoNCnBsb3QoYWxsRWZmZWN0cyhtb2QxLmxtKSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBSw6lzdWx0YXQgZGUgbGEgcsOpZ3Jlc3Npb24gbGluw6lhaXJlIC0gZWZmZXQgZCd1biBzZXVsIHByw6lkaWN0ZXVyDQoNCnBsb3QoRWZmZWN0KCJvY2N1cCIsIG1vZD1tb2QxLmxtKSkNCmBgYA0KPC9kaXY+DQo=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("8-analyses.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
