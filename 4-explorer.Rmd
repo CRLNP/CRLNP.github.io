@@ -1,0 +1,231 @@
+---
+title: "Capsule 3: Importer et explorer un dataframe"
+author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    highlight: pygments
+    theme: lumen
+    toc: yes
+    toc_float: yes
+    code_download: true
+css: hide.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<script src="hideOutput.js"></script>
+
+```{r}
+# chargement des modules nécessaires
+library("questionr")
+
+# Ajouter la fonction de téléchargement si nécessaire:
+# install.packages("questionr", dependencies=TRUE)
+```
+
+<br>
+
+# Importer et explorer une base de données
+
+#### Procédures varient selon l'environnement de travail
+
+<br>
+
+## 1.1. Dans Google Colab
+
+Différentes stratégies permettent d'importer des fichiers de données dans son environnement de travail Colab à partir de son Google Drive personnel, de GitHub, ...
+
+<br>
+
+## 1.2. Dans R, RStudio, ...
+
+*  Il existe plusieurs fonctions (natives R ou de modules divers) pour importer des fichiers de divers formats (.txt, .csv, .sav, .xls, .dta, .sas7bdat, ... 
+*  Chaque fonction a ses particularités (arguments) qui auront un impact sur la conversion des données, par exemple: le traitement des valeurs manquantes, des étiquettes de valeurs, le format des variables qualitatives (facteur ou chaine de caractères), des dates, des décimales.
+*  RStudio permet d'importer un fichier via des fonctions automatisées dans le menu du haut
+
+```{r, eval=FALSE}
+## Fichiers csv
+read.table("fichier.csv", sep=",", header=TRUE) 
+
+## Fichiers txt
+read.table("fichier.txt", header = TRUE, sep = " ", na.strings = c(".", "99"))
+
+# read.table: fonction de base, il faut spécifier les arguments sep et header
+# header=TRUE: la première ligne contient le nom des variables
+# sep=" ":les données sont séparées par ...
+# na.strings=c(".", "99") indique que les valeurs manquantes sont codées par ...
+
+# À noter: tout dépendant de la configuration de votre espace de travail, il se peut qu'il soit nécessaire d'indiquer le chemin complet menant vers l'emplacement du fichier de données (C:/Users/.../.../MonFichier.csv")
+# Par souci de reproductibilité, utiliser des chemins relatifs et non absolus
+
+## Fichier excel
+read_excel("fichier.xls") 
+
+# Module readxl (fait partie de tidyverse mais doit être chargé individuellement)
+
+## Fichier SPSS
+read_spss("fichier.sav", user_na = TRUE) 
+
+# Module haven (fait partie de tidyverse mais doit etre chargé individuellement)
+# Pour les codes de valeurs manquantes, utiliser l’option user_na = TRUE    
+# Les valeurs manquantes codées ne seront pas converties en NA et conserveront leur statut manquant
+# Plusieurs autres fonctions disponibles dans haven: read_sav, read_dta, read_sas, read_csv, read_csv2, ..
+```
+
+
+### Quelques conseils
+
+- Privilégier l'utilisation de fichiers textes (.txt ou .csv)
+- Avant d’importer un fichier, il est important de se familiariser avec son contenu et sa structure:
+  +  Quel est le type de séparateur de valeurs: tab, virgule, point-virgule?
+  +  Quel est le séparateur de décimale: , ou . (. par défaut, sinon faut le spécifier)?
+  +  Est-ce que la première ligne contient le nom des variables?
+  +  Y a-t-il des valeurs manquantes et comment sont-elles identifiées (88-99, NA, cellule vide)? – idéalement utiliser NA.
+  +  Les variables sont de quels types (nominales, ordinales, continues)?
+  +  Les valeurs sont de quels formats (chaine de caractères ou numérique)?
+  +  S’assurer que chaque ligne correspond à une observation et chaque colonne à une variable.
+  +  Présence de caractères accentués, apostrophes? Attention à l'encodage du fichier, supprimer des noms de variables et d'observation.
+<br>
+
+## 1.3 Les bases de données intégrées aux modules
+
+### Voir toutes les bases de données intégrées aux modules (installés ou non)
+
+```{r, eval=FALSE}
+data(package = .packages(all.available = TRUE))
+```
+
+<br>
+
+Plusieurs modules ont été développés spécifiquement pour importer et travailler avec des données publiques 
+
+*   [WDI](https://cran.r-project.org/web/packages/WDI/index.html) (Indicateurs de développement de la Banque mondiale)
+*   [cancensus](https://cran.r-project.org/web/packages/cancensus/vignettes/cancensus.html) (Recensements canadiens)
+
+<br>
+
+### Importer une base de données d'un module chargé
+
+```{r, eval=FALSE}
+# Voir les bases de données dans un module chargé particulier
+data(package="questionr") 
+```
+
+
+```{r}
+# Importer une base de données dans un module chargé particulier
+data("hdv2003")
+
+# R a automatiquement créé un objet au nom de la base importée dans notre environnement de travail
+```
+
+<br>
+
+## 2. Faire une copie (et renommer) sa base dans un nouvel objet
+
+```{r}
+bd <- hdv2003
+
+# NB. dans les capsules suivantes, les commandes pour importer et copier la base de données hdv2003 
+# seront intégrées au premier bloc de code (installation des modules) du notebook
+```
+
+<br>
+
+## 3. Voir la liste des objets (base de données) présents dans la session
+
+```{r, eval=FALSE}
+ls() 
+```
+
+<br>
+
+## 4. Supprimer un  objet 
+
+```{r, eval=FALSE}
+rm(hdv2003)
+```
+
+```{r, eval=FALSE}
+rm(aaa, bbb, ccc)  # Supprimer plus d'un objet
+rm(list = ls()) # Supprimer tous les objets
+```
+
+<br>
+
+## 5. Afficher le contenu de sa base de données 
+
+<div class="fold o">
+```{r}
+bd
+```
+
+
+```{r}
+head(bd) # visualiser les 6 premières observations - nombre peut être modifié (bd, 4)
+```
+
+
+```{r}
+tail(bd) # visualiser les 6 dernières observations
+```
+
+<br>
+
+## 6. Afficher les noms de variables/colonnes
+
+
+```{r}
+names(bd) # noms des variables
+```
+
+
+<br>
+
+## 7. Afficher le nombre de rangées et de colonnes (dimensions)
+
+
+```{r}
+length(bd) # nombre de variables
+```
+
+
+
+```{r}
+ncol(bd) # nombre de variables
+```
+
+
+
+```{r}
+nrow(bd) # nombre d'observations
+```
+
+
+
+```{r}
+dim(bd) # nombre de dimensions (colonnes et lignes)
+```
+
+
+<br>
+
+## 8. Examiner les caractéristiques sa base de données: classe, taille, structure
+
+```{r}
+class(bd) # type d'objet
+```
+
+
+```{r}
+str(bd)    # description plus détaillée de la structure du tableau 
+```
+
+
+```{r}
+describe(bd) # Module questionr - description plus détaillée des variables du tableau
+```
+</div>

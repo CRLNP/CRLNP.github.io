@@ -1,0 +1,43 @@
+---
+title: "Premiers pas avec R     -> Site d'accompagnement"
+description: "Caroline Patenaude, Bibliothèque des lettres et sciences humaines" 
+site: distill::distill_website
+---
+
+<div class = "right">
+
+
+![](markdown/colab2.png)
+</div>
+
+
+*Consultez et téléchargez les scripts utilisés dans le cadre des capsules de formation sous forme de documents Rmarkdown*
+
+**Contenu des capsules de formation**
+
+- **Capsule préambule**: L'environnement *Google Colab*
+
+- **Première capsule**: Entrée en matière - Qu'est-ce que R? 
+
+- **Capsule deux**: Introduction au langage R (objets, fonctions et arguments)
+
+- **Capsule trois**: L'Importation et l'exploration d'un tableau de données
+
+- **Capsule quatre**: L'indexation (sélection de variables et création de sous-groupes)
+
+- **Capsule cinq**: La manipulation de variables (renommer, recoder, agréger, ...)
+
+- **Capsule six**: Les statistiques descriptives
+
+- **Capsule sept**: L'analyse et les tests statistiques de base
+
+- **Capsule huit**: Les graphiques univariés et bivariés
+
+
+<style>
+.right {
+  position: absolute;
+  right: 0px;
+  padding: 0px;
+}
+</style>

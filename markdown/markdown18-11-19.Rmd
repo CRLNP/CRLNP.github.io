@@ -1,0 +1,582 @@
+---
+title: "Premiers pas avec RStudio - Objets et grammaire de  base"
+author: "Caroline Patenaude"
+date: "18 novembre 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## R COMME UNE GROSSE CALCULATRICE
+```{r}
+2+8
+```
+```{r}
+-10/ 3  *  5 # Les espaces n'ont pas d'impact
+```
+
+
+*On remarque la présence du [1] en début de ligne devant le résultat. Ce nombre entre crochet indique la position du 1er élément de la ligne. Comme nous le verrons, ce principe d'indexation permet de sélectionner des éléments en indiquant leur numéro entre crochets... *
+
+***
+
+## LES OBJETS	
+
+#### Calculer une moyenne
+```{r}
+(12+15+20)/3 
+```
+
+#### Créer un objet dans lequel on stocke le résultat du calcul
+
+```{r}
+aa <- (12+15+20)/3 
+
+```
+
+#### Pour voir le contenu de son objet, tapper son nom:
+```{r}
+aa            # Utilisation implicite de la fonction `print(aa) `
+```
+
+
+
+#### Pour mettre dans un objet ET visualiser tout de suite, mettre entre parenthèses
+```{r}
+(aa<-(12+15+20)/3 ) 
+```
+
+***
+
+## LES FONCTIONS  
+
+#### Je crée un objet composé d’une série de 3 nombres avec la fonction `c()`
+```{r}
+bb <- c(12, 15, 20) 
+bb
+```
+
+
+#### Je passe mon Objet comme 1er argument de la fonction `mean()`
+```{r}
+mean(bb)
+```
+
+
+#### j'arrondi le résultat à une décimale en imbriquant la fonction `mean()` dans la fonction `round()`
+
+```{r}
+round(mean(bb), digits=1) 
+```
+
+***
+
+## LES ARGUMENTS
+```{r}
+cc<-c(12, 15, NA, 20)
+cc
+mean(cc)
+
+#  help(mean) pour afficher l'aide d'une fonction OU `args(mean)`
+
+mean(c(12, 15, NA, 20), na.rm=TRUE, trim=0.05)
+```
+
+*L'argument na.rm=TRUE indique de ne pas prendre en compte les valeurs manquantes*
+*L'argument trim=.05 indique  d'exclure les 5% les plus extrêmes*
+
+
+#### Les valeurs manquantes - NA
+```{r}
+length(cc) # la fonction `length()` rapporte le nombre d'éléments dans un objet (pour un tableau, c'est le nombre de variables). Les `NA` sont comptés dans la longueur d'un vecteur (contrairement aux valeurs `NULL`).
+```
+
+
+#### Quelle date sommes nous?!
+```{r}
+date()
+```
+
+***
+
+##  LES TYPES DE DONNÉES	
+
+```{r}
+aa <- 123      # Numérique
+class(aa)
+bb <- "soleil" # Chaîne de caractères
+class(bb)
+cc <- TRUE     # Logique (T/F)
+class(cc)
+dd <- "123"    # ???
+class(dd)
+```
+
+***
+
+## LES TYPES D'OBJETS 
+
+1. VECTEURS:	Objet contenant des valeurs (éléments/composantes) d'un seul mode(numérique, texte, logique). En pratique, c'est une variable.
+
+#### Créer des vecteurs avec différentes commandes: `c()`, `seq()`, `rep()` et l'opérateur `:`
+
+```{r}
+aa <- 6  #vecteur simple d'un seul élément numérique
+aa
+bb <- c(5, 23, 89) # vecteur de plusieurs éléments numériques
+bb
+cc <- c("bleu", "blanc") # vecteur textuel
+cc
+dd <- c(TRUE, FALSE, FALSE, TRUE) # vecteur booléen
+dd
+ee <- c(aa, bb) # combiner/concaténer des vecteurs
+ee
+ff <- c(ee, cc) # Oups! Principe de COERCITION s'applique (changement implicite du mode)
+ff
+```
+
+
+
+#### Explorer le principe de coercition
+
+```{r}
+gg <- c(2, 4, 6, "w") # transforme tous les éléments en format textuel
+class(gg)
+hh <- c(TRUE, 2, 4, 6) # transforme tous les éléments en format numérique
+class(hh)
+ii <- c("x", "y", "z", TRUE) # transforme tous les éléments en format textuel
+class(ii)
+```
+
+***
+
+#### Créer des vecteurs avec les fonctions `seq()`, `rep()` et `sample()`
+```{r}
+jj <- seq(10,30,2) # de 10 à 30 avec incrémentation de 2: `seq(from=10, to=30, by=2)`
+jj
+kk <- 10:30 # raccourci de seq pour suite de nombres
+kk
+ll<- rep(10, 400) # répétition du chiffre 10, 40 fois: `rep(x=10, times=40)`
+ll
+sample(1:1000, 50) # créer une suite de 50 nombres aléatoires entre 1 et 1000
+```
+
+
+***
+
+#### Faire des calculs avec les vecteurs
+
+```{r}
+aa<- 50
+bb<- 20
+cc<-aa/bb 
+cc
+dd<-(aa+bb)/2
+dd
+```
+
+
+###### On peut donc faire des calculs avec des chiffres et des vecteurs mais ATTENTION! Si on fait des calculs entre vecteurs, il faut utiliser des vecteurs de même longueur, sinon le principe de RECYCLAGE s'applique.
+```{r}
+aa<- c(12, 13, 14, 15)
+aa
+bb<- c(2,5) 
+bb
+cc<-aa*bb
+cc
+dd<-cc+4
+dd
+ee<-bb-cc
+ee
+```
+***
+
+### EXEMPLE
+#### On créé 3 vecteurs correspondant aux notes dans 3 cours de 5 étudiants
+```{r}
+francais <- c(86, 75, 59, 88, 69)
+anglais <- c(59, 71, 62, 79, 58)
+biologie <- c(57, 85, 65, 61, 97) 
+```
+
+#### Calcul la moyenne des élèves en anglais avec la fonction mean().
+```{r}
+mean(anglais)
+```
+
+
+#### Calcul la moyenne générale de chaque élève.
+```{r}
+(biologie + anglais + francais) / 3
+```
+ou
+```{r}
+mean(c(biologie[1],anglais[1],francais[1])) 
+```
+
+#### Calcul la moyenne totale de toutes les notes
+```{r}
+mean(c(biologie,anglais,francais)) 
+```
+
+*même chose que*
+```{r}
+mean(biologie + anglais + francais) /3
+sum(86, 75, 59, 88, 69,59, 71, 62, 79, 58,57, 85, 65, 61, 97)/15
+sum(c(biologie,anglais,francais))/15
+```
+***
+
+### LES VECTEURS NOMMÉS
+
+#### les valeurs de vecteurs peuvent être nommés, de 2 façons:
+
+1. Dès sa création
+```{r}
+francaisn <- c(etudiant1=86, etudiant2=75, etudiant3=59, etudiant4=88, etudiant5=69)
+anglaisn <- c(etudiant1=59, etudiant2=71, etudiant3=62, etudiant4=79, etudiant5=58)
+biologien <- c(etudiant1=57, etudiant2=85, etudiant3=65, etudiant4=61, etudiant5=97) 
+str(francaisn)
+attributes(francaisn)
+```
+
+2. En créant un vecteur numérique puis en nommant ses composantes avec un vecteur textuel grâce à la fonction `names()`
+```{r}
+etudiants<-c("etudiant1", "etudiant2", "etudiant3", "etudiant4", "etudiant5") 
+names(francais)<-etudiants 
+francais
+```
+*la fonction names() applique chaque élément textuel comme attribut de chaque valeur numérique du vecteur français*
+
+***
+
+2. FACTEURS:	
+
+* vecteur avec des attributs spécifiques, ie dont la structure correspond aux variables qualitatives et dont les valeurs peuvent être de type numérique ou caractère.
+* Les modalités de la variable sont fixes et ordonnées alphabétiquement (mais stoqués en format integer). 
+* pas possible avec un facteur d’assigner une valeur qui n’a pas été préalablement définie comme une des modalités.
+* l'argument optionnel levels() permet d'ajouter et modifier les catégories prédéfinies. 
+* l'argument labels() est aussi optionnel et permet de définir les libellés associés aux niveaux. Faut donc respecter l'ordre des niveaux. 
+
+#### Crée une variable de type facteur avec 4 valeurs de 2 niveaux (pourraient être numériques, ie 1, 2)
+```{r}
+sexe <- factor(c("H", "H", "F", "H")) 
+sexe
+```
+
+#### par défaut, l'attribut levels prend les valeurs fournies lors de la création du facteur pour fixer les modalités de la variable
+```{r}
+levels(sexe) 
+```
+
+#### l'objet est un facteur avec 2 niveaux dont les modalités sont stoquées sous forme textuelle, mais les valeurs individuelles sont stoquées comme integer.
+```{r}
+str(sexe) 
+typeof(sexe)
+```
+
+
+
+#### On peut ajouter une valeur additionnelle par indexation ([5] nous y reviendrons...)
+```{r}
+sexe[5]<-"F" 
+sexe
+```
+
+#### Mais on ne peut d'emblée ajouter une valeur d'un autre niveau que les 2 prévus au départ
+```{r}
+sexe[6]<-"A" 
+```
+
+#### Pour ce faire, il faut d'abord modifier les niveaux permis
+```{r}
+levels(sexe) <- c("F", "H", "A") 
+sexe
+```
+
+#### là ça marche!
+```{r}
+sexe[7]<-"A" 
+sexe
+```
+
+
+#### Pour supprimer un NA
+```{r}
+sexe<-sexe[!is.na(sexe)] 
+sexe
+```
+
+
+
+#### Pour renommer et réordonner les catégories d'un facteur
+```{r}
+sexe2 <- factor(sexe,levels= c("A", "H","F" ), labels = c("Autre", "Homme","Femme" ))
+sexe2
+```
+
+*les valeurs manquantes ne sont pas considérées comme un niveau de facteur. On peut les transformer en utilisant `addNA` mais elles seront considérées comme des modalités.*
+***
+
+3. LISTES:  Objet unidimensionnel mais plus flexible que les vecteurs car peut contenir des objets de différents types 
+
+#### ça c'est un vecteur
+```{r}
+aa <- c(1, 5, 3) 
+```
+
+#### une liste avec des numériques, du texte, du booléen et un vecteur
+```{r}
+bb <- list(65, 1886, "patates", "frites", TRUE, aa) 
+bb
+```
+
+#### par indexation, on peut sélectionner la deuxième valeur du sixième élément de la liste
+```{r}
+bb[[6]][2] 
+```
+
+#### et passer à une fonction les valeurs du sixième élément de la liste (une moyenne ne peut prendre que les éléments d'un vecteur, pas d'une liste)
+```{r}
+mean(bb[[6]])
+```
+
+*Comme pour les vecteurs, les composantes d'une liste peuvent être nommées*
+
+***
+
+4. MATRICES: Objet d'un seul mode avec deux dimensions: lignes et colonnes
+
+#### Pour créer une matrice
+
+##### On crée un vecteur avec la fonction `c()`
+```{r}
+aa <- c(1,2,3,4,5,6,7,8,9,10)
+```
+
+##### On crée une matrice avec la fonction `matrix()`. On lui donne notre vecteur et spécifie en argument le nombre de lignes et colonnes
+```{r}
+bb <- matrix(aa, nrow=5, ncol=2) 
+bb
+```
+
+##### Ou on fait tout d'un coup - R applique ici le principe de RECYCLAGE
+```{r}
+cc <- matrix(c("a","b","c","d"), nrow=5, ncol=2) 
+cc
+```
+***
+5. DATA FRAMES: tableau de données pouvant contenir des caractères et des valeurs numériques - généralement importé.
+
+##### Créer un data frame avec 4 variables (3 vecteurs numériques et 1 vecteur textuel)
+```{r}
+age<-c(45,65,22,38,54,31,NA,44,56,67) 
+poids<-c(150,125,210,175,110,180,130,155,190,120)
+taille<-c(NA,6.0,5.5,5.9,5.2,6.1,5.7,5.0,5.3,6.2)
+sexe<-c("H","F","F","H","H","F","F","H","F","H")
+bd<-data.frame(age, taille, poids, sexe)
+bd
+```
+##### Créer un vecteur textuel et l'appliquer au dataframe comme noms de lignes
+```{r}
+nom<-c("cas1","cas2","cas3","cas4","cas5","cas6","cas7","cas8","cas9","cas10")
+row.names(bd)<-nom
+bd
+```
+OU
+
+```{r}
+bd<-data.frame(age, taille, poids, sexe, row.names=nom)
+
+```
+
+# Supprimer les NA d'une colonne
+```{r}
+bd<-bd[!is.na(age),]
+```
+
+
+##### Par défaut, si on ne désactive pas l’option sringsAsFactors, les vecteurs chaines sont convertis en facteur
+```{r}
+str(bd) 
+typeof(bd) # en arrière plan, un tableau est une liste
+```
+ *on peut vérifier le mode d'un objet avec les commandes: `is.character`, `is.list`, `is.logical`, `is.numeric`, `is.null`*
+*on peut convertir le mode d'un objet avec les commandes: as.character, as.list, as.logical, as.numeric*
+
+***
+
+## INDEXATION (SÉLECTION D'ÉLÉMENTS/VARIABLES) 
+
+#### Reprenons nos vecteurs de notes
+```{r}
+etudiants<-c("etudiant1", "etudiant2", "etudiant3", "etudiant4", "etudiant5") 
+francais <- c(86, 75, 59, 88, NA)
+anglais <- c(59, 71, 62, 79, 58)
+biologie <- c(57, 85, 65, 61, 97) 
+names(francais)<-etudiants
+```
+
+1. PAR POSITION: indique la position du ou des éléments à sélectionner
+```{r}
+biologie[1:4] # les éléments de 1 à 4
+biologie[c(1,3,5)] # les éléments 1, 3 et 5
+biologie[c(-4, -5)] # tous les éléments sauf le quatrième et sixième
+```
+
+***
+
+
+2. PAR NOM: si les éléments sont nommés, sélectionne les éléments en indiquant leur nom (ne peut utiliser le sauf "-")
+```{r}
+francais[c("etudiant1", "etudiant5")]
+```
+
+
+***
+
+3. PAR CONDITION LOGIQUE: sélectionne les éléments (valeurs ou noms) qui remplissent la condition (opérateurs ==, !=, <, >, <=, >=) - Ne peut ête utilisé pour ==NA, faut utiliser is.na
+```{r}
+francais>70 # utilise opérateur imposant une condition de sélection qui retourne une liste de valeurs logiques
+francais[francais>70] # insère cette condition entre crochets pour sélectionner les valeurs qui remplissent la condition
+francais[francais>70 & !is.na(francais)] # exclure les valeurs manquantes
+anglais[francais>70 ] # applique cette même condition sur un autre vecteur
+etudiants[anglais==71]
+etudiants[anglais!=71]
+biologie[etudiants != "etudiant1"]
+```
+***
+
+*Pour les listes et les tableaux (qui sont en fait des listes) on peut utiliser les crochets simples[] , les crochets doubles[[]] (renvoie le contenu d'un élément de la liste sélectionné par []) et le $.* 
+
+## *suite sur l'indexation bidimensionnelle dans le script suivant...*
+
+***
+
+##  INDEXATION + ASSIGNATION 
+
+L'indexation permet de sélectionner ET de remplacer des valeurs. Fonctionne avec l'indexation par position, par condition et par nom
+
+##### Remplace la deuxième valeur du vecteur francais par 88
+```{r}
+francais[2]<-88
+francais
+```
+
+##### Remplace la deuxième valeur du vecteur francais par la première valeur du vecteur anglais
+```{r}
+francais[2] <- anglais[1]
+francais
+```
+
+##### Remplace la deuxième et quatrième valeurs par une valeur manquante
+```{r}
+francais[c(2, 4)] <- NA
+francais
+```
+
+##### Remplace les valeurs de 86 par 77
+```{r}
+francais[francais==86]<-77
+francais
+```
+
+##### Remplace la valeur nommé "etudiant3" (59) par 99
+```{r}
+francais["etudiant3"] <- 99
+francais
+```
+
+##### Remplacer les valeurs manquantes par 77
+```{r}
+francais[is.na(francais)]<-77
+francais
+```
+***
+##  EXERCICE BEATLES 
+
+
+1. Créer un vecteur Beatles
+```{r}
+
+beatles <- c("Ringo", "John", "Georges", "Paul")
+```
+
+
+
+2. Sélectionner votre beatle préféré de 3 façons
+```{r}
+beatles[beatles=="Paul"]
+beatles[4]
+beatles[c(FALSE, FALSE, FALSE, TRUE)]
+```
+
+3. Sélectionner tous les beatles sauf Ringo de 3 façons
+```{r}
+beatles[beatles != "Ringo"]
+beatles[c(2,3,4)]
+beatles[c(FALSE, TRUE, TRUE, TRUE)]
+```
+
+
+4. répéter le nom de votre beatle préféré 10 fois
+```{r}
+beatles[c(4,4,4,4,4,4,4,4,4,4)]
+```
+
+
+5. Répéter le nom de votre beatle préféré 1000 fois
+```{r}
+rep(beatles[4], 1000)
+```
+
+
+6. Ajouter un 5e Beatle
+```{r}
+beatles[5]<-"Yoko"
+# ou
+c(beatles, "Yoko")
+```
+
+
+7. Supprimer le beatle que vous aimer le moins
+```{r}
+beatles[c(-5)]
+# ou 
+beatles<-beatles[beatles != "Yoko"]
+beatles
+```
+
+
+8. créer un vecteur numérique avec l'année de naissance des beatles
+```{r}
+annee <- c(1940, 1940, 1943, 1942)
+```
+
+9. Nommer ce vecteur avec les noms des beatles
+```{r}
+names(annee)<-beatles
+beatles
+```
+
+10. Créer un dataframe avec le vecteur de noms des beatles et le vecteur d'annee
+```{r}
+dfbeatles<-data.frame(beatles, annee)
+```
+
+11. calculer l'âge de beatles en 2019
+```{r}
+age<-2019-dfbeatles$annee
+```
+
+
+12. Ajouter le vecteur âge comme variable au tableau beatles
+```{r}
+dfbeatles<-cbind(dfbeatles, age)
+```
+
+
+

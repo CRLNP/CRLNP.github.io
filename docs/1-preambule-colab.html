@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Caroline Patenaude   Bibliothécaire, BLSH" />
+
+<meta name="date" content="2020-10-16" />
+
+<title>Atelier Premiers pas avec R   Capsule preambule: présentation de Google Colaboratory</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      a.sourceLine { display: inline-block; line-height: 1.25; }
+  a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+  a.sourceLine:empty { height: 1.2em; }
+  .sourceCode { overflow: visible; }
+  code.sourceCode { white-space: pre; position: relative; }
+  div.sourceCode { margin: 1em 0; }
+  pre.sourceCode { margin: 0; }
+  @media screen {
+  div.sourceCode { overflow: auto; }
+  }
+  @media print {
+  code.sourceCode { white-space: pre-wrap; }
+  a.sourceLine { text-indent: -1em; padding-left: 1em; }
+  }
+  pre.numberSource a.sourceLine
+    { position: relative; left: -4em; }
+  pre.numberSource a.sourceLine::before
+    { content: attr(title);
+      position: relative; left: -1em; text-align: right; vertical-align: baseline;
+      border: none; pointer-events: all; display: inline-block;
+      -webkit-touch-callout: none; -webkit-user-select: none;
+      -khtml-user-select: none; -moz-user-select: none;
+      -ms-user-select: none; user-select: none;
+      padding: 0 4px; width: 4em;
+      color: #aaaaaa;
+    }
+  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  div.sourceCode
+    {  }
+  @media screen {
+  a.sourceLine::before { text-decoration: underline; }
+  }
+  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code span.at { color: #7d9029; } /* Attribute */
+  code span.bn { color: #40a070; } /* BaseN */
+  code span.bu { } /* BuiltIn */
+  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code span.ch { color: #4070a0; } /* Char */
+  code span.cn { color: #880000; } /* Constant */
+  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code span.dt { color: #902000; } /* DataType */
+  code span.dv { color: #40a070; } /* DecVal */
+  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.ex { } /* Extension */
+  code span.fl { color: #40a070; } /* Float */
+  code span.fu { color: #06287e; } /* Function */
+  code span.im { } /* Import */
+  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code span.op { color: #666666; } /* Operator */
+  code span.ot { color: #007020; } /* Other */
+  code span.pp { color: #bc7a00; } /* Preprocessor */
+  code span.sc { color: #4070a0; } /* SpecialChar */
+  code span.ss { color: #bb6688; } /* SpecialString */
+  code span.st { color: #4070a0; } /* String */
+  code span.va { color: #19177c; } /* Variable */
+  code span.vs { color: #4070a0; } /* VerbatimString */
+  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Atelier Premiers pas avec R <br> Capsule preambule: présentation de Google Colaboratory</h1>
+<h4 class="author">Caroline Patenaude <br> Bibliothécaire, BLSH</h4>
+<h4 class="date">2020-10-16</h4>
+
+</div>
+
+
+<p><br></p>
+<div id="principales-caractéristiques" class="section level2">
+<h2>1. Principales caractéristiques</h2>
+<ul>
+<li>Colab est une plateforme de programmation et d’analyse gratuite qui permet de créer et de partager du code dans l’environnement Google et qui ne nécessite donc aucune installation locale, ne nécessite qu’un compte Google!</li>
+<li>Comme Colab fait partie des services Google, les documents Colab peuvent être créés, enregistrés, copiés dans Google Drive et le partage et la collaboration se font de la même façon que pour les autres types de documents Google. Colab est aussi reliée à GitHub ce qui permet d’importer et d’exporter facilement des documents d’une plateforme à l’autre.</li>
+<li>Les fichiers créés dans Colab sont en fait des <em>notebooks</em>: documents interactifs qui permettent de combiner code, résultats, texte, graphiques, images,… (même format que les <em><a href="https://jupyter.org/">Jupyter Notebook</a></em> et similaires aux documents RMarkdown).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-et-autres-langages-dans-colab" class="section level2">
+<h2>2. R et autres langages dans Colab</h2>
+<ul>
+<li>Le langage par défaut dans Colab est Python. Lorsque l’on crée un nouveau document Colab, seul le code Python est reconnu (une bibliothèque d’extraits de code Python se trouve dans la colonne de gauche &lt;&gt;)</li>
+<li>Mais il est possible d’utiliser plusieurs autres langages compatibles avec Colab dont R. Pour créer un nouveau document dont le langage de base est R (Python ne sera plus reconnu), il faut utiliser le lien suivant: <a href="https://colab.research.google.com/notebook#create=true&amp;language=r" class="uri">https://colab.research.google.com/notebook#create=true&amp;language=r</a></li>
+<li>On pourra alors utiliser le langage R exactement comme dans RStudio sauf pour l’importation et l’exportation de fichiers de données.</li>
+<li>Il est possible d’alterner entre le code Python et R dans un même document en utilisant des <em>magics</em> (packages Python qui permettent d’exécuter d’autres langages).</li>
+</ul>
+<p><strong>En résumé:</strong></p>
+<ul>
+<li>Option intéressante à explorer pour se familiariser avec le langage R et créer des documents de présentation faciles à partager sans avoir quoi que ce soit à installer, mais pour travailler avec des données, RStudio est de loin préférable.</li>
+<li>L’importation et l’exportation de fichiers de données est plus complexe dans Colab que dans RStudio car nécessite d’utiliser du code Python et peut demander d’interagir avec Github. Raison pour laquelle nous utiliserons dans les capsules suivantes une base de données directement accessible via un package R.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="hébergement-infonuagique" class="section level2">
+<h2>3. Hébergement infonuagique</h2>
+<div id="avantages" class="section level3">
+<h3>Avantages</h3>
+<ul>
+<li>L’environnement d’exécution est hébergé sur les serveurs de Google et permet donc d’exécuter du code relativement complexe indépendamment de la puissance de son ordinateur et sans intallation locale.</li>
+<li>La connexion à l’environnement d’exécution (en haut à droite) se fait automatiquement à la première exécution de code -&gt; le serveur attribue alors une certaine quantité de mémoire vive (RAM) et de mémoire (disque) que l’on voit dans la barre du haut.</li>
+<li>Colab offre en plus des outils gratuits d’accélération de traitement de code, GPU et TPU (CPU par défaut), processeurs permettant d’exécuter du code complexe plus rapidement.</li>
+</ul>
+</div>
+<div id="désavantages" class="section level3">
+<h3>Désavantages</h3>
+<ul>
+<li>Après une certaine période d’inactivité, la connexion au serveur à distance sera perdue (pour économiser la capacité du serveur à distance). Mais une version Pro offre plus de puissance de calcul et de mémoire.</li>
+<li>Problématique pour la confidentialité.</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="structure-dun-document-colab" class="section level2">
+<h2>4. Structure d’un document Colab</h2>
+<p><strong>Un document Colab peut contenir deux types de cellules:</strong></p>
+<pre><code>+ Code
++ Texte</code></pre>
+<p><br></p>
+<div id="cellules-de-texte-en-format-markdown" class="section level3">
+<h3>4.1. Cellules de texte en format Markdown</h3>
+<ul>
+<li>Le <strong>formatage</strong> des <strong>blocs</strong> de <em>texte</em> peut se <strong>faire</strong> directement avec le <em>balisage</em> Markdown ou <em>avec</em> les <em>options</em> d’édition <strong>du</strong> bloc de texte.</li>
+<li>La table des matières à <strong>gauche</strong> est créé en fonction des différents <strong>niveaux</strong> de titres et sous-titres notées en markdown (#, ##, ###)</li>
+</ul>
+<p><br></p>
+</div>
+<div id="cellules-de-code" class="section level3">
+<h3>4.2. Cellules de code</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Documente son code avec des commentaires débutant par #</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co"># Exécute les cellules de code avec le bouton à la gauche ou avec le raccourci ctrl + entrée (de nombreux autres raccourcis se trouvent sous Options).</span></a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5">toto =<span class="st"> </span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-6" title="6">toto</a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+</div>
+</div>
+<div id="pour-aller-plus-loin" class="section level2">
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Bienvenue dans Colaboratory par Google: <a href="https://colab.research.google.com/notebooks/intro.ipynb#scrollTo=ufxBm1yRnruN" class="uri">https://colab.research.google.com/notebooks/intro.ipynb#scrollTo=ufxBm1yRnruN</a></li>
+<li>Getting started in Google Colab: <a href="https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c" class="uri">https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c</a></li>
+<li>DataProfessor: <a href="https://www.youtube.com/channel/UCV8e2g4IWQqK71bbzGDEI4Q" class="uri">https://www.youtube.com/channel/UCV8e2g4IWQqK71bbzGDEI4Q</a></li>
+</ul>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkF0ZWxpZXIgUHJlbWllcnMgcGFzIGF2ZWMgUiA8YnI+IENhcHN1bGUgcHJlYW1idWxlOiBwcsOpc2VudGF0aW9uIGRlIEdvb2dsZSBDb2xhYm9yYXRvcnkiDQphdXRob3I6ICJDYXJvbGluZSBQYXRlbmF1ZGUgPGJyPiBCaWJsaW90aMOpY2FpcmUsIEJMU0giDQpkYXRlOiAiYHIgU3lzLkRhdGUoKWAiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50OiANCiAgICBoaWdobGlnaHQ6IHB5Z21lbnRzDQogICAgdGhlbWU6IGx1bWVuDQogICAgdG9jOiB5ZXMNCiAgICB0b2NfZmxvYXQ6IHllcw0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQo8YnI+DQoNCiMjIDEuIFByaW5jaXBhbGVzIGNhcmFjdMOpcmlzdGlxdWVzDQoNCiogICBDb2xhYiBlc3QgdW5lIHBsYXRlZm9ybWUgZGUgcHJvZ3JhbW1hdGlvbiBldCBkJ2FuYWx5c2UgZ3JhdHVpdGUgcXVpIHBlcm1ldCBkZSBjcsOpZXIgZXQgZGUgcGFydGFnZXIgZHUgY29kZSBkYW5zIGwnZW52aXJvbm5lbWVudCBHb29nbGUgZXQgcXVpIG5lIG7DqWNlc3NpdGUgZG9uYyBhdWN1bmUgaW5zdGFsbGF0aW9uIGxvY2FsZSwgbmUgbsOpY2Vzc2l0ZSBxdSd1biBjb21wdGUgR29vZ2xlIQ0KKiAgIENvbW1lIENvbGFiIGZhaXQgcGFydGllIGRlcyBzZXJ2aWNlcyBHb29nbGUsIGxlcyBkb2N1bWVudHMgQ29sYWIgcGV1dmVudCDDqnRyZSBjcsOpw6lzLCBlbnJlZ2lzdHLDqXMsIGNvcGnDqXMgZGFucyBHb29nbGUgRHJpdmUgZXQgbGUgcGFydGFnZSBldCBsYSBjb2xsYWJvcmF0aW9uIHNlIGZvbnQgZGUgbGEgbcOqbWUgZmHDp29uIHF1ZSBwb3VyIGxlcyBhdXRyZXMgdHlwZXMgZGUgZG9jdW1lbnRzIEdvb2dsZS4gQ29sYWIgZXN0IGF1c3NpIHJlbGnDqWUgw6AgR2l0SHViIGNlIHF1aSBwZXJtZXQgZCdpbXBvcnRlciBldCBkJ2V4cG9ydGVyIGZhY2lsZW1lbnQgZGVzIGRvY3VtZW50cyBkJ3VuZSBwbGF0ZWZvcm1lIMOgIGwnYXV0cmUuDQoqICAgTGVzIGZpY2hpZXJzIGNyw6nDqXMgZGFucyBDb2xhYiBzb250IGVuIGZhaXQgZGVzICBfbm90ZWJvb2tzXzogZG9jdW1lbnRzIGludGVyYWN0aWZzIHF1aSBwZXJtZXR0ZW50IGRlIGNvbWJpbmVyIGNvZGUsIHLDqXN1bHRhdHMsIHRleHRlLCBncmFwaGlxdWVzLCBpbWFnZXMsLi4uIChtw6ptZSBmb3JtYXQgcXVlIGxlcyBfW0p1cHl0ZXIgTm90ZWJvb2tdKGh0dHBzOi8vanVweXRlci5vcmcvKV8gZXQgc2ltaWxhaXJlcyBhdXggZG9jdW1lbnRzIFJNYXJrZG93bikuDQoNCjxicj4NCg0KIyMgMi4gUiBldCBhdXRyZXMgbGFuZ2FnZXMgZGFucyBDb2xhYg0KDQoqICAgTGUgbGFuZ2FnZSBwYXIgZMOpZmF1dCBkYW5zIENvbGFiIGVzdCBQeXRob24uIExvcnNxdWUgbCdvbiBjcsOpZSB1biBub3V2ZWF1IGRvY3VtZW50IENvbGFiLCBzZXVsICBsZSBjb2RlIFB5dGhvbiBlc3QgcmVjb25udSAodW5lIGJpYmxpb3Row6hxdWUgZOKAmWV4dHJhaXRzIGRlIGNvZGUgUHl0aG9uIHNlIHRyb3V2ZSBkYW5zIGxhIGNvbG9ubmUgZGUgZ2F1Y2hlIDw+KQ0KKiAgIE1haXMgaWwgZXN0IHBvc3NpYmxlIGQndXRpbGlzZXIgcGx1c2lldXJzIGF1dHJlcyBsYW5nYWdlcyBjb21wYXRpYmxlcyBhdmVjIENvbGFiIGRvbnQgUi4gUG91ciBjcsOpZXIgdW4gbm91dmVhdSBkb2N1bWVudCBkb250IGxlIGxhbmdhZ2UgZGUgYmFzZSBlc3QgUiAoUHl0aG9uIG5lIHNlcmEgcGx1cyByZWNvbm51KSwgaWwgZmF1dCB1dGlsaXNlciBsZSBsaWVuIHN1aXZhbnQ6DQpodHRwczovL2NvbGFiLnJlc2VhcmNoLmdvb2dsZS5jb20vbm90ZWJvb2sjY3JlYXRlPXRydWUmbGFuZ3VhZ2U9cg0KKiAgIE9uIHBvdXJyYSBhbG9ycyB1dGlsaXNlciBsZSBsYW5nYWdlIFIgZXhhY3RlbWVudCBjb21tZSBkYW5zIFJTdHVkaW8gc2F1ZiBwb3VyIGwnaW1wb3J0YXRpb24gZXQgbCdleHBvcnRhdGlvbiBkZSBmaWNoaWVycyBkZSBkb25uw6llcy4NCiogICBJbCBlc3QgIHBvc3NpYmxlIGQnYWx0ZXJuZXIgZW50cmUgbGUgY29kZSBQeXRob24gZXQgUiBkYW5zIHVuIG3Dqm1lIGRvY3VtZW50IGVuIHV0aWxpc2FudCBkZXMgKm1hZ2ljcyogKHBhY2thZ2VzIFB5dGhvbiBxdWkgcGVybWV0dGVudCBkJ2V4w6ljdXRlciBkJ2F1dHJlcyBsYW5nYWdlcykuDQoNCioqRW4gcsOpc3Vtw6k6KioNCg0KKiAgIE9wdGlvbiBpbnTDqXJlc3NhbnRlIMOgIGV4cGxvcmVyIHBvdXIgc2UgZmFtaWxpYXJpc2VyIGF2ZWMgbGUgbGFuZ2FnZSBSIGV0IGNyw6llciBkZXMgZG9jdW1lbnRzIGRlIHByw6lzZW50YXRpb24gZmFjaWxlcyDDoCBwYXJ0YWdlciBzYW5zIGF2b2lyIHF1b2kgcXVlIGNlIHNvaXQgw6AgaW5zdGFsbGVyLCBtYWlzIHBvdXIgdHJhdmFpbGxlciBhdmVjIGRlcyBkb25uw6llcywgUlN0dWRpbyBlc3QgZGUgbG9pbiBwcsOpZsOpcmFibGUuIA0KKiBMJ2ltcG9ydGF0aW9uIGV0IGwnZXhwb3J0YXRpb24gZGUgZmljaGllcnMgZGUgZG9ubsOpZXMgZXN0IHBsdXMgY29tcGxleGUgZGFucyBDb2xhYiBxdWUgZGFucyBSU3R1ZGlvIGNhciBuw6ljZXNzaXRlIGQndXRpbGlzZXIgZHUgY29kZSBQeXRob24gZXQgcGV1dCBkZW1hbmRlciBkJ2ludGVyYWdpciBhdmVjIEdpdGh1Yi4gUmFpc29uIHBvdXIgbGFxdWVsbGUgbm91cyB1dGlsaXNlcm9ucyBkYW5zIGxlcyBjYXBzdWxlcyBzdWl2YW50ZXMgdW5lIGJhc2UgZGUgZG9ubsOpZXMgZGlyZWN0ZW1lbnQgYWNjZXNzaWJsZSB2aWEgdW4gcGFja2FnZSBSLiANCg0KPGJyPg0KDQojIyAzLiBIw6liZXJnZW1lbnQgaW5mb251YWdpcXVlDQoNCiMjIyBBdmFudGFnZXMNCiogICBMJ2Vudmlyb25uZW1lbnQgZCdleMOpY3V0aW9uIGVzdCBow6liZXJnw6kgc3VyIGxlcyBzZXJ2ZXVycyBkZSBHb29nbGUgZXQgcGVybWV0IGRvbmMgZCdleMOpY3V0ZXIgZHUgY29kZSByZWxhdGl2ZW1lbnQgY29tcGxleGUgaW5kw6lwZW5kYW1tZW50IGRlIGxhIHB1aXNzYW5jZSBkZSBzb24gb3JkaW5hdGV1ciBldCBzYW5zIGludGFsbGF0aW9uIGxvY2FsZS4gDQoqICAgTGEgY29ubmV4aW9uIMOgIGwnZW52aXJvbm5lbWVudCBkJ2V4w6ljdXRpb24gKGVuIGhhdXQgw6AgZHJvaXRlKSBzZSBmYWl0IGF1dG9tYXRpcXVlbWVudCDDoCBsYSBwcmVtacOocmUgZXjDqWN1dGlvbiBkZSBjb2RlIC0+IGxlIHNlcnZldXIgYXR0cmlidWUgYWxvcnMgdW5lIGNlcnRhaW5lIHF1YW50aXTDqSBkZSBtw6ltb2lyZSB2aXZlIChSQU0pIGV0IGRlIG3DqW1vaXJlIChkaXNxdWUpIHF1ZSBsJ29uIHZvaXQgZGFucyBsYSBiYXJyZSBkdSBoYXV0Lg0KKiAgICBDb2xhYiBvZmZyZSBlbiBwbHVzIGRlcyBvdXRpbHMgZ3JhdHVpdHMgZCdhY2PDqWzDqXJhdGlvbiBkZSB0cmFpdGVtZW50IGRlIGNvZGUsIEdQVSBldCBUUFUgKENQVSBwYXIgZMOpZmF1dCksIHByb2Nlc3NldXJzIHBlcm1ldHRhbnQgZOKAmWV4w6ljdXRlciBkdSBjb2RlIGNvbXBsZXhlIHBsdXMgcmFwaWRlbWVudC4gDQoNCiMjIyBEw6lzYXZhbnRhZ2VzDQoqICAgQXByw6hzIHVuZSBjZXJ0YWluZSBww6lyaW9kZSBkJ2luYWN0aXZpdMOpLCBsYSBjb25uZXhpb24gYXUgc2VydmV1ciDDoCBkaXN0YW5jZSBzZXJhIHBlcmR1ZSAocG91ciDDqWNvbm9taXNlciBsYSBjYXBhY2l0w6kgZHUgc2VydmV1ciDDoCBkaXN0YW5jZSkuIE1haXMgdW5lIHZlcnNpb24gUHJvIG9mZnJlIHBsdXMgZGUgcHVpc3NhbmNlIGRlIGNhbGN1bCBldCBkZSBtw6ltb2lyZS4NCiogUHJvYmzDqW1hdGlxdWUgcG91ciBsYSBjb25maWRlbnRpYWxpdMOpLg0KDQo8YnI+DQoNCiMjIDQuIFN0cnVjdHVyZSBkJ3VuIGRvY3VtZW50IENvbGFiDQoNCioqVW4gZG9jdW1lbnQgQ29sYWIgcGV1dCBjb250ZW5pciBkZXV4IHR5cGVzIGRlIGNlbGx1bGVzOioqDQoNCmBgYA0KKyBDb2RlDQorIFRleHRlDQpgYGANCg0KPGJyPg0KDQojIyMgNC4xLiBDZWxsdWxlcyBkZSB0ZXh0ZSBlbiBmb3JtYXQgTWFya2Rvd24NCg0KKiAgIExlICoqZm9ybWF0YWdlKiogZGVzICoqYmxvY3MqKiBkZSAqdGV4dGUqIHBldXQgc2UgKipmYWlyZSoqIGRpcmVjdGVtZW50IGF2ZWMgbGUgKmJhbGlzYWdlKiBNYXJrZG93biBvdSAqYXZlYyogbGVzICpvcHRpb25zKiBkJ8OpZGl0aW9uICoqZHUqKiBibG9jIGRlIHRleHRlLg0KKiAgIExhIHRhYmxlIGRlcyBtYXRpw6hyZXMgw6AgKipnYXVjaGUqKiBlc3QgY3LDqcOpIGVuIGZvbmN0aW9uIGRlcyBkaWZmw6lyZW50cyAqKm5pdmVhdXgqKiBkZSB0aXRyZXMgZXQgc291cy10aXRyZXMgbm90w6llcyBlbiBtYXJrZG93biAoIywgIyMsICMjIykNCg0KPGJyPg0KDQojIyMgNC4yLiBDZWxsdWxlcyBkZSBjb2RlDQoNCmBgYHtyfQ0KIyBEb2N1bWVudGUgc29uIGNvZGUgYXZlYyBkZXMgY29tbWVudGFpcmVzIGTDqWJ1dGFudCBwYXIgIw0KDQojIEV4w6ljdXRlIGxlcyBjZWxsdWxlcyBkZSBjb2RlIGF2ZWMgbGUgYm91dG9uIMOgIGxhIGdhdWNoZSBvdSBhdmVjIGxlIHJhY2NvdXJjaSBjdHJsICsgZW50csOpZSAoZGUgbm9tYnJldXggYXV0cmVzIHJhY2NvdXJjaXMgc2UgdHJvdXZlbnQgc291cyBPcHRpb25zKS4NCg0KdG90byA9IDIrMg0KdG90bw0KYGBgDQoNCiMjIFBvdXIgYWxsZXIgcGx1cyBsb2luDQoNCiogICBCaWVudmVudWUgZGFucyBDb2xhYm9yYXRvcnkgcGFyIEdvb2dsZTogaHR0cHM6Ly9jb2xhYi5yZXNlYXJjaC5nb29nbGUuY29tL25vdGVib29rcy9pbnRyby5pcHluYiNzY3JvbGxUbz11ZnhCbTF5Um5ydU4NCiogICBHZXR0aW5nIHN0YXJ0ZWQgaW4gR29vZ2xlIENvbGFiOiBodHRwczovL3Rvd2FyZHNkYXRhc2NpZW5jZS5jb20vZ2V0dGluZy1zdGFydGVkLXdpdGgtZ29vZ2xlLWNvbGFiLWYyZmZmOTdmNTk0Yw0KKiAgIERhdGFQcm9mZXNzb3I6IGh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL2NoYW5uZWwvVUNWOGUyZzRJV1FxSzcxYmJ6R0RFSTRR</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("1-preambule-colab.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

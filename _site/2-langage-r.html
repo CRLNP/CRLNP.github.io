@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Caroline Patenaude   Bibliothécaire, BLSH" />
+
+<meta name="date" content="2020-10-15" />
+
+<title>Atelier Premiers pas avec R   Capsule 1: Qu’est-ce que R?</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+</li>
+<li>
+  <a href="2-langage-r.html">Intro au langage R</a>
+</li>
+<li>
+  <a href="3-objets.html">Objets</a>
+</li>
+<li>
+  <a href="4-explorer.html">Explorer</a>
+</li>
+<li>
+  <a href="5-indexation.html">Indexation</a>
+</li>
+<li>
+  <a href="6-manipuler.html">Manipuler</a>
+</li>
+<li>
+  <a href="7-statistiques-descriptives.html">Statistiques-descriptives</a>
+</li>
+<li>
+  <a href="8-analyses.html">Analyses</a>
+</li>
+<li>
+  <a href="9-graphiques.html">Graphiques</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Atelier Premiers pas avec R <br> Capsule 1: Qu’est-ce que R?</h1>
+<h4 class="author">Caroline Patenaude <br> Bibliothécaire, BLSH</h4>
+<h4 class="date">2020-10-15</h4>
+
+</div>
+
+
+<div id="objectifs" class="section level2">
+<h2>Objectifs</h2>
+<ul>
+<li><p>Maitriser la grammaire de base du langage R.</p></li>
+<li><p>Comprendre le fonctionnement et l’utilisation de fonctions de base et de leurs arguments.</p></li>
+<li><p>Définir et manipuler différents types d’objets avec des opérateurs.</p></li>
+<li><p>Importer et manipuler un jeu de données</p></li>
+<li><p>Explorer certaines fonctions de statistiques descriptives, d’analyse et de graphiques de base.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="contenu-des-capsules-de-formation" class="section level2">
+<h2>Contenu des capsules de formation</h2>
+<ul>
+<li><p><strong>Première capsule</strong>: Entrée en matière - Pourquoi R?</p></li>
+<li><p><strong>Capsule deux</strong>: Introduction au langage R (objets, fonctions et arguments)</p></li>
+<li><p><strong>Capsule trois</strong>: Importation et exploration d’un tableau de données</p></li>
+<li><p><strong>Capsule quatre</strong>: L’indexation (sélection de variables et création de sous-groupes)</p></li>
+<li><p><strong>Capsule cinq</strong>: La manipulation de variables qualitatives et quantitatives (renommer, recoder…)</p></li>
+<li><p><strong>Capsule six</strong>: Les statistiques descriptives</p></li>
+<li><p><strong>Capsule sept</strong>: Les tests statistiques de base</p></li>
+<li><p><strong>Capsule huit</strong>: Les graphiques univariés et bivariés</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="pourquoi-r" class="section level2">
+<h2>1. Pourquoi <strong>R</strong>?</h2>
+<ul>
+<li>Langage et interface de programmation libres et gratuits pour l’analyse statistique et graphique (etc.).</li>
+<li>Multiplateforme : Windows, Mac, Linux.</li>
+<li>Très fort pour les graphiques et visualisations de toutes sortes.</li>
+<li>Communauté très active donc développement constant = rapidité de l’implémentation de nouvelles méthodes (non disponibles dans les logiciels commerciaux).</li>
+<li>Pour tous les types d’analyses (modèles linéaires, multi-niveaux, analyses factorielles, équation structurelle, simulations, psychométrie, économétrie, génomique…).</li>
+<li>Utilisation de scripts assure la reproductibilité des analyses.</li>
+<li>Très efficace pour la création de présentations et de rapports (<code>Rmarkdown</code>, <code>knitr</code>, <code>LaTeX</code>)</li>
+<li>Excellente intégration avec de nombreux systèmes de bases de données, autres langages et outils comme Colab ou Jupyter notebook (en association avec Python).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="quelques-bémols" class="section level2">
+<h2>2. Quelques bémols</h2>
+<ul>
+<li>Plus un langage de programmation qu’un logiciel.</li>
+<li>Ne manipule pas directement les données comme SPSS ou excel, les fichiers de données sont des objets en mémoire.</li>
+<li>L’affichage des résultats est assez minimaliste.</li>
+<li>Prolifération des fonctions (<em>packages</em>) peut alourdir l’apprentissage.</li>
+<li>Développement rapide fait que la documentation laisse parfois à désirer.</li>
+<li>Contient généralement de l’aide pour toutes les fonctions mais pas toujours facile à comprendre.</li>
+<li>Comme pour tout language de programmation, un “rien” peut faire en sorte que le code plante.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-rstudio-et-autres-interfaces" class="section level2">
+<h2>3. R, RStudio et autres interfaces…</h2>
+<ul>
+<li>Interface du <strong>R</strong> de base pas très intuitive donc peu utilisée telle quelle</li>
+</ul>
+<center>
+<p><img src="markdown/screenshotR.png" /></p>
+</center>
+<ul>
+<li>Installe généralement en plus un IDE, <em>Integrated Development Environment</em>, comme <a href="https://www.rstudio.com/products/rstudio/download/#download"><strong>RStudio</strong></a> : éditeur de script - environnement beaucoup plus convivial qui facilite le travail (gestion des fichiers, objets et commandes, historique de fonctions, autocomplétion,…)</li>
+<li><strong>Sans aucune installation nécessaire, Colab fonctionne un peu comme un IDE en ligne, dans lequel on peut utiliser le langage R comme dans R ou RStudio</strong>.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="installation" class="section level2">
+<h2>4. Installation</h2>
+<ol style="list-style-type: decimal">
+<li><p>Télécharger et installer <a href="https://cran.r-project.org/"><strong>R de base</strong></a> - choisir son système d’exploitation et suivre les étapes.</p></li>
+<li><p>Télécharger et installer <a href="https://www.rstudio.com/products/rstudio/download/#download"><strong>RStudio</strong></a> (ou autre interface) – Choisir la version gratuite et son système d’exploitation - des interfaces graphiques sont aussi disponibles, mais peu recommandées (<a href="https://www.rcommander.com/">R Commander</a>, <a href="https://www.blueskystatistics.com/">BlueSky Statistics</a> )</p></li>
+<li><p>Télécharger et installer (“charger”) des <em>packages</em> dans <strong>RStudio</strong>.</p></li>
+</ol>
+<p><br></p>
+<div id="avantage-de-travailler-dans-colab" class="section level3">
+<h3>Avantage de travailler dans Colab!</h3>
+<p><img src="markdown/xkcd_package.png" /></p>
+<p><a href="https://xkcd.com/">xkcd</a></p>
+<p><br></p>
+</div>
+</div>
+<div id="quest-ce-quun-package" class="section level2">
+<h2>5. Qu’est-ce qu’un <em>package</em>?</h2>
+<p><br></p>
+<ul>
+<li><p>Un <em>package</em> est un module (ou extension, librairie, bibliothèque) qui contient un ensemble de fonctions (souvent liées à une méthode ou un domaine particulier).</p></li>
+<li><p>À l’installation, <strong>R</strong> vient avec un ensemble de fonctions de base {base} et de modules par défaut (<em>built in packages</em>).</p></li>
+<li><p>Des <em>packages</em> composés de fonctions spécialisées sont constamment développés par la communauté.</p></li>
+<li><p>On en trouve plus de 15 000 sur le site officiel de <strong>R</strong> <a href="https://cran.r-project.org/web/packages/">CRAN</a>. D’autres se trouvent aussi ailleurs (Github, …).</p></li>
+<li><p>Les packages doivent être <strong>téléchargés</strong>(<code>install.packages()</code>) une seule fois, mais <strong>chargés</strong> (<code>library()</code> ou <code>require()</code>) à chaque session.</p></li>
+<li><p><strong>Dans Colab, tous les packages sont téléchargés dans l’environnement d’exécution sur le nuage, c’est pourquoi il faut les télécharger à chaque exécution (code généralement contenu la première cellule de notre fichier)</strong></p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="quest-ce-quun-package-suite" class="section level2">
+<h2>5. Qu’est-ce qu’un <em>package</em>? (suite)</h2>
+<p><br></p>
+<ul>
+<li><p>Les modules sont généralement évalués par les pairs - <a href="https://www.jstatsoft.org/index">Journal of Statistical Software</a> – le choix doit se faire avec précautions.</p></li>
+<li><p>Comment les trouver et les choisir? En cherchant sur Google! En s’informant dans son domaine et en vérifiant si les packages ont déjà été utilisés dans des publications.</p></li>
+<li><p>Des fonctions effectuant les mêmes “tâches” prédéfinies (ex: corrélation, tableaux contingences…) peuvent se retrouver dans plusieurs packages avec variantes plus ou moins importantes (procédures, options, arguments, résultats).</p></li>
+<li><p>Il y a toujours plusieurs façons d’arriver au même résultat -&gt; normal et nécessaire de se limiter à certaines fonctions.</p></li>
+<li><p>Certains packages ont des façons spécifiques de fonctionner. Ils utilisent une syntaxe et des formats qui se distinguent de la syntaxe commune de <strong>R</strong>.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="tidyverse" class="section level2 smaller">
+<h2>6. Tidyverse</h2>
+<center>
+<div class="figure">
+<img src="markdown/tidyverse.png" alt="Packages Tidyverse" />
+<p class="caption">Packages Tidyverse</p>
+</div>
+</center>
+<ul>
+<li>Ensemble de packages très utilisé spécialisé dans l’analyse, la manipulation et la visualisation de données -&gt; repose sur le principe de <a href="https://www.jstatsoft.org/article/view/v059i10"><em>tidy data</em></a>.</li>
+<li>Les packages Tidyverse partagent une syntaxe commune et des “verbes” et opérateurs spécifiques (ex: %&gt;%).</li>
+<li>Travaillent avec un format de jeu de données particulier (<em>tibble</em>) – variation sur le dataframe.</li>
+<li>La commande <code>install.packages("tidyverse")</code> va télécharger toutes les extensions constituants le cœur de tidyverse. La fonction library(tidyverse) les chargera (Certains autres modules doivent être chargés individuellement) :
+<ul>
+<li>dplyr (manipulation des données)</li>
+<li>tidyr (remise en forme des données)</li>
+<li>purrr (programmation)</li>
+<li>readr (importation de données)</li>
+<li>tibble (tableaux de données)</li>
+<li>forcats (variables qualitatives)</li>
+<li>stringr (chaînes de caractères)</li>
+<li>ggplot2 (visualisation)</li>
+</ul></li>
+<li>Voir <a href="https://r4ds.had.co.nz/index.html">R for data science</a> de Grolemund &amp; Wickham</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-langage-de-programmation" class="section level2">
+<h2>7. <strong>R</strong>: Langage de programmation</h2>
+<ul>
+<li><strong>R</strong> est avant tout un langage de programmation orienté objet.</li>
+<li>Développé à partir du <strong>langage S</strong> par <em>Ross Ihaka</em> et <em>Robert Gentleman</em> au cours des années ‘90.</li>
+<li>Permet de programmer ses propres fonctions et packages.</li>
+</ul>
+<center>
+<p><img src="markdown/programmation.png" /></p>
+<blockquote>
+<ul>
+<li><strong>Est-ce qu’il faut vraiment apprendre ça?</strong></li>
+</ul>
+</blockquote>
+</center>
+<p><br></p>
+</div>
+<div id="r-langage-de-programmation-suite" class="section level2">
+<h2>7. <strong>R</strong>: Langage de programmation (suite)</h2>
+<p><strong>Particularités à savoir</strong>:</p>
+<ul>
+<li>Sensible à la casse (attention minuscules/majuscules)</li>
+<li>Sensible aux accents (éviter d’utiliser).</li>
+<li>Sensible aux signes de ponctuation: point pour décimales, virgule pour adressage.</li>
+<li>Non sensible aux espaces.</li>
+<li>Attention aux guillemets (pour texte, simple ou double), crochets, accolades, parenthèses.</li>
+<li>Une ligne par commande, ou séparer plusieurs commandes par ;.</li>
+<li>Importance fondamentale de documenter son code avec # <code># ceci est un commentaire (peut ajouter section en suivant avec au moins 4 ----)</code>
+<ul>
+<li>À noter que dans Collab, on peut créer des commentaires avec un # à l’intérieur d’une cellule de code ou utiliser des cellules de texte.</li>
+</ul></li>
+<li>Contrairement aux autres logiciels, l’analyse se fait par une série d’étapes avec des résultats intermédiaires stockés dans des objets.</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

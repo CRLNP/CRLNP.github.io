@@ -1,0 +1,27 @@
+name: "rcolab"
+title: "Intro R"
+description: |
+  rcolab-git
+output_dir: "docs"
+navbar:
+  title: Intro R
+  right:
+  - text: Preambule Google Colab
+    href: 1-preambule-colab.html
+  - text: Qu'est-ce que R?
+    href: 2-langage-r.html
+  - text: Objets
+    href: 3-objets.html
+  - text: Explorer
+    href: 4-explorer.html
+  - text: Indexation
+    href: 5-indexation.html
+  - text: Manipuler
+    href: 6-manipuler.html
+  - text: Statistiques-descriptives
+    href: 7-statistiques-descriptives.html  
+  - text: Analyses
+    href: 8-analyses.html
+  - text: Graphiques
+    href: 9-graphiques.html
+output: distill::distill_article
