@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
+
+<meta name="date" content="2020-10-16" />
+
+<title>Capsule 1: Qu’est-ce que R?</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+</li>
+<li>
+  <a href="2-langage-r.html">Qu'est-ce que R?</a>
+</li>
+<li>
+  <a href="3-objets.html">Objets</a>
+</li>
+<li>
+  <a href="4-explorer.html">Explorer</a>
+</li>
+<li>
+  <a href="5-indexation.html">Indexation</a>
+</li>
+<li>
+  <a href="6-manipuler.html">Manipuler</a>
+</li>
+<li>
+  <a href="7-statistiques-descriptives.html">Statistiques-descriptives</a>
+</li>
+<li>
+  <a href="8-analyses.html">Analyses</a>
+</li>
+<li>
+  <a href="9-graphiques.html">Graphiques</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Capsule 1: Qu’est-ce que R?</h1>
+<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
+<h4 class="date">2020-10-16</h4>
+
+</div>
+
+
+<div id="objectifs" class="section level2">
+<h2>Objectifs</h2>
+<ul>
+<li><p>Maitriser la grammaire de base du langage R.</p></li>
+<li><p>Comprendre le fonctionnement et l’utilisation de fonctions de base et de leurs arguments.</p></li>
+<li><p>Définir et manipuler différents types d’objets avec des opérateurs.</p></li>
+<li><p>Importer et manipuler un jeu de données</p></li>
+<li><p>Explorer certaines fonctions de statistiques descriptives, d’analyse et de graphiques de base.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="contenu-des-capsules-de-formation" class="section level2">
+<h2>Contenu des capsules de formation</h2>
+<ul>
+<li><p><strong>Première capsule</strong>: Entrée en matière - Pourquoi R?</p></li>
+<li><p><strong>Capsule deux</strong>: Introduction au langage R (objets, fonctions et arguments)</p></li>
+<li><p><strong>Capsule trois</strong>: Importation et exploration d’un tableau de données</p></li>
+<li><p><strong>Capsule quatre</strong>: L’indexation (sélection de variables et création de sous-groupes)</p></li>
+<li><p><strong>Capsule cinq</strong>: La manipulation de variables qualitatives et quantitatives (renommer, recoder…)</p></li>
+<li><p><strong>Capsule six</strong>: Les statistiques descriptives</p></li>
+<li><p><strong>Capsule sept</strong>: Les tests statistiques de base</p></li>
+<li><p><strong>Capsule huit</strong>: Les graphiques univariés et bivariés</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="pourquoi-r" class="section level2">
+<h2>1. Pourquoi <strong>R</strong>?</h2>
+<ul>
+<li>Langage et interface de programmation libres et gratuits pour l’analyse statistique et graphique (etc.).</li>
+<li>Multiplateforme : Windows, Mac, Linux.</li>
+<li>Très fort pour les graphiques et visualisations de toutes sortes.</li>
+<li>Communauté très active donc développement constant = rapidité de l’implémentation de nouvelles méthodes (non disponibles dans les logiciels commerciaux).</li>
+<li>Pour tous les types d’analyses (modèles linéaires, multi-niveaux, analyses factorielles, équation structurelle, simulations, psychométrie, économétrie, génomique…).</li>
+<li>Utilisation de scripts assure la reproductibilité des analyses.</li>
+<li>Très efficace pour la création de présentations et de rapports (<code>Rmarkdown</code>, <code>knitr</code>, <code>LaTeX</code>)</li>
+<li>Excellente intégration avec de nombreux systèmes de bases de données, autres langages et outils comme Colab ou Jupyter notebook (en association avec Python).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="quelques-bémols" class="section level2">
+<h2>2. Quelques bémols</h2>
+<ul>
+<li>Plus un langage de programmation qu’un logiciel.</li>
+<li>Ne manipule pas directement les données comme SPSS ou excel, les fichiers de données sont des objets en mémoire.</li>
+<li>L’affichage des résultats est assez minimaliste.</li>
+<li>Prolifération des fonctions (<em>packages</em>) peut alourdir l’apprentissage.</li>
+<li>Développement rapide fait que la documentation laisse parfois à désirer.</li>
+<li>Contient généralement de l’aide pour toutes les fonctions mais pas toujours facile à comprendre.</li>
+<li>Comme pour tout language de programmation, un “rien” peut faire en sorte que le code plante.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-rstudio-et-autres-interfaces" class="section level2">
+<h2>3. R, RStudio et autres interfaces…</h2>
+<ul>
+<li>Interface du <strong>R</strong> de base pas très intuitive donc peu utilisée telle quelle</li>
+</ul>
+<center>
+<p><img src="markdown/screenshotR.png" /></p>
+</center>
+<ul>
+<li>Installe généralement en plus un IDE, <em>Integrated Development Environment</em>, comme <a href="https://www.rstudio.com/products/rstudio/download/#download"><strong>RStudio</strong></a> : éditeur de script - environnement beaucoup plus convivial qui facilite le travail (gestion des fichiers, objets et commandes, historique de fonctions, autocomplétion,…)</li>
+<li><strong>Sans aucune installation nécessaire, Colab fonctionne un peu comme un IDE en ligne, dans lequel on peut utiliser le langage R comme dans R ou RStudio</strong>.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="installation" class="section level2">
+<h2>4. Installation</h2>
+<ol style="list-style-type: decimal">
+<li><p>Télécharger et installer <a href="https://cran.r-project.org/"><strong>R de base</strong></a> - choisir son système d’exploitation et suivre les étapes.</p></li>
+<li><p>Télécharger et installer <a href="https://www.rstudio.com/products/rstudio/download/#download"><strong>RStudio</strong></a> (ou autre interface) – Choisir la version gratuite et son système d’exploitation - des interfaces graphiques sont aussi disponibles, mais peu recommandées (<a href="https://www.rcommander.com/">R Commander</a>, <a href="https://www.blueskystatistics.com/">BlueSky Statistics</a> )</p></li>
+<li><p>Télécharger et installer (“charger”) des <em>packages</em> dans <strong>RStudio</strong>.</p></li>
+</ol>
+<p><br></p>
+<div id="avantage-de-travailler-dans-colab" class="section level3">
+<h3>Avantage de travailler dans Colab!</h3>
+<p><img src="markdown/xkcd_package.png" /></p>
+<p><a href="https://xkcd.com/">xkcd</a></p>
+<p><br></p>
+</div>
+</div>
+<div id="quest-ce-quun-package" class="section level2">
+<h2>5. Qu’est-ce qu’un <em>package</em>?</h2>
+<p><br></p>
+<ul>
+<li><p>Un <em>package</em> est un module (ou extension, librairie, bibliothèque) qui contient un ensemble de fonctions (souvent liées à une méthode ou un domaine particulier).</p></li>
+<li><p>À l’installation, <strong>R</strong> vient avec un ensemble de fonctions de base {base} et de modules par défaut (<em>built in packages</em>).</p></li>
+<li><p>Des <em>packages</em> composés de fonctions spécialisées sont constamment développés par la communauté.</p></li>
+<li><p>On en trouve plus de 15 000 sur le site officiel de <strong>R</strong> <a href="https://cran.r-project.org/web/packages/">CRAN</a>. D’autres se trouvent aussi ailleurs (Github, …).</p></li>
+<li><p>Les packages doivent être <strong>téléchargés</strong>(<code>install.packages()</code>) une seule fois, mais <strong>chargés</strong> (<code>library()</code> ou <code>require()</code>) à chaque session.</p></li>
+<li><p><strong>Dans Colab, tous les packages sont téléchargés dans l’environnement d’exécution sur le nuage, c’est pourquoi il faut les télécharger à chaque exécution (code généralement contenu la première cellule de notre fichier)</strong></p></li>
+</ul>
+<p><br></p>
+<p><br></p>
+<ul>
+<li><p>Les modules sont généralement évalués par les pairs - <a href="https://www.jstatsoft.org/index">Journal of Statistical Software</a> – le choix doit se faire avec précautions.</p></li>
+<li><p>Comment les trouver et les choisir? En cherchant sur Google! En s’informant dans son domaine et en vérifiant si les packages ont déjà été utilisés dans des publications.</p></li>
+<li><p>Des fonctions effectuant les mêmes “tâches” prédéfinies (ex: corrélation, tableaux contingences…) peuvent se retrouver dans plusieurs packages avec variantes plus ou moins importantes (procédures, options, arguments, résultats).</p></li>
+<li><p>Il y a toujours plusieurs façons d’arriver au même résultat -&gt; normal et nécessaire de se limiter à certaines fonctions.</p></li>
+<li><p>Certains packages ont des façons spécifiques de fonctionner. Ils utilisent une syntaxe et des formats qui se distinguent de la syntaxe commune de <strong>R</strong>.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="tidyverse" class="section level2 smaller">
+<h2>6. Tidyverse</h2>
+<center>
+<div class="figure">
+<img src="markdown/tidyverse.png" alt="Packages Tidyverse" />
+<p class="caption">Packages Tidyverse</p>
+</div>
+</center>
+<ul>
+<li>Ensemble de packages très utilisé spécialisé dans l’analyse, la manipulation et la visualisation de données -&gt; repose sur le principe de <a href="https://www.jstatsoft.org/article/view/v059i10"><em>tidy data</em></a>.</li>
+<li>Les packages Tidyverse partagent une syntaxe commune et des “verbes” et opérateurs spécifiques (ex: %&gt;%).</li>
+<li>Travaillent avec un format de jeu de données particulier (<em>tibble</em>) – variation sur le dataframe.</li>
+<li>La commande <code>install.packages("tidyverse")</code> va télécharger toutes les extensions constituants le cœur de tidyverse. La fonction library(tidyverse) les chargera (Certains autres modules doivent être chargés individuellement) :
+<ul>
+<li>dplyr (manipulation des données)</li>
+<li>tidyr (remise en forme des données)</li>
+<li>purrr (programmation)</li>
+<li>readr (importation de données)</li>
+<li>tibble (tableaux de données)</li>
+<li>forcats (variables qualitatives)</li>
+<li>stringr (chaînes de caractères)</li>
+<li>ggplot2 (visualisation)</li>
+</ul></li>
+<li>Voir <a href="https://r4ds.had.co.nz/index.html">R for data science</a> de Grolemund &amp; Wickham</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-langage-de-programmation" class="section level2">
+<h2>7. <strong>R</strong>: Langage de programmation</h2>
+<ul>
+<li><strong>R</strong> est avant tout un langage de programmation orienté objet.</li>
+<li>Développé à partir du <strong>langage S</strong> par <em>Ross Ihaka</em> et <em>Robert Gentleman</em> au cours des années ‘90.</li>
+<li>Permet de programmer ses propres fonctions et packages.</li>
+</ul>
+<center>
+<p><img src="markdown/programmation.png" /></p>
+</center>
+<p><br></p>
+<p><strong>Particularités à savoir</strong>:</p>
+<ul>
+<li>Sensible à la casse (attention minuscules/majuscules)</li>
+<li>Sensible aux accents (éviter d’utiliser).</li>
+<li>Sensible aux signes de ponctuation: point pour décimales, virgule pour adressage.</li>
+<li>Non sensible aux espaces.</li>
+<li>Attention aux guillemets (pour texte, simple ou double), crochets, accolades, parenthèses.</li>
+<li>Une ligne par commande, ou séparer plusieurs commandes par ;.</li>
+<li>Importance fondamentale de documenter son code avec # <code># ceci est un commentaire (peut ajouter section en suivant avec au moins 4 ----)</code>
+<ul>
+<li>À noter que dans Collab, on peut créer des commentaires avec un # à l’intérieur d’une cellule de code ou utiliser des cellules de texte.</li>
+</ul></li>
+<li>Contrairement aux autres logiciels, l’analyse se fait par une série d’étapes avec des résultats intermédiaires stockés dans des objets.</li>
+</ul>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgMTogUXUnZXN0LWNlIHF1ZSBSPyINCmF1dGhvcjogIkNhcm9saW5lIFBhdGVuYXVkZSA8YnI+IEJpYmxpb3Row6ljYWlyZSAtIEJpYmxpb3Row6hxdWUgZGVzIGxldHRyZXMgZXQgc2NpZW5jZXMgaHVtYWluZXMiDQpkYXRlOiAiYHIgU3lzLkRhdGUoKWAiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50OiANCiAgICBoaWdobGlnaHQ6IHB5Z21lbnRzDQogICAgdGhlbWU6IGx1bWVuDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiANCiAgICAgIGNvbGxhcHNlZDogdHJ1ZQ0KICAgICAgU21vb3RoX3Njcm9sbDogdHJ1ZQ0KICAgIHRvY19kZXB0aDogMw0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gRkFMU0UpDQpgYGANCg0KDQojIyBPYmplY3RpZnMNCg0KLSBNYWl0cmlzZXIgbGEgZ3JhbW1haXJlIGRlIGJhc2UgZHUgbGFuZ2FnZSBSLg0KDQoNCi0gQ29tcHJlbmRyZSBsZSBmb25jdGlvbm5lbWVudCBldCBsJ3V0aWxpc2F0aW9uIGRlIGZvbmN0aW9ucyBkZSBiYXNlIGV0IGRlIGxldXJzIGFyZ3VtZW50cy4NCg0KDQotIETDqWZpbmlyIGV0IG1hbmlwdWxlciBkaWZmw6lyZW50cyB0eXBlcyBkJ29iamV0cyBhdmVjIGRlcyBvcMOpcmF0ZXVycy4NCg0KDQotIEltcG9ydGVyIGV0IG1hbmlwdWxlciB1biBqZXUgZGUgZG9ubsOpZXMNCg0KDQotIEV4cGxvcmVyIGNlcnRhaW5lcyBmb25jdGlvbnMgZGUgc3RhdGlzdGlxdWVzIGRlc2NyaXB0aXZlcywgZCdhbmFseXNlIGV0IGRlIGdyYXBoaXF1ZXMgZGUgYmFzZS4NCg0KPGJyPg0KDQojIyBDb250ZW51IGRlcyBjYXBzdWxlcyBkZSBmb3JtYXRpb24NCg0KDQotICoqUHJlbWnDqHJlIGNhcHN1bGUqKjogRW50csOpZSBlbiBtYXRpw6hyZSAtIFBvdXJxdW9pIFI/IA0KDQoNCi0gKipDYXBzdWxlIGRldXgqKjogSW50cm9kdWN0aW9uIGF1IGxhbmdhZ2UgUiAob2JqZXRzLCBmb25jdGlvbnMgZXQgYXJndW1lbnRzKQ0KDQoNCi0gKipDYXBzdWxlIHRyb2lzKio6IEltcG9ydGF0aW9uIGV0IGV4cGxvcmF0aW9uIGQndW4gdGFibGVhdSBkZSBkb25uw6llcw0KDQoNCi0gKipDYXBzdWxlIHF1YXRyZSoqOiBMJ2luZGV4YXRpb24gKHPDqWxlY3Rpb24gZGUgdmFyaWFibGVzIGV0IGNyw6lhdGlvbiBkZSBzb3VzLWdyb3VwZXMpDQoNCg0KLSAqKkNhcHN1bGUgY2lucSoqOiBMYSBtYW5pcHVsYXRpb24gZGUgdmFyaWFibGVzIHF1YWxpdGF0aXZlcyBldCBxdWFudGl0YXRpdmVzIChyZW5vbW1lciwgcmVjb2Rlci4uLikNCg0KDQotICoqQ2Fwc3VsZSBzaXgqKjogTGVzIHN0YXRpc3RpcXVlcyBkZXNjcmlwdGl2ZXMNCg0KDQotICoqQ2Fwc3VsZSBzZXB0Kio6IExlcyB0ZXN0cyBzdGF0aXN0aXF1ZXMgZGUgYmFzZQ0KDQoNCi0gKipDYXBzdWxlIGh1aXQqKjogTGVzIGdyYXBoaXF1ZXMgdW5pdmFyacOpcyBldCBiaXZhcmnDqXMNCg0KPGJyPg0KDQojIyAxLiBQb3VycXVvaSAqKlIqKj8gDQoNCg0KLSBMYW5nYWdlIGV0IGludGVyZmFjZSBkZSBwcm9ncmFtbWF0aW9uIGxpYnJlcyBldCBncmF0dWl0cyBwb3VyIGzigJlhbmFseXNlIHN0YXRpc3RpcXVlIGV0IGdyYXBoaXF1ZSAoZXRjLikuDQotIE11bHRpcGxhdGVmb3JtZSA6IFdpbmRvd3MsIE1hYywgTGludXguDQotIFRyw6hzIGZvcnQgcG91ciBsZXMgZ3JhcGhpcXVlcyBldCB2aXN1YWxpc2F0aW9ucyBkZSB0b3V0ZXMgc29ydGVzLg0KLSBDb21tdW5hdXTDqSB0csOocyBhY3RpdmUgZG9uYyBkw6l2ZWxvcHBlbWVudCBjb25zdGFudCA9IHJhcGlkaXTDqSBkZSBs4oCZaW1wbMOpbWVudGF0aW9uIGRlIG5vdXZlbGxlcyBtw6l0aG9kZXMgKG5vbiBkaXNwb25pYmxlcyBkYW5zIGxlcyBsb2dpY2llbHMgY29tbWVyY2lhdXgpLg0KLSBQb3VyIHRvdXMgbGVzIHR5cGVzIGTigJlhbmFseXNlcyAobW9kw6hsZXMgbGluw6lhaXJlcywgbXVsdGktbml2ZWF1eCwgYW5hbHlzZXMgZmFjdG9yaWVsbGVzLCDDqXF1YXRpb24gc3RydWN0dXJlbGxlLCBzaW11bGF0aW9ucywgcHN5Y2hvbcOpdHJpZSwgw6ljb25vbcOpdHJpZSwgZ8Opbm9taXF1ZS4uLikuDQotIFV0aWxpc2F0aW9uIGRlIHNjcmlwdHMgYXNzdXJlIGxhIHJlcHJvZHVjdGliaWxpdMOpIGRlcyBhbmFseXNlcy4NCi0gVHLDqHMgZWZmaWNhY2UgcG91ciBsYSBjcsOpYXRpb24gZGUgcHLDqXNlbnRhdGlvbnMgZXQgZGUgcmFwcG9ydHMgKGBSbWFya2Rvd25gLCBga25pdHJgLCBgTGFUZVhgKQ0KLSBFeGNlbGxlbnRlIGludMOpZ3JhdGlvbiBhdmVjIGRlIG5vbWJyZXV4IHN5c3TDqG1lcyBkZSBiYXNlcyBkZSBkb25uw6llcywgIGF1dHJlcyBsYW5nYWdlcyBldCBvdXRpbHMgY29tbWUgQ29sYWIgb3UgSnVweXRlciBub3RlYm9vayAoZW4gYXNzb2NpYXRpb24gYXZlYyBQeXRob24pLg0KDQo8YnI+DQoNCiMjIDIuIFF1ZWxxdWVzIGLDqW1vbHMgIA0KDQotIFBsdXMgdW4gbGFuZ2FnZSBkZSBwcm9ncmFtbWF0aW9uIHF14oCZdW4gbG9naWNpZWwuDQotIE5lIG1hbmlwdWxlIHBhcyBkaXJlY3RlbWVudCBsZXMgZG9ubsOpZXMgY29tbWUgU1BTUyBvdSBleGNlbCwgbGVzIGZpY2hpZXJzIGRlIGRvbm7DqWVzIHNvbnQgZGVzIG9iamV0cyBlbiBtw6ltb2lyZS4NCi0gTOKAmWFmZmljaGFnZSBkZXMgcsOpc3VsdGF0cyBlc3QgYXNzZXogbWluaW1hbGlzdGUuDQotIFByb2xpZsOpcmF0aW9uIGRlcyBmb25jdGlvbnMgKCpwYWNrYWdlcyopIHBldXQgYWxvdXJkaXIgbOKAmWFwcHJlbnRpc3NhZ2UuDQotIETDqXZlbG9wcGVtZW50IHJhcGlkZSBmYWl0IHF1ZSBsYSBkb2N1bWVudGF0aW9uIGxhaXNzZSBwYXJmb2lzIMOgIGTDqXNpcmVyLg0KLSBDb250aWVudCBnw6luw6lyYWxlbWVudCBkZSBs4oCZYWlkZSBwb3VyIHRvdXRlcyBsZXMgZm9uY3Rpb25zIG1haXMgcGFzIHRvdWpvdXJzIGZhY2lsZSDDoCBjb21wcmVuZHJlLg0KLSBDb21tZSBwb3VyIHRvdXQgbGFuZ3VhZ2UgZGUgcHJvZ3JhbW1hdGlvbiwgdW4gInJpZW4iIHBldXQgZmFpcmUgZW4gc29ydGUgcXVlIGxlIGNvZGUgcGxhbnRlLg0KDQo8YnI+DQoNCiMjIDMuIFIsIFJTdHVkaW8gZXQgYXV0cmVzIGludGVyZmFjZXMuLi4gIA0KDQotIEludGVyZmFjZSBkdSAqKlIqKiBkZSBiYXNlIHBhcyB0csOocyBpbnR1aXRpdmUgZG9uYyBwZXUgdXRpbGlzw6llIHRlbGxlIHF1ZWxsZSAgDQoNCjxjZW50ZXI+DQoNCiFbXShtYXJrZG93bi9zY3JlZW5zaG90Ui5wbmcpDQoNCjwvY2VudGVyPiAgDQoNCi0gSW5zdGFsbGUgZ8OpbsOpcmFsZW1lbnQgZW4gcGx1cyB1biBJREUsICAqSW50ZWdyYXRlZCBEZXZlbG9wbWVudCBFbnZpcm9ubWVudCosIGNvbW1lIFsqKlJTdHVkaW8qKl0oaHR0cHM6Ly93d3cucnN0dWRpby5jb20vcHJvZHVjdHMvcnN0dWRpby9kb3dubG9hZC8jZG93bmxvYWQpIDogIMOpZGl0ZXVyIGRlIHNjcmlwdCAtIGVudmlyb25uZW1lbnQgYmVhdWNvdXAgcGx1cyBjb252aXZpYWwgcXVpIGZhY2lsaXRlIGxlIHRyYXZhaWwgKGdlc3Rpb24gZGVzIGZpY2hpZXJzLCBvYmpldHMgZXQgY29tbWFuZGVzLCBoaXN0b3JpcXVlIGRlIGZvbmN0aW9ucywgYXV0b2NvbXBsw6l0aW9uLOKApikNCi0gKipTYW5zIGF1Y3VuZSBpbnN0YWxsYXRpb24gbsOpY2Vzc2FpcmUsIENvbGFiIGZvbmN0aW9ubmUgdW4gcGV1IGNvbW1lIHVuIElERSBlbiBsaWduZSwgZGFucyBsZXF1ZWwgb24gcGV1dCB1dGlsaXNlciBsZSBsYW5nYWdlIFIgY29tbWUgZGFucyBSIG91IFJTdHVkaW8qKi4NCg0KDQo8YnI+DQoNCiMjIDQuIEluc3RhbGxhdGlvbiAgDQoNCjEuIFTDqWzDqWNoYXJnZXIgZXQgaW5zdGFsbGVyIFsqKlIgZGUgYmFzZSoqXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy8pIC0gY2hvaXNpciBzb24gc3lzdMOobWUgZOKAmWV4cGxvaXRhdGlvbiBldCBzdWl2cmUgbGVzIMOpdGFwZXMuDQoNCjIuIFTDqWzDqWNoYXJnZXIgZXQgaW5zdGFsbGVyICBbKipSU3R1ZGlvKipdKGh0dHBzOi8vd3d3LnJzdHVkaW8uY29tL3Byb2R1Y3RzL3JzdHVkaW8vZG93bmxvYWQvI2Rvd25sb2FkKSAob3UgYXV0cmUgaW50ZXJmYWNlKSDigJMgQ2hvaXNpciBsYSB2ZXJzaW9uIGdyYXR1aXRlIGV0IHNvbiBzeXN0w6htZSBk4oCZZXhwbG9pdGF0aW9uIC0gZGVzIGludGVyZmFjZXMgZ3JhcGhpcXVlcyBzb250IGF1c3NpIGRpc3BvbmlibGVzLCBtYWlzIHBldSByZWNvbW1hbmTDqWVzIChbUiBDb21tYW5kZXJdKGh0dHBzOi8vd3d3LnJjb21tYW5kZXIuY29tLyksIFtCbHVlU2t5IFN0YXRpc3RpY3NdKGh0dHBzOi8vd3d3LmJsdWVza3lzdGF0aXN0aWNzLmNvbS8pICkNCg0KMy4gVMOpbMOpY2hhcmdlciBldCBpbnN0YWxsZXIgKCJjaGFyZ2VyIikgZGVzICpwYWNrYWdlcyogZGFucyAqKlJTdHVkaW8qKi4NCg0KPGJyPg0KDQoNCiMjIyBBdmFudGFnZSBkZSB0cmF2YWlsbGVyIGRhbnMgQ29sYWIhDQoNCg0KIVtdKG1hcmtkb3duL3hrY2RfcGFja2FnZS5wbmcpIA0KDQpbeGtjZF0oaHR0cHM6Ly94a2NkLmNvbS8pDQoNCjxicj4NCg0KIyMgNS4gUXXigJllc3QtY2UgcXXigJl1biAqcGFja2FnZSo/IA0KDQo8YnI+DQoNCi0gVW4gKnBhY2thZ2UqIGVzdCB1biBtb2R1bGUgKG91IGV4dGVuc2lvbiwgbGlicmFpcmllLCBiaWJsaW90aMOocXVlKSBxdWkgY29udGllbnQgdW4gZW5zZW1ibGUgZGUgZm9uY3Rpb25zIChzb3V2ZW50IGxpw6llcyDDoCB1bmUgbcOpdGhvZGUgb3UgdW4gZG9tYWluZSBwYXJ0aWN1bGllcikuDQotIMOAIGzigJlpbnN0YWxsYXRpb24sICoqUioqIHZpZW50IGF2ZWMgdW4gZW5zZW1ibGUgZGUgZm9uY3Rpb25zIGRlIGJhc2Uge2Jhc2V9IGV0IGRlIG1vZHVsZXMgcGFyIGTDqWZhdXQgKCpidWlsdCBpbiBwYWNrYWdlcyopLg0KLSBEZXMgKnBhY2thZ2VzKiBjb21wb3PDqXMgZGUgZm9uY3Rpb25zIHNww6ljaWFsaXPDqWVzIHNvbnQgY29uc3RhbW1lbnQgZMOpdmVsb3Bww6lzIHBhciBsYSBjb21tdW5hdXTDqS4NCi0gT24gZW4gdHJvdXZlIHBsdXMgZGUgMTUgMDAwIHN1ciBsZSBzaXRlIG9mZmljaWVsIGRlICoqUioqIFtDUkFOXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy93ZWIvcGFja2FnZXMvKS4gRCdhdXRyZXMgc2UgdHJvdXZlbnQgYXVzc2kgYWlsbGV1cnMgKEdpdGh1Yiwg4oCmKS4NCi0gTGVzIHBhY2thZ2VzIGRvaXZlbnQgw6p0cmUgKip0w6lsw6ljaGFyZ8OpcyoqKGBpbnN0YWxsLnBhY2thZ2VzKClgKSB1bmUgc2V1bGUgZm9pcywgbWFpcyAqKmNoYXJnw6lzKiogKGBsaWJyYXJ5KClgIG91IGByZXF1aXJlKClgKSDDoCBjaGFxdWUgc2Vzc2lvbi4NCg0KLSAqKkRhbnMgQ29sYWIsIHRvdXMgbGVzIHBhY2thZ2VzIHNvbnQgdMOpbMOpY2hhcmfDqXMgZGFucyBsJ2Vudmlyb25uZW1lbnQgZCdleMOpY3V0aW9uIHN1ciBsZSBudWFnZSwgYydlc3QgcG91cnF1b2kgaWwgZmF1dCBsZXMgdMOpbMOpY2hhcmdlciDDoCBjaGFxdWUgZXjDqWN1dGlvbiAoY29kZSBnw6luw6lyYWxlbWVudCBjb250ZW51IGxhIHByZW1pw6hyZSBjZWxsdWxlIGRlIG5vdHJlIGZpY2hpZXIpKioNCiAgICANCjxicj4NCg0KPGJyPg0KDQotIExlcyBtb2R1bGVzIHNvbnQgZ8OpbsOpcmFsZW1lbnQgw6l2YWx1w6lzIHBhciBsZXMgcGFpcnMgLSBbSm91cm5hbCBvZiBTdGF0aXN0aWNhbCBTb2Z0d2FyZV0oaHR0cHM6Ly93d3cuanN0YXRzb2Z0Lm9yZy9pbmRleCkg4oCTIGxlIGNob2l4IGRvaXQgc2UgZmFpcmUgYXZlYyBwcsOpY2F1dGlvbnMuDQoNCi0gQ29tbWVudCBsZXMgdHJvdXZlciBldCBsZXMgY2hvaXNpcj8gRW4gY2hlcmNoYW50IHN1ciBHb29nbGUhIEVuIHPigJlpbmZvcm1hbnQgZGFucyBzb24gZG9tYWluZSBldCBlbiB2w6lyaWZpYW50IHNpIGxlcyBwYWNrYWdlcyBvbnQgZMOpasOgIMOpdMOpIHV0aWxpc8OpcyBkYW5zIGRlcyBwdWJsaWNhdGlvbnMuDQoNCi0gRGVzIGZvbmN0aW9ucyBlZmZlY3R1YW50IGxlcyBtw6ptZXMgInTDomNoZXMiIHByw6lkw6lmaW5pZXMgKGV4OiBjb3Jyw6lsYXRpb24sIHRhYmxlYXV4IGNvbnRpbmdlbmNlc+KApikgcGV1dmVudCBzZSByZXRyb3V2ZXIgZGFucyBwbHVzaWV1cnMgcGFja2FnZXMgYXZlYyB2YXJpYW50ZXMgcGx1cyBvdSBtb2lucyBpbXBvcnRhbnRlcyAocHJvY8OpZHVyZXMsIG9wdGlvbnMsIGFyZ3VtZW50cywgcsOpc3VsdGF0cykuDQoNCi0gSWwgeSBhIHRvdWpvdXJzIHBsdXNpZXVycyBmYcOnb25zIGTigJlhcnJpdmVyIGF1IG3Dqm1lIHLDqXN1bHRhdCAtPiBub3JtYWwgZXQgbsOpY2Vzc2FpcmUgZGUgc2UgbGltaXRlciDDoCBjZXJ0YWluZXMgZm9uY3Rpb25zLg0KDQotIENlcnRhaW5zIHBhY2thZ2VzIG9udCBkZXMgZmHDp29ucyBzcMOpY2lmaXF1ZXMgZGUgZm9uY3Rpb25uZXIuIElscyB1dGlsaXNlbnQgdW5lIHN5bnRheGUgZXQgZGVzIGZvcm1hdHMgcXVpIHNlIGRpc3Rpbmd1ZW50IGRlIGxhIHN5bnRheGUgY29tbXVuZSBkZSAqKlIqKi4gDQoNCg0KPGJyPg0KDQojIyA2LiBUaWR5dmVyc2Ugey5zbWFsbGVyfQ0KIDxjZW50ZXI+DQoNCiFbUGFja2FnZXMgVGlkeXZlcnNlXShtYXJrZG93bi90aWR5dmVyc2UucG5nKQ0KDQo8L2NlbnRlcj4gIA0KDQotIEVuc2VtYmxlIGRlIHBhY2thZ2VzIHRyw6hzIHV0aWxpc8OpIHNww6ljaWFsaXPDqSBkYW5zIGzigJlhbmFseXNlLCBsYSBtYW5pcHVsYXRpb24gZXQgbGEgdmlzdWFsaXNhdGlvbiBkZSBkb25uw6llcyAtPiByZXBvc2Ugc3VyIGxlIHByaW5jaXBlIGRlICBbKnRpZHkgZGF0YSpdKGh0dHBzOi8vd3d3LmpzdGF0c29mdC5vcmcvYXJ0aWNsZS92aWV3L3YwNTlpMTApLg0KLSBMZXMgcGFja2FnZXMgVGlkeXZlcnNlIHBhcnRhZ2VudCB1bmUgc3ludGF4ZSBjb21tdW5lIGV0IGRlcyAidmVyYmVzIiBldCBvcMOpcmF0ZXVycyBzcMOpY2lmaXF1ZXMgKGV4OiAlPiUpLiANCi0gVHJhdmFpbGxlbnQgYXZlYyB1biBmb3JtYXQgZGUgamV1IGRlIGRvbm7DqWVzIHBhcnRpY3VsaWVyICgqdGliYmxlKikg4oCTIHZhcmlhdGlvbiBzdXIgbGUgZGF0YWZyYW1lLg0KLSBMYSBjb21tYW5kZSBgaW5zdGFsbC5wYWNrYWdlcygidGlkeXZlcnNlIilgIHZhIHTDqWzDqWNoYXJnZXIgdG91dGVzIGxlcyBleHRlbnNpb25zIGNvbnN0aXR1YW50cyBsZSBjxZN1ciBkZSB0aWR5dmVyc2UuIExhIGZvbmN0aW9uIGxpYnJhcnkodGlkeXZlcnNlKSBsZXMgY2hhcmdlcmEgKENlcnRhaW5zIGF1dHJlcyBtb2R1bGVzIGRvaXZlbnQgw6p0cmUgY2hhcmfDqXMgaW5kaXZpZHVlbGxlbWVudCkgOg0KICAgICsgZHBseXIgKG1hbmlwdWxhdGlvbiBkZXMgZG9ubsOpZXMpDQogICAgKyB0aWR5ciAocmVtaXNlIGVuIGZvcm1lIGRlcyBkb25uw6llcykNCiAgICArIHB1cnJyIChwcm9ncmFtbWF0aW9uKQ0KICAgICsgcmVhZHIgKGltcG9ydGF0aW9uIGRlIGRvbm7DqWVzKQ0KICAgICsgdGliYmxlICh0YWJsZWF1eCBkZSBkb25uw6llcykNCiAgICArIGZvcmNhdHMgKHZhcmlhYmxlcyBxdWFsaXRhdGl2ZXMpDQogICAgKyBzdHJpbmdyIChjaGHDrm5lcyBkZSBjYXJhY3TDqHJlcykNCiAgICArIGdncGxvdDIgKHZpc3VhbGlzYXRpb24pDQoNCi0gVm9pciBbUiBmb3IgZGF0YSBzY2llbmNlXShodHRwczovL3I0ZHMuaGFkLmNvLm56L2luZGV4Lmh0bWwpIGRlIEdyb2xlbXVuZCAmIFdpY2toYW0NCg0KDQo8YnI+DQoNCiMjIDcuICoqUioqOiBMYW5nYWdlIGRlIHByb2dyYW1tYXRpb24gIA0KDQotICoqUioqIGVzdCBhdmFudCB0b3V0IHVuIGxhbmdhZ2UgZGUgcHJvZ3JhbW1hdGlvbiBvcmllbnTDqSBvYmpldC4NCi0gRMOpdmVsb3Bww6kgw6AgcGFydGlyIGR1ICoqbGFuZ2FnZSBTKiogcGFyICpSb3NzIEloYWthKiBldCAqUm9iZXJ0IEdlbnRsZW1hbiogYXUgY291cnMgZGVzIGFubsOpZXMg4oCYOTAuDQotIFBlcm1ldCBkZSBwcm9ncmFtbWVyIHNlcyBwcm9wcmVzIGZvbmN0aW9ucyBldCBwYWNrYWdlcy4gIA0KDQo8Y2VudGVyPg0KDQohW10obWFya2Rvd24vcHJvZ3JhbW1hdGlvbi5wbmcpDQoNCjwvY2VudGVyPiAgDQoNCg0KPGJyPg0KDQoNCioqUGFydGljdWxhcml0w6lzIMOgIHNhdm9pcioqOg0KDQotIFNlbnNpYmxlIMOgIGxhIGNhc3NlIChhdHRlbnRpb24gbWludXNjdWxlcy9tYWp1c2N1bGVzKQ0KLSBTZW5zaWJsZSBhdXggYWNjZW50cyAow6l2aXRlciBk4oCZdXRpbGlzZXIpLg0KLSBTZW5zaWJsZSBhdXggc2lnbmVzIGRlIHBvbmN0dWF0aW9uOiBwb2ludCBwb3VyIGTDqWNpbWFsZXMsIHZpcmd1bGUgcG91ciBhZHJlc3NhZ2UuDQotIE5vbiBzZW5zaWJsZSBhdXggZXNwYWNlcy4NCi0gQXR0ZW50aW9uIGF1eCBndWlsbGVtZXRzIChwb3VyIHRleHRlLCBzaW1wbGUgb3UgZG91YmxlKSwgY3JvY2hldHMsIGFjY29sYWRlcywgcGFyZW50aMOoc2VzLg0KLSBVbmUgbGlnbmUgcGFyIGNvbW1hbmRlLCBvdSBzw6lwYXJlciBwbHVzaWV1cnMgY29tbWFuZGVzIHBhciA7Lg0KLSBJbXBvcnRhbmNlIGZvbmRhbWVudGFsZSBkZSBkb2N1bWVudGVyIHNvbiBjb2RlIGF2ZWMgICMgDQpgIyBjZWNpIGVzdCB1biBjb21tZW50YWlyZSAocGV1dCBham91dGVyIHNlY3Rpb24gZW4gc3VpdmFudCBhdmVjIGF1IG1vaW5zIDQgLS0tLSlgDQogICAgKyDDgCBub3RlciBxdWUgZGFucyBDb2xsYWIsIG9uIHBldXQgY3LDqWVyIGRlcyBjb21tZW50YWlyZXMgYXZlYyB1biAjIMOgIGzigJlpbnTDqXJpZXVyIGQndW5lIGNlbGx1bGUgZGUgY29kZSBvdSB1dGlsaXNlciBkZXMgY2VsbHVsZXMgZGUgdGV4dGUuDQotIENvbnRyYWlyZW1lbnQgYXV4IGF1dHJlcyBsb2dpY2llbHMsIGzigJlhbmFseXNlIHNlIGZhaXQgcGFyIHVuZSBzw6lyaWUgZOKAmcOpdGFwZXMgYXZlYyBkZXMgcsOpc3VsdGF0cyBpbnRlcm3DqWRpYWlyZXMgc3RvY2vDqXMgZGFucyBkZXMgb2JqZXRzLg0KICA=</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("2-langage-r.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

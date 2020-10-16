@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
+
+<meta name="date" content="2020-10-16" />
+
+<title>Capsule 6: Statistiques descriptives</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      a.sourceLine { display: inline-block; line-height: 1.25; }
+  a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+  a.sourceLine:empty { height: 1.2em; }
+  .sourceCode { overflow: visible; }
+  code.sourceCode { white-space: pre; position: relative; }
+  div.sourceCode { margin: 1em 0; }
+  pre.sourceCode { margin: 0; }
+  @media screen {
+  div.sourceCode { overflow: auto; }
+  }
+  @media print {
+  code.sourceCode { white-space: pre-wrap; }
+  a.sourceLine { text-indent: -1em; padding-left: 1em; }
+  }
+  pre.numberSource a.sourceLine
+    { position: relative; left: -4em; }
+  pre.numberSource a.sourceLine::before
+    { content: attr(title);
+      position: relative; left: -1em; text-align: right; vertical-align: baseline;
+      border: none; pointer-events: all; display: inline-block;
+      -webkit-touch-callout: none; -webkit-user-select: none;
+      -khtml-user-select: none; -moz-user-select: none;
+      -ms-user-select: none; user-select: none;
+      padding: 0 4px; width: 4em;
+      color: #aaaaaa;
+    }
+  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  div.sourceCode
+    {  }
+  @media screen {
+  a.sourceLine::before { text-decoration: underline; }
+  }
+  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code span.at { color: #7d9029; } /* Attribute */
+  code span.bn { color: #40a070; } /* BaseN */
+  code span.bu { } /* BuiltIn */
+  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code span.ch { color: #4070a0; } /* Char */
+  code span.cn { color: #880000; } /* Constant */
+  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code span.dt { color: #902000; } /* DataType */
+  code span.dv { color: #40a070; } /* DecVal */
+  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.ex { } /* Extension */
+  code span.fl { color: #40a070; } /* Float */
+  code span.fu { color: #06287e; } /* Function */
+  code span.im { } /* Import */
+  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code span.op { color: #666666; } /* Operator */
+  code span.ot { color: #007020; } /* Other */
+  code span.pp { color: #bc7a00; } /* Preprocessor */
+  code span.sc { color: #4070a0; } /* SpecialChar */
+  code span.ss { color: #bb6688; } /* SpecialString */
+  code span.st { color: #4070a0; } /* String */
+  code span.va { color: #19177c; } /* Variable */
+  code span.vs { color: #4070a0; } /* VerbatimString */
+  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="hide.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+</li>
+<li>
+  <a href="2-langage-r.html">Qu'est-ce que R?</a>
+</li>
+<li>
+  <a href="3-objets.html">Objets</a>
+</li>
+<li>
+  <a href="4-explorer.html">Explorer</a>
+</li>
+<li>
+  <a href="5-indexation.html">Indexation</a>
+</li>
+<li>
+  <a href="6-manipuler.html">Manipuler</a>
+</li>
+<li>
+  <a href="7-statistiques-descriptives.html">Statistiques-descriptives</a>
+</li>
+<li>
+  <a href="8-analyses.html">Analyses</a>
+</li>
+<li>
+  <a href="9-graphiques.html">Graphiques</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Capsule 6: Statistiques descriptives</h1>
+<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
+<h4 class="date">2020-10-16</h4>
+
+</div>
+
+
+<script src="hideOutput.js"></script>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Chargement des modules nécessaires</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(car)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(questionr)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(psych)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(Hmisc)</a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co"># Ajouter la fonction de téléchargement si nécessaire:</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co"># install.packages(&quot;car&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co"># install.packages(&quot;questionr&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co"># install.packages(&quot;psych&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co"># install.packages(&quot;Hmisc&quot;, dependencies=TRUE)</span></a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co"># Téléchargement de la base de données hdv2003 du module questionr</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co"># (Extrait de l&#39;enquête &quot;Histoire de vie&quot; de l&#39;Insee - https://www.insee.fr/fr/statistiques/2532244)</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="kw">data</span>(hdv2003)</a>
+<a class="sourceLine" id="cb1-16" title="16"></a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="co"># Copie de la base de données dans un objet (datatable) nommé bd</span></a>
+<a class="sourceLine" id="cb1-18" title="18">bd &lt;-<span class="st"> </span>hdv2003</a></code></pre></div>
+<p><br></p>
+<div id="statistiques-descriptives" class="section level1">
+<h1>Statistiques descriptives</h1>
+<p><br></p>
+</div>
+<div id="statistiques-descriptives-univariées" class="section level1">
+<h1>1. Statistiques descriptives univariées</h1>
+<p><br></p>
+<div id="fonction-générique-summary" class="section level2">
+<h2>1.1. Fonction générique summary()</h2>
+<ul>
+<li>Fournit les principales mesures de tendance centrale et de dispersion d’une distribution avec quartiles</li>
+<li>C’est une fonction dont le comportement s’adapte au type d’objet</li>
+<li>Élimine d’emblée valeurs manquantes</li>
+</ul>
+<div class="fold o">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">summary</span>(bd) <span class="co"># base de données </span></a></code></pre></div>
+<pre><code>##        id              age           sexe     
+##  Min.   :   1.0   Min.   :18.00   Homme: 899  
+##  1st Qu.: 500.8   1st Qu.:35.00   Femme:1101  
+##  Median :1000.5   Median :48.00               
+##  Mean   :1000.5   Mean   :48.16               
+##  3rd Qu.:1500.2   3rd Qu.:60.00               
+##  Max.   :2000.0   Max.   :97.00               
+##                                               
+##                                                  nivetud        poids         
+##  Enseignement technique ou professionnel court       :463   Min.   :   78.08  
+##  Enseignement superieur y compris technique superieur:441   1st Qu.: 2221.82  
+##  Derniere annee d&#39;etudes primaires                   :341   Median : 4631.19  
+##  1er cycle                                           :204   Mean   : 5535.61  
+##  2eme cycle                                          :183   3rd Qu.: 7626.53  
+##  (Other)                                             :256   Max.   :31092.14  
+##  NA&#39;s                                                :112                     
+##                    occup                           qualif    freres.soeurs   
+##  Exerce une profession:1049   Employe                 :594   Min.   : 0.000  
+##  Chomeur              : 134   Ouvrier qualifie        :292   1st Qu.: 1.000  
+##  Etudiant, eleve      :  94   Cadre                   :260   Median : 2.000  
+##  Retraite             : 392   Ouvrier specialise      :203   Mean   : 3.283  
+##  Retire des affaires  :  77   Profession intermediaire:160   3rd Qu.: 5.000  
+##  Au foyer             : 171   (Other)                 :144   Max.   :22.000  
+##  Autre inactif        :  83   NA&#39;s                    :347                   
+##           clso                              relig    
+##  Oui        : 936   Pratiquant regulier        :266  
+##  Non        :1037   Pratiquant occasionnel     :442  
+##  Ne sait pas:  27   Appartenance sans pratique :760  
+##                     Ni croyance ni appartenance:399  
+##                     Rejet                      : 93  
+##                     NSP ou NVPR                : 40  
+##                                                      
+##                          trav.imp           trav.satisf  hard.rock  lecture.bd
+##  Le plus important           : 29   Satisfaction  :480   Non:1986   Non:1953  
+##  Aussi important que le reste:259   Insatisfaction:117   Oui:  14   Oui:  47  
+##  Moins important que le reste:708   Equilibre     :451                        
+##  Peu important               : 52   NA&#39;s          :952                        
+##  NA&#39;s                        :952                                             
+##                                                                               
+##                                                                               
+##  peche.chasse cuisine    bricol     cinema     sport        heures.tv     
+##  Non:1776     Non:1119   Non:1147   Non:1174   Non:1277   Min.   : 0.000  
+##  Oui: 224     Oui: 881   Oui: 853   Oui: 826   Oui: 723   1st Qu.: 1.000  
+##                                                           Median : 2.000  
+##                                                           Mean   : 2.247  
+##                                                           3rd Qu.: 3.000  
+##                                                           Max.   :12.000  
+##                                                           NA&#39;s   :5</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">summary</span>(bd<span class="op">$</span>age) <span class="co"># variable quantitative</span></a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   35.00   48.00   48.16   60.00   97.00</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">summary</span>(bd<span class="op">$</span>occup) <span class="co"># variable qualitative</span></a></code></pre></div>
+<pre><code>## Exerce une profession               Chomeur       Etudiant, eleve 
+##                  1049                   134                    94 
+##              Retraite   Retire des affaires              Au foyer 
+##                   392                    77                   171 
+##         Autre inactif 
+##                    83</code></pre>
+<p><br></p>
+<h2 id="autres-fonctions-pour-indicateurs-individuels">1.2. Autres fonctions pour indicateurs individuels</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Fonctions diverses permettant d&#39;explorer les indicateurs de centralité </span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># et de dispersion pour variable quantitative</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co"># Toujours ajouter na.rm=T en argument</span></a>
+<a class="sourceLine" id="cb8-4" title="4"></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">median</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">mean</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 2.246566</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">max</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">min</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">sum</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 4481.9</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">range</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1]  0 12</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">var</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 3.153653</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">sd</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 1.775853</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">quantile</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    0    1    2    3   12</code></pre>
+<p><br></p>
+<h3 id="fonctions-de-normalité">Fonctions de normalité</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">skew</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># module psych</span></a></code></pre></div>
+<pre><code>## [1] 1.308538</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">kurtosi</span>(bd<span class="op">$</span>heures.tv, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co"># module psych</span></a></code></pre></div>
+<pre><code>## [1] 3.230284</code></pre>
+<p><br></p>
+<h3 id="fonctions-de-transformation-normalité-rang">Fonctions de transformation: normalité &amp; rang</h3>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">bd<span class="op">$</span>age.log &lt;-<span class="st"> </span><span class="kw">log</span>(bd<span class="op">$</span>age, <span class="dt">base=</span><span class="dv">10</span>)     <span class="co"># Logarithme (, base=10)</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">bd<span class="op">$</span>age.sqrt &lt;-<span class="st"> </span><span class="kw">sqrt</span>(bd<span class="op">$</span>age)    <span class="co"># Racine carrée</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">bd<span class="op">$</span>age.scale &lt;-<span class="st"> </span><span class="kw">scale</span>(bd<span class="op">$</span>age, <span class="dt">center =</span> <span class="ot">TRUE</span>, <span class="dt">scale =</span> <span class="ot">TRUE</span>)    <span class="co"># Standardisation: centrage et réduction (Zscore)</span></a></code></pre></div>
+<p><br></p>
+<h2 id="la-très-utile-fonction-apply">1.3. La très utile fonction apply()</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co">### Pour appliquer une fonction sur plusieurs variables à la fois</span></a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="kw">apply</span>(bd[ ,<span class="kw">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;heures.tv&quot;</span>,<span class="st">&quot;freres.soeurs&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>, <span class="dt">MARGIN=</span><span class="dv">2</span>, <span class="dt">FUN=</span>mean)</a></code></pre></div>
+<pre><code>##           age     heures.tv freres.soeurs 
+##     48.157000      2.246566      3.283000</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># c() indique les variables à utiliser dans le calcul</span></a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="co"># MARGIN=2: calcul à travers les participants (ici moyenne de colonnes), =1 est à travers les rangées</span></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="co"># FUN=mean: la fonction à appliquer, pourrait être n&#39;importe laquelle comme somme, variance...</span></a></code></pre></div>
+<p><br></p>
+<h2 id="table-de-fréquences">1.4. Table de fréquences</h2>
+<p><br></p>
+<h3 id="fonction-table---tableaux-deffectifs">Fonction table() - Tableaux d’effectifs</h3>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">table</span>(bd<span class="op">$</span>freres.soeurs)    <span class="co"># var numérique</span></a></code></pre></div>
+<pre><code>## 
+##   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  18  22 
+## 167 407 427 284 210 151  99  94  52  37  21  21   8  10   4   4   1   2   1</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">tb.cat &lt;-<span class="st"> </span><span class="kw">table</span>(bd<span class="op">$</span>qualif)            <span class="co"># var quali (résultat pareil à summary())</span></a>
+<a class="sourceLine" id="cb38-2" title="2"></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="co"># Exclu NA par défaut, sinon il faut utiliser l’argument useNA =&quot;always&quot; ou &quot;ifany&quot;</span></a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="co"># On place la table dans un nouvel objet pour pouvoir lui appliquer d&#39;autres opérations</span></a></code></pre></div>
+<p><br></p>
+<h3 id="autres-fonctions-pertinentes">Autres fonctions pertinentes</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">prop.table</span>(tb.cat) <span class="co"># Appliquée à une &quot;table&quot; pour transformer les valeurs en proportions</span></a></code></pre></div>
+<pre><code>## 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##               0.12280702               0.17664852               0.05202662 
+## Profession intermediaire                    Cadre                  Employe 
+##               0.09679371               0.15728978               0.35934664 
+##                    Autre 
+##               0.03508772</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Afficher en % et arrondir</span></a>
+<a class="sourceLine" id="cb41-2" title="2"></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="kw">round</span>((<span class="kw">prop.table</span>(tb.cat))<span class="op">*</span><span class="dv">100</span>) </a></code></pre></div>
+<pre><code>## 
+##       Ouvrier specialise         Ouvrier qualifie               Technicien 
+##                       12                       18                        5 
+## Profession intermediaire                    Cadre                  Employe 
+##                       10                       16                       36 
+##                    Autre 
+##                        4</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Fonction freq (module questionr)</span></a>
+<a class="sourceLine" id="cb43-2" title="2"></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="kw">freq</span>(bd<span class="op">$</span>qualif) <span class="co"># affiche les NA par défaut</span></a></code></pre></div>
+<pre><code>##                            n    % val%
+## Ouvrier specialise       203 10.2 12.3
+## Ouvrier qualifie         292 14.6 17.7
+## Technicien                86  4.3  5.2
+## Profession intermediaire 160  8.0  9.7
+## Cadre                    260 13.0 15.7
+## Employe                  594 29.7 35.9
+## Autre                     58  2.9  3.5
+## NA                       347 17.3   NA</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co">### Fonction freq: nombreux arguments utiles possibles</span></a>
+<a class="sourceLine" id="cb45-2" title="2"></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="kw">freq</span>(bd<span class="op">$</span>qualif, <span class="dt">cum =</span> <span class="ot">TRUE</span>, <span class="dt">total =</span> <span class="ot">TRUE</span>, <span class="dt">sort =</span> <span class="st">&quot;inc&quot;</span>, <span class="dt">digits =</span> <span class="dv">0</span>, <span class="dt">exclude =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<pre><code>##                             n   % %cum
+## Autre                      58   4    4
+## Technicien                 86   5    9
+## Profession intermediaire  160  10   18
+## Ouvrier specialise        203  12   31
+## Cadre                     260  16   46
+## Ouvrier qualifie          292  18   64
+## Employe                   594  36  100
+## Total                    1653 100  100</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">  <span class="co"># cum: afficher ou non les % cumulés</span></a>
+<a class="sourceLine" id="cb47-2" title="2">  <span class="co"># total: ajouter les effectifs totaux</span></a>
+<a class="sourceLine" id="cb47-3" title="3">  <span class="co"># sort: trier le tableau par fréquence croissante (sort=&quot;inc&quot;) ou décroissante (sort=&quot;dec&quot;)</span></a>
+<a class="sourceLine" id="cb47-4" title="4">  <span class="co"># digits: arrondir</span></a>
+<a class="sourceLine" id="cb47-5" title="5">  <span class="co"># exclude: exclure valeurs manquantes</span></a></code></pre></div>
+<p><br></p>
+<h1 id="statistiques-descriptives-bivariées">2. Statistiques descriptives bivariées</h1>
+<p><br></p>
+<h2 id="tableaux-croisées">2.1. Tableaux croisées</h2>
+<p><br></p>
+<h3 id="fonction-table-et-cie.">Fonction table() et cie.</h3>
+<ul>
+<li>1er argument var en ligne (x), 2e var en colonne (y)</li>
+</ul>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">tb &lt;-<span class="kw">table</span>(bd<span class="op">$</span>trav.satis, bd<span class="op">$</span>sexe) </a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="co"># pour une table à plus de deux niveaux, simplement ajouter une variable additionnelle</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">tb <span class="co"># Distribution de la satisfaction au travail selon le sexe</span></a></code></pre></div>
+<pre><code>##                 
+##                  Homme Femme
+##   Satisfaction     233   247
+##   Insatisfaction    61    56
+##   Equilibre        226   225</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Ajouter les totaux des effectifs</span></a>
+<a class="sourceLine" id="cb51-2" title="2"></a>
+<a class="sourceLine" id="cb51-3" title="3"><span class="kw">addmargins</span>(tb)    </a></code></pre></div>
+<pre><code>##                 
+##                  Homme Femme  Sum
+##   Satisfaction     233   247  480
+##   Insatisfaction    61    56  117
+##   Equilibre        226   225  451
+##   Sum              520   528 1048</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># % Totaux </span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="kw">prop</span>(tb)      </a></code></pre></div>
+<pre><code>##                 
+##                  Homme Femme Total
+##   Satisfaction    22.2  23.6  45.8
+##   Insatisfaction   5.8   5.3  11.2
+##   Equilibre       21.6  21.5  43.0
+##   Total           49.6  50.4 100.0</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># % Totaux</span></a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="kw">prop.table</span>(tb, <span class="dt">margin =</span> <span class="dv">2</span>)    </a></code></pre></div>
+<pre><code>##                 
+##                      Homme     Femme
+##   Satisfaction   0.4480769 0.4678030
+##   Insatisfaction 0.1173077 0.1060606
+##   Equilibre      0.4346154 0.4261364</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># margin = 1 pour proportion en rangées</span></a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="co"># margin = 2 pour proportion en colonnes</span></a>
+<a class="sourceLine" id="cb57-3" title="3"><span class="co"># *100</span></a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># rprop et cprop de questionr pour %</span></a>
+<a class="sourceLine" id="cb58-2" title="2"></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="kw">cprop</span>(tb, <span class="dt">percent =</span> <span class="ot">TRUE</span>)    <span class="co"># % en colonnes</span></a></code></pre></div>
+<pre><code>##                 
+##                  Homme  Femme  Ensemble
+##   Satisfaction    44.8%  46.8%  45.8%  
+##   Insatisfaction  11.7%  10.6%  11.2%  
+##   Equilibre       43.5%  42.6%  43.0%  
+##   Total          100.0% 100.0% 100.0%</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Argument percent pour afficher les %</span></a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">rprop</span>(tb, <span class="dt">percent =</span> <span class="ot">TRUE</span>, <span class="dt">digits =</span> <span class="dv">0</span>)    <span class="co"># % en lignes, argument digits pour arrondir</span></a></code></pre></div>
+<pre><code>##                 
+##                  Homme Femme Total
+##   Satisfaction    49%   51%  100% 
+##   Insatisfaction  52%   48%  100% 
+##   Equilibre       50%   50%  100% 
+##   Ensemble        50%   50%  100%</code></pre>
+<p><br></p>
+<h3 id="comparer-des-groupes-by-et-tapply">2.2. Comparer des groupes : by() et tapply()</h3>
+<ul>
+<li>Les très pratiques fonctions by() et tapply() (variante de la fonction apply)</li>
+<li>Permettent d’appliquer une fonction sur une variable quantitative (1er) selon les modalités d’une variable catégorielle (2iem)</li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sexe, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## bd$sexe: Homme
+## [1] 48.16129
+## ------------------------------------------------------------ 
+## bd$sexe: Femme
+## [1] 48.1535</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">tapply</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sexe, mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>##    Homme    Femme 
+## 48.16129 48.15350</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">tapply</span>(bd<span class="op">$</span>relig, bd<span class="op">$</span>sexe, table) </a></code></pre></div>
+<pre><code>## $Homme
+## 
+##         Pratiquant regulier      Pratiquant occasionnel 
+##                          86                         170 
+##  Appartenance sans pratique Ni croyance ni appartenance 
+##                         365                         210 
+##                       Rejet                 NSP ou NVPR 
+##                          52                          16 
+## 
+## $Femme
+## 
+##         Pratiquant regulier      Pratiquant occasionnel 
+##                         180                         272 
+##  Appartenance sans pratique Ni croyance ni appartenance 
+##                         395                         189 
+##                       Rejet                 NSP ou NVPR 
+##                          41                          24</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">tapply</span>(bd<span class="op">$</span>relig, bd<span class="op">$</span>sexe, freq)</a></code></pre></div>
+<pre><code>## $Homme
+##                               n    % val%
+## Pratiquant regulier          86  9.6  9.6
+## Pratiquant occasionnel      170 18.9 18.9
+## Appartenance sans pratique  365 40.6 40.6
+## Ni croyance ni appartenance 210 23.4 23.4
+## Rejet                        52  5.8  5.8
+## NSP ou NVPR                  16  1.8  1.8
+## 
+## $Femme
+##                               n    % val%
+## Pratiquant regulier         180 16.3 16.3
+## Pratiquant occasionnel      272 24.7 24.7
+## Appartenance sans pratique  395 35.9 35.9
+## Ni croyance ni appartenance 189 17.2 17.2
+## Rejet                        41  3.7  3.7
+## NSP ou NVPR                  24  2.2  2.2</code></pre>
+<p><br></p>
+<h3 id="fonction-xtabs---notation-formule">2.3. Fonction xtabs - Notation formule</h3>
+<ul>
+<li>Repose sur l’utilisation de la notation formule qui définissent les relations entre les variables : NomFonction(VD ~ VI).</li>
+<li>Puisque le tableau croisé n’attribue pas de rôle spécifique aux variables, on place les deux variables après le tilde: ~ x + y).</li>
+<li>On indique le nom du tableau après la virgule.</li>
+</ul>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="kw">xtabs</span> (<span class="op">~</span><span class="st"> </span>sexe <span class="op">+</span><span class="st"> </span>occup, bd)</a></code></pre></div>
+<pre><code>##        occup
+## sexe    Exerce une profession Chomeur Etudiant, eleve Retraite
+##   Homme                   520      54              48      208
+##   Femme                   529      80              46      184
+##        occup
+## sexe    Retire des affaires Au foyer Autre inactif
+##   Homme                  39        0            30
+##   Femme                  38      171            53</code></pre>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

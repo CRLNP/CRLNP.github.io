@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
+
+<meta name="date" content="2020-10-16" />
+
+<title>Capsule 2: Importer et explorer un dataframe</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      a.sourceLine { display: inline-block; line-height: 1.25; }
+  a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+  a.sourceLine:empty { height: 1.2em; }
+  .sourceCode { overflow: visible; }
+  code.sourceCode { white-space: pre; position: relative; }
+  div.sourceCode { margin: 1em 0; }
+  pre.sourceCode { margin: 0; }
+  @media screen {
+  div.sourceCode { overflow: auto; }
+  }
+  @media print {
+  code.sourceCode { white-space: pre-wrap; }
+  a.sourceLine { text-indent: -1em; padding-left: 1em; }
+  }
+  pre.numberSource a.sourceLine
+    { position: relative; left: -4em; }
+  pre.numberSource a.sourceLine::before
+    { content: attr(title);
+      position: relative; left: -1em; text-align: right; vertical-align: baseline;
+      border: none; pointer-events: all; display: inline-block;
+      -webkit-touch-callout: none; -webkit-user-select: none;
+      -khtml-user-select: none; -moz-user-select: none;
+      -ms-user-select: none; user-select: none;
+      padding: 0 4px; width: 4em;
+      color: #aaaaaa;
+    }
+  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  div.sourceCode
+    {  }
+  @media screen {
+  a.sourceLine::before { text-decoration: underline; }
+  }
+  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code span.at { color: #7d9029; } /* Attribute */
+  code span.bn { color: #40a070; } /* BaseN */
+  code span.bu { } /* BuiltIn */
+  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code span.ch { color: #4070a0; } /* Char */
+  code span.cn { color: #880000; } /* Constant */
+  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code span.dt { color: #902000; } /* DataType */
+  code span.dv { color: #40a070; } /* DecVal */
+  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.ex { } /* Extension */
+  code span.fl { color: #40a070; } /* Float */
+  code span.fu { color: #06287e; } /* Function */
+  code span.im { } /* Import */
+  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code span.op { color: #666666; } /* Operator */
+  code span.ot { color: #007020; } /* Other */
+  code span.pp { color: #bc7a00; } /* Preprocessor */
+  code span.sc { color: #4070a0; } /* SpecialChar */
+  code span.ss { color: #bb6688; } /* SpecialString */
+  code span.st { color: #4070a0; } /* String */
+  code span.va { color: #19177c; } /* Variable */
+  code span.vs { color: #4070a0; } /* VerbatimString */
+  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<link rel="stylesheet" href="hide.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+</li>
+<li>
+  <a href="2-langage-r.html">Qu'est-ce que R?</a>
+</li>
+<li>
+  <a href="3-objets.html">Objets</a>
+</li>
+<li>
+  <a href="4-explorer.html">Explorer</a>
+</li>
+<li>
+  <a href="5-indexation.html">Indexation</a>
+</li>
+<li>
+  <a href="6-manipuler.html">Manipuler</a>
+</li>
+<li>
+  <a href="7-statistiques-descriptives.html">Statistiques-descriptives</a>
+</li>
+<li>
+  <a href="8-analyses.html">Analyses</a>
+</li>
+<li>
+  <a href="9-graphiques.html">Graphiques</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Capsule 2: Importer et explorer un dataframe</h1>
+<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
+<h4 class="date">2020-10-16</h4>
+
+</div>
+
+
+<div id="télécharger-et-charger-les-packages-utilisés" class="section level2">
+<h2>Télécharger et charger les packages utilisés</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Toujours débuter son script par le code d&#39;installation des packages nécessaires.</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co"># Dans Colab, tous les packages sont téléchargés dans l&#39;environnement d&#39;exécution sur le nuage, </span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># c&#39;est pourquoi il faut les télécharger et les charger à chaque fois.</span></a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co"># Cette étape peut prendre plusieurs minutes.</span></a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co"># À NOTER, puisque qu&#39;il est préférable de ne pas inclure le code de téléchargement </span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co"># des modules dans un document Rmarkdown, seuls les codes de chargement ont été indiqués:</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="kw">library</span>(<span class="st">&quot;questionr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-11" title="11"></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co"># Les commandes de téléchargement devront donc être ajoutées à son document Colab ou Rmarkdown:</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="kw">install.packages</span>(<span class="st">&quot;package&quot;</span>, <span class="dt">dependencies=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-14" title="14"></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co"># dependencies=TRUE: assure que tous les modules dépendants nécessaires seront aussi installés.</span></a></code></pre></div>
+<p><br></p>
+<div id="gestion-de-packages" class="section level3">
+<h3>Gestion de packages</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">## Voir les modules téléchargés (chargés ou non)</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">installed.packages</span>()    </a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">## Voir les modules chargés</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">search</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">## Lister les fonctions d&#39;un module chargé</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(<span class="dt">help =</span> questionr)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">## Détacher un module chargé</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">detach</span>(package<span class="op">:</span>NomModule)     <span class="co"># pour éviter les conflits entre fonctions du même nom</span></a></code></pre></div>
+<p><br></p>
+</div>
+</div>
+<div id="les-objets" class="section level2">
+<h2>1. Les objets</h2>
+<center>
+<p><img src="markdown/objet.jpg" /></p>
+</center>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># R comme une grosse calculatrice</span></a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>Mais l’intérêt du langage est que l’on stocke les valeurs, résultats, les tableaux, fonctions, … dans des <em>objets</em> qui pourront être réutilisés dans d’autres objets, fonctions, analyses.</li>
+</ul>
+<center>
+<p><img src="markdown/assignation.jpg" /></p>
+</center>
+<div class="fold o">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Calcul simple</span></a>
+<a class="sourceLine" id="cb8-2" title="2">(<span class="dv">12</span><span class="op">+</span><span class="dv">15</span><span class="op">+</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">3</span> </a></code></pre></div>
+<pre><code>## [1] 15.66667</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## Créer un objet en utilisant l&#39;opérateur d&#39;assignation &quot;&lt;-&quot; pour stocker le résultat du calcul</span></a>
+<a class="sourceLine" id="cb10-2" title="2">moyenne &lt;-<span class="st"> </span>(<span class="dv">12</span><span class="op">+</span><span class="dv">15</span><span class="op">+</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">3</span> </a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">## Pour voir le contenu de son objet, tapper son nom</span></a>
+<a class="sourceLine" id="cb11-2" title="2"></a>
+<a class="sourceLine" id="cb11-3" title="3">moyenne  <span class="co"># Utilisation implicite de la fonction print() </span></a></code></pre></div>
+<pre><code>## [1] 15.66667</code></pre>
+<p>Les noms d’objets:</p>
+<ul>
+<li>Peuvent contenir des chiffres, lettres et caractères _ et .</li>
+<li>Doivent commencer par une lettre, pas un chiffre.</li>
+<li>Ne pas utiliser d’accents ni d’espace.</li>
+<li>En principe il faut utiliser des noms significatifs, en pratique on utilise souvent des noms minimalistes pour faciliter la réutilisation.</li>
+<li>Certains noms courts sont réservés (max, min, c, q, t, …).</li>
+</ul>
+<p><br></p>
+<p><strong>Un objet est donc une boite dans laquelle on peut placer un chiffre, un mot, un jeu de données d’un million de répondants, une fonction, un graphique…</strong></p>
+<p><br></p>
+<center>
+<p><img src="markdown/boite3.png" /></p>
+</center>
+<h2 id="les-opérateurs">2. Les opérateurs</h2>
+<ul>
+<li>Opérateurs d’assignation: <strong>&lt;-</strong>, = , -&gt;</li>
+<li>Opérateurs de sélection: [], [[]], $, :</li>
+<li>Opérateurs booléen: !, &amp;, |</li>
+<li>Opérateurs arithmétiques: +, -, *, /, ^</li>
+<li>Opérateurs de comparaison: ==, !=, &lt;, &gt;, &lt;=, &gt;=</li>
+</ul>
+<p><br></p>
+<h2 id="les-fonctions">3. Les fonctions</h2>
+<ul>
+<li>Permettent d’effectuer des tâches prédéfinies comme des analyses, graphiques, calculs, …</li>
+<li>Chaque fonction a un nom et plusieurs fonctions peuvent permettre d’effectuer la même tâche: Par exemple pour faire une correlation, on retrouve les fonctions cor(), cor.test(), …</li>
+<li>On appel une fonction en la nommant et on contrôle son comportement en paramétrant ses arguments</li>
+<li>On peut imbriquer les fonctions les unes dans les autres avec des parenthèses.</li>
+</ul>
+<center>
+<p><img src="markdown/fonction.jpg" /></p>
+</center>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Créer un nouvel objet nommé &quot;age&quot; composé d’une série de 5 nombres avec la fonction c() (combiner)</span></a>
+<a class="sourceLine" id="cb13-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">40</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Pour voir le nom d&#39;un objet, on tappe son nom</span></a>
+<a class="sourceLine" id="cb14-2" title="2">age</a></code></pre></div>
+<pre><code>## [1] 12 15 20 35 40</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Passer cet objet comme 1er argument de la fonction mean()</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">mean</span>(age)</a></code></pre></div>
+<pre><code>## [1] 24.4</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Arrondir le résultat sans décimale (argument digits=) en imbriquant la fonction mean() dans la fonction round()</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">round</span>(<span class="kw">mean</span>(age), <span class="dv">0</span>) </a></code></pre></div>
+<pre><code>## [1] 24</code></pre>
+<p><br></p>
+<h2 id="les-arguments">4. Les arguments</h2>
+<ul>
+<li>Chaque fonction possède une liste plus ou moins longue d’arguments (paramètres ou options) permettant de paramétrer son fonctionnement.</li>
+<li>Certains arguments ont une valeur par défaut. Si ces valeurs nous conviennent, pas besoin de les indiquer.</li>
+<li>Si l’argument n’a pas de valeur par défaut, FAUT le renseigner.</li>
+<li>Pour modifier la valeur d’un argument, on le nomme et change sa valeur à la suite d’un =.</li>
+<li>La liste d’arguments respecte un ordre. Si on modifie chaque argument dans l’ordre, on peut omettre le nom des arguments. Les arguments peuvent donc être nommés ou non nommés.</li>
+<li>Le premier argument, toujours les données (on ne le nomme généralement pas x=)</li>
+<li>Comment savoir quels sont les arguments d’une fonction? Taper Help(NomFonction) ou ?NomFonction .</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">36</span>, <span class="dv">47</span>, <span class="dv">58</span>, <span class="dv">69</span>, <span class="ot">NA</span>)  <span class="co"># Je créé un vecteur composé de 5 chiffres et une valeur manquante</span></a>
+<a class="sourceLine" id="cb20-2" title="2"></a>
+<a class="sourceLine" id="cb20-3" title="3"><span class="co"># À noter: lorsque l&#39;on stocke un nouveau contenu dans un  objet existant, le contenu initial est écrasé</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">mean</span>(age)    <span class="co"># OUPS!</span></a></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">help</span>(mean)  <span class="co"># Pour afficher l&#39;aide d&#39;une fonction (ou ?mean)</span></a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">mean</span>(age, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 47</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># L&#39;argument na.rm=TRUE indique de ne pas prendre en compte les valeurs manquantes</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="co"># L&#39;argument trim=.05 indique d&#39;exclure les 5% les plus extrêmes</span></a></code></pre></div>
+<p><br></p>
+<h2 id="les-types-dobjets">5. Les types d’objets</h2>
+<ul>
+<li>Les objets sont caractérisés par <strong>différentes structures</strong></li>
+<li>On retrouve <strong>5 différents types de contenants</strong> ayant chacun leurs propriétés</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><strong>Vecteur</strong></li>
+<li>Liste</li>
+<li>Matrice</li>
+<li>Arrays (3d)</li>
+<li><strong>Dataframe (tableaux)</strong></li>
+</ol>
+<center>
+<div class="figure">
+<img src="markdown/types.jpg" alt="https://devopedia.org/r-data-structures" />
+<p class="caption"><a href="https://devopedia.org/r-data-structures" class="uri">https://devopedia.org/r-data-structures</a></p>
+</div>
+</center>
+<p><br></p>
+<h3 id="vecteurs">5.1. Vecteurs</h3>
+<p>Définition:</p>
+<ul>
+<li>La brique élémentaire = série de valeurs.</li>
+<li>En pratique, c’est une variable (mais qui n’est pas dans un tableau) et ses éléments sont ses valeurs.</li>
+<li>Objet contenant des valeurs (éléments/composantes) d’un seul <strong>mode</strong>: numérique, textuel, logique.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># On créer des vecteurs principalement avec la commande c()</span></a>
+<a class="sourceLine" id="cb27-2" title="2"></a>
+<a class="sourceLine" id="cb27-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">60</span>)  <span class="co"># vecteur numérique</span></a>
+<a class="sourceLine" id="cb27-4" title="4">sexe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;femme&quot;</span>, <span class="st">&quot;homme&quot;</span>, <span class="st">&quot;femme&quot;</span>)  <span class="co"># vecteur textuel</span></a>
+<a class="sourceLine" id="cb27-5" title="5">taille &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)  <span class="co"># vecteur booléen</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Pour voir le &quot;format&quot; des éléments stockés dans un objet, utiliser la fonction mode() ou typeof()</span></a>
+<a class="sourceLine" id="cb28-2" title="2"></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="kw">mode</span>(poids)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># On peut faire des calculs entre vecteurs - ex. calcul de l&#39;IMC: poids divisé par taille au carré </span></a>
+<a class="sourceLine" id="cb30-2" title="2">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">60</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">taille &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.45</span>, <span class="fl">1.60</span>, <span class="fl">1.70</span>) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>  </a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">IMC &lt;-<span class="st"> </span>poids <span class="op">/</span><span class="st"> </span>taille </a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">IMC</a></code></pre></div>
+<pre><code>## [1] 33.29370 25.39062 20.76125</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">median</span>(IMC) <span class="co"># Passer l&#39;objet IMC à la fonction de médiane</span></a></code></pre></div>
+<pre><code>## [1] 25.39062</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">IMC <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(IMC) <span class="co"># Calculer la différence face à la moyenne</span></a></code></pre></div>
+<pre><code>## [1]  6.811842 -1.091231 -5.720611</code></pre>
+<p><br></p>
+<h3 id="facteurs">5.2. Facteurs</h3>
+<ul>
+<li>Définition: vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.</li>
+<li>Les modalités de la variable correspondent à des “niveaux” (<em>levels</em>) uniques et fixes, ie impossible d’assigner une valeur qui n’a pas été préalablement définie comme une des modalités.</li>
+<li>Des étiquettes (<em>labels</em>) peuvent être associées aux niveaux.</li>
+<li>Lors de l’importation de données, tout dépendant de la fonction d’importation, les variables qualitatives seront importées sous forme de vecteur textuel ou de facteur.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Créer une variable de type facteur à partir d&#39;un vecteur textuel de 5 valeurs de 2 niveaux avec la fonction factor()</span></a>
+<a class="sourceLine" id="cb39-2" title="2">sexe &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;H&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Homme&quot;</span>, <span class="st">&quot;Femme&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># L&#39;objet est un facteur avec 2 modalités (niveaux) définis par défaut en fonction des valeurs fournies </span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="kw">str</span>(sexe)</a></code></pre></div>
+<pre><code>##  Factor w/ 2 levels &quot;Homme&quot;,&quot;Femme&quot;: 2 2 1 2</code></pre>
+<p><br></p>
+<h3 id="dataframes">5.3. Dataframes</h3>
+<ul>
+<li><p>Définition: Tableau de données pouvant regrouper des vecteurs de différents types (numériques et textuels)</p></li>
+<li><p>Structurellement, le dataframe est une <strong>liste</strong> composées de <strong>vecteurs nommés</strong> (noms de variables uniques) de même <strong>longueur</strong> (nombre d’observations) mais qui peuvent être de <strong>modes différents</strong> (variables numériques, textuelles)</p></li>
+<li><p>C’est donc un tableau avec des colonnes - <code>ncol()</code> et des lignes - <code>nrow()</code>, donc 2 dimensions - <code>dim()</code>.</p></li>
+<li><p>Crée un jeu de données avec la fonction data.frame(), mais on le crée rarement manuellement, généralement importé en format .txt, .csv, .spss …</p></li>
+<li><p>Par défaut, si on ne désactive pas l’option stringsAsFactors à la création d’un dataframe, les vecteurs textuels sont de type facteur</p></li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Créer un data frame avec 3 variables (2 vecteurs numériques et 1 vecteur textuel) avec la fonction data.frame()</span></a>
+<a class="sourceLine" id="cb42-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>,<span class="dv">65</span>,<span class="dv">22</span>,<span class="dv">38</span>,<span class="dv">54</span>,<span class="dv">31</span>,<span class="dv">29</span>,<span class="dv">44</span>,<span class="dv">56</span>,<span class="dv">67</span>) </a>
+<a class="sourceLine" id="cb42-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">150</span>,<span class="dv">125</span>,<span class="dv">210</span>,<span class="dv">175</span>,<span class="dv">110</span>,<span class="dv">180</span>,<span class="dv">130</span>,<span class="dv">155</span>,<span class="dv">190</span>,<span class="dv">120</span>)</a>
+<a class="sourceLine" id="cb42-4" title="4">sexe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>)</a>
+<a class="sourceLine" id="cb42-5" title="5">bd &lt;-<span class="st"> </span><span class="kw">data.frame</span>(age, sexe, poids)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">bd </a></code></pre></div>
+<pre><code>##    age sexe poids
+## 1   45    H   150
+## 2   65    F   125
+## 3   22    F   210
+## 4   38    H   175
+## 5   54    H   110
+## 6   31    F   180
+## 7   29    F   130
+## 8   44    H   155
+## 9   56    F   190
+## 10  67    H   120</code></pre>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgMjogSW1wb3J0ZXIgZXQgZXhwbG9yZXIgdW4gZGF0YWZyYW1lIg0KYXV0aG9yOiAiQ2Fyb2xpbmUgUGF0ZW5hdWRlIDxicj4gQmlibGlvdGjDqWNhaXJlIC0gQmlibGlvdGjDqHF1ZSBkZXMgbGV0dHJlcyBldCBzY2llbmNlcyBodW1haW5lcyINCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCm91dHB1dDogDQogIGh0bWxfZG9jdW1lbnQ6IA0KICAgIGhpZ2hsaWdodDogcHlnbWVudHMNCiAgICB0aGVtZTogbHVtZW4NCiAgICB0b2M6IHRydWUNCiAgICB0b2NfZmxvYXQ6IA0KICAgICAgY29sbGFwc2VkOiBmYWxzZQ0KICAgICAgU21vb3RoX3Njcm9sbDogZmFsc2UNCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlDQpjc3M6IGhpZGUuY3NzDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyMgVMOpbMOpY2hhcmdlciBldCBjaGFyZ2VyIGxlcyBwYWNrYWdlcyB1dGlsaXPDqXMNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIFRvdWpvdXJzIGTDqWJ1dGVyIHNvbiBzY3JpcHQgcGFyIGxlIGNvZGUgZCdpbnN0YWxsYXRpb24gZGVzIHBhY2thZ2VzIG7DqWNlc3NhaXJlcy4NCg0KIyBEYW5zIENvbGFiLCB0b3VzIGxlcyBwYWNrYWdlcyBzb250IHTDqWzDqWNoYXJnw6lzIGRhbnMgbCdlbnZpcm9ubmVtZW50IGQnZXjDqWN1dGlvbiBzdXIgbGUgbnVhZ2UsIA0KIyBjJ2VzdCBwb3VycXVvaSBpbCBmYXV0IGxlcyB0w6lsw6ljaGFyZ2VyIGV0IGxlcyBjaGFyZ2VyIMOgIGNoYXF1ZSBmb2lzLg0KDQojIENldHRlIMOpdGFwZSBwZXV0IHByZW5kcmUgcGx1c2lldXJzIG1pbnV0ZXMuDQoNCiMgw4AgTk9URVIsIHB1aXNxdWUgcXUnaWwgZXN0IHByw6lmw6lyYWJsZSBkZSBuZSBwYXMgaW5jbHVyZSBsZSBjb2RlIGRlIHTDqWzDqWNoYXJnZW1lbnQgDQojIGRlcyBtb2R1bGVzIGRhbnMgdW4gZG9jdW1lbnQgUm1hcmtkb3duLCBzZXVscyBsZXMgY29kZXMgZGUgY2hhcmdlbWVudCBvbnQgw6l0w6kgaW5kaXF1w6lzOg0KbGlicmFyeSgicXVlc3Rpb25yIikNCg0KIyBMZXMgY29tbWFuZGVzIGRlIHTDqWzDqWNoYXJnZW1lbnQgZGV2cm9udCBkb25jIMOqdHJlIGFqb3V0w6llcyDDoCBzb24gZG9jdW1lbnQgQ29sYWIgb3UgUm1hcmtkb3duOg0KaW5zdGFsbC5wYWNrYWdlcygicGFja2FnZSIsIGRlcGVuZGVuY2llcz1UUlVFKQ0KDQojIGRlcGVuZGVuY2llcz1UUlVFOiBhc3N1cmUgcXVlIHRvdXMgbGVzIG1vZHVsZXMgZMOpcGVuZGFudHMgbsOpY2Vzc2FpcmVzIHNlcm9udCBhdXNzaSBpbnN0YWxsw6lzLg0KYGBgDQoNCjxicj4NCg0KIyMjIEdlc3Rpb24gZGUgcGFja2FnZXMNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIyBWb2lyIGxlcyBtb2R1bGVzIHTDqWzDqWNoYXJnw6lzIChjaGFyZ8OpcyBvdSBub24pDQppbnN0YWxsZWQucGFja2FnZXMoKQkNCmBgYA0KDQpgYGB7ciwgZXZhbD1GQUxTRX0NCiMjIFZvaXIgbGVzIG1vZHVsZXMgY2hhcmfDqXMNCnNlYXJjaCgpDQpgYGANCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIyBMaXN0ZXIgbGVzIGZvbmN0aW9ucyBkJ3VuIG1vZHVsZSBjaGFyZ8OpDQpsaWJyYXJ5KGhlbHAgPSBxdWVzdGlvbnIpDQpgYGANCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIyBEw6l0YWNoZXIgdW4gbW9kdWxlIGNoYXJnw6kNCmRldGFjaChwYWNrYWdlOk5vbU1vZHVsZSkgICAgICMgcG91ciDDqXZpdGVyIGxlcyBjb25mbGl0cyBlbnRyZSBmb25jdGlvbnMgZHUgbcOqbWUgbm9tDQpgYGANCg0KPGJyPg0KDQojIyAxLiBMZXMgb2JqZXRzDQoNCjxjZW50ZXI+DQoNCiFbXShtYXJrZG93bi9vYmpldC5qcGcpDQoNCjwvY2VudGVyPiAgDQoNCmBgYHtyfQ0KIyBSIGNvbW1lIHVuZSBncm9zc2UgY2FsY3VsYXRyaWNlDQoNCjIrMg0KYGBgDQoNCiogTWFpcyBs4oCZaW50w6lyw6p0IGR1IGxhbmdhZ2UgZXN0IHF1ZSBs4oCZb24gc3RvY2tlIGxlcyB2YWxldXJzLCByw6lzdWx0YXRzLCBsZXMgdGFibGVhdXgsIGZvbmN0aW9ucywg4oCmIGRhbnMgZGVzICpvYmpldHMqIHF1aSBwb3Vycm9udCDDqnRyZSByw6l1dGlsaXPDqXMgZGFucyBk4oCZYXV0cmVzIG9iamV0cywgZm9uY3Rpb25zLCBhbmFseXNlcy4NCg0KPGNlbnRlcj4NCg0KIVtdKG1hcmtkb3duL2Fzc2lnbmF0aW9uLmpwZykNCg0KPC9jZW50ZXI+ICANCg0KPGRpdiBjbGFzcz0iZm9sZCBvIj4NCg0KYGBge3J9DQojIENhbGN1bCBzaW1wbGUNCigxMisxNSsyMCkvMyANCmBgYA0KDQpgYGB7cn0NCiMjIENyw6llciB1biBvYmpldCBlbiB1dGlsaXNhbnQgbCdvcMOpcmF0ZXVyIGQnYXNzaWduYXRpb24gIjwtIiBwb3VyIHN0b2NrZXIgbGUgcsOpc3VsdGF0IGR1IGNhbGN1bA0KbW95ZW5uZSA8LSAoMTIrMTUrMjApLzMgDQpgYGANCg0KYGBge3J9DQojIyBQb3VyIHZvaXIgbGUgY29udGVudSBkZSBzb24gb2JqZXQsIHRhcHBlciBzb24gbm9tDQoNCm1veWVubmUgICMgVXRpbGlzYXRpb24gaW1wbGljaXRlIGRlIGxhIGZvbmN0aW9uIHByaW50KCkgDQpgYGANCg0KTGVzIG5vbXMgZOKAmW9iamV0czoNCg0KLSBQZXV2ZW50IGNvbnRlbmlyIGRlcyBjaGlmZnJlcywgbGV0dHJlcyBldCBjYXJhY3TDqHJlcyBfIGV0IC4NCi0gRG9pdmVudCBjb21tZW5jZXIgcGFyIHVuZSBsZXR0cmUsIHBhcyB1biBjaGlmZnJlLg0KLSBOZSBwYXMgdXRpbGlzZXIgZOKAmWFjY2VudHMgbmkgZOKAmWVzcGFjZS4NCi0gRW4gcHJpbmNpcGUgaWwgZmF1dCB1dGlsaXNlciBkZXMgbm9tcyBzaWduaWZpY2F0aWZzLCBlbiBwcmF0aXF1ZSBvbiB1dGlsaXNlIHNvdXZlbnQgZGVzIG5vbXMgbWluaW1hbGlzdGVzIHBvdXIgZmFjaWxpdGVyIGxhIHLDqXV0aWxpc2F0aW9uLg0KLSBDZXJ0YWlucyBub21zIGNvdXJ0cyBzb250IHLDqXNlcnbDqXMgKG1heCwgbWluLCBjLCBxLCB0LCDigKYpLg0KDQo8YnI+DQoNCioqVW4gb2JqZXQgZXN0IGRvbmMgdW5lIGJvaXRlIGRhbnMgbGFxdWVsbGUgb24gcGV1dCBwbGFjZXIgdW4gY2hpZmZyZSwgdW4gbW90LCB1biBqZXUgZGUgZG9ubsOpZXMgZCd1biBtaWxsaW9uIGRlIHLDqXBvbmRhbnRzLCB1bmUgZm9uY3Rpb24sIHVuIGdyYXBoaXF1ZS4uLioqDQoNCjxicj4NCg0KPGNlbnRlcj4NCg0KIVtdKG1hcmtkb3duL2JvaXRlMy5wbmcpDQoNCjwvY2VudGVyPg0KDQojIyAyLiBMZXMgb3DDqXJhdGV1cnMNCg0KKiAgT3DDqXJhdGV1cnMgZCdhc3NpZ25hdGlvbjogKio8LSoqLCA9ICwgLT4NCiogIE9ww6lyYXRldXJzIGRlIHPDqWxlY3Rpb246IFtdLCBbW11dLCAkLCA6DQoqICBPcMOpcmF0ZXVycyBib29sw6llbjogISwgJiwgfA0KKiAgT3DDqXJhdGV1cnMgYXJpdGhtw6l0aXF1ZXM6ICssIC0sICosIC8sIF4NCiogIE9ww6lyYXRldXJzIGRlIGNvbXBhcmFpc29uOiA9PSwgIT0sIDwsID4sIDw9LCA+PSANCg0KPGJyPg0KDQojIyAzLiBMZXMgZm9uY3Rpb25zDQoNCiogIFBlcm1ldHRlbnQgZOKAmWVmZmVjdHVlciBkZXMgdMOiY2hlcyBwcsOpZMOpZmluaWVzIGNvbW1lIGRlcyBhbmFseXNlcywgZ3JhcGhpcXVlcywgY2FsY3Vscywg4oCmIA0KKiAgQ2hhcXVlIGZvbmN0aW9uIGEgdW4gbm9tIGV0IHBsdXNpZXVycyBmb25jdGlvbnMgcGV1dmVudCBwZXJtZXR0cmUgZCdlZmZlY3R1ZXIgbGEgbcOqbWUgdMOiY2hlOiBQYXIgZXhlbXBsZSBwb3VyIGZhaXJlIHVuZSBjb3JyZWxhdGlvbiwgb24gcmV0cm91dmUgbGVzIGZvbmN0aW9ucyBjb3IoKSwgY29yLnRlc3QoKSwgLi4uDQoqICBPbiBhcHBlbCB1bmUgZm9uY3Rpb24gZW4gbGEgbm9tbWFudCBldCBvbiBjb250csO0bGUgc29uIGNvbXBvcnRlbWVudCBlbiBwYXJhbcOpdHJhbnQgc2VzIGFyZ3VtZW50cw0KKiAgT24gcGV1dCBpbWJyaXF1ZXIgbGVzIGZvbmN0aW9ucyBsZXMgdW5lcyBkYW5zIGxlcyBhdXRyZXMgYXZlYyBkZXMgcGFyZW50aMOoc2VzLg0KDQo8Y2VudGVyPg0KDQohW10obWFya2Rvd24vZm9uY3Rpb24uanBnKQ0KDQo8L2NlbnRlcj4NCg0KYGBge3J9DQojIENyw6llciB1biBub3V2ZWwgb2JqZXQgbm9tbcOpICJhZ2UiIGNvbXBvc8OpIGTigJl1bmUgc8OpcmllIGRlIDUgbm9tYnJlcyBhdmVjIGxhIGZvbmN0aW9uIGMoKSAoY29tYmluZXIpDQphZ2UgPC0gYygxMiwgMTUsIDIwLCAzNSwgNDApIA0KYGBgDQoNCmBgYHtyfQ0KIyBQb3VyIHZvaXIgbGUgbm9tIGQndW4gb2JqZXQsIG9uIHRhcHBlIHNvbiBub20NCmFnZQ0KYGBgDQoNCmBgYHtyfQ0KIyBQYXNzZXIgY2V0IG9iamV0IGNvbW1lIDFlciBhcmd1bWVudCBkZSBsYSBmb25jdGlvbiBtZWFuKCkNCm1lYW4oYWdlKQ0KYGBgDQoNCmBgYHtyfQ0KIyBBcnJvbmRpciBsZSByw6lzdWx0YXQgc2FucyBkw6ljaW1hbGUgKGFyZ3VtZW50IGRpZ2l0cz0pIGVuIGltYnJpcXVhbnQgbGEgZm9uY3Rpb24gbWVhbigpIGRhbnMgbGEgZm9uY3Rpb24gcm91bmQoKQ0Kcm91bmQobWVhbihhZ2UpLCAwKSANCmBgYA0KDQo8YnI+DQoNCiMjIDQuIExlcyBhcmd1bWVudHMNCg0KKiBDaGFxdWUgZm9uY3Rpb24gcG9zc8OoZGUgdW5lIGxpc3RlIHBsdXMgb3UgbW9pbnMgbG9uZ3VlIGTigJlhcmd1bWVudHMgKHBhcmFtw6h0cmVzIG91IG9wdGlvbnMpIHBlcm1ldHRhbnQgZGUgcGFyYW3DqXRyZXIgc29uIGZvbmN0aW9ubmVtZW50Lg0KKiBDZXJ0YWlucyBhcmd1bWVudHMgb250IHVuZSB2YWxldXIgcGFyIGTDqWZhdXQuIFNpIGNlcyB2YWxldXJzIG5vdXMgY29udmllbm5lbnQsIHBhcyBiZXNvaW4gZGUgbGVzIGluZGlxdWVyLg0KKiBTaSBs4oCZYXJndW1lbnQgbuKAmWEgcGFzIGRlIHZhbGV1ciBwYXIgZMOpZmF1dCwgRkFVVCBsZSByZW5zZWlnbmVyLg0KKiBQb3VyIG1vZGlmaWVyIGxhIHZhbGV1ciBk4oCZdW4gYXJndW1lbnQsIG9uIGxlIG5vbW1lIGV0IGNoYW5nZSBzYSB2YWxldXIgw6AgbGEgc3VpdGUgZOKAmXVuID0uDQoqIExhIGxpc3RlIGTigJlhcmd1bWVudHMgcmVzcGVjdGUgdW4gb3JkcmUuIFNpIG9uIG1vZGlmaWUgY2hhcXVlIGFyZ3VtZW50IGRhbnMgbOKAmW9yZHJlLCBvbiBwZXV0IG9tZXR0cmUgbGUgbm9tIGRlcyBhcmd1bWVudHMuIExlcyBhcmd1bWVudHMgcGV1dmVudCBkb25jIMOqdHJlIG5vbW3DqXMgb3Ugbm9uIG5vbW3DqXMuDQoqIExlIHByZW1pZXIgYXJndW1lbnQsIHRvdWpvdXJzIGxlcyBkb25uw6llcyAob24gbmUgbGUgbm9tbWUgZ8OpbsOpcmFsZW1lbnQgcGFzIHg9KQ0KKiBDb21tZW50IHNhdm9pciBxdWVscyBzb250IGxlcyBhcmd1bWVudHMgZOKAmXVuZSBmb25jdGlvbj8gVGFwZXIgSGVscChOb21Gb25jdGlvbikgb3UgP05vbUZvbmN0aW9uIC4NCg0KYGBge3J9DQphZ2UgPC0gYygyNSwgMzYsIDQ3LCA1OCwgNjksIE5BKSAgIyBKZSBjcsOpw6kgdW4gdmVjdGV1ciBjb21wb3PDqSBkZSA1IGNoaWZmcmVzIGV0IHVuZSB2YWxldXIgbWFucXVhbnRlDQoNCiMgw4Agbm90ZXI6IGxvcnNxdWUgbCdvbiBzdG9ja2UgdW4gbm91dmVhdSBjb250ZW51IGRhbnMgdW4gIG9iamV0IGV4aXN0YW50LCBsZSBjb250ZW51IGluaXRpYWwgZXN0IMOpY3Jhc8OpDQpgYGANCg0KYGBge3J9DQptZWFuKGFnZSkgICAgIyBPVVBTIQ0KYGBgDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KaGVscChtZWFuKSAgIyBQb3VyIGFmZmljaGVyIGwnYWlkZSBkJ3VuZSBmb25jdGlvbiAob3UgP21lYW4pDQpgYGANCg0KYGBge3J9DQptZWFuKGFnZSwgbmEucm09VFJVRSkNCg0KIyBMJ2FyZ3VtZW50IG5hLnJtPVRSVUUgaW5kaXF1ZSBkZSBuZSBwYXMgcHJlbmRyZSBlbiBjb21wdGUgbGVzIHZhbGV1cnMgbWFucXVhbnRlcw0KIyBMJ2FyZ3VtZW50IHRyaW09LjA1IGluZGlxdWUgZCdleGNsdXJlIGxlcyA1JSBsZXMgcGx1cyBleHRyw6ptZXMNCmBgYA0KDQo8YnI+DQoNCiMjIDUuIExlcyB0eXBlcyBkJ29iamV0cw0KDQotIExlcyBvYmpldHMgc29udCBjYXJhY3TDqXJpc8OpcyBwYXIgKipkaWZmw6lyZW50ZXMgc3RydWN0dXJlcyoqDQotIE9uIHJldHJvdXZlICoqNSBkaWZmw6lyZW50cyB0eXBlcyBkZSBjb250ZW5hbnRzKiogYXlhbnQgY2hhY3VuIGxldXJzIHByb3ByacOpdMOpcyANCg0KMS4gICAqKlZlY3RldXIqKg0KMi4gICBMaXN0ZQ0KMy4gICBNYXRyaWNlDQo0LiAgIEFycmF5cyAoM2QpDQo1LiAgICoqRGF0YWZyYW1lICh0YWJsZWF1eCkqKg0KDQo8Y2VudGVyPg0KIVtodHRwczovL2Rldm9wZWRpYS5vcmcvci1kYXRhLXN0cnVjdHVyZXNdKG1hcmtkb3duL3R5cGVzLmpwZykNCg0KPC9jZW50ZXI+DQo8YnI+DQoNCiMjIyA1LjEuIFZlY3RldXJzDQoNCkTDqWZpbml0aW9uOiANCg0KKiAgTGEgYnJpcXVlIMOpbMOpbWVudGFpcmUgPSBzw6lyaWUgZGUgdmFsZXVycy4NCiogIEVuIHByYXRpcXVlLCBj4oCZZXN0IHVuZSB2YXJpYWJsZSAobWFpcyBxdWkgbuKAmWVzdCBwYXMgZGFucyB1biB0YWJsZWF1KSBldCBzZXMgw6lsw6ltZW50cyBzb250IHNlcyB2YWxldXJzLg0KKiAgT2JqZXQgY29udGVuYW50IGRlcyB2YWxldXJzICjDqWzDqW1lbnRzL2NvbXBvc2FudGVzKSBkJ3VuIHNldWwgKiptb2RlKio6IG51bcOpcmlxdWUsIHRleHR1ZWwsIGxvZ2lxdWUuIA0KDQpgYGB7cn0NCiMgT24gY3LDqWVyIGRlcyB2ZWN0ZXVycyBwcmluY2lwYWxlbWVudCBhdmVjIGxhIGNvbW1hbmRlIGMoKQ0KDQpwb2lkcyA8LSBjKDcwLCA2NSwgNjApICAjIHZlY3RldXIgbnVtw6lyaXF1ZQ0Kc2V4ZSA8LSBjKCJmZW1tZSIsICJob21tZSIsICJmZW1tZSIpICAjIHZlY3RldXIgdGV4dHVlbA0KdGFpbGxlIDwtIGMoVFJVRSwgRkFMU0UsIEZBTFNFLCBUUlVFKSAgIyB2ZWN0ZXVyIGJvb2zDqWVuDQpgYGANCg0KYGBge3J9DQojIFBvdXIgdm9pciBsZSAiZm9ybWF0IiBkZXMgw6lsw6ltZW50cyBzdG9ja8OpcyBkYW5zIHVuIG9iamV0LCB1dGlsaXNlciBsYSBmb25jdGlvbiBtb2RlKCkgb3UgdHlwZW9mKCkNCg0KbW9kZShwb2lkcykNCmBgYA0KDQpgYGB7cn0NCiMgT24gcGV1dCBmYWlyZSBkZXMgY2FsY3VscyBlbnRyZSB2ZWN0ZXVycyAtIGV4LiBjYWxjdWwgZGUgbCdJTUM6IHBvaWRzIGRpdmlzw6kgcGFyIHRhaWxsZSBhdSBjYXJyw6kgDQpwb2lkcyA8LSBjKDcwLCA2NSwgNjApDQpgYGANCg0KYGBge3J9DQp0YWlsbGUgPC0gYygxLjQ1LCAxLjYwLCAxLjcwKSBeIDIgIA0KYGBgDQoNCmBgYHtyfQ0KSU1DIDwtIHBvaWRzIC8gdGFpbGxlIA0KYGBgDQoNCmBgYHtyfQ0KSU1DDQpgYGANCg0KYGBge3J9DQptZWRpYW4oSU1DKSAjIFBhc3NlciBsJ29iamV0IElNQyDDoCBsYSBmb25jdGlvbiBkZSBtw6lkaWFuZQ0KYGBgDQoNCmBgYHtyfQ0KSU1DIC0gbWVhbihJTUMpICMgQ2FsY3VsZXIgbGEgZGlmZsOpcmVuY2UgZmFjZSDDoCBsYSBtb3llbm5lDQpgYGANCg0KPGJyPg0KDQojIyMgNS4yLiBGYWN0ZXVycyANCg0KKiBEw6lmaW5pdGlvbjogdmVjdGV1ciBhdmVjIGRlcyBhdHRyaWJ1dHMgc3DDqWNpZmlxdWVzLCBkb250IGxhIHN0cnVjdHVyZSBjb3JyZXNwb25kIGF1eCB2YXJpYWJsZXMgcXVhbGl0YXRpdmVzLg0KKiBMZXMgbW9kYWxpdMOpcyBkZSBsYSB2YXJpYWJsZSBjb3JyZXNwb25kZW50IMOgIGRlcyAibml2ZWF1eCIgKCpsZXZlbHMqKSB1bmlxdWVzIGV0IGZpeGVzLCBpZSBpbXBvc3NpYmxlIGTigJlhc3NpZ25lciB1bmUgdmFsZXVyIHF1aSBu4oCZYSBwYXMgw6l0w6kgcHLDqWFsYWJsZW1lbnQgZMOpZmluaWUgY29tbWUgdW5lIGRlcyBtb2RhbGl0w6lzLg0KKiBEZXMgw6l0aXF1ZXR0ZXMgKCpsYWJlbHMqKSBwZXV2ZW50IMOqdHJlIGFzc29jacOpZXMgYXV4IG5pdmVhdXguDQoqIExvcnMgZGUgbOKAmWltcG9ydGF0aW9uIGRlIGRvbm7DqWVzLCB0b3V0IGTDqXBlbmRhbnQgZGUgbGEgZm9uY3Rpb24gZCdpbXBvcnRhdGlvbiwgbGVzIHZhcmlhYmxlcyBxdWFsaXRhdGl2ZXMgc2Vyb250IGltcG9ydMOpZXMgc291cyBmb3JtZSBkZSB2ZWN0ZXVyIHRleHR1ZWwgb3UgZGUgZmFjdGV1ci4NCg0KYGBge3J9DQojIENyw6llciB1bmUgdmFyaWFibGUgZGUgdHlwZSBmYWN0ZXVyIMOgIHBhcnRpciBkJ3VuIHZlY3RldXIgdGV4dHVlbCBkZSA1IHZhbGV1cnMgZGUgMiBuaXZlYXV4IGF2ZWMgbGEgZm9uY3Rpb24gZmFjdG9yKCkNCnNleGUgPC0gZmFjdG9yKGMoIkgiLCAiSCIsICJGIiwgIkgiKSwgbGFiZWxzID0gYygiSG9tbWUiLCAiRmVtbWUiKSkNCmBgYA0KDQpgYGB7cn0NCiMgTCdvYmpldCBlc3QgdW4gZmFjdGV1ciBhdmVjIDIgbW9kYWxpdMOpcyAobml2ZWF1eCkgZMOpZmluaXMgcGFyIGTDqWZhdXQgZW4gZm9uY3Rpb24gZGVzIHZhbGV1cnMgZm91cm5pZXMgDQpzdHIoc2V4ZSkNCmBgYA0KDQo8YnI+DQoNCiMjIyA1LjMuIERhdGFmcmFtZXMNCg0KKiAgRMOpZmluaXRpb246IFRhYmxlYXUgZGUgZG9ubsOpZXMgcG91dmFudCByZWdyb3VwZXIgZGVzIHZlY3RldXJzIGRlIGRpZmbDqXJlbnRzIHR5cGVzIChudW3DqXJpcXVlcyBldCB0ZXh0dWVscykNCiogU3RydWN0dXJlbGxlbWVudCwgbGUgZGF0YWZyYW1lIGVzdCB1bmUgKipsaXN0ZSoqIGNvbXBvc8OpZXMgZGUgKip2ZWN0ZXVycyBub21tw6lzKiogKG5vbXMgZGUgdmFyaWFibGVzIHVuaXF1ZXMpIGRlIG3Dqm1lICoqbG9uZ3VldXIqKiAobm9tYnJlIGQnb2JzZXJ2YXRpb25zKSBtYWlzIHF1aSBwZXV2ZW50IMOqdHJlIGRlICoqbW9kZXMgZGlmZsOpcmVudHMqKiAodmFyaWFibGVzIG51bcOpcmlxdWVzLCB0ZXh0dWVsbGVzKQ0KKiBDJ2VzdCBkb25jIHVuIHRhYmxlYXUgYXZlYyBkZXMgY29sb25uZXMgLSBgbmNvbCgpYCBldCBkZXMgbGlnbmVzIC0gYG5yb3coKWAsICBkb25jIDIgZGltZW5zaW9ucyAtIGBkaW0oKWAuDQoqICBDcsOpZSB1biBqZXUgZGUgZG9ubsOpZXMgYXZlYyBsYSBmb25jdGlvbiBkYXRhLmZyYW1lKCksIG1haXMgb24gbGUgY3LDqWUgcmFyZW1lbnQgbWFudWVsbGVtZW50LCBnw6luw6lyYWxlbWVudCBpbXBvcnTDqSBlbiBmb3JtYXQgLnR4dCwgLmNzdiwgLnNwc3MgLi4uDQoNCiogIFBhciBkw6lmYXV0LCBzaSBvbiBuZSBkw6lzYWN0aXZlIHBhcyBs4oCZb3B0aW9uIHN0cmluZ3NBc0ZhY3RvcnMgw6AgbGEgY3LDqWF0aW9uIGQndW4gZGF0YWZyYW1lLCBsZXMgdmVjdGV1cnMgdGV4dHVlbHMgc29udCBkZSB0eXBlIGZhY3RldXINCg0KYGBge3J9DQojIENyw6llciB1biBkYXRhIGZyYW1lIGF2ZWMgMyB2YXJpYWJsZXMgKDIgdmVjdGV1cnMgbnVtw6lyaXF1ZXMgZXQgMSB2ZWN0ZXVyIHRleHR1ZWwpIGF2ZWMgbGEgZm9uY3Rpb24gZGF0YS5mcmFtZSgpDQphZ2UgPC0gYyg0NSw2NSwyMiwzOCw1NCwzMSwyOSw0NCw1Niw2NykgDQpwb2lkcyA8LSBjKDE1MCwxMjUsMjEwLDE3NSwxMTAsMTgwLDEzMCwxNTUsMTkwLDEyMCkNCnNleGUgPC0gYygiSCIsIkYiLCJGIiwiSCIsIkgiLCJGIiwiRiIsIkgiLCJGIiwiSCIpDQpiZCA8LSBkYXRhLmZyYW1lKGFnZSwgc2V4ZSwgcG9pZHMpDQpgYGANCg0KYGBge3J9DQpiZCANCmBgYA0KDQoNCjwvZGl2Pg0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("3-objets.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
