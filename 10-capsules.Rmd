@@ -1,22 +1,18 @@
 ---
-title: "Premiers pas avec R     -> Site d'accompagnement"
-site: distill::distill_website
-description: Caroline Patenaude, Bibliothèque des lettres et sciences humaines
+title: "Capsules"
+author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    highlight: pygments
+    theme: lumen
 ---
 
 
-*Consultez et téléchargez les scripts utilisés dans le cadre des capsules de formation sous forme de documents Rmarkdown*
-
-
-**Contenu des capsules de formation**
-
-<div class = "right">
-
-<img src="markdown/colab2.png" width="275px">
-
-</div>
 
 - **Capsule préambule**: L'environnement *Google Colab*
+
+<iframe width="350" height="280" src="https://www.youtube.com/embed/6A5EpqqDOdk" frameborder="0" allowfullscreen></iframe>
 
 - **Première capsule**: Entrée en matière - Qu'est-ce que R? 
 
@@ -33,18 +29,3 @@ description: Caroline Patenaude, Bibliothèque des lettres et sciences humaines
 - **Capsule sept**: L'analyse et les tests statistiques de base
 
 - **Capsule huit**: Les graphiques univariés et bivariés
-
-  
-
-
-<style>
-.right {
-  position: absolute;
-
-  padding-top: 60px!important;
-  padding-right: 5px;!important;
-  padding-left: 79%;
-
-}
-</style>
-
