@@ -4,11 +4,11 @@ author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et 
 date: "`r Sys.Date()`"
 output: 
   html_document: 
-    highlight: pygments
-    theme: lumen
+    theme: cerulean
+    highlight: haddock
     toc: true
     toc_float: 
-      collapsed: false
+      collapsed: true
       Smooth_scroll: true
     toc_depth: 2
     code_download: true
@@ -76,7 +76,7 @@ predict(mod)                    # calculer des valeurs prédites à partir d'un 
 plot(mod)                       # et nombreuses autres fonctions graphiques  
 ```
 
- En utilisant la fonction names(mod) et en sélectionnant individuellement le nom de l'élément avec l'opérateur $:
+En utilisant la fonction names(mod) et en sélectionnant individuellement le nom de l'élément avec l'opérateur $:
  
 ```{r, eval=FALSE}
 mod <- lm(y ~ x) # Créer son objet modèle
@@ -104,7 +104,7 @@ bd$sport <- relevel(bd$sport, ref = "Oui")
 
 <br>
 
-# 2. Intervalle de confiance
+## 2. Intervalle de confiance
 
 ```{r}
 # Intervalle de confiance d’une proportion
@@ -133,7 +133,7 @@ t.test(bd$age, conf.level=.99)
 
 <br>
 
-# 3.  Test du Khi-carré
+## 3.  Test du Khi-carré
 
 ```{r}
 # Passe la table comme argument à la fonction chisq.test() (Module questionr)
@@ -166,7 +166,7 @@ chisq.residuals(tab)
 
 <br>
 
-# 4. Test de fisher
+## 4. Test de fisher
 
 ```{r}
 fisher.test(bd$sport, bd$sexe)
@@ -174,7 +174,7 @@ fisher.test(bd$sport, bd$sexe)
 
 <br>
 
-# 5. Différence de moyennes entre deux groupes (Test T)
+## 5. Différence de moyennes entre deux groupes (Test T)
 
 *Vérifier si les moyennes d'une variable quantitative de deux groupes sont statistiquement différentes*
 
@@ -225,7 +225,7 @@ t.test(age ~ sport, data=bd, var.equal= TRUE)
 
 <br>
 
-# 6. Test Wilcoxon/Mann-Whitney (test non-paramétrique parmi d'autres)
+## 6. Test Wilcoxon/Mann-Whitney (test non-paramétrique parmi d'autres)
 
 ```{r}
 wilcox.test(age ~ sport, data = bd)
@@ -233,7 +233,7 @@ wilcox.test(age ~ sport, data = bd)
 
 <br>
 
-# 7. Différence de moyenne pour plus de deux groupes (ANOVA)
+## 7. Différence de moyenne pour plus de deux groupes (ANOVA)
 *Évaluer la relation entre une variable quantitative et une variable qualitative avec plus de deux modalités*
 
 ```{r}
@@ -301,7 +301,7 @@ anova(mod.lm)
 
 <br>
 
-# 8. Corrélations
+## 8. Corrélations
 
 ```{r}
 # Fonction cor()
@@ -324,7 +324,7 @@ cor.test(bd$age, bd$heures.tv)
 
 <br>
 
-# 9. Régression linéaire
+## 9. Régression linéaire
 *Prédire la valeur d'une variable dépendante continue sur la base des valeurs de variables indépendantes*
 
 **Fonction lm()**
@@ -376,7 +376,7 @@ head(resid(mod1.lm))
 
 <br>
 
-# 10. Régression logistique binaire
+## 10. Régression logistique binaire
 
 *Prédire une variable dépendante dichotomique sur la base des valeurs de variables indépendantes*
 
@@ -409,7 +409,7 @@ exp(coef(mod.reg))
 
 <br>
 
-# 11. Visualiser les résultats d'un modèle
+## 11. Visualiser les résultats d'un modèle
 
 ```{r}
 # Résultat de l'ANOVA

@@ -4,8 +4,8 @@ author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et 
 date: "`r Sys.Date()`"
 output: 
   html_document: 
-    highlight: pygments
-    theme: lumen
+    theme: cerulean
+    highlight: haddock
     toc: true
     toc_float: 
       collapsed: false
@@ -18,7 +18,8 @@ css: hide.css
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Télécharger et charger les packages utilisés
+**Télécharger et charger les packages utilisés**    
+
 
 ```{r, eval=FALSE}
 # Toujours débuter son script par le code d'installation des packages nécessaires.
@@ -40,7 +41,8 @@ install.packages("package", dependencies=TRUE)
 
 <br>
 
-## Gestion de packages
+**Gestion de packages**  
+
 
 ```{r, eval=FALSE}
 ## Voir les modules téléchargés (chargés ou non)
@@ -64,13 +66,8 @@ detach(package:NomModule)     # pour éviter les conflits entre fonctions du mê
 
 <br>
 
-# 1. Les objets
+# 1. Les objets  
 
-<center>
-
-![](markdown/objet.jpg)
-
-</center>  
 
 ```{r}
 # R comme une grosse calculatrice
@@ -78,13 +75,27 @@ detach(package:NomModule)     # pour éviter les conflits entre fonctions du mê
 2+2
 ```
 
-* Mais l’intérêt du langage est que l’on stocke les valeurs, résultats, les tableaux, fonctions, … dans des *objets* qui pourront être réutilisés dans d’autres objets, fonctions, analyses.
+<br>  
 
-<center>
 
-![](markdown/assignation.jpg)
+```{r, echo=FALSE}
+knitr::include_graphics("markdown/objet.jpg")
+```  
 
-</center>  
+
+ 
+* Mais l’intérêt du langage est que l’on stocke les valeurs, résultats, les tableaux, fonctions, … dans des *objets* qui pourront être réutilisés dans d’autres objets, fonctions, analyses.  
+
+
+
+<br>  
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("markdown/assignation.jpg")
+```  
+
+
 
 <div class="fold o">
 
@@ -104,7 +115,7 @@ moyenne <- (12+15+20)/3
 moyenne  # Utilisation implicite de la fonction print() 
 ```
 
-Les noms d’objets:
+**Les noms d’objets**:
 
 - Peuvent contenir des chiffres, lettres et caractères _ et .
 - Doivent commencer par une lettre, pas un chiffre.
@@ -112,19 +123,25 @@ Les noms d’objets:
 - En principe il faut utiliser des noms significatifs, en pratique on utilise souvent des noms minimalistes pour faciliter la réutilisation.
 - Certains noms courts sont réservés (max, min, c, q, t, …).
 
+<br>  
+
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("markdown/boite3.png")
+```  
+
+  
+  
+**Un objet est donc une boite dans laquelle on peut placer un chiffre, un mot, un jeu de données d'un million de répondants, une fonction, un graphique...**  
+
+
 <br>
 
-**Un objet est donc une boite dans laquelle on peut placer un chiffre, un mot, un jeu de données d'un million de répondants, une fonction, un graphique...**
 
-<br>
+# 2. Les opérateurs  
 
-<center>
 
-![](markdown/boite3.png)
-
-</center>
-
-# 2. Les opérateurs
 
 *  Opérateurs d'assignation: **<-**, = , ->
 *  Opérateurs de sélection: [], [[]], $, :
@@ -134,18 +151,26 @@ Les noms d’objets:
 
 <br>
 
-# 3. Les fonctions
+# 3. Les fonctions  
+
 
 *  Permettent d’effectuer des tâches prédéfinies comme des analyses, graphiques, calculs, … 
 *  Chaque fonction a un nom et plusieurs fonctions peuvent permettre d'effectuer la même tâche: Par exemple pour faire une correlation, on retrouve les fonctions cor(), cor.test(), ...
 *  On appel une fonction en la nommant et on contrôle son comportement en paramétrant ses arguments
 *  On peut imbriquer les fonctions les unes dans les autres avec des parenthèses.
 
-<center>
+<br>  
 
-![](markdown/fonction.jpg)
 
-</center>
+```{r, echo=FALSE}
+
+knitr::include_graphics("markdown/fonction.jpg")
+```  
+
+
+
+<br>  
+
 
 ```{r}
 # Créer un nouvel objet nommé "age" composé d’une série de 5 nombres avec la fonction c() (combiner)
@@ -169,7 +194,8 @@ round(mean(age), 0)
 
 <br>
 
-# 4. Les arguments
+# 4. Les arguments  
+
 
 * Chaque fonction possède une liste plus ou moins longue d’arguments (paramètres ou options) permettant de paramétrer son fonctionnement.
 * Certains arguments ont une valeur par défaut. Si ces valeurs nous conviennent, pas besoin de les indiquer.
@@ -202,10 +228,19 @@ mean(age, na.rm=TRUE)
 
 <br>
 
-# 5. Les types d'objets
+# 5. Les types d'objets  
+
 
 - Les objets sont caractérisés par **différentes structures**
 - On retrouve **5 différents types de contenants** ayant chacun leurs propriétés 
+
+<br>   
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("markdown/types.jpg")
+```
+
 
 1.   **Vecteur**
 2.   Liste
@@ -213,14 +248,12 @@ mean(age, na.rm=TRUE)
 4.   Arrays (3d)
 5.   **Dataframe (tableaux)**
 
-<center>
-![https://devopedia.org/r-data-structures](markdown/types.jpg)
 
-</center>
+<br>  
 
-<br>
 
-## 5.1. Vecteurs
+## 5.1. Vecteurs  
+
 
 Définition: 
 
@@ -269,7 +302,8 @@ IMC - mean(IMC) # Calculer la différence face à la moyenne
 
 <br>
 
-## 5.2. Facteurs 
+## 5.2. Facteurs   
+
 
 * Définition: vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.
 * Les modalités de la variable correspondent à des "niveaux" (*levels*) uniques et fixes, ie impossible d’assigner une valeur qui n’a pas été préalablement définie comme une des modalités.
@@ -288,7 +322,8 @@ str(sexe)
 
 <br>
 
-## 5.3. Dataframes
+## 5.3. Dataframes  
+
 
 *  Définition: Tableau de données pouvant regrouper des vecteurs de différents types (numériques et textuels)
 * Structurellement, le dataframe est une **liste** composées de **vecteurs nommés** (noms de variables uniques) de même **longueur** (nombre d'observations) mais qui peuvent être de **modes différents** (variables numériques, textuelles)

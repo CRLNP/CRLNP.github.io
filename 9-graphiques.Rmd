@@ -4,8 +4,8 @@ author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et 
 date: "`r Sys.Date()`"
 output: 
   html_document: 
-    highlight: pygments
-    theme: lumen
+    theme: cerulean
+    highlight: haddock
     toc: true
     toc_float: 
       collapsed: false
