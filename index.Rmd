@@ -19,7 +19,7 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 
 
 
-- [Capsule préambule](https://www.google.com "Capsule préambule sur Youtube"): L'environnement *Google Colab*
+- [Capsule préambule](https://www.youtube.com/watch?v=66GQA9pa9i4&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=1 "Capsule préambule sur Youtube"): L'environnement *Google Colab*
 
 - [Capsule 1](https://www.youtube.com/watch?v=2XiKWWJmMRg&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=2 "Capsule 1 sur Youtube"): Entrée en matière - Qu'est-ce que R? 
 
@@ -33,12 +33,12 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 
 - [Capsule 6](https://www.youtube.com/watch?v=-cQp_cy2kII&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=7 "Capsule 6 sur Youtube"): Les statistiques descriptives
 
-- [Capsule 7](https://www.google.com "Capsule 7 sur Youtube"): L'analyse et les tests statistiques de base
+- [Capsule 7](https://www.youtube.com/watch?v=TxesTeeYbuc&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=8 "Capsule 7 sur Youtube"): L'analyse et les tests statistiques de base
 
-- [Capsule 8](https://www.youtube.com/watch?v=3tNLUnWzRTI&feature=youtu.be "Capsule 8 sur Youtube"): Les graphiques univariés et bivariés 
+- [Capsule 8](https://www.youtube.com/watch?v=3tNLUnWzRTI&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=9 "Capsule 8 sur Youtube"): Les graphiques univariés et bivariés 
 
 
- > Ces capsules ont été développées et réalisées dans le cadre du cours en ligne **Introduction à la science des données sociales**, développé par le professeur [Éric Lacourse](https://socio.umontreal.ca/repertoire-departement/professeurs/professeur/in/in14715/sg/%C3%89ric%20Lacourse/), qui sera offert via la plateforme EDUlib de l'Université de Montréal à partir de janvier 2021.
+ > Ces capsules ont été développées et réalisées dans le cadre du cours en ligne **Introduction à la science des données sociales**, développé par le professeur [Éric Lacourse](https://socio.umontreal.ca/repertoire-departement/professeurs/professeur/in/in14715/sg/%C3%89ric%20Lacourse/), qui sera offert via la plateforme [EDUlib](https://catalogue.edulib.org/fr/institutions/umontreal/) de l'Université de Montréal à partir de janvier 2021.
 
 <style>
 
