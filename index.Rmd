@@ -4,7 +4,7 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 ---
 
 
-*Consultez et téléchargez les scripts utilisés dans le [ capsules de formation](https://www.youtube.com/watch?v=66GQA9pa9i4&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6) sous forme de documents Rmarkdown*
+*Consultez et téléchargez les scripts utilisés dans le cadre des [capsules de formation](https://www.youtube.com/watch?v=66GQA9pa9i4&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6) sous forme de documents Rmarkdown*
 
 
 
