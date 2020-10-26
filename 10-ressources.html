@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Capsule 10: Ressources</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Intro R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="1-preambule-colab.html">Preambule</a>
+</li>
+<li>
+  <a href="2-langage-r.html">Qu'est-ce que R?</a>
+</li>
+<li>
+  <a href="3-objets.html">Objets</a>
+</li>
+<li>
+  <a href="4-explorer.html">Explorer</a>
+</li>
+<li>
+  <a href="5-indexation.html">Indexation</a>
+</li>
+<li>
+  <a href="6-manipuler.html">Manipuler</a>
+</li>
+<li>
+  <a href="7-statistiques-descriptives.html">Statistiques-descriptives</a>
+</li>
+<li>
+  <a href="8-analyses.html">Analyses</a>
+</li>
+<li>
+  <a href="9-graphiques.html">Graphiques</a>
+</li>
+<li>
+  <a href="10-ressources.html">Liens</a>
+</li>
+<li>
+  <a href="https://github.com/CRLNP/CRLNP.github.io">
+    <span class="fab fa fab fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Capsule 10: Ressources</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="ressources-utiles" class="section level2">
+<h2>Ressources utiles</h2>
+<p><br></p>
+<ul>
+<li>Joseph Larmarange et als, 2020, <a href="https://larmarange.github.io/analyse-R/">Analyse-R Introduction à l’analyse d’enquêtes avec R et RStudio</a></li>
+<li>Julien Barnier, 2020, <a href="https://juba.github.io/tidyverse/">Introduction à R et au tidyverse</a></li>
+<li>Rebaudo, 2019, <a href="https://myrbookfr.netlify.com/myRBook_FR.pdf">Se former au logiciel R : initiation et perfectionnement</a></li>
+<li>Jean-Herman Guay, <a href="https://atrium.umontreal.ca/primo-explore/fulldisplay?docid=UM-ALEPH002264738&amp;context=L&amp;vid=UM&amp;search_scope=Tout_sauf_articles&amp;isFrbr=true&amp;tab=default_tab&amp;lang=fr_FR">Statistiques en sciences humaines avec R</a> <a href="http://dimension.usherbrooke.ca/dimension/v2ssrcadre.html">+ Site pédagogique pour les usagers francophones de R</a></li>
+<li><a href="https://mgimond.github.io/ES218/index.html">Manny Gimond, 2020, Exploratory Data Analysis in R</a></li>
+<li><a href="http://pbil.univ-lyon1.fr/R/pdf/lang04.pdf">Jean R. Lobry, 2018, Graphiques de base</a></li>
+<li><a href="https://atrium.umontreal.ca/primo-explore/search?vid=UM&amp;lang=fr_FR&amp;sortby=rank&amp;mode=advanced">Catalogue Sofia - Sujet: R Langage de programmation</a></li>
+<li><a href="https://cran.r-project.org/manuals.html">The R Manuals (Guides de base)</a></li>
+<li><a href="https://cran.r-project.org/web/views/">CRAN Task Views (ressources spécialisées selon les “disciplines”)</a></li>
+<li><a href="https://www.statmethods.net/">Quick-R (pratique pour les fonctions)</a></li>
+<li><a href="https://www.r-bloggers.com/">R Bloggers (se tenir informé)</a></li>
+<li><a href="https://rstudio.com/resources/cheatsheets/">RStudio Cheat Sheets</a></li>
+<li><a href="http://www.rdocumentation.org/">RDocumentation</a></li>
+<li><a href="https://r4ds.had.co.nz/">R for Data Science</a></li>
+<li>Poser des questions: <a href="https://stackoverflow.com/" class="uri">https://stackoverflow.com/</a> …</li>
+</ul>
+<p><br></p>
+<div id="interfaces-graphiques" class="section level3">
+<h3>Interfaces graphiques</h3>
+<p><br> - John Fox, 2005, <a href="https://www.jstatsoft.org/article/view/v014i09">“The R Commander: A Basic-Statistics Graphical User Interface to R”</a>, Journal of Statistical Software, Volume 14, Issue 9.</p>
+<p><img src="markdown/rcommander.jpg" width="60%" /></p>
+<p><em>Pour installer <a href="https://cran.r-project.org/web/packages/Rcmdr/index.html"><code>Rcommander</code></a>, préférable d’utiliser le <strong>R</strong> de base et non <strong>RStudio</strong> et exécuter la commande: install.packages(“Rcmdr”) </em></p>
+<p><br></p>
+<blockquote>
+<p>“I think that serious prospective users of R should be encouraged to use the command-line interface along with a script editor of some sort.” John Fox</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li>Application <a href="https://www.jstatsoft.org/article/view/v014i09">Bluesky</a> : R + interface graphique similaire à SPSS.</li>
+</ul>
+<p><img src="markdown/bluesky.jpg" width="60%" /></p>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgMTA6IFJlc3NvdXJjZXMiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50OiANCiAgICB0aGVtZTogY2VydWxlYW4NCiAgICBoaWdobGlnaHQ6IGhhZGRvY2sNCiAgICB0b2M6IHRydWUNCiAgICB0b2NfZmxvYXQ6IA0KICAgICAgY29sbGFwc2VkOiB0cnVlDQogICAgICBTbW9vdGhfc2Nyb2xsOiB0cnVlDQogICAgdG9jX2RlcHRoOiAzDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZQ0KLS0tDQoNCjxicj4NCg0KIyMgUmVzc291cmNlcyB1dGlsZXMNCg0KPGJyPg0KDQotIEpvc2VwaCBMYXJtYXJhbmdlIGV0IGFscywgMjAyMCwgW0FuYWx5c2UtUiBJbnRyb2R1Y3Rpb24gw6AgbOKAmWFuYWx5c2UgZOKAmWVucXXDqnRlcyBhdmVjIFIgZXQgUlN0dWRpb10oaHR0cHM6Ly9sYXJtYXJhbmdlLmdpdGh1Yi5pby9hbmFseXNlLVIvICkNCi0gSnVsaWVuIEJhcm5pZXIsIDIwMjAsIFtJbnRyb2R1Y3Rpb24gw6AgUiBldCBhdSB0aWR5dmVyc2VdKGh0dHBzOi8vanViYS5naXRodWIuaW8vdGlkeXZlcnNlLykNCi0gUmViYXVkbywgMjAxOSwgDQpbU2UgZm9ybWVyIGF1IGxvZ2ljaWVsIFIgOiBpbml0aWF0aW9uIGV0IHBlcmZlY3Rpb25uZW1lbnRdKGh0dHBzOi8vbXlyYm9va2ZyLm5ldGxpZnkuY29tL215UkJvb2tfRlIucGRmKQ0KLSBKZWFuLUhlcm1hbiBHdWF5LCBbU3RhdGlzdGlxdWVzIGVuIHNjaWVuY2VzIGh1bWFpbmVzIGF2ZWMgUl0oaHR0cHM6Ly9hdHJpdW0udW1vbnRyZWFsLmNhL3ByaW1vLWV4cGxvcmUvZnVsbGRpc3BsYXk/ZG9jaWQ9VU0tQUxFUEgwMDIyNjQ3MzgmY29udGV4dD1MJnZpZD1VTSZzZWFyY2hfc2NvcGU9VG91dF9zYXVmX2FydGljbGVzJmlzRnJicj10cnVlJnRhYj1kZWZhdWx0X3RhYiZsYW5nPWZyX0ZSKQ0KICAgIFsrIFNpdGUgcMOpZGFnb2dpcXVlIHBvdXIgbGVzIHVzYWdlcnMgZnJhbmNvcGhvbmVzIGRlIFJdKGh0dHA6Ly9kaW1lbnNpb24udXNoZXJicm9va2UuY2EvZGltZW5zaW9uL3Yyc3NyY2FkcmUuaHRtbCkNCi0gW01hbm55IEdpbW9uZCwgMjAyMCwgRXhwbG9yYXRvcnkgRGF0YSBBbmFseXNpcyBpbiBSXShodHRwczovL21naW1vbmQuZ2l0aHViLmlvL0VTMjE4L2luZGV4Lmh0bWwpDQotIFtKZWFuIFIuIExvYnJ5LCAyMDE4LCBHcmFwaGlxdWVzIGRlIGJhc2VdKGh0dHA6Ly9wYmlsLnVuaXYtbHlvbjEuZnIvUi9wZGYvbGFuZzA0LnBkZikNCi0gW0NhdGFsb2d1ZSBTb2ZpYSAtICBTdWpldDogUiBMYW5nYWdlIGRlIHByb2dyYW1tYXRpb25dKGh0dHBzOi8vYXRyaXVtLnVtb250cmVhbC5jYS9wcmltby1leHBsb3JlL3NlYXJjaD92aWQ9VU0mbGFuZz1mcl9GUiZzb3J0Ynk9cmFuayZtb2RlPWFkdmFuY2VkKQ0KLSBbVGhlIFIgTWFudWFscyAoR3VpZGVzIGRlIGJhc2UpXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy9tYW51YWxzLmh0bWwpDQotIFtDUkFOIFRhc2sgVmlld3MgKHJlc3NvdXJjZXMgc3DDqWNpYWxpc8OpZXMgc2Vsb24gbGVzICJkaXNjaXBsaW5lcyIpXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy93ZWIvdmlld3MvKQ0KLSBbUXVpY2stUiAocHJhdGlxdWUgcG91ciBsZXMgZm9uY3Rpb25zKV0oaHR0cHM6Ly93d3cuc3RhdG1ldGhvZHMubmV0LykNCi0gW1IgQmxvZ2dlcnMgKHNlIHRlbmlyIGluZm9ybcOpKV0oaHR0cHM6Ly93d3cuci1ibG9nZ2Vycy5jb20vKQ0KLSBbUlN0dWRpbyBDaGVhdCBTaGVldHNdKGh0dHBzOi8vcnN0dWRpby5jb20vcmVzb3VyY2VzL2NoZWF0c2hlZXRzLykNCi0gW1JEb2N1bWVudGF0aW9uXShodHRwOi8vd3d3LnJkb2N1bWVudGF0aW9uLm9yZy8pDQotIFtSIGZvciBEYXRhIFNjaWVuY2VdKGh0dHBzOi8vcjRkcy5oYWQuY28ubnovKQ0KLSBQb3NlciBkZXMgcXVlc3Rpb25zOiBodHRwczovL3N0YWNrb3ZlcmZsb3cuY29tLyAuLi4NCg0KPGJyPg0KDQojIyMgSW50ZXJmYWNlcyBncmFwaGlxdWVzDQoNCjxicj4NCi0gIEpvaG4gRm94LCAyMDA1LCBbIlRoZSBSIENvbW1hbmRlcjogQSBCYXNpYy1TdGF0aXN0aWNzIEdyYXBoaWNhbCBVc2VyIEludGVyZmFjZSB0byBSIl0oaHR0cHM6Ly93d3cuanN0YXRzb2Z0Lm9yZy9hcnRpY2xlL3ZpZXcvdjAxNGkwOSksIEpvdXJuYWwgb2YgU3RhdGlzdGljYWwgU29mdHdhcmUsIFZvbHVtZSAxNCwgSXNzdWUgOS4gDQoNCmBgYHtyLCBlY2hvID0gRkFMU0UsICBvdXQud2lkdGggPSAiNjAlIn0NCmtuaXRyOjppbmNsdWRlX2dyYXBoaWNzKCJtYXJrZG93bi9yY29tbWFuZGVyLmpwZyIpIA0KYGBgDQoNCipQb3VyIGluc3RhbGxlciBbYFJjb21tYW5kZXJgXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZy93ZWIvcGFja2FnZXMvUmNtZHIvaW5kZXguaHRtbCksIHByw6lmw6lyYWJsZSBk4oCZdXRpbGlzZXIgbGUgKipSKiogZGUgYmFzZSBldCBub24gKipSU3R1ZGlvKiogZXQgZXjDqWN1dGVyIGxhIGNvbW1hbmRlOiBpbnN0YWxsLnBhY2thZ2VzKCJSY21kciIpICAqDQoNCjxicj4NCg0KPiAiSSB0aGluayB0aGF0IHNlcmlvdXMgcHJvc3BlY3RpdmUgdXNlcnMgb2YgUiBzaG91bGQgYmUgZW5jb3VyYWdlZCB0byB1c2UgdGhlIGNvbW1hbmQtbGluZSBpbnRlcmZhY2UgYWxvbmcgd2l0aCBhIHNjcmlwdCBlZGl0b3Igb2Ygc29tZSBzb3J0LiINCj4gSm9obiBGb3gNCg0KPGJyPg0KDQotIEFwcGxpY2F0aW9uIFtCbHVlc2t5XShodHRwczovL3d3dy5qc3RhdHNvZnQub3JnL2FydGljbGUvdmlldy92MDE0aTA5KSA6IFIgKyBpbnRlcmZhY2UgZ3JhcGhpcXVlIHNpbWlsYWlyZSDDoCBTUFNTLg0KDQpgYGB7ciwgZWNobyA9IEZBTFNFLCAgb3V0LndpZHRoID0gIjYwJSJ9DQprbml0cjo6aW5jbHVkZV9ncmFwaGljcygibWFya2Rvd24vYmx1ZXNreS5qcGciKSANCmBgYA0K</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("10-ressources.Rmd");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

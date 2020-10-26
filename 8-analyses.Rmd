@@ -1,7 +1,5 @@
 ---
 title: "Capsule 7: Tests statistiques"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -14,6 +12,12 @@ output:
     code_download: true
 css: hide.css
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -46,7 +50,7 @@ bd <- hdv2003
 
 * On retrouve une multitude de modules dédiés aux méthodes statistiques (comme stats, MASS, FactoMineR, plm, glm). 
 * La même méthode peut se trouver avec variantes dans plusieurs modules. 
-* Les exemples ci-dessous proviennent principalement du module stats (module par défaut) où l'on retrouve de nombreuses fonctions pour différents types d'analyse
+* Les exemples ci-dessous proviennent principalement du module stats (module par défaut) où l'on retrouve de nombreuses fonctions pour différents types d'analyse.
 
 <br>
 
@@ -57,8 +61,8 @@ mod <- nom.test(VD ~ VI)
 ```
 
 * Souvent utilisé dans les modèles d'analyse (régressions...) et les graphiques.
-* Peut s'interpréter comme en "fonction de...": variable dépendante (effet) en fonction (~) de la var indépendante (cause)
-* Toutes les fonctions n'acceptent pas la notation formule, mais est utilisé pour la plupart des modèles d'analyse
+* Peut s'interpréter comme en "fonction de...": variable dépendante (effet) en fonction (~) de la var indépendante (cause).
+* Toutes les fonctions n'acceptent pas la notation formule, mais est utilisée pour la plupart des modèles d'analyse.
 * On stocke l'analyse dans un objet qui contiendra les résultats qui, selon l'analyse, inclueront un ensemble d'éléments d'information auxquels on pourra accéder de deux façons:
 
 En passant notre objet-modèle à différentes fonctions génériques (selon le type de test):
@@ -76,14 +80,17 @@ predict(mod)                    # calculer des valeurs prédites à partir d'un 
 plot(mod)                       # et nombreuses autres fonctions graphiques  
 ```
 
-En utilisant la fonction names(mod) et en sélectionnant individuellement le nom de l'élément avec l'opérateur $:
+En utilisant la fonction names(NomObjet) et en sélectionnant individuellement le nom de l'élément avec l'opérateur $:
  
 ```{r, eval=FALSE}
 mod <- lm(y ~ x) # Créer son objet modèle
 names(mod)       # Voir les éléments du résultat
 mod$coefficients # Sélectionner l'élément individuel
 ```
- *À noter: par défaut les résultats sont présentés selon la notation scientifique. Pour la désactiver utiliser l'instruction: options(scipen = 999)*
+ 
+<br>
+ 
+ **À noter: par défaut les résultats sont présentés selon la notation scientifique. Pour la désactiver utiliser l'instruction: options(scipen = 999). Pour la réactiver: options(scipen = 0)**
  
 <br>
 
@@ -110,16 +117,15 @@ bd$sport <- relevel(bd$sport, ref = "Oui")
 # Intervalle de confiance d’une proportion
 
 # fonction prop.test
-prop.test(table(bd$sport))
-
 # Calcul l'intervalle pour la première catégorie du tableau
+prop.test(table(bd$sport))
 ```
 
 ```{r}
-options(scipen = 999)
-prop.test(table(relevel(bd$sport, "Oui")))
+options(scipen = 999) # désactiver la notation scientifique
 
 # Modifier la catégorie de référence avec la fonction relevel directement dans la fonction table()
+prop.test(table(relevel(bd$sport, "Oui")))
 ```
 
 
@@ -136,7 +142,7 @@ t.test(bd$age, conf.level=.99)
 ## 3.  Test du Khi-carré
 
 ```{r}
-# Passe la table comme argument à la fonction chisq.test() (Module questionr)
+# Passe les variables comme argument à la fonction chisq.test() (Module questionr)
 
 mod.chi <- chisq.test(bd$sport, bd$sexe) 
 
@@ -234,13 +240,13 @@ wilcox.test(age ~ sport, data = bd)
 <br>
 
 ## 7. Différence de moyenne pour plus de deux groupes (ANOVA)
+
 *Évaluer la relation entre une variable quantitative et une variable qualitative avec plus de deux modalités*
 
 ```{r}
 # Explorer les statistiques descriptives avec la fonction tapply()
-tapply(bd$heures.tv, bd$occup, mean, na.rm=T)
-
 # Vérifier si les moyennes semblent différentes entre les groupes
+tapply(bd$heures.tv, bd$occup, mean, na.rm=T)
 ```
 
 
@@ -327,9 +333,9 @@ cor.test(bd$age, bd$heures.tv)
 ## 9. Régression linéaire
 *Prédire la valeur d'une variable dépendante continue sur la base des valeurs de variables indépendantes*
 
-**Fonction lm()**
-
 ```{r}
+# Fonction lm()
+
 # Quelles variables prédisent les heures de télé écoutées
 
 mod1.lm <- lm(heures.tv ~ occup + nivetud + sexe, data=bd) 
@@ -429,4 +435,9 @@ plot(allEffects(mod1.lm))
 
 plot(Effect("occup", mod=mod1.lm))
 ```
+
+<br>
+
+***
+
 </div>

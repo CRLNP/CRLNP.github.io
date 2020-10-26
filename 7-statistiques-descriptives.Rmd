@@ -1,7 +1,5 @@
 ---
 title: "Capsule 6: Statistiques descriptives"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -11,15 +9,22 @@ output:
       collapsed: true
       Smooth_scroll: true
     toc_depth: 3
-code_download: true
+    code_download: true
 css: hide.css
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 <script src="hideOutput.js"></script>
+
 
 ```{r}
 # Chargement des modules nécessaires
@@ -44,8 +49,6 @@ bd <- hdv2003
 
 <br>
 
-# Statistiques descriptives
-<br>
 
 # 1. Statistiques descriptives univariées
 
@@ -311,11 +314,15 @@ tapply(bd$relig, bd$sexe, freq)
 ### 2.3. Fonction xtabs - Notation formule
 
 * Repose sur l'utilisation de la notation formule qui définissent les relations entre les variables : NomFonction(VD ~ VI).
-* Puisque le tableau croisé n'attribue pas de rôle spécifique aux variables, on place les deux variables après le tilde: ~ x + y).
+* Puisque le tableau croisé n'attribue pas de rôle spécifique aux variables, on place les deux variables après le tilde: ~ x + y.
 * On indique le nom du tableau après la virgule.
 
 ```{r}
 xtabs (~ sexe + occup, bd)
 ```
+
+<br>
+
+***
 
 </div>

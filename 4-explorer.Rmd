@@ -1,7 +1,5 @@
 ---
 title: "Capsule 3: Importer et explorer un dataframe"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -14,6 +12,12 @@ output:
     code_download: true
 css: hide.css
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -106,7 +110,7 @@ data(package = .packages(all.available = TRUE))
 
 <br>
 
-*   Plusieurs modules ont été développés spécifiquement pour importer et travailler avec des données publiques 
+Plusieurs modules ont été développés spécifiquement pour importer et travailler avec des données publiques 
 
 *   [WDI](https://cran.r-project.org/web/packages/WDI/index.html) (Indicateurs de développement de la Banque mondiale)
 *   [cancensus](https://cran.r-project.org/web/packages/cancensus/vignettes/cancensus.html) (Recensements canadiens)
@@ -171,7 +175,7 @@ bd
 
 
 ```{r}
-head(bd) # visualiser les 6 premières observations - nombre peut être modifié (bd, 4)
+head(bd) # visualiser les 6 premières observations - nombre peut être modifié en ajoutant une virgule (bd, 4)
 ```
 
 
@@ -234,4 +238,9 @@ str(bd)    # description plus détaillée de la structure du tableau
 ```{r}
 describe(bd) # Module questionr - description plus détaillée des variables du tableau
 ```
+
+<br>
+
+***
+
 </div>

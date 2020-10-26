@@ -1,7 +1,5 @@
 ---
 title: "Capsule 1: Qu'est-ce que R?"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -13,6 +11,12 @@ output:
     toc_depth: 3
     code_download: true
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -30,7 +34,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - Définir et manipuler différents types d'objets avec des opérateurs.
 
 
-- Importer et manipuler un jeu de données
+- Importer et manipuler un jeu de données.
 
 
 - Explorer certaines fonctions de statistiques descriptives, d'analyse et de graphiques de base.
@@ -40,27 +44,13 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Contenu des capsules de formation
 
 
-- **Première capsule**: Entrée en matière - Pourquoi R? 
-
-
+- **Première capsule**: Entrée en matière - Qu'est-ce que R? 
 - **Capsule deux**: Introduction au langage R (objets, fonctions et arguments)
-
-
 - **Capsule trois**: Importation et exploration d'un tableau de données
-
-
 - **Capsule quatre**: L'indexation (sélection de variables et création de sous-groupes)
-
-
 - **Capsule cinq**: La manipulation de variables qualitatives et quantitatives (renommer, recoder...)
-
-
 - **Capsule six**: Les statistiques descriptives
-
-
 - **Capsule sept**: Les tests statistiques de base
-
-
 - **Capsule huit**: Les graphiques univariés et bivariés
 
 <br>
@@ -82,7 +72,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## 2. Quelques bémols  
 
 - Plus un langage de programmation qu’un logiciel.
-- Ne manipule pas directement les données comme SPSS ou excel, les fichiers de données sont des objets en mémoire.
+- Ne manipule pas directement les données comme SPSS ou excel, les fichiers de données sont des **objets** en mémoire.
 - L’affichage des résultats est assez minimaliste.
 - Prolifération des fonctions (*packages*) peut alourdir l’apprentissage.
 - Développement rapide fait que la documentation laisse parfois à désirer.
@@ -93,19 +83,28 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## 3. R, RStudio et autres interfaces...  
 
-- Interface du **R** de base pas très intuitive donc peu utilisée telle quelle  
+- Interface du **R** de base pas très intuitive donc peu utilisée telle quelle.  
 
 <center>
 
 ![](markdown/screenshotR.png)
 
+[R](https://cran.r-project.org) 
+
 </center>  
 
-- Installe généralement en plus un IDE,  *Integrated Development Environment*, comme [**RStudio**](https://www.rstudio.com/products/rstudio/download/#download) :  éditeur de script - environnement beaucoup plus convivial qui facilite le travail (gestion des fichiers, objets et commandes, historique de fonctions, autocomplétion,…)
+- Installe généralement en plus un IDE,  *Integrated Development Environment*, comme [**RStudio**](https://www.rstudio.com/products/rstudio/download/#download) :  éditeur de script - environnement beaucoup plus convivial qui facilite le travail (gestion des fichiers, objets et commandes, historique de fonctions, autocomplétion, création de ["projets"](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
 - **Sans aucune installation nécessaire, Colab fonctionne un peu comme un IDE en ligne, dans lequel on peut utiliser le langage R comme dans R ou RStudio**.
 
-
 <br>
+
+<center>
+
+![](markdown/interface.jpg){width=80%}
+
+[RStudio](https://rstudio.com/) 
+
+</center>  
 
 ## 4. Installation  
 
@@ -115,17 +114,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 3. Télécharger et installer ("charger") des *packages* dans **RStudio**.
 
-<br>
+<br>   
 
+### Avantage de travailler dans Colab!  
 
-### Avantage de travailler dans Colab!
+![](markdown/xkcd_package.png){width=60%}
 
+[xkcd](https://xkcd.com/) 
 
-![](markdown/xkcd_package.png) 
+</center>  
 
-[xkcd](https://xkcd.com/)
-
-<br>
+<br>   
 
 ## 5. Qu’est-ce qu’un *package*? 
 
@@ -136,12 +135,13 @@ knitr::opts_chunk$set(echo = FALSE)
 - Des *packages* composés de fonctions spécialisées sont constamment développés par la communauté.
 - On en trouve plus de 15 000 sur le site officiel de **R** [CRAN](https://cran.r-project.org/web/packages/). D'autres se trouvent aussi ailleurs (Github, …).
 - Les packages doivent être **téléchargés**(`install.packages()`) une seule fois, mais **chargés** (`library()` ou `require()`) à chaque session.
+- Plusieurs fonctions du même nom peuvent se retrouver dans différents packages. Il faut alors désambiguïser le nom de la fonction voulue (permet également d'utiliser de façon spontanée les fonctions de modules non chargés) :
+  - psych::describe()
+  - Hmisc::describe()
 
 - **Dans Colab, tous les packages sont téléchargés dans l'environnement d'exécution sur le nuage, c'est pourquoi il faut les télécharger à chaque exécution (code généralement contenu la première cellule de notre fichier)**
     
-<br>
-
-<br>
+<br>  
 
 - Les modules sont généralement évalués par les pairs - [Journal of Statistical Software](https://www.jstatsoft.org/index) – le choix doit se faire avec précautions.
 
@@ -157,9 +157,13 @@ knitr::opts_chunk$set(echo = FALSE)
 <br>
 
 ## 6. Tidyverse {.smaller}
+
  <center>
 
-![Packages Tidyverse](markdown/tidyverse.png)
+![](markdown/tidyverse.png){width=60%}
+
+[Packages Tidyverse](https://www.tidyverse.org/packages/) 
+
 
 </center>  
 
@@ -186,10 +190,11 @@ knitr::opts_chunk$set(echo = FALSE)
 - **R** est avant tout un langage de programmation orienté objet.
 - Développé à partir du **langage S** par *Ross Ihaka* et *Robert Gentleman* au cours des années ‘90.
 - Permet de programmer ses propres fonctions et packages.  
+- Mais il n'est pas essentiel d'apprendre la "programmation" (vu la multitude de fonctions d'emblée disponibles)
 
 <center>
 
-![](markdown/programmation.png)
+![](markdown/programmation.png){width=80%}
 
 </center>  
 
@@ -199,7 +204,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 **Particularités à savoir**:
 
-- Sensible à la casse (attention minuscules/majuscules)
+- Sensible à la casse (attention minuscules/majuscules).
 - Sensible aux accents (éviter d’utiliser).
 - Sensible aux signes de ponctuation: point pour décimales, virgule pour adressage.
 - Non sensible aux espaces.
@@ -209,4 +214,9 @@ knitr::opts_chunk$set(echo = FALSE)
 `# ceci est un commentaire (peut ajouter section en suivant avec au moins 4 ----)`
     + À noter que dans Collab, on peut créer des commentaires avec un # à l’intérieur d'une cellule de code ou utiliser des cellules de texte.
 - Contrairement aux autres logiciels, l’analyse se fait par une série d’étapes avec des résultats intermédiaires stockés dans des objets.
+
+<br>
+
+***
+
   

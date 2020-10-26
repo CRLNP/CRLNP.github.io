@@ -1,7 +1,5 @@
 ---
 title: "Capsule preambule: présentation de Google Colaboratory"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -11,20 +9,27 @@ output:
       collapsed: false
       Smooth_scroll: true
     code_download: true
+    
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<br>
 
 ## 1. Principales caractéristiques
 
 *   Colab est une plateforme de programmation et d'analyse gratuite qui permet de créer et de partager du code dans l'environnement Google et qui ne nécessite donc aucune installation locale, ne nécessite qu'un compte Google!
 *   Comme Colab fait partie des services Google, les documents Colab peuvent être créés, enregistrés, copiés dans Google Drive et le partage et la collaboration se font de la même façon que pour les autres types de documents Google. 
 *   Colab est aussi reliée à GitHub ce qui permet d'importer et d'exporter facilement des documents d'une plateforme à l'autre.
-*   Les fichiers créés dans Colab sont en fait des  _notebooks_: documents interactifs qui permettent de combiner code, résultats, texte, graphiques, images,... (même format que les _[Jupyter Notebook](https://jupyter.org/)_ et similaires aux documents RMarkdown).
+*   Les fichiers créés dans Colab sont en fait des *notebooks*: documents interactifs qui permettent de combiner code, résultats, texte, graphiques, images,... (même format que les *[Jupyter Notebook](https://jupyter.org/)* et similaires aux documents RMarkdown).
 
 <br>
 
@@ -52,7 +57,7 @@ https://colab.research.google.com/notebook#create=true&language=r
 
 ### Désavantages
 *   Après une certaine période d'inactivité, la connexion au serveur à distance sera perdue (pour économiser la capacité du serveur à distance). Mais une version Pro offre plus de puissance de calcul et de mémoire.
-* Problématique pour la confidentialité.
+* Problématique pour la **confidentialité**.
 
 <br>
 
@@ -93,3 +98,7 @@ toto
 *   [Bienvenue dans Colaboratory par Google](https://colab.research.google.com/notebooks/intro.ipynb#scrollTo=ufxBm1yRnruN)
 *   [Getting started in Google Colab](https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c) 
 *   [DataProfessor](https://www.youtube.com/channel/UCV8e2g4IWQqK71bbzGDEI4Q)
+
+<br>
+
+***

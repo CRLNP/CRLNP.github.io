@@ -9,9 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
 
-<meta name="date" content="2020-10-17" />
 
 <title>Capsule 2: Importer et explorer un dataframe</title>
 
@@ -502,7 +500,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+  <a href="1-preambule-colab.html">Preambule</a>
 </li>
 <li>
   <a href="2-langage-r.html">Qu'est-ce que R?</a>
@@ -528,6 +526,15 @@ div.tocify {
 <li>
   <a href="9-graphiques.html">Graphiques</a>
 </li>
+<li>
+  <a href="10-ressources.html">Liens</a>
+</li>
+<li>
+  <a href="https://github.com/CRLNP/CRLNP.github.io">
+    <span class="fab fa fab fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -545,12 +552,12 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Capsule 2: Importer et explorer un dataframe</h1>
-<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
-<h4 class="date">2020-10-17</h4>
 
 </div>
 
 
+<p>Caroline Patenaude <br> <em><a href="https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques">Bibliothécaire - Bibliothèque des lettres et sciences humaines</a></em> <br> 25 octobre 2020</p>
+<p><br></p>
 <p><strong>Télécharger et charger les packages utilisés</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Toujours débuter son script par le code d&#39;installation des packages nécessaires.</span></a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
@@ -577,30 +584,54 @@ div.tocify {
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(<span class="dt">help =</span> questionr)</a></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">## Détacher un module chargé</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw">detach</span>(package<span class="op">:</span>NomModule)     <span class="co"># pour éviter les conflits entre fonctions du même nom</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Documenter les détails de son environnement de travail (système, packages, versions...)</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">sessionInfo</span>() <span class="co"># Important à noter pour assurer la reproductibilité des analyses</span></a></code></pre></div>
+<pre><code>## R version 4.0.3 (2020-10-10)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 17763)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=French_Canada.1252  LC_CTYPE=French_Canada.1252   
+## [3] LC_MONETARY=French_Canada.1252 LC_NUMERIC=C                  
+## [5] LC_TIME=French_Canada.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_4.0.3  bookdown_0.21   magrittr_1.5    tools_4.0.3    
+##  [5] htmltools_0.5.0 rstudioapi_0.11 yaml_2.2.1      distill_0.8    
+##  [9] stringi_1.5.3   rmarkdown_2.4   knitr_1.30      jsonlite_1.7.1 
+## [13] stringr_1.4.0   xfun_0.18       digest_0.6.25   rlang_0.4.8    
+## [17] evaluate_0.14</code></pre>
 <p><br></p>
-<div id="les-objets" class="section level1">
-<h1>1. Les objets</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># R comme une grosse calculatrice</span></a>
-<a class="sourceLine" id="cb6-2" title="2"></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<div id="les-objets" class="section level2">
+<h2>1. Les objets</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># R comme une grosse calculatrice</span></a>
+<a class="sourceLine" id="cb8-2" title="2"></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># les espaces n&#39;ont pas d&#39;impact</span></a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p><br></p>
-<p><img src="markdown/objet.jpg" width="564" /></p>
 <ul>
 <li>Mais l’intérêt du langage est que l’on stocke les valeurs, résultats, les tableaux, fonctions, … dans des <em>objets</em> qui pourront être réutilisés dans d’autres objets, fonctions, analyses.</li>
 </ul>
 <p><br></p>
-<p><img src="markdown/assignation.jpg" width="552" /></p>
+<p><img src="markdown/assignation.jpg" style="width:80.0%" /></p>
 <div class="fold o">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Calcul simple</span></a>
-<a class="sourceLine" id="cb8-2" title="2">(<span class="dv">12</span><span class="op">+</span><span class="dv">15</span><span class="op">+</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">3</span> </a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Calcul simple</span></a>
+<a class="sourceLine" id="cb10-2" title="2">(<span class="dv">12</span><span class="op">+</span><span class="dv">15</span><span class="op">+</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">3</span> </a></code></pre></div>
 <pre><code>## [1] 15.66667</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">## Créer un objet en utilisant l&#39;opérateur d&#39;assignation &quot;&lt;-&quot; pour stocker le résultat du calcul</span></a>
-<a class="sourceLine" id="cb10-2" title="2">moyenne &lt;-<span class="st"> </span>(<span class="dv">12</span><span class="op">+</span><span class="dv">15</span><span class="op">+</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">3</span> </a></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">## Pour voir le contenu de son objet, tapper son nom</span></a>
-<a class="sourceLine" id="cb11-2" title="2"></a>
-<a class="sourceLine" id="cb11-3" title="3">moyenne  <span class="co"># Utilisation implicite de la fonction print() </span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">## Créer un objet en utilisant l&#39;opérateur d&#39;assignation &quot;&lt;-&quot; pour stocker le résultat du calcul</span></a>
+<a class="sourceLine" id="cb12-2" title="2">moyenne &lt;-<span class="st"> </span>(<span class="dv">12</span><span class="op">+</span><span class="dv">15</span><span class="op">+</span><span class="dv">20</span>)<span class="op">/</span><span class="dv">3</span> </a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">## Pour voir le contenu de son objet, tapper son nom</span></a>
+<a class="sourceLine" id="cb13-2" title="2"></a>
+<a class="sourceLine" id="cb13-3" title="3">moyenne  <span class="co"># Utilisation implicite de la fonction print() </span></a></code></pre></div>
 <pre><code>## [1] 15.66667</code></pre>
+<p><br></p>
+<p><img src="markdown/objet.jpg" style="width:80.0%" /></p>
+<p><br></p>
 <p><strong>Les noms d’objets</strong>:</p>
 <ul>
 <li>Peuvent contenir des chiffres, lettres et caractères _ et .</li>
@@ -610,10 +641,11 @@ div.tocify {
 <li>Certains noms courts sont réservés (max, min, c, q, t, …).</li>
 </ul>
 <p><br></p>
-<p><img src="markdown/boite3.png" width="306" /></p>
+<p><img src="markdown/boite3.png" style="width:60.0%" /></p>
+<p><br></p>
 <p><strong>Un objet est donc une boite dans laquelle on peut placer un chiffre, un mot, un jeu de données d’un million de répondants, une fonction, un graphique…</strong></p>
 <p><br></p>
-<h1 id="les-opérateurs">2. Les opérateurs</h1>
+<h2 id="les-opérateurs">2. Les opérateurs</h2>
 <ul>
 <li>Opérateurs d’assignation: <strong>&lt;-</strong>, = , -&gt;</li>
 <li>Opérateurs de sélection: [], [[]], $, :</li>
@@ -622,7 +654,7 @@ div.tocify {
 <li>Opérateurs de comparaison: ==, !=, &lt;, &gt;, &lt;=, &gt;=</li>
 </ul>
 <p><br></p>
-<h1 id="les-fonctions">3. Les fonctions</h1>
+<h2 id="les-fonctions">3. Les fonctions</h2>
 <ul>
 <li>Permettent d’effectuer des tâches prédéfinies comme des analyses, graphiques, calculs, …</li>
 <li>Chaque fonction a un nom et plusieurs fonctions peuvent permettre d’effectuer la même tâche: Par exemple pour faire une correlation, on retrouve les fonctions cor(), cor.test(), …</li>
@@ -630,48 +662,48 @@ div.tocify {
 <li>On peut imbriquer les fonctions les unes dans les autres avec des parenthèses.</li>
 </ul>
 <p><br></p>
-<p><img src="markdown/fonction.jpg" width="436" /></p>
+<p><img src="markdown/fonction.jpg" style="width:80.0%" /></p>
 <p><br></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Créer un nouvel objet nommé &quot;age&quot; composé d’une série de 5 nombres avec la fonction c() (combiner)</span></a>
-<a class="sourceLine" id="cb13-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">40</span>) </a></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Pour voir le nom d&#39;un objet, on tappe son nom</span></a>
-<a class="sourceLine" id="cb14-2" title="2">age</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Créer un nouvel objet nommé &quot;age&quot; composé d’une série de 5 nombres avec la fonction c() (concaténer)</span></a>
+<a class="sourceLine" id="cb15-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">40</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Pour voir le nom d&#39;un objet, on tappe son nom</span></a>
+<a class="sourceLine" id="cb16-2" title="2">age</a></code></pre></div>
 <pre><code>## [1] 12 15 20 35 40</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Passer cet objet comme 1er argument de la fonction mean()</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw">mean</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Passer cet objet comme 1er argument de la fonction mean()</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="kw">mean</span>(age)</a></code></pre></div>
 <pre><code>## [1] 24.4</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># Arrondir le résultat sans décimale (argument digits=) en imbriquant la fonction mean() dans la fonction round()</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">round</span>(<span class="kw">mean</span>(age), <span class="dv">0</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Arrondir le résultat sans décimale (argument digits=) en imbriquant la fonction mean() dans la fonction round()</span></a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw">round</span>(<span class="kw">mean</span>(age), <span class="dt">digits=</span><span class="dv">0</span>) </a></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 <p><br></p>
-<h1 id="les-arguments">4. Les arguments</h1>
+<h2 id="les-arguments">4. Les arguments</h2>
 <ul>
 <li>Chaque fonction possède une liste plus ou moins longue d’arguments (paramètres ou options) permettant de paramétrer son fonctionnement.</li>
 <li>Certains arguments ont une valeur par défaut. Si ces valeurs nous conviennent, pas besoin de les indiquer.</li>
 <li>Si l’argument n’a pas de valeur par défaut, FAUT le renseigner.</li>
 <li>Pour modifier la valeur d’un argument, on le nomme et change sa valeur à la suite d’un =.</li>
-<li>La liste d’arguments respecte un ordre. Si on modifie chaque argument dans l’ordre, on peut omettre le nom des arguments. Les arguments peuvent donc être nommés ou non nommés.</li>
+<li>La liste d’arguments respecte un ordre. Si on modifie chaque argument dans l’ordre, on peut omettre le nom des arguments. Les arguments peuvent donc être nommés ou non (mais pour assurer la reproductibilité, il est recommandé de les nommer).</li>
 <li>Le premier argument, toujours les données (on ne le nomme généralement pas x=)</li>
 <li>Comment savoir quels sont les arguments d’une fonction? Taper Help(NomFonction) ou ?NomFonction .</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">36</span>, <span class="dv">47</span>, <span class="dv">58</span>, <span class="dv">69</span>, <span class="ot">NA</span>)  <span class="co"># Je créé un vecteur composé de 5 chiffres et une valeur manquante</span></a>
-<a class="sourceLine" id="cb20-2" title="2"></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="co"># À noter: lorsque l&#39;on stocke un nouveau contenu dans un  objet existant, le contenu initial est écrasé</span></a></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">mean</span>(age)    <span class="co"># OUPS!</span></a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">36</span>, <span class="dv">47</span>, <span class="dv">58</span>, <span class="dv">69</span>, <span class="ot">NA</span>)  <span class="co"># Je créé un vecteur composé de 5 chiffres et une valeur manquante</span></a>
+<a class="sourceLine" id="cb22-2" title="2"></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="co"># À noter: lorsque l&#39;on stocke un nouveau contenu dans un  objet existant, le contenu initial est écrasé</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">mean</span>(age)    <span class="co"># OUPS!</span></a></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">help</span>(mean)  <span class="co"># Pour afficher l&#39;aide d&#39;une fonction (ou ?mean)</span></a></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">mean</span>(age, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">help</span>(mean)  <span class="co"># Pour afficher l&#39;aide d&#39;une fonction (ou ?mean)</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">mean</span>(age, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 47</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># L&#39;argument na.rm=TRUE indique de ne pas prendre en compte les valeurs manquantes</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="co"># L&#39;argument trim=.05 indique d&#39;exclure les 5% les plus extrêmes</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># L&#39;argument na.rm=TRUE indique de ne pas prendre en compte les valeurs manquantes</span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="co"># L&#39;argument trim=.05 indique d&#39;exclure les 5% les plus extrêmes</span></a></code></pre></div>
 <p><br></p>
-<h1 id="les-types-dobjets">5. Les types d’objets</h1>
+<h2 id="les-types-dobjets">5. Les types d’objets</h2>
 <ul>
-<li>Les objets sont caractérisés par <strong>différentes structures</strong></li>
-<li>On retrouve <strong>5 différents types de contenants</strong> ayant chacun leurs propriétés</li>
+<li>Les objets sont caractérisés par <strong>différentes structures</strong>.</li>
+<li>On retrouve <strong>5 différents types de contenants</strong> ayant chacun leurs propriétés.</li>
 </ul>
 <p><br></p>
-<p><img src="markdown/types.jpg" width="478" /></p>
+<p><a href="https://devopedia.org/r-data-structures"><img src="markdown/types.jpg" alt="R Data Structures" style="width:70.0%" /></a></p>
 <ol style="list-style-type: decimal">
 <li><strong>Vecteur</strong></li>
 <li>Liste</li>
@@ -680,60 +712,62 @@ div.tocify {
 <li><strong>Dataframe (tableaux)</strong></li>
 </ol>
 <p><br></p>
-<h2 id="vecteurs">5.1. Vecteurs</h2>
-<p>Définition:</p>
+<h3 id="vecteurs">5.1. Vecteurs</h3>
 <ul>
 <li>La brique élémentaire = série de valeurs.</li>
 <li>En pratique, c’est une variable (mais qui n’est pas dans un tableau) et ses éléments sont ses valeurs.</li>
-<li>Objet contenant des valeurs (éléments/composantes) d’un seul <strong>mode</strong>: numérique, textuel, logique.</li>
+<li>Objet contenant des valeurs (éléments/composantes) d’un seul <strong>mode</strong>: numérique, textuel, logique</li>
+<li>On retrouve aussi des types dérivés comme les dates, les <strong>facteurs</strong>, les vecteurs labellisés qui ont des <strong>attributs</strong> particuliers.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># On créer des vecteurs principalement avec la commande c()</span></a>
-<a class="sourceLine" id="cb27-2" title="2"></a>
-<a class="sourceLine" id="cb27-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">60</span>)  <span class="co"># vecteur numérique</span></a>
-<a class="sourceLine" id="cb27-4" title="4">sexe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;femme&quot;</span>, <span class="st">&quot;homme&quot;</span>, <span class="st">&quot;femme&quot;</span>)  <span class="co"># vecteur textuel</span></a>
-<a class="sourceLine" id="cb27-5" title="5">taille &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)  <span class="co"># vecteur booléen</span></a></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Pour voir le &quot;format&quot; des éléments stockés dans un objet, utiliser la fonction mode() ou typeof()</span></a>
-<a class="sourceLine" id="cb28-2" title="2"></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="kw">mode</span>(poids)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># On crée des vecteurs principalement avec la commande c()</span></a>
+<a class="sourceLine" id="cb29-2" title="2"></a>
+<a class="sourceLine" id="cb29-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">60</span>)  <span class="co"># vecteur numérique () - format qui se décline de façon plus détaillée (&quot;numeric&quot;, double&quot;, &quot;integer&quot;, ...)</span></a>
+<a class="sourceLine" id="cb29-4" title="4">sexe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;femme&quot;</span>, <span class="st">&quot;homme&quot;</span>, <span class="st">&quot;femme&quot;</span>)  <span class="co"># vecteur textuel (entre guillemets simples ou doubles)</span></a>
+<a class="sourceLine" id="cb29-5" title="5">taille &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)  <span class="co"># vecteur booléen - peut utiliser les raccourcis T/F</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Pour voir le &quot;format&quot; des éléments stockés dans un objet, utiliser la fonction mode() ou typeof()</span></a>
+<a class="sourceLine" id="cb30-2" title="2"></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="kw">mode</span>(poids)</a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># On peut faire des calculs entre vecteurs - ex. calcul de l&#39;IMC: poids divisé par taille au carré </span></a>
-<a class="sourceLine" id="cb30-2" title="2">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">60</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">taille &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.45</span>, <span class="fl">1.60</span>, <span class="fl">1.70</span>) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>  </a></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">IMC &lt;-<span class="st"> </span>poids <span class="op">/</span><span class="st"> </span>taille </a></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">IMC</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># On peut faire des calculs entre vecteurs - exemple, calcul de l&#39;IMC: poids divisé par taille au carré </span></a>
+<a class="sourceLine" id="cb32-2" title="2"></a>
+<a class="sourceLine" id="cb32-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">65</span>, <span class="dv">60</span>) <span class="co"># crée un vecteur nommé &quot;poids&quot; avec la fonction c() composé de 3 éléments numériques</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">taille &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.45</span>, <span class="fl">1.60</span>, <span class="fl">1.70</span>) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># crée un vecteur nommé &quot;taille&quot; avec la fonction c() composé de 3 éléments numériques au carré</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">IMC &lt;-<span class="st"> </span>poids <span class="op">/</span><span class="st"> </span>taille <span class="co"># diviser l&#39;objet &quot;poids&quot; par l&#39;objet &quot;taille&quot; (Attention! Les vecteurs doivent être de même longueur)</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">IMC <span class="co"># voir le contenu de l&#39;objet</span></a></code></pre></div>
 <pre><code>## [1] 33.29370 25.39062 20.76125</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">median</span>(IMC) <span class="co"># Passer l&#39;objet IMC à la fonction de médiane</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">median</span>(IMC) <span class="co"># Passer l&#39;objet IMC à la fonction de médiane</span></a></code></pre></div>
 <pre><code>## [1] 25.39062</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">IMC <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(IMC) <span class="co"># Calculer la différence face à la moyenne</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">IMC <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(IMC) <span class="co"># Calculer la différence face à la moyenne</span></a></code></pre></div>
 <pre><code>## [1]  6.811842 -1.091231 -5.720611</code></pre>
 <p><br></p>
-<h2 id="facteurs">5.2. Facteurs</h2>
+<h3 id="facteurs">5.2. Facteurs</h3>
 <ul>
-<li>Définition: vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.</li>
+<li>Vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.</li>
 <li>Les modalités de la variable correspondent à des “niveaux” (<em>levels</em>) uniques et fixes, ie impossible d’assigner une valeur qui n’a pas été préalablement définie comme une des modalités.</li>
 <li>Des étiquettes (<em>labels</em>) peuvent être associées aux niveaux.</li>
 <li>Lors de l’importation de données, tout dépendant de la fonction d’importation, les variables qualitatives seront importées sous forme de vecteur textuel ou de facteur.</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Créer une variable de type facteur à partir d&#39;un vecteur textuel de 5 valeurs de 2 niveaux avec la fonction factor()</span></a>
-<a class="sourceLine" id="cb39-2" title="2">sexe &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;H&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Homme&quot;</span>, <span class="st">&quot;Femme&quot;</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># L&#39;objet est un facteur avec 2 modalités (niveaux) définis par défaut en fonction des valeurs fournies </span></a>
-<a class="sourceLine" id="cb40-2" title="2"><span class="kw">str</span>(sexe)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Créer une variable de type facteur à partir d&#39;un vecteur textuel de 5 valeurs de 2 niveaux avec la fonction factor()</span></a>
+<a class="sourceLine" id="cb41-2" title="2">sexe &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;H&quot;</span>), <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Homme&quot;</span>, <span class="st">&quot;Femme&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># L&#39;objet est un facteur avec 2 modalités (niveaux) définis par défaut en fonction des valeurs fournies </span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="kw">str</span>(sexe)</a></code></pre></div>
 <pre><code>##  Factor w/ 2 levels &quot;Homme&quot;,&quot;Femme&quot;: 2 2 1 2</code></pre>
 <p><br></p>
-<h2 id="dataframes">5.3. Dataframes</h2>
+<h3 id="dataframes">5.3. Dataframes</h3>
 <ul>
-<li><p>Définition: Tableau de données pouvant regrouper des vecteurs de différents types (numériques et textuels)</p></li>
-<li><p>Structurellement, le dataframe est une <strong>liste</strong> composées de <strong>vecteurs nommés</strong> (noms de variables uniques) de même <strong>longueur</strong> (nombre d’observations) mais qui peuvent être de <strong>modes différents</strong> (variables numériques, textuelles)</p></li>
-<li><p>C’est donc un tableau avec des colonnes - <code>ncol()</code> et des lignes - <code>nrow()</code>, donc 2 dimensions - <code>dim()</code>.</p></li>
-<li><p>Crée un jeu de données avec la fonction data.frame(), mais on le crée rarement manuellement, généralement importé en format .txt, .csv, .spss …</p></li>
-<li><p>Par défaut, si on ne désactive pas l’option stringsAsFactors à la création d’un dataframe, les vecteurs textuels sont de type facteur</p></li>
+<li>Tableau de données pouvant regrouper des vecteurs de différents types (variables numériques et/ou textuelles).</li>
+<li>Structurellement, le dataframe est une <strong>liste</strong> composées de <strong>vecteurs nommés</strong> (noms de variables uniques) de même <strong>longueur</strong> (nombre d’observations) mais qui peuvent être de <strong>modes différents</strong> (variables numériques, textuelles).</li>
+<li>C’est donc un tableau avec des colonnes - <code>ncol()</code> et des lignes - <code>nrow()</code>, donc 2 dimensions - <code>dim()</code>.</li>
+<li>Crée un jeu de données avec la fonction data.frame(), mais on le crée rarement manuellement, généralement importé en format .txt, .csv, …</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Créer un data frame avec 3 variables (2 vecteurs numériques et 1 vecteur textuel) avec la fonction data.frame()</span></a>
-<a class="sourceLine" id="cb42-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>,<span class="dv">65</span>,<span class="dv">22</span>,<span class="dv">38</span>,<span class="dv">54</span>,<span class="dv">31</span>,<span class="dv">29</span>,<span class="dv">44</span>,<span class="dv">56</span>,<span class="dv">67</span>) </a>
-<a class="sourceLine" id="cb42-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">150</span>,<span class="dv">125</span>,<span class="dv">210</span>,<span class="dv">175</span>,<span class="dv">110</span>,<span class="dv">180</span>,<span class="dv">130</span>,<span class="dv">155</span>,<span class="dv">190</span>,<span class="dv">120</span>)</a>
-<a class="sourceLine" id="cb42-4" title="4">sexe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>)</a>
-<a class="sourceLine" id="cb42-5" title="5">bd &lt;-<span class="st"> </span><span class="kw">data.frame</span>(age, sexe, poids)</a></code></pre></div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">bd </a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># Créer un data frame avec 3 variables (2 vecteurs numériques et 1 vecteur textuel) avec la fonction data.frame()</span></a>
+<a class="sourceLine" id="cb44-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>,<span class="dv">65</span>,<span class="dv">22</span>,<span class="dv">38</span>,<span class="dv">54</span>,<span class="dv">31</span>,<span class="dv">29</span>,<span class="dv">44</span>,<span class="dv">56</span>,<span class="dv">67</span>) </a>
+<a class="sourceLine" id="cb44-3" title="3">poids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">150</span>,<span class="dv">125</span>,<span class="dv">210</span>,<span class="dv">175</span>,<span class="dv">110</span>,<span class="dv">180</span>,<span class="dv">130</span>,<span class="dv">155</span>,<span class="dv">190</span>,<span class="dv">120</span>)</a>
+<a class="sourceLine" id="cb44-4" title="4">sexe &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>,<span class="st">&quot;F&quot;</span>,<span class="st">&quot;H&quot;</span>)</a>
+<a class="sourceLine" id="cb44-5" title="5">bd &lt;-<span class="st"> </span><span class="kw">data.frame</span>(age, sexe, poids)</a>
+<a class="sourceLine" id="cb44-6" title="6"></a>
+<a class="sourceLine" id="cb44-7" title="7"><span class="co">## Plusieurs fonctions permettent de fusionner des colonnes, des lignes et des tables de données: `merge()`, `cbind()` et `rbind()`... </span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">bd </a></code></pre></div>
 <pre><code>##    age sexe poids
 ## 1   45    H   150
 ## 2   65    F   125
@@ -745,10 +779,26 @@ div.tocify {
 ## 8   44    H   155
 ## 9   56    F   190
 ## 10  67    H   120</code></pre>
+<p><br></p>
+<h3 id="conclusion-types-dobjets-et-fonctions-utiles">5.4. Conclusion: Types d’objets et fonctions utiles</h3>
+<ul>
+<li><p>Les objets dans <strong>R</strong> sont caractérisés par différentes propriétés : ils possèdent au minimum un <code>mode()</code>, le type de base de ses composantes, et une longueur – <code>length()</code> - le nombre de composantes.</p></li>
+<li><p>La fonction <code>typeof()</code> est très similaire au <code>mode</code>; elle offre une description un peu plus précise du format de stockage interne d’un objet.</p></li>
+<li><p>Les objets ont aussi une <code>classe()</code> : c’est une propriété un peu plus complexe (issue du langage S) assignée à un objet pour définir l’information contenue ET déterminer la façon dont l’objet sera traité par certaines fonctions dites génériques, ie dont le résultat dépend dy type d’objet fourni (comme <code>print()</code>, <code>summary()</code>, <code>plot()</code>).</p></li>
+<li><p>Bref, le <strong>mode</strong>, le <strong>type</strong> et la <strong>classe</strong> sont souvent pareils, mais pas toujours! La fonction <code>str()</code> peut aussi être utile pour plus de détails sur un objet et ses éléments.</p></li>
+<li><p>Les objets, en plus de leurs composantes, peuvent aussi posséder des attributs - <code>attributes()</code> – métadonnées contenant des informations additionnelles sur l’objet comme des noms - <code>names()</code> (étiquettes des éléments) - et des dimensions - <code>dim()</code> (colonnes/lignes dans tableaux).</p></li>
+<li><p>À noter:</p>
+<ul>
+<li>Il est possible de convertir le type (mode) d’un objet avec: <code>as.character()</code>, <code>as.list()</code>, <code>as.numeric()</code>, <code>as.factor()</code>.</li>
+<li>Pour vérifier le format, remplacer as. par is : <code>is.character()</code>, <code>is.list()</code>, <code>is.numeric()</code>, <code>is.factor()</code>,</li>
+</ul></li>
+</ul>
+<p><br></p>
+<hr />
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgMjogSW1wb3J0ZXIgZXQgZXhwbG9yZXIgdW4gZGF0YWZyYW1lIg0KYXV0aG9yOiAiQ2Fyb2xpbmUgUGF0ZW5hdWRlIDxicj4gQmlibGlvdGjDqWNhaXJlIC0gQmlibGlvdGjDqHF1ZSBkZXMgbGV0dHJlcyBldCBzY2llbmNlcyBodW1haW5lcyINCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCm91dHB1dDogDQogIGh0bWxfZG9jdW1lbnQ6IA0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19mbG9hdDogDQogICAgICBjb2xsYXBzZWQ6IGZhbHNlDQogICAgICBTbW9vdGhfc2Nyb2xsOiBmYWxzZQ0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCmNzczogaGlkZS5jc3MNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQoqKlTDqWzDqWNoYXJnZXIgZXQgY2hhcmdlciBsZXMgcGFja2FnZXMgdXRpbGlzw6lzKiogICAgDQoNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIFRvdWpvdXJzIGTDqWJ1dGVyIHNvbiBzY3JpcHQgcGFyIGxlIGNvZGUgZCdpbnN0YWxsYXRpb24gZGVzIHBhY2thZ2VzIG7DqWNlc3NhaXJlcy4NCg0KIyBEYW5zIENvbGFiLCB0b3VzIGxlcyBwYWNrYWdlcyBzb250IHTDqWzDqWNoYXJnw6lzIGRhbnMgbCdlbnZpcm9ubmVtZW50IGQnZXjDqWN1dGlvbiBzdXIgbGUgbnVhZ2UsIA0KIyBjJ2VzdCBwb3VycXVvaSBpbCBmYXV0IGxlcyB0w6lsw6ljaGFyZ2VyIGV0IGxlcyBjaGFyZ2VyIMOgIGNoYXF1ZSBmb2lzLg0KDQojIENldHRlIMOpdGFwZSBwZXV0IHByZW5kcmUgcGx1c2lldXJzIG1pbnV0ZXMuDQoNCiMgw4AgTk9URVIsIHB1aXNxdWUgcXUnaWwgZXN0IHByw6lmw6lyYWJsZSBkZSBuZSBwYXMgaW5jbHVyZSBsZSBjb2RlIGRlIHTDqWzDqWNoYXJnZW1lbnQgDQojIGRlcyBtb2R1bGVzIGRhbnMgdW4gZG9jdW1lbnQgUm1hcmtkb3duLCBzZXVscyBsZXMgY29kZXMgZGUgY2hhcmdlbWVudCBvbnQgw6l0w6kgaW5kaXF1w6lzOg0KbGlicmFyeSgicXVlc3Rpb25yIikNCg0KIyBMZXMgY29tbWFuZGVzIGRlIHTDqWzDqWNoYXJnZW1lbnQgZGV2cm9udCBkb25jIMOqdHJlIGFqb3V0w6llcyDDoCBzb24gZG9jdW1lbnQgQ29sYWIgb3UgUm1hcmtkb3duOg0KaW5zdGFsbC5wYWNrYWdlcygicGFja2FnZSIsIGRlcGVuZGVuY2llcz1UUlVFKQ0KDQojIGRlcGVuZGVuY2llcz1UUlVFOiBhc3N1cmUgcXVlIHRvdXMgbGVzIG1vZHVsZXMgZMOpcGVuZGFudHMgbsOpY2Vzc2FpcmVzIHNlcm9udCBhdXNzaSBpbnN0YWxsw6lzLg0KYGBgDQoNCjxicj4NCg0KKipHZXN0aW9uIGRlIHBhY2thZ2VzKiogIA0KDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KIyMgVm9pciBsZXMgbW9kdWxlcyB0w6lsw6ljaGFyZ8OpcyAoY2hhcmfDqXMgb3Ugbm9uKQ0KaW5zdGFsbGVkLnBhY2thZ2VzKCkJDQpgYGANCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIyBWb2lyIGxlcyBtb2R1bGVzIGNoYXJnw6lzDQpzZWFyY2goKQ0KYGBgDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KIyMgTGlzdGVyIGxlcyBmb25jdGlvbnMgZCd1biBtb2R1bGUgY2hhcmfDqQ0KbGlicmFyeShoZWxwID0gcXVlc3Rpb25yKQ0KYGBgDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KIyMgRMOpdGFjaGVyIHVuIG1vZHVsZSBjaGFyZ8OpDQpkZXRhY2gocGFja2FnZTpOb21Nb2R1bGUpICAgICAjIHBvdXIgw6l2aXRlciBsZXMgY29uZmxpdHMgZW50cmUgZm9uY3Rpb25zIGR1IG3Dqm1lIG5vbQ0KYGBgDQoNCjxicj4NCg0KIyAxLiBMZXMgb2JqZXRzICANCg0KDQpgYGB7cn0NCiMgUiBjb21tZSB1bmUgZ3Jvc3NlIGNhbGN1bGF0cmljZQ0KDQoyKzINCmBgYA0KDQo8YnI+ICANCg0KDQpgYGB7ciwgZWNobz1GQUxTRX0NCmtuaXRyOjppbmNsdWRlX2dyYXBoaWNzKCJtYXJrZG93bi9vYmpldC5qcGciKQ0KYGBgICANCg0KDQogDQoqIE1haXMgbOKAmWludMOpcsOqdCBkdSBsYW5nYWdlIGVzdCBxdWUgbOKAmW9uIHN0b2NrZSBsZXMgdmFsZXVycywgcsOpc3VsdGF0cywgbGVzIHRhYmxlYXV4LCBmb25jdGlvbnMsIOKApiBkYW5zIGRlcyAqb2JqZXRzKiBxdWkgcG91cnJvbnQgw6p0cmUgcsOpdXRpbGlzw6lzIGRhbnMgZOKAmWF1dHJlcyBvYmpldHMsIGZvbmN0aW9ucywgYW5hbHlzZXMuICANCg0KDQoNCjxicj4gIA0KDQoNCmBgYHtyLCBlY2hvPUZBTFNFfQ0Ka25pdHI6OmluY2x1ZGVfZ3JhcGhpY3MoIm1hcmtkb3duL2Fzc2lnbmF0aW9uLmpwZyIpDQpgYGAgIA0KDQoNCg0KPGRpdiBjbGFzcz0iZm9sZCBvIj4NCg0KYGBge3J9DQojIENhbGN1bCBzaW1wbGUNCigxMisxNSsyMCkvMyANCmBgYA0KDQpgYGB7cn0NCiMjIENyw6llciB1biBvYmpldCBlbiB1dGlsaXNhbnQgbCdvcMOpcmF0ZXVyIGQnYXNzaWduYXRpb24gIjwtIiBwb3VyIHN0b2NrZXIgbGUgcsOpc3VsdGF0IGR1IGNhbGN1bA0KbW95ZW5uZSA8LSAoMTIrMTUrMjApLzMgDQpgYGANCg0KYGBge3J9DQojIyBQb3VyIHZvaXIgbGUgY29udGVudSBkZSBzb24gb2JqZXQsIHRhcHBlciBzb24gbm9tDQoNCm1veWVubmUgICMgVXRpbGlzYXRpb24gaW1wbGljaXRlIGRlIGxhIGZvbmN0aW9uIHByaW50KCkgDQpgYGANCg0KKipMZXMgbm9tcyBk4oCZb2JqZXRzKio6DQoNCi0gUGV1dmVudCBjb250ZW5pciBkZXMgY2hpZmZyZXMsIGxldHRyZXMgZXQgY2FyYWN0w6hyZXMgXyBldCAuDQotIERvaXZlbnQgY29tbWVuY2VyIHBhciB1bmUgbGV0dHJlLCBwYXMgdW4gY2hpZmZyZS4NCi0gTmUgcGFzIHV0aWxpc2VyIGTigJlhY2NlbnRzIG5pIGTigJllc3BhY2UuDQotIEVuIHByaW5jaXBlIGlsIGZhdXQgdXRpbGlzZXIgZGVzIG5vbXMgc2lnbmlmaWNhdGlmcywgZW4gcHJhdGlxdWUgb24gdXRpbGlzZSBzb3V2ZW50IGRlcyBub21zIG1pbmltYWxpc3RlcyBwb3VyIGZhY2lsaXRlciBsYSByw6l1dGlsaXNhdGlvbi4NCi0gQ2VydGFpbnMgbm9tcyBjb3VydHMgc29udCByw6lzZXJ2w6lzIChtYXgsIG1pbiwgYywgcSwgdCwg4oCmKS4NCg0KPGJyPiAgDQoNCg0KDQpgYGB7ciwgZWNobz1GQUxTRX0NCmtuaXRyOjppbmNsdWRlX2dyYXBoaWNzKCJtYXJrZG93bi9ib2l0ZTMucG5nIikNCmBgYCAgDQoNCiAgDQogIA0KKipVbiBvYmpldCBlc3QgZG9uYyB1bmUgYm9pdGUgZGFucyBsYXF1ZWxsZSBvbiBwZXV0IHBsYWNlciB1biBjaGlmZnJlLCB1biBtb3QsIHVuIGpldSBkZSBkb25uw6llcyBkJ3VuIG1pbGxpb24gZGUgcsOpcG9uZGFudHMsIHVuZSBmb25jdGlvbiwgdW4gZ3JhcGhpcXVlLi4uKiogIA0KDQoNCjxicj4NCg0KDQojIDIuIExlcyBvcMOpcmF0ZXVycyAgDQoNCg0KDQoqICBPcMOpcmF0ZXVycyBkJ2Fzc2lnbmF0aW9uOiAqKjwtKiosID0gLCAtPg0KKiAgT3DDqXJhdGV1cnMgZGUgc8OpbGVjdGlvbjogW10sIFtbXV0sICQsIDoNCiogIE9ww6lyYXRldXJzIGJvb2zDqWVuOiAhLCAmLCB8DQoqICBPcMOpcmF0ZXVycyBhcml0aG3DqXRpcXVlczogKywgLSwgKiwgLywgXg0KKiAgT3DDqXJhdGV1cnMgZGUgY29tcGFyYWlzb246ID09LCAhPSwgPCwgPiwgPD0sID49IA0KDQo8YnI+DQoNCiMgMy4gTGVzIGZvbmN0aW9ucyAgDQoNCg0KKiAgUGVybWV0dGVudCBk4oCZZWZmZWN0dWVyIGRlcyB0w6JjaGVzIHByw6lkw6lmaW5pZXMgY29tbWUgZGVzIGFuYWx5c2VzLCBncmFwaGlxdWVzLCBjYWxjdWxzLCDigKYgDQoqICBDaGFxdWUgZm9uY3Rpb24gYSB1biBub20gZXQgcGx1c2lldXJzIGZvbmN0aW9ucyBwZXV2ZW50IHBlcm1ldHRyZSBkJ2VmZmVjdHVlciBsYSBtw6ptZSB0w6JjaGU6IFBhciBleGVtcGxlIHBvdXIgZmFpcmUgdW5lIGNvcnJlbGF0aW9uLCBvbiByZXRyb3V2ZSBsZXMgZm9uY3Rpb25zIGNvcigpLCBjb3IudGVzdCgpLCAuLi4NCiogIE9uIGFwcGVsIHVuZSBmb25jdGlvbiBlbiBsYSBub21tYW50IGV0IG9uIGNvbnRyw7RsZSBzb24gY29tcG9ydGVtZW50IGVuIHBhcmFtw6l0cmFudCBzZXMgYXJndW1lbnRzDQoqICBPbiBwZXV0IGltYnJpcXVlciBsZXMgZm9uY3Rpb25zIGxlcyB1bmVzIGRhbnMgbGVzIGF1dHJlcyBhdmVjIGRlcyBwYXJlbnRow6hzZXMuDQoNCjxicj4gIA0KDQoNCmBgYHtyLCBlY2hvPUZBTFNFfQ0KDQprbml0cjo6aW5jbHVkZV9ncmFwaGljcygibWFya2Rvd24vZm9uY3Rpb24uanBnIikNCmBgYCAgDQoNCg0KDQo8YnI+ICANCg0KDQpgYGB7cn0NCiMgQ3LDqWVyIHVuIG5vdXZlbCBvYmpldCBub21tw6kgImFnZSIgY29tcG9zw6kgZOKAmXVuZSBzw6lyaWUgZGUgNSBub21icmVzIGF2ZWMgbGEgZm9uY3Rpb24gYygpIChjb21iaW5lcikNCmFnZSA8LSBjKDEyLCAxNSwgMjAsIDM1LCA0MCkgDQpgYGANCg0KYGBge3J9DQojIFBvdXIgdm9pciBsZSBub20gZCd1biBvYmpldCwgb24gdGFwcGUgc29uIG5vbQ0KYWdlDQpgYGANCg0KYGBge3J9DQojIFBhc3NlciBjZXQgb2JqZXQgY29tbWUgMWVyIGFyZ3VtZW50IGRlIGxhIGZvbmN0aW9uIG1lYW4oKQ0KbWVhbihhZ2UpDQpgYGANCg0KYGBge3J9DQojIEFycm9uZGlyIGxlIHLDqXN1bHRhdCBzYW5zIGTDqWNpbWFsZSAoYXJndW1lbnQgZGlnaXRzPSkgZW4gaW1icmlxdWFudCBsYSBmb25jdGlvbiBtZWFuKCkgZGFucyBsYSBmb25jdGlvbiByb3VuZCgpDQpyb3VuZChtZWFuKGFnZSksIDApIA0KYGBgDQoNCjxicj4NCg0KIyA0LiBMZXMgYXJndW1lbnRzICANCg0KDQoqIENoYXF1ZSBmb25jdGlvbiBwb3Nzw6hkZSB1bmUgbGlzdGUgcGx1cyBvdSBtb2lucyBsb25ndWUgZOKAmWFyZ3VtZW50cyAocGFyYW3DqHRyZXMgb3Ugb3B0aW9ucykgcGVybWV0dGFudCBkZSBwYXJhbcOpdHJlciBzb24gZm9uY3Rpb25uZW1lbnQuDQoqIENlcnRhaW5zIGFyZ3VtZW50cyBvbnQgdW5lIHZhbGV1ciBwYXIgZMOpZmF1dC4gU2kgY2VzIHZhbGV1cnMgbm91cyBjb252aWVubmVudCwgcGFzIGJlc29pbiBkZSBsZXMgaW5kaXF1ZXIuDQoqIFNpIGzigJlhcmd1bWVudCBu4oCZYSBwYXMgZGUgdmFsZXVyIHBhciBkw6lmYXV0LCBGQVVUIGxlIHJlbnNlaWduZXIuDQoqIFBvdXIgbW9kaWZpZXIgbGEgdmFsZXVyIGTigJl1biBhcmd1bWVudCwgb24gbGUgbm9tbWUgZXQgY2hhbmdlIHNhIHZhbGV1ciDDoCBsYSBzdWl0ZSBk4oCZdW4gPS4NCiogTGEgbGlzdGUgZOKAmWFyZ3VtZW50cyByZXNwZWN0ZSB1biBvcmRyZS4gU2kgb24gbW9kaWZpZSBjaGFxdWUgYXJndW1lbnQgZGFucyBs4oCZb3JkcmUsIG9uIHBldXQgb21ldHRyZSBsZSBub20gZGVzIGFyZ3VtZW50cy4gTGVzIGFyZ3VtZW50cyBwZXV2ZW50IGRvbmMgw6p0cmUgbm9tbcOpcyBvdSBub24gbm9tbcOpcy4NCiogTGUgcHJlbWllciBhcmd1bWVudCwgdG91am91cnMgbGVzIGRvbm7DqWVzIChvbiBuZSBsZSBub21tZSBnw6luw6lyYWxlbWVudCBwYXMgeD0pDQoqIENvbW1lbnQgc2F2b2lyIHF1ZWxzIHNvbnQgbGVzIGFyZ3VtZW50cyBk4oCZdW5lIGZvbmN0aW9uPyBUYXBlciBIZWxwKE5vbUZvbmN0aW9uKSBvdSA/Tm9tRm9uY3Rpb24gLg0KDQpgYGB7cn0NCmFnZSA8LSBjKDI1LCAzNiwgNDcsIDU4LCA2OSwgTkEpICAjIEplIGNyw6nDqSB1biB2ZWN0ZXVyIGNvbXBvc8OpIGRlIDUgY2hpZmZyZXMgZXQgdW5lIHZhbGV1ciBtYW5xdWFudGUNCg0KIyDDgCBub3RlcjogbG9yc3F1ZSBsJ29uIHN0b2NrZSB1biBub3V2ZWF1IGNvbnRlbnUgZGFucyB1biAgb2JqZXQgZXhpc3RhbnQsIGxlIGNvbnRlbnUgaW5pdGlhbCBlc3Qgw6ljcmFzw6kNCmBgYA0KDQpgYGB7cn0NCm1lYW4oYWdlKSAgICAjIE9VUFMhDQpgYGANCg0KYGBge3IsIGV2YWw9RkFMU0V9DQpoZWxwKG1lYW4pICAjIFBvdXIgYWZmaWNoZXIgbCdhaWRlIGQndW5lIGZvbmN0aW9uIChvdSA/bWVhbikNCmBgYA0KDQpgYGB7cn0NCm1lYW4oYWdlLCBuYS5ybT1UUlVFKQ0KDQojIEwnYXJndW1lbnQgbmEucm09VFJVRSBpbmRpcXVlIGRlIG5lIHBhcyBwcmVuZHJlIGVuIGNvbXB0ZSBsZXMgdmFsZXVycyBtYW5xdWFudGVzDQojIEwnYXJndW1lbnQgdHJpbT0uMDUgaW5kaXF1ZSBkJ2V4Y2x1cmUgbGVzIDUlIGxlcyBwbHVzIGV4dHLDqm1lcw0KYGBgDQoNCjxicj4NCg0KIyA1LiBMZXMgdHlwZXMgZCdvYmpldHMgIA0KDQoNCi0gTGVzIG9iamV0cyBzb250IGNhcmFjdMOpcmlzw6lzIHBhciAqKmRpZmbDqXJlbnRlcyBzdHJ1Y3R1cmVzKioNCi0gT24gcmV0cm91dmUgKio1IGRpZmbDqXJlbnRzIHR5cGVzIGRlIGNvbnRlbmFudHMqKiBheWFudCBjaGFjdW4gbGV1cnMgcHJvcHJpw6l0w6lzIA0KDQo8YnI+ICAgDQoNCg0KYGBge3IsIGVjaG89RkFMU0V9DQprbml0cjo6aW5jbHVkZV9ncmFwaGljcygibWFya2Rvd24vdHlwZXMuanBnIikNCmBgYA0KDQoNCjEuICAgKipWZWN0ZXVyKioNCjIuICAgTGlzdGUNCjMuICAgTWF0cmljZQ0KNC4gICBBcnJheXMgKDNkKQ0KNS4gICAqKkRhdGFmcmFtZSAodGFibGVhdXgpKioNCg0KDQo8YnI+ICANCg0KDQojIyA1LjEuIFZlY3RldXJzICANCg0KDQpEw6lmaW5pdGlvbjogDQoNCiogIExhIGJyaXF1ZSDDqWzDqW1lbnRhaXJlID0gc8OpcmllIGRlIHZhbGV1cnMuDQoqICBFbiBwcmF0aXF1ZSwgY+KAmWVzdCB1bmUgdmFyaWFibGUgKG1haXMgcXVpIG7igJllc3QgcGFzIGRhbnMgdW4gdGFibGVhdSkgZXQgc2VzIMOpbMOpbWVudHMgc29udCBzZXMgdmFsZXVycy4NCiogIE9iamV0IGNvbnRlbmFudCBkZXMgdmFsZXVycyAow6lsw6ltZW50cy9jb21wb3NhbnRlcykgZCd1biBzZXVsICoqbW9kZSoqOiBudW3DqXJpcXVlLCB0ZXh0dWVsLCBsb2dpcXVlLiANCg0KYGBge3J9DQojIE9uIGNyw6llciBkZXMgdmVjdGV1cnMgcHJpbmNpcGFsZW1lbnQgYXZlYyBsYSBjb21tYW5kZSBjKCkNCg0KcG9pZHMgPC0gYyg3MCwgNjUsIDYwKSAgIyB2ZWN0ZXVyIG51bcOpcmlxdWUNCnNleGUgPC0gYygiZmVtbWUiLCAiaG9tbWUiLCAiZmVtbWUiKSAgIyB2ZWN0ZXVyIHRleHR1ZWwNCnRhaWxsZSA8LSBjKFRSVUUsIEZBTFNFLCBGQUxTRSwgVFJVRSkgICMgdmVjdGV1ciBib29sw6llbg0KYGBgDQoNCmBgYHtyfQ0KIyBQb3VyIHZvaXIgbGUgImZvcm1hdCIgZGVzIMOpbMOpbWVudHMgc3RvY2vDqXMgZGFucyB1biBvYmpldCwgdXRpbGlzZXIgbGEgZm9uY3Rpb24gbW9kZSgpIG91IHR5cGVvZigpDQoNCm1vZGUocG9pZHMpDQpgYGANCg0KYGBge3J9DQojIE9uIHBldXQgZmFpcmUgZGVzIGNhbGN1bHMgZW50cmUgdmVjdGV1cnMgLSBleC4gY2FsY3VsIGRlIGwnSU1DOiBwb2lkcyBkaXZpc8OpIHBhciB0YWlsbGUgYXUgY2FycsOpIA0KcG9pZHMgPC0gYyg3MCwgNjUsIDYwKQ0KYGBgDQoNCmBgYHtyfQ0KdGFpbGxlIDwtIGMoMS40NSwgMS42MCwgMS43MCkgXiAyICANCmBgYA0KDQpgYGB7cn0NCklNQyA8LSBwb2lkcyAvIHRhaWxsZSANCmBgYA0KDQpgYGB7cn0NCklNQw0KYGBgDQoNCmBgYHtyfQ0KbWVkaWFuKElNQykgIyBQYXNzZXIgbCdvYmpldCBJTUMgw6AgbGEgZm9uY3Rpb24gZGUgbcOpZGlhbmUNCmBgYA0KDQpgYGB7cn0NCklNQyAtIG1lYW4oSU1DKSAjIENhbGN1bGVyIGxhIGRpZmbDqXJlbmNlIGZhY2Ugw6AgbGEgbW95ZW5uZQ0KYGBgDQoNCjxicj4NCg0KIyMgNS4yLiBGYWN0ZXVycyAgIA0KDQoNCiogRMOpZmluaXRpb246IHZlY3RldXIgYXZlYyBkZXMgYXR0cmlidXRzIHNww6ljaWZpcXVlcywgZG9udCBsYSBzdHJ1Y3R1cmUgY29ycmVzcG9uZCBhdXggdmFyaWFibGVzIHF1YWxpdGF0aXZlcy4NCiogTGVzIG1vZGFsaXTDqXMgZGUgbGEgdmFyaWFibGUgY29ycmVzcG9uZGVudCDDoCBkZXMgIm5pdmVhdXgiICgqbGV2ZWxzKikgdW5pcXVlcyBldCBmaXhlcywgaWUgaW1wb3NzaWJsZSBk4oCZYXNzaWduZXIgdW5lIHZhbGV1ciBxdWkgbuKAmWEgcGFzIMOpdMOpIHByw6lhbGFibGVtZW50IGTDqWZpbmllIGNvbW1lIHVuZSBkZXMgbW9kYWxpdMOpcy4NCiogRGVzIMOpdGlxdWV0dGVzICgqbGFiZWxzKikgcGV1dmVudCDDqnRyZSBhc3NvY2nDqWVzIGF1eCBuaXZlYXV4Lg0KKiBMb3JzIGRlIGzigJlpbXBvcnRhdGlvbiBkZSBkb25uw6llcywgdG91dCBkw6lwZW5kYW50IGRlIGxhIGZvbmN0aW9uIGQnaW1wb3J0YXRpb24sIGxlcyB2YXJpYWJsZXMgcXVhbGl0YXRpdmVzIHNlcm9udCBpbXBvcnTDqWVzIHNvdXMgZm9ybWUgZGUgdmVjdGV1ciB0ZXh0dWVsIG91IGRlIGZhY3RldXIuDQoNCmBgYHtyfQ0KIyBDcsOpZXIgdW5lIHZhcmlhYmxlIGRlIHR5cGUgZmFjdGV1ciDDoCBwYXJ0aXIgZCd1biB2ZWN0ZXVyIHRleHR1ZWwgZGUgNSB2YWxldXJzIGRlIDIgbml2ZWF1eCBhdmVjIGxhIGZvbmN0aW9uIGZhY3RvcigpDQpzZXhlIDwtIGZhY3RvcihjKCJIIiwgIkgiLCAiRiIsICJIIiksIGxhYmVscyA9IGMoIkhvbW1lIiwgIkZlbW1lIikpDQpgYGANCg0KYGBge3J9DQojIEwnb2JqZXQgZXN0IHVuIGZhY3RldXIgYXZlYyAyIG1vZGFsaXTDqXMgKG5pdmVhdXgpIGTDqWZpbmlzIHBhciBkw6lmYXV0IGVuIGZvbmN0aW9uIGRlcyB2YWxldXJzIGZvdXJuaWVzIA0Kc3RyKHNleGUpDQpgYGANCg0KPGJyPg0KDQojIyA1LjMuIERhdGFmcmFtZXMgIA0KDQoNCiogIETDqWZpbml0aW9uOiBUYWJsZWF1IGRlIGRvbm7DqWVzIHBvdXZhbnQgcmVncm91cGVyIGRlcyB2ZWN0ZXVycyBkZSBkaWZmw6lyZW50cyB0eXBlcyAobnVtw6lyaXF1ZXMgZXQgdGV4dHVlbHMpDQoqIFN0cnVjdHVyZWxsZW1lbnQsIGxlIGRhdGFmcmFtZSBlc3QgdW5lICoqbGlzdGUqKiBjb21wb3PDqWVzIGRlICoqdmVjdGV1cnMgbm9tbcOpcyoqIChub21zIGRlIHZhcmlhYmxlcyB1bmlxdWVzKSBkZSBtw6ptZSAqKmxvbmd1ZXVyKiogKG5vbWJyZSBkJ29ic2VydmF0aW9ucykgbWFpcyBxdWkgcGV1dmVudCDDqnRyZSBkZSAqKm1vZGVzIGRpZmbDqXJlbnRzKiogKHZhcmlhYmxlcyBudW3DqXJpcXVlcywgdGV4dHVlbGxlcykNCiogQydlc3QgZG9uYyB1biB0YWJsZWF1IGF2ZWMgZGVzIGNvbG9ubmVzIC0gYG5jb2woKWAgZXQgZGVzIGxpZ25lcyAtIGBucm93KClgLCAgZG9uYyAyIGRpbWVuc2lvbnMgLSBgZGltKClgLg0KKiAgQ3LDqWUgdW4gamV1IGRlIGRvbm7DqWVzIGF2ZWMgbGEgZm9uY3Rpb24gZGF0YS5mcmFtZSgpLCBtYWlzIG9uIGxlIGNyw6llIHJhcmVtZW50IG1hbnVlbGxlbWVudCwgZ8OpbsOpcmFsZW1lbnQgaW1wb3J0w6kgZW4gZm9ybWF0IC50eHQsIC5jc3YsIC5zcHNzIC4uLg0KDQoqICBQYXIgZMOpZmF1dCwgc2kgb24gbmUgZMOpc2FjdGl2ZSBwYXMgbOKAmW9wdGlvbiBzdHJpbmdzQXNGYWN0b3JzIMOgIGxhIGNyw6lhdGlvbiBkJ3VuIGRhdGFmcmFtZSwgbGVzIHZlY3RldXJzIHRleHR1ZWxzIHNvbnQgZGUgdHlwZSBmYWN0ZXVyDQoNCmBgYHtyfQ0KIyBDcsOpZXIgdW4gZGF0YSBmcmFtZSBhdmVjIDMgdmFyaWFibGVzICgyIHZlY3RldXJzIG51bcOpcmlxdWVzIGV0IDEgdmVjdGV1ciB0ZXh0dWVsKSBhdmVjIGxhIGZvbmN0aW9uIGRhdGEuZnJhbWUoKQ0KYWdlIDwtIGMoNDUsNjUsMjIsMzgsNTQsMzEsMjksNDQsNTYsNjcpIA0KcG9pZHMgPC0gYygxNTAsMTI1LDIxMCwxNzUsMTEwLDE4MCwxMzAsMTU1LDE5MCwxMjApDQpzZXhlIDwtIGMoIkgiLCJGIiwiRiIsIkgiLCJIIiwiRiIsIkYiLCJIIiwiRiIsIkgiKQ0KYmQgPC0gZGF0YS5mcmFtZShhZ2UsIHNleGUsIHBvaWRzKQ0KYGBgDQoNCmBgYHtyfQ0KYmQgDQpgYGANCg0KPC9kaXY+DQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgMjogSW1wb3J0ZXIgZXQgZXhwbG9yZXIgdW4gZGF0YWZyYW1lIg0Kb3V0cHV0OiANCiAgaHRtbF9kb2N1bWVudDogDQogICAgdGhlbWU6IGNlcnVsZWFuDQogICAgaGlnaGxpZ2h0OiBoYWRkb2NrDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiANCiAgICAgIGNvbGxhcHNlZDogZmFsc2UNCiAgICAgIFNtb290aF9zY3JvbGw6IGZhbHNlDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZQ0KY3NzOiBoaWRlLmNzcw0KLS0tDQoNCkNhcm9saW5lIFBhdGVuYXVkZSA8YnI+IA0KKltCaWJsaW90aMOpY2FpcmUgLSBCaWJsaW90aMOocXVlIGRlcyBsZXR0cmVzIGV0IHNjaWVuY2VzIGh1bWFpbmVzXShodHRwczovL2JpYi51bW9udHJlYWwuY2EvZ3VpZGVzL2Rvbm5lZXMtc3RhdGlzdGlxdWVzLWdlb3NwYXRpYWxlcy9kb25uZWVzLXN0YXRpc3RpcXVlcykqIDxicj4gDQoyNSBvY3RvYnJlIDIwMjANCg0KPGJyPg0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQoqKlTDqWzDqWNoYXJnZXIgZXQgY2hhcmdlciBsZXMgcGFja2FnZXMgdXRpbGlzw6lzKiogICAgDQoNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIFRvdWpvdXJzIGTDqWJ1dGVyIHNvbiBzY3JpcHQgcGFyIGxlIGNvZGUgZCdpbnN0YWxsYXRpb24gZGVzIHBhY2thZ2VzIG7DqWNlc3NhaXJlcy4NCg0KIyBEYW5zIENvbGFiLCB0b3VzIGxlcyBwYWNrYWdlcyBzb250IHTDqWzDqWNoYXJnw6lzIGRhbnMgbCdlbnZpcm9ubmVtZW50IGQnZXjDqWN1dGlvbiBzdXIgbGUgbnVhZ2UsIA0KIyBjJ2VzdCBwb3VycXVvaSBpbCBmYXV0IGxlcyB0w6lsw6ljaGFyZ2VyIGV0IGxlcyBjaGFyZ2VyIMOgIGNoYXF1ZSBmb2lzLg0KDQojIENldHRlIMOpdGFwZSBwZXV0IHByZW5kcmUgcGx1c2lldXJzIG1pbnV0ZXMuDQoNCiMgw4AgTk9URVIsIHB1aXNxdWUgcXUnaWwgZXN0IHByw6lmw6lyYWJsZSBkZSBuZSBwYXMgaW5jbHVyZSBsZSBjb2RlIGRlIHTDqWzDqWNoYXJnZW1lbnQgDQojIGRlcyBtb2R1bGVzIGRhbnMgdW4gZG9jdW1lbnQgUm1hcmtkb3duLCBzZXVscyBsZXMgY29kZXMgZGUgY2hhcmdlbWVudCBvbnQgw6l0w6kgaW5kaXF1w6lzOg0KbGlicmFyeSgicXVlc3Rpb25yIikNCg0KIyBMZXMgY29tbWFuZGVzIGRlIHTDqWzDqWNoYXJnZW1lbnQgZGV2cm9udCBkb25jIMOqdHJlIGFqb3V0w6llcyDDoCBzb24gZG9jdW1lbnQgQ29sYWIgb3UgUm1hcmtkb3duOg0KaW5zdGFsbC5wYWNrYWdlcygicGFja2FnZSIsIGRlcGVuZGVuY2llcz1UUlVFKQ0KDQojIGRlcGVuZGVuY2llcz1UUlVFOiBhc3N1cmUgcXVlIHRvdXMgbGVzIG1vZHVsZXMgZMOpcGVuZGFudHMgbsOpY2Vzc2FpcmVzIHNlcm9udCBhdXNzaSBpbnN0YWxsw6lzLg0KYGBgDQoNCjxicj4NCg0KKipHZXN0aW9uIGRlIHBhY2thZ2VzKiogIA0KDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KIyMgVm9pciBsZXMgbW9kdWxlcyB0w6lsw6ljaGFyZ8OpcyAoY2hhcmfDqXMgb3Ugbm9uKQ0KaW5zdGFsbGVkLnBhY2thZ2VzKCkJDQpgYGANCg0KYGBge3IsIGV2YWw9RkFMU0V9DQojIyBWb2lyIGxlcyBtb2R1bGVzIGNoYXJnw6lzDQpzZWFyY2goKQ0KYGBgDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KIyMgTGlzdGVyIGxlcyBmb25jdGlvbnMgZCd1biBtb2R1bGUgY2hhcmfDqQ0KbGlicmFyeShoZWxwID0gcXVlc3Rpb25yKQ0KYGBgDQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KIyMgRMOpdGFjaGVyIHVuIG1vZHVsZSBjaGFyZ8OpDQpkZXRhY2gocGFja2FnZTpOb21Nb2R1bGUpICAgICAjIHBvdXIgw6l2aXRlciBsZXMgY29uZmxpdHMgZW50cmUgZm9uY3Rpb25zIGR1IG3Dqm1lIG5vbQ0KYGBgDQoNCmBgYHtyfQ0KIyBEb2N1bWVudGVyIGxlcyBkw6l0YWlscyBkZSBzb24gZW52aXJvbm5lbWVudCBkZSB0cmF2YWlsIChzeXN0w6htZSwgcGFja2FnZXMsIHZlcnNpb25zLi4uKQ0Kc2Vzc2lvbkluZm8oKSAjIEltcG9ydGFudCDDoCBub3RlciBwb3VyIGFzc3VyZXIgbGEgcmVwcm9kdWN0aWJpbGl0w6kgZGVzIGFuYWx5c2VzDQpgYGANCg0KDQo8YnI+DQoNCiMjIDEuIExlcyBvYmpldHMgIA0KDQoNCmBgYHtyfQ0KIyBSIGNvbW1lIHVuZSBncm9zc2UgY2FsY3VsYXRyaWNlDQoNCjIgKyAyICMgbGVzIGVzcGFjZXMgbidvbnQgcGFzIGQnaW1wYWN0DQpgYGANCg0KDQo8YnI+DQogDQoqIE1haXMgbOKAmWludMOpcsOqdCBkdSBsYW5nYWdlIGVzdCBxdWUgbOKAmW9uIHN0b2NrZSBsZXMgdmFsZXVycywgcsOpc3VsdGF0cywgbGVzIHRhYmxlYXV4LCBmb25jdGlvbnMsIOKApiBkYW5zIGRlcyAqb2JqZXRzKiBxdWkgcG91cnJvbnQgw6p0cmUgcsOpdXRpbGlzw6lzIGRhbnMgZOKAmWF1dHJlcyBvYmpldHMsIGZvbmN0aW9ucywgYW5hbHlzZXMuICANCg0KDQo8YnI+ICANCg0KDQohW10obWFya2Rvd24vYXNzaWduYXRpb24uanBnKXt3aWR0aD04MCV9DQoNCg0KPGRpdiBjbGFzcz0iZm9sZCBvIj4NCg0KYGBge3J9DQojIENhbGN1bCBzaW1wbGUNCigxMisxNSsyMCkvMyANCmBgYA0KDQpgYGB7cn0NCiMjIENyw6llciB1biBvYmpldCBlbiB1dGlsaXNhbnQgbCdvcMOpcmF0ZXVyIGQnYXNzaWduYXRpb24gIjwtIiBwb3VyIHN0b2NrZXIgbGUgcsOpc3VsdGF0IGR1IGNhbGN1bA0KbW95ZW5uZSA8LSAoMTIrMTUrMjApLzMgDQpgYGANCg0KYGBge3J9DQojIyBQb3VyIHZvaXIgbGUgY29udGVudSBkZSBzb24gb2JqZXQsIHRhcHBlciBzb24gbm9tDQoNCm1veWVubmUgICMgVXRpbGlzYXRpb24gaW1wbGljaXRlIGRlIGxhIGZvbmN0aW9uIHByaW50KCkgDQpgYGANCg0KPGJyPg0KDQoNCiFbXShtYXJrZG93bi9vYmpldC5qcGcpe3dpZHRoPTgwJX0NCg0KPGJyPg0KDQoqKkxlcyBub21zIGTigJlvYmpldHMqKjoNCg0KLSBQZXV2ZW50IGNvbnRlbmlyIGRlcyBjaGlmZnJlcywgbGV0dHJlcyBldCBjYXJhY3TDqHJlcyBfIGV0IC4NCi0gRG9pdmVudCBjb21tZW5jZXIgcGFyIHVuZSBsZXR0cmUsIHBhcyB1biBjaGlmZnJlLg0KLSBOZSBwYXMgdXRpbGlzZXIgZOKAmWFjY2VudHMgbmkgZOKAmWVzcGFjZS4NCi0gRW4gcHJpbmNpcGUgaWwgZmF1dCB1dGlsaXNlciBkZXMgbm9tcyBzaWduaWZpY2F0aWZzLCBlbiBwcmF0aXF1ZSBvbiB1dGlsaXNlIHNvdXZlbnQgZGVzIG5vbXMgbWluaW1hbGlzdGVzIHBvdXIgZmFjaWxpdGVyIGxhIHLDqXV0aWxpc2F0aW9uLg0KLSBDZXJ0YWlucyBub21zIGNvdXJ0cyBzb250IHLDqXNlcnbDqXMgKG1heCwgbWluLCBjLCBxLCB0LCDigKYpLg0KDQo8YnI+ICANCg0KDQohW10obWFya2Rvd24vYm9pdGUzLnBuZyl7d2lkdGg9NjAlfQ0KDQo8YnI+DQogIA0KKipVbiBvYmpldCBlc3QgZG9uYyB1bmUgYm9pdGUgZGFucyBsYXF1ZWxsZSBvbiBwZXV0IHBsYWNlciB1biBjaGlmZnJlLCB1biBtb3QsIHVuIGpldSBkZSBkb25uw6llcyBkJ3VuIG1pbGxpb24gZGUgcsOpcG9uZGFudHMsIHVuZSBmb25jdGlvbiwgdW4gZ3JhcGhpcXVlLi4uKiogIA0KDQoNCjxicj4NCg0KDQojIyAyLiBMZXMgb3DDqXJhdGV1cnMgIA0KDQoNCg0KKiAgT3DDqXJhdGV1cnMgZCdhc3NpZ25hdGlvbjogKio8LSoqLCA9ICwgLT4NCiogIE9ww6lyYXRldXJzIGRlIHPDqWxlY3Rpb246IFtdLCBbW11dLCAkLCA6DQoqICBPcMOpcmF0ZXVycyBib29sw6llbjogISwgJiwgfA0KKiAgT3DDqXJhdGV1cnMgYXJpdGhtw6l0aXF1ZXM6ICssIC0sICosIC8sIF4NCiogIE9ww6lyYXRldXJzIGRlIGNvbXBhcmFpc29uOiA9PSwgIT0sIDwsID4sIDw9LCA+PSANCg0KPGJyPg0KDQojIyAzLiBMZXMgZm9uY3Rpb25zICANCg0KDQoqICBQZXJtZXR0ZW50IGTigJllZmZlY3R1ZXIgZGVzIHTDomNoZXMgcHLDqWTDqWZpbmllcyBjb21tZSBkZXMgYW5hbHlzZXMsIGdyYXBoaXF1ZXMsIGNhbGN1bHMsIOKApiANCiogIENoYXF1ZSBmb25jdGlvbiBhIHVuIG5vbSBldCBwbHVzaWV1cnMgZm9uY3Rpb25zIHBldXZlbnQgcGVybWV0dHJlIGQnZWZmZWN0dWVyIGxhIG3Dqm1lIHTDomNoZTogUGFyIGV4ZW1wbGUgcG91ciBmYWlyZSB1bmUgY29ycmVsYXRpb24sIG9uIHJldHJvdXZlIGxlcyBmb25jdGlvbnMgY29yKCksIGNvci50ZXN0KCksIC4uLg0KKiAgT24gYXBwZWwgdW5lIGZvbmN0aW9uIGVuIGxhIG5vbW1hbnQgZXQgb24gY29udHLDtGxlIHNvbiBjb21wb3J0ZW1lbnQgZW4gcGFyYW3DqXRyYW50IHNlcyBhcmd1bWVudHMNCiogIE9uIHBldXQgaW1icmlxdWVyIGxlcyBmb25jdGlvbnMgbGVzIHVuZXMgZGFucyBsZXMgYXV0cmVzIGF2ZWMgZGVzIHBhcmVudGjDqHNlcy4NCg0KPGJyPiAgDQoNCg0KIVtdKG1hcmtkb3duL2ZvbmN0aW9uLmpwZyl7d2lkdGg9ODAlfQ0KDQoNCjxicj4gIA0KDQoNCmBgYHtyfQ0KIyBDcsOpZXIgdW4gbm91dmVsIG9iamV0IG5vbW3DqSAiYWdlIiBjb21wb3PDqSBk4oCZdW5lIHPDqXJpZSBkZSA1IG5vbWJyZXMgYXZlYyBsYSBmb25jdGlvbiBjKCkgKGNvbmNhdMOpbmVyKQ0KYWdlIDwtIGMoMTIsIDE1LCAyMCwgMzUsIDQwKSANCmBgYA0KDQpgYGB7cn0NCiMgUG91ciB2b2lyIGxlIG5vbSBkJ3VuIG9iamV0LCBvbiB0YXBwZSBzb24gbm9tDQphZ2UNCmBgYA0KDQpgYGB7cn0NCiMgUGFzc2VyIGNldCBvYmpldCBjb21tZSAxZXIgYXJndW1lbnQgZGUgbGEgZm9uY3Rpb24gbWVhbigpDQptZWFuKGFnZSkNCmBgYA0KDQpgYGB7cn0NCiMgQXJyb25kaXIgbGUgcsOpc3VsdGF0IHNhbnMgZMOpY2ltYWxlIChhcmd1bWVudCBkaWdpdHM9KSBlbiBpbWJyaXF1YW50IGxhIGZvbmN0aW9uIG1lYW4oKSBkYW5zIGxhIGZvbmN0aW9uIHJvdW5kKCkNCnJvdW5kKG1lYW4oYWdlKSwgZGlnaXRzPTApIA0KYGBgDQoNCjxicj4NCg0KIyMgNC4gTGVzIGFyZ3VtZW50cyAgDQoNCg0KKiBDaGFxdWUgZm9uY3Rpb24gcG9zc8OoZGUgdW5lIGxpc3RlIHBsdXMgb3UgbW9pbnMgbG9uZ3VlIGTigJlhcmd1bWVudHMgKHBhcmFtw6h0cmVzIG91IG9wdGlvbnMpIHBlcm1ldHRhbnQgZGUgcGFyYW3DqXRyZXIgc29uIGZvbmN0aW9ubmVtZW50Lg0KKiBDZXJ0YWlucyBhcmd1bWVudHMgb250IHVuZSB2YWxldXIgcGFyIGTDqWZhdXQuIFNpIGNlcyB2YWxldXJzIG5vdXMgY29udmllbm5lbnQsIHBhcyBiZXNvaW4gZGUgbGVzIGluZGlxdWVyLg0KKiBTaSBs4oCZYXJndW1lbnQgbuKAmWEgcGFzIGRlIHZhbGV1ciBwYXIgZMOpZmF1dCwgRkFVVCBsZSByZW5zZWlnbmVyLg0KKiBQb3VyIG1vZGlmaWVyIGxhIHZhbGV1ciBk4oCZdW4gYXJndW1lbnQsIG9uIGxlIG5vbW1lIGV0IGNoYW5nZSBzYSB2YWxldXIgw6AgbGEgc3VpdGUgZOKAmXVuID0uDQoqIExhIGxpc3RlIGTigJlhcmd1bWVudHMgcmVzcGVjdGUgdW4gb3JkcmUuIFNpIG9uIG1vZGlmaWUgY2hhcXVlIGFyZ3VtZW50IGRhbnMgbOKAmW9yZHJlLCBvbiBwZXV0IG9tZXR0cmUgbGUgbm9tIGRlcyBhcmd1bWVudHMuIExlcyBhcmd1bWVudHMgcGV1dmVudCBkb25jIMOqdHJlIG5vbW3DqXMgb3Ugbm9uIChtYWlzIHBvdXIgYXNzdXJlciBsYSByZXByb2R1Y3RpYmlsaXTDqSwgaWwgZXN0IHJlY29tbWFuZMOpIGRlIGxlcyBub21tZXIpLg0KKiBMZSBwcmVtaWVyIGFyZ3VtZW50LCB0b3Vqb3VycyBsZXMgZG9ubsOpZXMgKG9uIG5lIGxlIG5vbW1lIGfDqW7DqXJhbGVtZW50IHBhcyB4PSkNCiogQ29tbWVudCBzYXZvaXIgcXVlbHMgc29udCBsZXMgYXJndW1lbnRzIGTigJl1bmUgZm9uY3Rpb24/IFRhcGVyIEhlbHAoTm9tRm9uY3Rpb24pIG91ID9Ob21Gb25jdGlvbiAuDQoNCmBgYHtyfQ0KYWdlIDwtIGMoMjUsIDM2LCA0NywgNTgsIDY5LCBOQSkgICMgSmUgY3LDqcOpIHVuIHZlY3RldXIgY29tcG9zw6kgZGUgNSBjaGlmZnJlcyBldCB1bmUgdmFsZXVyIG1hbnF1YW50ZQ0KDQojIMOAIG5vdGVyOiBsb3JzcXVlIGwnb24gc3RvY2tlIHVuIG5vdXZlYXUgY29udGVudSBkYW5zIHVuICBvYmpldCBleGlzdGFudCwgbGUgY29udGVudSBpbml0aWFsIGVzdCDDqWNyYXPDqQ0KYGBgDQoNCmBgYHtyfQ0KbWVhbihhZ2UpICAgICMgT1VQUyENCmBgYA0KDQpgYGB7ciwgZXZhbD1GQUxTRX0NCmhlbHAobWVhbikgICMgUG91ciBhZmZpY2hlciBsJ2FpZGUgZCd1bmUgZm9uY3Rpb24gKG91ID9tZWFuKQ0KYGBgDQoNCmBgYHtyfQ0KbWVhbihhZ2UsIG5hLnJtPVRSVUUpDQoNCiMgTCdhcmd1bWVudCBuYS5ybT1UUlVFIGluZGlxdWUgZGUgbmUgcGFzIHByZW5kcmUgZW4gY29tcHRlIGxlcyB2YWxldXJzIG1hbnF1YW50ZXMNCiMgTCdhcmd1bWVudCB0cmltPS4wNSBpbmRpcXVlIGQnZXhjbHVyZSBsZXMgNSUgbGVzIHBsdXMgZXh0csOqbWVzDQpgYGANCg0KPGJyPg0KDQojIyA1LiBMZXMgdHlwZXMgZCdvYmpldHMgIA0KDQoNCi0gTGVzIG9iamV0cyBzb250IGNhcmFjdMOpcmlzw6lzIHBhciAqKmRpZmbDqXJlbnRlcyBzdHJ1Y3R1cmVzKiouDQotIE9uIHJldHJvdXZlICoqNSBkaWZmw6lyZW50cyB0eXBlcyBkZSBjb250ZW5hbnRzKiogYXlhbnQgY2hhY3VuIGxldXJzIHByb3ByacOpdMOpcy4gDQoNCjxicj4gICANCg0KDQpbIVtSIERhdGEgU3RydWN0dXJlc10obWFya2Rvd24vdHlwZXMuanBnKXt3aWR0aD03MCV9XShodHRwczovL2Rldm9wZWRpYS5vcmcvci1kYXRhLXN0cnVjdHVyZXMpIA0KDQoxLiAgICoqVmVjdGV1cioqDQoyLiAgIExpc3RlDQozLiAgIE1hdHJpY2UNCjQuICAgQXJyYXlzICgzZCkNCjUuICAgKipEYXRhZnJhbWUgKHRhYmxlYXV4KSoqDQoNCg0KPGJyPiAgDQoNCg0KIyMjIDUuMS4gVmVjdGV1cnMgIA0KDQoNCiogIExhIGJyaXF1ZSDDqWzDqW1lbnRhaXJlID0gc8OpcmllIGRlIHZhbGV1cnMuDQoqICBFbiBwcmF0aXF1ZSwgY+KAmWVzdCB1bmUgdmFyaWFibGUgKG1haXMgcXVpIG7igJllc3QgcGFzIGRhbnMgdW4gdGFibGVhdSkgZXQgc2VzIMOpbMOpbWVudHMgc29udCBzZXMgdmFsZXVycy4NCiogIE9iamV0IGNvbnRlbmFudCBkZXMgdmFsZXVycyAow6lsw6ltZW50cy9jb21wb3NhbnRlcykgZCd1biBzZXVsICoqbW9kZSoqOiBudW3DqXJpcXVlLCB0ZXh0dWVsLCBsb2dpcXVlIA0KKiAgT24gcmV0cm91dmUgYXVzc2kgZGVzIHR5cGVzIGTDqXJpdsOpcyBjb21tZSBsZXMgZGF0ZXMsIGxlcyAqKmZhY3RldXJzKiosIGxlcyB2ZWN0ZXVycyBsYWJlbGxpc8OpcyBxdWkgb250IGRlcyAqKmF0dHJpYnV0cyoqIHBhcnRpY3VsaWVycy4NCg0KYGBge3J9DQojIE9uIGNyw6llIGRlcyB2ZWN0ZXVycyBwcmluY2lwYWxlbWVudCBhdmVjIGxhIGNvbW1hbmRlIGMoKQ0KDQpwb2lkcyA8LSBjKDcwLCA2NSwgNjApICAjIHZlY3RldXIgbnVtw6lyaXF1ZSAoKSAtIGZvcm1hdCBxdWkgc2UgZMOpY2xpbmUgZGUgZmHDp29uIHBsdXMgZMOpdGFpbGzDqWUgKCJudW1lcmljIiwgZG91YmxlIiwgImludGVnZXIiLCAuLi4pDQpzZXhlIDwtIGMoImZlbW1lIiwgImhvbW1lIiwgImZlbW1lIikgICMgdmVjdGV1ciB0ZXh0dWVsIChlbnRyZSBndWlsbGVtZXRzIHNpbXBsZXMgb3UgZG91YmxlcykNCnRhaWxsZSA8LSBjKFRSVUUsIEZBTFNFLCBGQUxTRSwgVFJVRSkgICMgdmVjdGV1ciBib29sw6llbiAtIHBldXQgdXRpbGlzZXIgbGVzIHJhY2NvdXJjaXMgVC9GDQpgYGANCg0KYGBge3J9DQojIFBvdXIgdm9pciBsZSAiZm9ybWF0IiBkZXMgw6lsw6ltZW50cyBzdG9ja8OpcyBkYW5zIHVuIG9iamV0LCB1dGlsaXNlciBsYSBmb25jdGlvbiBtb2RlKCkgb3UgdHlwZW9mKCkNCg0KbW9kZShwb2lkcykNCmBgYA0KDQpgYGB7cn0NCiMgT24gcGV1dCBmYWlyZSBkZXMgY2FsY3VscyBlbnRyZSB2ZWN0ZXVycyAtIGV4ZW1wbGUsIGNhbGN1bCBkZSBsJ0lNQzogcG9pZHMgZGl2aXPDqSBwYXIgdGFpbGxlIGF1IGNhcnLDqSANCg0KcG9pZHMgPC0gYyg3MCwgNjUsIDYwKSAjIGNyw6llIHVuIHZlY3RldXIgbm9tbcOpICJwb2lkcyIgYXZlYyBsYSBmb25jdGlvbiBjKCkgY29tcG9zw6kgZGUgMyDDqWzDqW1lbnRzIG51bcOpcmlxdWVzDQpgYGANCg0KYGBge3J9DQp0YWlsbGUgPC0gYygxLjQ1LCAxLjYwLCAxLjcwKSBeIDIgICMgY3LDqWUgdW4gdmVjdGV1ciBub21tw6kgInRhaWxsZSIgYXZlYyBsYSBmb25jdGlvbiBjKCkgY29tcG9zw6kgZGUgMyDDqWzDqW1lbnRzIG51bcOpcmlxdWVzIGF1IGNhcnLDqQ0KYGBgDQoNCmBgYHtyfQ0KSU1DIDwtIHBvaWRzIC8gdGFpbGxlICMgZGl2aXNlciBsJ29iamV0ICJwb2lkcyIgcGFyIGwnb2JqZXQgInRhaWxsZSIgKEF0dGVudGlvbiEgTGVzIHZlY3RldXJzIGRvaXZlbnQgw6p0cmUgZGUgbcOqbWUgbG9uZ3VldXIpDQpgYGANCg0KYGBge3J9DQpJTUMgIyB2b2lyIGxlIGNvbnRlbnUgZGUgbCdvYmpldA0KYGBgDQoNCmBgYHtyfQ0KbWVkaWFuKElNQykgIyBQYXNzZXIgbCdvYmpldCBJTUMgw6AgbGEgZm9uY3Rpb24gZGUgbcOpZGlhbmUNCmBgYA0KDQpgYGB7cn0NCklNQyAtIG1lYW4oSU1DKSAjIENhbGN1bGVyIGxhIGRpZmbDqXJlbmNlIGZhY2Ugw6AgbGEgbW95ZW5uZQ0KYGBgDQoNCjxicj4NCg0KIyMjIDUuMi4gRmFjdGV1cnMgICANCg0KDQoqIFZlY3RldXIgYXZlYyBkZXMgYXR0cmlidXRzIHNww6ljaWZpcXVlcywgZG9udCBsYSBzdHJ1Y3R1cmUgY29ycmVzcG9uZCBhdXggdmFyaWFibGVzIHF1YWxpdGF0aXZlcy4NCiogTGVzIG1vZGFsaXTDqXMgZGUgbGEgdmFyaWFibGUgY29ycmVzcG9uZGVudCDDoCBkZXMgIm5pdmVhdXgiICgqbGV2ZWxzKikgdW5pcXVlcyBldCBmaXhlcywgaWUgaW1wb3NzaWJsZSBk4oCZYXNzaWduZXIgdW5lIHZhbGV1ciBxdWkgbuKAmWEgcGFzIMOpdMOpIHByw6lhbGFibGVtZW50IGTDqWZpbmllIGNvbW1lIHVuZSBkZXMgbW9kYWxpdMOpcy4NCiogRGVzIMOpdGlxdWV0dGVzICgqbGFiZWxzKikgcGV1dmVudCDDqnRyZSBhc3NvY2nDqWVzIGF1eCBuaXZlYXV4Lg0KKiBMb3JzIGRlIGzigJlpbXBvcnRhdGlvbiBkZSBkb25uw6llcywgdG91dCBkw6lwZW5kYW50IGRlIGxhIGZvbmN0aW9uIGQnaW1wb3J0YXRpb24sIGxlcyB2YXJpYWJsZXMgcXVhbGl0YXRpdmVzIHNlcm9udCBpbXBvcnTDqWVzIHNvdXMgZm9ybWUgZGUgdmVjdGV1ciB0ZXh0dWVsIG91IGRlIGZhY3RldXIuDQoNCmBgYHtyfQ0KIyBDcsOpZXIgdW5lIHZhcmlhYmxlIGRlIHR5cGUgZmFjdGV1ciDDoCBwYXJ0aXIgZCd1biB2ZWN0ZXVyIHRleHR1ZWwgZGUgNSB2YWxldXJzIGRlIDIgbml2ZWF1eCBhdmVjIGxhIGZvbmN0aW9uIGZhY3RvcigpDQpzZXhlIDwtIGZhY3RvcihjKCJIIiwgIkgiLCAiRiIsICJIIiksIGxhYmVscyA9IGMoIkhvbW1lIiwgIkZlbW1lIikpDQpgYGANCg0KYGBge3J9DQojIEwnb2JqZXQgZXN0IHVuIGZhY3RldXIgYXZlYyAyIG1vZGFsaXTDqXMgKG5pdmVhdXgpIGTDqWZpbmlzIHBhciBkw6lmYXV0IGVuIGZvbmN0aW9uIGRlcyB2YWxldXJzIGZvdXJuaWVzIA0Kc3RyKHNleGUpDQpgYGANCg0KPGJyPg0KDQojIyMgNS4zLiBEYXRhZnJhbWVzICANCg0KKiBUYWJsZWF1IGRlIGRvbm7DqWVzIHBvdXZhbnQgcmVncm91cGVyIGRlcyB2ZWN0ZXVycyBkZSBkaWZmw6lyZW50cyB0eXBlcyAodmFyaWFibGVzIG51bcOpcmlxdWVzIGV0L291IHRleHR1ZWxsZXMpLg0KKiBTdHJ1Y3R1cmVsbGVtZW50LCBsZSBkYXRhZnJhbWUgZXN0IHVuZSAqKmxpc3RlKiogY29tcG9zw6llcyBkZSAqKnZlY3RldXJzIG5vbW3DqXMqKiAobm9tcyBkZSB2YXJpYWJsZXMgdW5pcXVlcykgZGUgbcOqbWUgKipsb25ndWV1cioqIChub21icmUgZCdvYnNlcnZhdGlvbnMpIG1haXMgcXVpIHBldXZlbnQgw6p0cmUgZGUgKiptb2RlcyBkaWZmw6lyZW50cyoqICh2YXJpYWJsZXMgbnVtw6lyaXF1ZXMsIHRleHR1ZWxsZXMpLg0KKiBDJ2VzdCBkb25jIHVuIHRhYmxlYXUgYXZlYyBkZXMgY29sb25uZXMgLSBgbmNvbCgpYCBldCBkZXMgbGlnbmVzIC0gYG5yb3coKWAsICBkb25jIDIgZGltZW5zaW9ucyAtIGBkaW0oKWAuDQoqIENyw6llIHVuIGpldSBkZSBkb25uw6llcyBhdmVjIGxhIGZvbmN0aW9uIGRhdGEuZnJhbWUoKSwgbWFpcyBvbiBsZSBjcsOpZSByYXJlbWVudCBtYW51ZWxsZW1lbnQsIGfDqW7DqXJhbGVtZW50IGltcG9ydMOpIGVuIGZvcm1hdCAudHh0LCAuY3N2LCAuLi4NCg0KYGBge3J9DQojIENyw6llciB1biBkYXRhIGZyYW1lIGF2ZWMgMyB2YXJpYWJsZXMgKDIgdmVjdGV1cnMgbnVtw6lyaXF1ZXMgZXQgMSB2ZWN0ZXVyIHRleHR1ZWwpIGF2ZWMgbGEgZm9uY3Rpb24gZGF0YS5mcmFtZSgpDQphZ2UgPC0gYyg0NSw2NSwyMiwzOCw1NCwzMSwyOSw0NCw1Niw2NykgDQpwb2lkcyA8LSBjKDE1MCwxMjUsMjEwLDE3NSwxMTAsMTgwLDEzMCwxNTUsMTkwLDEyMCkNCnNleGUgPC0gYygiSCIsIkYiLCJGIiwiSCIsIkgiLCJGIiwiRiIsIkgiLCJGIiwiSCIpDQpiZCA8LSBkYXRhLmZyYW1lKGFnZSwgc2V4ZSwgcG9pZHMpDQoNCiMjIFBsdXNpZXVycyBmb25jdGlvbnMgcGVybWV0dGVudCBkZSBmdXNpb25uZXIgZGVzIGNvbG9ubmVzLCBkZXMgbGlnbmVzIGV0IGRlcyB0YWJsZXMgZGUgZG9ubsOpZXM6IGBtZXJnZSgpYCwgYGNiaW5kKClgIGV0IGByYmluZCgpYC4uLiANCmBgYA0KDQpgYGB7cn0NCmJkIA0KYGBgDQoNCjxicj4NCg0KIyMjIDUuNC4gQ29uY2x1c2lvbjogVHlwZXMgZOKAmW9iamV0cyBldCBmb25jdGlvbnMgdXRpbGVzICANCg0KDQotIExlcyBvYmpldHMgZGFucyAqKlIqKiBzb250IGNhcmFjdMOpcmlzw6lzIHBhciBkaWZmw6lyZW50ZXMgcHJvcHJpw6l0w6lzIDogaWxzIHBvc3PDqGRlbnQgYXUgbWluaW11bSB1biBgbW9kZSgpYCwgbGUgdHlwZSBkZSBiYXNlIGRlIHNlcyBjb21wb3NhbnRlcywgZXQgdW5lIGxvbmd1ZXVyIOKAkyBgbGVuZ3RoKClgIC0gbGUgbm9tYnJlIGRlIGNvbXBvc2FudGVzLiANCg0KLSBMYSBmb25jdGlvbiBgdHlwZW9mKClgIGVzdCB0csOocyBzaW1pbGFpcmUgYXUgYG1vZGVgOyBlbGxlIG9mZnJlIHVuZSBkZXNjcmlwdGlvbiB1biBwZXUgcGx1cyBwcsOpY2lzZSBkdSBmb3JtYXQgZGUgc3RvY2thZ2UgaW50ZXJuZSBk4oCZdW4gb2JqZXQuDQoNCi0gTGVzIG9iamV0cyBvbnQgYXVzc2kgdW5lIGBjbGFzc2UoKWAgOiBj4oCZZXN0IHVuZSBwcm9wcmnDqXTDqSB1biBwZXUgcGx1cyBjb21wbGV4ZSAoaXNzdWUgZHUgbGFuZ2FnZSBTKSBhc3NpZ27DqWUgw6AgdW4gb2JqZXQgcG91ciBkw6lmaW5pciBs4oCZaW5mb3JtYXRpb24gY29udGVudWUgRVQgZMOpdGVybWluZXIgbGEgZmHDp29uIGRvbnQgbOKAmW9iamV0IHNlcmEgdHJhaXTDqSBwYXIgY2VydGFpbmVzIGZvbmN0aW9ucyBkaXRlcyBnw6luw6lyaXF1ZXMsIGllIGRvbnQgbGUgcsOpc3VsdGF0IGTDqXBlbmQgZHkgdHlwZSBkJ29iamV0IGZvdXJuaSAoY29tbWUgYHByaW50KClgLCBgc3VtbWFyeSgpYCwgYHBsb3QoKWApLg0KDQotIEJyZWYsIGxlICoqbW9kZSoqLCBsZSAqKnR5cGUqKiBldCBsYSAqKmNsYXNzZSoqIHNvbnQgc291dmVudCBwYXJlaWxzLCBtYWlzIHBhcyB0b3Vqb3VycyEgTGEgZm9uY3Rpb24gYHN0cigpYCBwZXV0IGF1c3NpIMOqdHJlIHV0aWxlIHBvdXIgcGx1cyBkZSBkw6l0YWlscyBzdXIgdW4gb2JqZXQgZXQgc2VzIMOpbMOpbWVudHMuDQoNCi0gTGVzIG9iamV0cywgZW4gcGx1cyBkZSBsZXVycyBjb21wb3NhbnRlcywgcGV1dmVudCBhdXNzaSBwb3Nzw6lkZXIgZGVzIGF0dHJpYnV0cyAtIGBhdHRyaWJ1dGVzKClgIOKAkyBtw6l0YWRvbm7DqWVzIGNvbnRlbmFudCBkZXMgaW5mb3JtYXRpb25zIGFkZGl0aW9ubmVsbGVzIHN1ciBsJ29iamV0IGNvbW1lIGRlcyBub21zIC0gYG5hbWVzKClgICjDqXRpcXVldHRlcyBkZXMgw6lsw6ltZW50cykgLSBldCBkZXMgZGltZW5zaW9ucyAtIGBkaW0oKWAgKGNvbG9ubmVzL2xpZ25lcyBkYW5zIHRhYmxlYXV4KS4NCg0KLSDDgCBub3RlcjoNCiAgICArIElsIGVzdCBwb3NzaWJsZSBkZSBjb252ZXJ0aXIgbGUgdHlwZSAobW9kZSkgZOKAmXVuIG9iamV0IGF2ZWM6IGBhcy5jaGFyYWN0ZXIoKWAsIGBhcy5saXN0KClgLCBgYXMubnVtZXJpYygpYCwgYGFzLmZhY3RvcigpYC4gDQogICAgKyBQb3VyIHbDqXJpZmllciBsZSBmb3JtYXQsIHJlbXBsYWNlciBhcy4gcGFyIGlzIDogYGlzLmNoYXJhY3RlcigpYCwgYGlzLmxpc3QoKWAsIGBpcy5udW1lcmljKClgLCBgaXMuZmFjdG9yKClgLCANCg0KPGJyPg0KDQoqKioNCg0KPC9kaXY+DQo=</div>
 
 
 </div>

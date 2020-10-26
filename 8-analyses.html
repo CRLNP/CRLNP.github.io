@@ -9,9 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
 
-<meta name="date" content="2020-10-17" />
 
 <title>Capsule 7: Tests statistiques</title>
 
@@ -496,7 +494,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+  <a href="1-preambule-colab.html">Preambule</a>
 </li>
 <li>
   <a href="2-langage-r.html">Qu'est-ce que R?</a>
@@ -522,6 +520,15 @@ div.tocify {
 <li>
   <a href="9-graphiques.html">Graphiques</a>
 </li>
+<li>
+  <a href="10-ressources.html">Liens</a>
+</li>
+<li>
+  <a href="https://github.com/CRLNP/CRLNP.github.io">
+    <span class="fab fa fab fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -539,12 +546,12 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Capsule 7: Tests statistiques</h1>
-<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
-<h4 class="date">2020-10-17</h4>
 
 </div>
 
 
+<p>Caroline Patenaude <br> <em><a href="https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques">Bibliothécaire - Bibliothèque des lettres et sciences humaines</a></em> <br> 25 octobre 2020</p>
+<p><br></p>
 <script src="hideOutput.js"></script>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Chargement des modules nécessaires</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(car)</a>
@@ -568,7 +575,7 @@ div.tocify {
 <ul>
 <li>On retrouve une multitude de modules dédiés aux méthodes statistiques (comme stats, MASS, FactoMineR, plm, glm).</li>
 <li>La même méthode peut se trouver avec variantes dans plusieurs modules.</li>
-<li>Les exemples ci-dessous proviennent principalement du module stats (module par défaut) où l’on retrouve de nombreuses fonctions pour différents types d’analyse</li>
+<li>Les exemples ci-dessous proviennent principalement du module stats (module par défaut) où l’on retrouve de nombreuses fonctions pour différents types d’analyse.</li>
 </ul>
 <p><br></p>
 <div id="notation-formule-et-objet-modèle" class="section level2">
@@ -576,8 +583,8 @@ div.tocify {
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">mod &lt;-<span class="st"> </span><span class="kw">nom.test</span>(VD <span class="op">~</span><span class="st"> </span>VI)</a></code></pre></div>
 <ul>
 <li>Souvent utilisé dans les modèles d’analyse (régressions…) et les graphiques.</li>
-<li>Peut s’interpréter comme en “fonction de…”: variable dépendante (effet) en fonction (~) de la var indépendante (cause)</li>
-<li>Toutes les fonctions n’acceptent pas la notation formule, mais est utilisé pour la plupart des modèles d’analyse</li>
+<li>Peut s’interpréter comme en “fonction de…”: variable dépendante (effet) en fonction (~) de la var indépendante (cause).</li>
+<li>Toutes les fonctions n’acceptent pas la notation formule, mais est utilisée pour la plupart des modèles d’analyse.</li>
 <li>On stocke l’analyse dans un objet qui contiendra les résultats qui, selon l’analyse, inclueront un ensemble d’éléments d’information auxquels on pourra accéder de deux façons:</li>
 </ul>
 <p>En passant notre objet-modèle à différentes fonctions génériques (selon le type de test):</p>
@@ -591,11 +598,12 @@ div.tocify {
 <a class="sourceLine" id="cb3-8" title="8"><span class="kw">anova</span>(mod)                      <span class="co"># appliquer analyse de variance sur modèle</span></a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="kw">predict</span>(mod)                    <span class="co"># calculer des valeurs prédites à partir d&#39;un modèle</span></a>
 <a class="sourceLine" id="cb3-10" title="10"><span class="kw">plot</span>(mod)                       <span class="co"># et nombreuses autres fonctions graphiques  </span></a></code></pre></div>
-<p>En utilisant la fonction names(mod) et en sélectionnant individuellement le nom de l’élément avec l’opérateur $:</p>
+<p>En utilisant la fonction names(NomObjet) et en sélectionnant individuellement le nom de l’élément avec l’opérateur $:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x) <span class="co"># Créer son objet modèle</span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">names</span>(mod)       <span class="co"># Voir les éléments du résultat</span></a>
 <a class="sourceLine" id="cb4-3" title="3">mod<span class="op">$</span>coefficients <span class="co"># Sélectionner l&#39;élément individuel</span></a></code></pre></div>
-<p><em>À noter: par défaut les résultats sont présentés selon la notation scientifique. Pour la désactiver utiliser l’instruction: options(scipen = 999)</em></p>
+<p><br></p>
+<p><strong>À noter: par défaut les résultats sont présentés selon la notation scientifique. Pour la désactiver utiliser l’instruction: options(scipen = 999). Pour la réactiver: options(scipen = 0)</strong></p>
 <p><br></p>
 </div>
 <div id="les-modalités-de-référence" class="section level2">
@@ -615,7 +623,8 @@ div.tocify {
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Intervalle de confiance d’une proportion</span></a>
 <a class="sourceLine" id="cb8-2" title="2"></a>
 <a class="sourceLine" id="cb8-3" title="3"><span class="co"># fonction prop.test</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="kw">prop.test</span>(<span class="kw">table</span>(bd<span class="op">$</span>sport))</a></code></pre></div>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co"># Calcul l&#39;intervalle pour la première catégorie du tableau</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">prop.test</span>(<span class="kw">table</span>(bd<span class="op">$</span>sport))</a></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
@@ -627,9 +636,10 @@ div.tocify {
 ## sample estimates:
 ##      p 
 ## 0.3615</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Calcul l&#39;intervalle pour la première catégorie du tableau</span></a></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">prop.test</span>(<span class="kw">table</span>(<span class="kw">relevel</span>(bd<span class="op">$</span>sport, <span class="st">&quot;Oui&quot;</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">999</span>) <span class="co"># désactiver la notation scientifique</span></a>
+<a class="sourceLine" id="cb10-2" title="2"></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="co"># Modifier la catégorie de référence avec la fonction relevel directement dans la fonction table()</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="kw">prop.test</span>(<span class="kw">table</span>(<span class="kw">relevel</span>(bd<span class="op">$</span>sport, <span class="st">&quot;Oui&quot;</span>)))</a></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test with continuity correction
 ## 
@@ -641,12 +651,11 @@ div.tocify {
 ## sample estimates:
 ##      p 
 ## 0.3615</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Modifier la catégorie de référence avec la fonction relevel directement dans la fonction table()</span></a></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Intervalle de confiance d&#39;une moyenne</span></a>
-<a class="sourceLine" id="cb14-2" title="2"></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="co"># Fonction t.test</span></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="co"># Changer le niveau de confiance avec l&#39;argument (bd$age, conf.level=.x)</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="kw">t.test</span>(bd<span class="op">$</span>age, <span class="dt">conf.level=</span>.<span class="dv">99</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Intervalle de confiance d&#39;une moyenne</span></a>
+<a class="sourceLine" id="cb12-2" title="2"></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co"># Fonction t.test</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co"># Changer le niveau de confiance avec l&#39;argument (bd$age, conf.level=.x)</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="kw">t.test</span>(bd<span class="op">$</span>age, <span class="dt">conf.level=</span>.<span class="dv">99</span>)</a></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -660,37 +669,37 @@ div.tocify {
 ##    48.157</code></pre>
 <p><br></p>
 <h2 id="test-du-khi-carré">3. Test du Khi-carré</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Passe la table comme argument à la fonction chisq.test() (Module questionr)</span></a>
-<a class="sourceLine" id="cb16-2" title="2"></a>
-<a class="sourceLine" id="cb16-3" title="3">mod.chi &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe) </a>
-<a class="sourceLine" id="cb16-4" title="4"></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="co"># Applique correction par défaut, sinon ajouter argument: ,correct=FALSE</span></a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">mod.chi</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Passe les variables comme argument à la fonction chisq.test() (Module questionr)</span></a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3">mod.chi &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe) </a>
+<a class="sourceLine" id="cb14-4" title="4"></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="co"># Applique correction par défaut, sinon ajouter argument: ,correct=FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">mod.chi</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  bd$sport and bd$sexe
 ## X-squared = 16.574, df = 1, p-value = 0.00004679</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Fonction names() pour voir les éléments d&#39;information de nos résultats</span></a>
-<a class="sourceLine" id="cb19-2" title="2"><span class="kw">names</span>(mod.chi)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Fonction names() pour voir les éléments d&#39;information de nos résultats</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="kw">names</span>(mod.chi)</a></code></pre></div>
 <pre><code>## [1] &quot;statistic&quot; &quot;parameter&quot; &quot;p.value&quot;   &quot;method&quot;    &quot;data.name&quot; &quot;observed&quot; 
 ## [7] &quot;expected&quot;  &quot;residuals&quot; &quot;stdres&quot;</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Voir les valeurs attendues</span></a>
-<a class="sourceLine" id="cb21-2" title="2">mod.chi<span class="op">$</span>expected</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Voir les valeurs attendues</span></a>
+<a class="sourceLine" id="cb19-2" title="2">mod.chi<span class="op">$</span>expected</a></code></pre></div>
 <pre><code>##         bd$sexe
 ## bd$sport    Homme    Femme
 ##      Oui 324.9885 398.0115
 ##      Non 574.0115 702.9885</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># Fonction chisq.residuals() du module questionr pour les résidus</span></a>
-<a class="sourceLine" id="cb23-2" title="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe)</a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="kw">chisq.residuals</span>(tab) </a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Fonction chisq.residuals() du module questionr pour les résidus</span></a>
+<a class="sourceLine" id="cb21-2" title="2">tab &lt;-<span class="st"> </span><span class="kw">table</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe)</a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="kw">chisq.residuals</span>(tab) </a></code></pre></div>
 <pre><code>##      
 ##       Homme Femme
 ##   Oui  2.44 -2.21
 ##   Non -1.84  1.66</code></pre>
 <p><br></p>
 <h2 id="test-de-fisher">4. Test de fisher</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">fisher.test</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">fisher.test</span>(bd<span class="op">$</span>sport, bd<span class="op">$</span>sexe)</a></code></pre></div>
 <pre><code>## 
 ##  Fisher&#39;s Exact Test for Count Data
 ## 
@@ -705,9 +714,9 @@ div.tocify {
 <p><br></p>
 <h2 id="différence-de-moyennes-entre-deux-groupes-test-t">5. Différence de moyennes entre deux groupes (Test T)</h2>
 <p><em>Vérifier si les moyennes d’une variable quantitative de deux groupes sont statistiquement différentes</em></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co"># Explorer les statistiques descriptives selon les groupes avec la fonction by()</span></a>
-<a class="sourceLine" id="cb27-2" title="2"></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>summary)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Explorer les statistiques descriptives selon les groupes avec la fonction by()</span></a>
+<a class="sourceLine" id="cb25-2" title="2"></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>summary)</a></code></pre></div>
 <pre><code>## bd$sport: Oui
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   18.00   29.00   39.00   40.93   51.50   89.00 
@@ -715,16 +724,16 @@ div.tocify {
 ## bd$sport: Non
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   18.00   40.00   52.00   52.25   64.00   97.00</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>var)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>var)</a></code></pre></div>
 <pre><code>## bd$sport: Oui
 ## [1] 231.8337
 ## ------------------------------------------------------------ 
 ## bd$sport: Non
 ## [1] 272.0692</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Normalité des distributions - Test de Shapiro-Wilk</span></a>
-<a class="sourceLine" id="cb31-2" title="2"></a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="co">## Avec la fonction by</span></a>
-<a class="sourceLine" id="cb31-4" title="4"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>shapiro.test)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Normalité des distributions - Test de Shapiro-Wilk</span></a>
+<a class="sourceLine" id="cb29-2" title="2"></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="co">## Avec la fonction by</span></a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="kw">by</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport, <span class="dt">FUN=</span>shapiro.test)</a></code></pre></div>
 <pre><code>## bd$sport: Oui
 ## 
 ##  Shapiro-Wilk normality test
@@ -739,9 +748,9 @@ div.tocify {
 ## 
 ## data:  dd[x, ]
 ## W = 0.98844, p-value = 0.00000001654</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Égalité des variances - test F</span></a>
-<a class="sourceLine" id="cb33-2" title="2"></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="kw">var.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Égalité des variances - test F</span></a>
+<a class="sourceLine" id="cb31-2" title="2"></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="kw">var.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
 <pre><code>## 
 ##  F test to compare two variances
 ## 
@@ -753,18 +762,18 @@ div.tocify {
 ## sample estimates:
 ## ratio of variances 
 ##          0.8521131</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Test de Levene (module car)</span></a>
-<a class="sourceLine" id="cb35-2" title="2"></a>
-<a class="sourceLine" id="cb35-3" title="3"><span class="kw">leveneTest</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport) <span class="co"># Accepte aussi notation formule</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Test de Levene (module car)</span></a>
+<a class="sourceLine" id="cb33-2" title="2"></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="kw">leveneTest</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>sport) <span class="co"># Accepte aussi notation formule</span></a></code></pre></div>
 <pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
 ##         Df F value   Pr(&gt;F)   
 ## group    1  7.5237 0.006144 **
 ##       1998                    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Test T </span></a>
-<a class="sourceLine" id="cb37-2" title="2"></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="kw">t.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Test T </span></a>
+<a class="sourceLine" id="cb35-2" title="2"></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="kw">t.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -776,10 +785,10 @@ div.tocify {
 ## sample estimates:
 ## mean in group Oui mean in group Non 
 ##          40.92531          52.25137</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Par défaut, la fonction t.test est un test de Welsh qui ne suppose pas égalité des variances</span></a></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Pour un test t classique, ajouter l&#39;argument var.equal = TRUE</span></a>
-<a class="sourceLine" id="cb40-2" title="2"></a>
-<a class="sourceLine" id="cb40-3" title="3"><span class="kw">t.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data=</span>bd, <span class="dt">var.equal=</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Par défaut, la fonction t.test est un test de Welsh qui ne suppose pas égalité des variances</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Pour un test t classique, ajouter l&#39;argument var.equal = TRUE</span></a>
+<a class="sourceLine" id="cb38-2" title="2"></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="kw">t.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data=</span>bd, <span class="dt">var.equal=</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
@@ -791,10 +800,10 @@ div.tocify {
 ## sample estimates:
 ## mean in group Oui mean in group Non 
 ##          40.92531          52.25137</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Pour un test d&#39;échantillons appariés (mesures répétées), ajouter argument paired=TRUE (sans notation formule)</span></a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Pour un test d&#39;échantillons appariés (mesures répétées), ajouter argument paired=TRUE (sans notation formule)</span></a></code></pre></div>
 <p><br></p>
 <h2 id="test-wilcoxonmann-whitney-test-non-paramétrique-parmi-dautres">6. Test Wilcoxon/Mann-Whitney (test non-paramétrique parmi d’autres)</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">wilcox.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">wilcox.test</span>(age <span class="op">~</span><span class="st"> </span>sport, <span class="dt">data =</span> bd)</a></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
 ## 
@@ -804,22 +813,22 @@ div.tocify {
 <p><br></p>
 <h2 id="différence-de-moyenne-pour-plus-de-deux-groupes-anova">7. Différence de moyenne pour plus de deux groupes (ANOVA)</h2>
 <p><em>Évaluer la relation entre une variable quantitative et une variable qualitative avec plus de deux modalités</em></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># Explorer les statistiques descriptives avec la fonction tapply()</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="kw">tapply</span>(bd<span class="op">$</span>heures.tv, bd<span class="op">$</span>occup, mean, <span class="dt">na.rm=</span>T)</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Explorer les statistiques descriptives avec la fonction tapply()</span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="co"># Vérifier si les moyennes semblent différentes entre les groupes</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="kw">tapply</span>(bd<span class="op">$</span>heures.tv, bd<span class="op">$</span>occup, mean, <span class="dt">na.rm=</span>T)</a></code></pre></div>
 <pre><code>## Exerce une profession               Chomeur       Etudiant, eleve 
 ##              1.821681              2.874809              1.329787 
 ##              Retraite   Retire des affaires              Au foyer 
 ##              2.850255              2.624675              2.822222 
 ##         Autre inactif 
 ##              3.265060</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co"># Vérifier si les moyennes semblent différentes entre les groupes</span></a></code></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Fonction aov</span></a>
-<a class="sourceLine" id="cb48-2" title="2"></a>
-<a class="sourceLine" id="cb48-3" title="3">mod.aov &lt;-<span class="st"> </span><span class="kw">aov</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup, <span class="dt">data=</span>bd)</a>
-<a class="sourceLine" id="cb48-4" title="4"></a>
-<a class="sourceLine" id="cb48-5" title="5"><span class="co"># Créé un objet contenant le modèle</span></a>
-<a class="sourceLine" id="cb48-6" title="6"><span class="co"># Pour voir effet combiné entre facteurs mod.aov &lt;- aov(heures.tv ~ occup*sexe, bd)</span></a></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">mod.aov   <span class="co"># Voir un résumé du modèle</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># Fonction aov</span></a>
+<a class="sourceLine" id="cb45-2" title="2"></a>
+<a class="sourceLine" id="cb45-3" title="3">mod.aov &lt;-<span class="st"> </span><span class="kw">aov</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup, <span class="dt">data=</span>bd)</a>
+<a class="sourceLine" id="cb45-4" title="4"></a>
+<a class="sourceLine" id="cb45-5" title="5"><span class="co"># Créé un objet contenant le modèle</span></a>
+<a class="sourceLine" id="cb45-6" title="6"><span class="co"># Pour voir effet combiné entre facteurs mod.aov &lt;- aov(heures.tv ~ occup*sexe, bd)</span></a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">mod.aov   <span class="co"># Voir un résumé du modèle</span></a></code></pre></div>
 <pre><code>## Call:
 ##    aov(formula = heures.tv ~ occup, data = bd)
 ## 
@@ -831,27 +840,27 @@ div.tocify {
 ## Residual standard error: 1.689122
 ## Estimated effects may be unbalanced
 ## 5 observations deleted due to missingness</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Applique la fonction summary à l&#39;objet modèle pour voir résultats détaillés</span></a>
-<a class="sourceLine" id="cb51-2" title="2"></a>
-<a class="sourceLine" id="cb51-3" title="3"><span class="kw">summary</span>(mod.aov)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Applique la fonction summary à l&#39;objet modèle pour voir résultats détaillés</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="kw">summary</span>(mod.aov)</a></code></pre></div>
 <pre><code>##               Df Sum Sq Mean Sq F value              Pr(&gt;F)    
 ## occup          6    616  102.73   36.01 &lt;0.0000000000000002 ***
 ## Residuals   1988   5672    2.85                                
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 5 observations deleted due to missingness</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Fonction lm </span></a>
-<a class="sourceLine" id="cb53-2" title="2"></a>
-<a class="sourceLine" id="cb53-3" title="3">mod.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup, bd)</a>
-<a class="sourceLine" id="cb53-4" title="4"></a>
-<a class="sourceLine" id="cb53-5" title="5"><span class="co"># Peut également utiliser fonction de régression linéaire pour analyse de variance</span></a>
-<a class="sourceLine" id="cb53-6" title="6"><span class="co"># Permet de voir les contrastes entre les différents groupes</span></a>
-<a class="sourceLine" id="cb53-7" title="7"><span class="co"># La modalité de référence est &quot;Exerce une profession&quot; (levels(bd$occup))</span></a>
-<a class="sourceLine" id="cb53-8" title="8"><span class="co"># Pour changer modalité de référence, utiliser la commande relevel: mod.lm &lt;- lm(diff ~ relevel(occup, ref=&quot;Etudiant, eleve&quot;), data=bd)</span></a>
-<a class="sourceLine" id="cb53-9" title="9"><span class="co"># Possède aussi un argument subset= permettant de sélectionner des modalités. Par exemple: </span></a>
-<a class="sourceLine" id="cb53-10" title="10"><span class="co"># mod2.lm &lt;- lm(heures.tv ~ occup, bd, subset = occup %in% c(&quot;Exerce une profession&quot;, &quot;Chomeur&quot;, &quot;Etudiant, eleve&quot;))</span></a></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Résumé de coefficients</span></a>
-<a class="sourceLine" id="cb54-2" title="2">mod.lm </a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Fonction lm </span></a>
+<a class="sourceLine" id="cb50-2" title="2"></a>
+<a class="sourceLine" id="cb50-3" title="3">mod.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup, bd)</a>
+<a class="sourceLine" id="cb50-4" title="4"></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="co"># Peut également utiliser fonction de régression linéaire pour analyse de variance</span></a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="co"># Permet de voir les contrastes entre les différents groupes</span></a>
+<a class="sourceLine" id="cb50-7" title="7"><span class="co"># La modalité de référence est &quot;Exerce une profession&quot; (levels(bd$occup))</span></a>
+<a class="sourceLine" id="cb50-8" title="8"><span class="co"># Pour changer modalité de référence, utiliser la commande relevel: mod.lm &lt;- lm(diff ~ relevel(occup, ref=&quot;Etudiant, eleve&quot;), data=bd)</span></a>
+<a class="sourceLine" id="cb50-9" title="9"><span class="co"># Possède aussi un argument subset= permettant de sélectionner des modalités. Par exemple: </span></a>
+<a class="sourceLine" id="cb50-10" title="10"><span class="co"># mod2.lm &lt;- lm(heures.tv ~ occup, bd, subset = occup %in% c(&quot;Exerce une profession&quot;, &quot;Chomeur&quot;, &quot;Etudiant, eleve&quot;))</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Résumé de coefficients</span></a>
+<a class="sourceLine" id="cb51-2" title="2">mod.lm </a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = heures.tv ~ occup, data = bd)
@@ -863,9 +872,9 @@ div.tocify {
 ##                   1.0286                    0.8030                    1.0005  
 ##       occupAutre inactif  
 ##                   1.4434</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Applique la fonction summary à l&#39;objet modèle:</span></a>
-<a class="sourceLine" id="cb56-2" title="2"><span class="co"># Coefficients + Tests associés (Test t, degré de significativité)</span></a>
-<a class="sourceLine" id="cb56-3" title="3"><span class="kw">summary</span>(mod.lm)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Applique la fonction summary à l&#39;objet modèle:</span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="co"># Coefficients + Tests associés (Test t, degré de significativité)</span></a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="kw">summary</span>(mod.lm)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = heures.tv ~ occup, data = bd)
@@ -890,7 +899,7 @@ div.tocify {
 ##   (5 observations deleted due to missingness)
 ## Multiple R-squared:  0.09801,    Adjusted R-squared:  0.09529 
 ## F-statistic:    36 on 6 and 1988 DF,  p-value: &lt; 0.00000000000000022</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">anova</span>(mod.lm)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">anova</span>(mod.lm)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: heures.tv
@@ -899,21 +908,21 @@ div.tocify {
 ## Residuals 1988 5672.0   2.853                                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Peut aussi obtenir des résultats d&#39;analyse de variance (somme des carrés, degré de liberté,  valeur de F...) en appliquant anova à l&#39;objet modèle</span></a>
-<a class="sourceLine" id="cb60-2" title="2"><span class="co"># À noter: Les fonctions aov() et anova() retourne la somme des carrés de type I</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Peut aussi obtenir des résultats d&#39;analyse de variance (somme des carrés, degré de liberté,  valeur de F...) en appliquant anova à l&#39;objet modèle</span></a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="co"># À noter: Les fonctions aov() et anova() retourne la somme des carrés de type I</span></a></code></pre></div>
 <p><br></p>
 <h2 id="corrélations">8. Corrélations</h2>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># Fonction cor()</span></a>
-<a class="sourceLine" id="cb61-2" title="2"></a>
-<a class="sourceLine" id="cb61-3" title="3"><span class="kw">cor</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>heures.tv, <span class="dt">use=</span><span class="st">&quot;pairwise&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Fonction cor()</span></a>
+<a class="sourceLine" id="cb58-2" title="2"></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="kw">cor</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>heures.tv, <span class="dt">use=</span><span class="st">&quot;pairwise&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] 0.1776249</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># Matrice de corrélations pour deux variables quanti ou plus</span></a>
-<a class="sourceLine" id="cb63-2" title="2"><span class="co"># pairwise: n&#39;utiliser que les paires d&#39;observations complètes</span></a>
-<a class="sourceLine" id="cb63-3" title="3"><span class="co"># pour Spearman, rajouter argument method = &quot;spearman&quot;</span></a>
-<a class="sourceLine" id="cb63-4" title="4"><span class="co"># instruction suivante si plus de deux variables: cor(bd[,c(&quot;age&quot;, &quot;heures.tv&quot;, &quot;freres.soeurs&quot;)], use=&#39;pairwise&#39;)</span></a></code></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Fonction cor.test()</span></a>
-<a class="sourceLine" id="cb64-2" title="2"></a>
-<a class="sourceLine" id="cb64-3" title="3"><span class="kw">cor.test</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>heures.tv)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Matrice de corrélations pour deux variables quanti ou plus</span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="co"># pairwise: n&#39;utiliser que les paires d&#39;observations complètes</span></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="co"># pour Spearman, rajouter argument method = &quot;spearman&quot;</span></a>
+<a class="sourceLine" id="cb60-4" title="4"><span class="co"># instruction suivante si plus de deux variables: cor(bd[,c(&quot;age&quot;, &quot;heures.tv&quot;, &quot;freres.soeurs&quot;)], use=&#39;pairwise&#39;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># Fonction cor.test()</span></a>
+<a class="sourceLine" id="cb61-2" title="2"></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="kw">cor.test</span>(bd<span class="op">$</span>age, bd<span class="op">$</span>heures.tv)</a></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -925,20 +934,21 @@ div.tocify {
 ## sample estimates:
 ##       cor 
 ## 0.1776249</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Ou notation formule cor.test( ~ age + heures.tv, bd)</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># Ou notation formule cor.test( ~ age + heures.tv, bd)</span></a></code></pre></div>
 <p><br></p>
 <h2 id="régression-linéaire">9. Régression linéaire</h2>
 <p><em>Prédire la valeur d’une variable dépendante continue sur la base des valeurs de variables indépendantes</em></p>
-<p><strong>Fonction lm()</strong></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Quelles variables prédisent les heures de télé écoutées</span></a>
-<a class="sourceLine" id="cb67-2" title="2"></a>
-<a class="sourceLine" id="cb67-3" title="3">mod1.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup <span class="op">+</span><span class="st"> </span>nivetud <span class="op">+</span><span class="st"> </span>sexe, <span class="dt">data=</span>bd) </a>
-<a class="sourceLine" id="cb67-4" title="4"></a>
-<a class="sourceLine" id="cb67-5" title="5"><span class="co"># On stocke le résultat dans un objet modèle pour pouvoir le manipuler avec d&#39;autres fonctions</span></a>
-<a class="sourceLine" id="cb67-6" title="6"><span class="co"># Pour limiter à un sous-groupe: argument &quot;, subset=age&gt;50&quot;</span></a></code></pre></div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># Passe notre objet modèle à la fonction summary pour voir </span></a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="co"># le tableau des coefficients et leur test de significativité</span></a>
-<a class="sourceLine" id="cb68-3" title="3"><span class="kw">summary</span>(mod1.lm)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Fonction lm()</span></a>
+<a class="sourceLine" id="cb64-2" title="2"></a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="co"># Quelles variables prédisent les heures de télé écoutées</span></a>
+<a class="sourceLine" id="cb64-4" title="4"></a>
+<a class="sourceLine" id="cb64-5" title="5">mod1.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(heures.tv <span class="op">~</span><span class="st"> </span>occup <span class="op">+</span><span class="st"> </span>nivetud <span class="op">+</span><span class="st"> </span>sexe, <span class="dt">data=</span>bd) </a>
+<a class="sourceLine" id="cb64-6" title="6"></a>
+<a class="sourceLine" id="cb64-7" title="7"><span class="co"># On stocke le résultat dans un objet modèle pour pouvoir le manipuler avec d&#39;autres fonctions</span></a>
+<a class="sourceLine" id="cb64-8" title="8"><span class="co"># Pour limiter à un sous-groupe: argument &quot;, subset=age&gt;50&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Passe notre objet modèle à la fonction summary pour voir </span></a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="co"># le tableau des coefficients et leur test de significativité</span></a>
+<a class="sourceLine" id="cb65-3" title="3"><span class="kw">summary</span>(mod1.lm)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = heures.tv ~ occup + nivetud + sexe, data = bd)
@@ -1035,8 +1045,8 @@ div.tocify {
 ##   (117 observations deleted due to missingness)
 ## Multiple R-squared:  0.1303, Adjusted R-squared:  0.1237 
 ## F-statistic: 19.98 on 14 and 1868 DF,  p-value: &lt; 0.00000000000000022</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># La fonction coef présente les coefficients du modèle de régression et peut s&#39;appliquer individuellement </span></a>
-<a class="sourceLine" id="cb70-2" title="2"><span class="kw">coef</span>(mod1.lm)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># La fonction coef présente les coefficients du modèle de régression et peut s&#39;appliquer individuellement </span></a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="kw">coef</span>(mod1.lm)</a></code></pre></div>
 <pre><code>##                                                            (Intercept) 
 ##                                                             2.17631672 
 ##                                                           occupChomeur 
@@ -1067,8 +1077,8 @@ div.tocify {
 ##                                                            -0.77475537 
 ##                                                              sexeFemme 
 ##                                                            -0.07854815</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># la fonction confint présente les intervalles de confiance (95% par défaut)</span></a>
-<a class="sourceLine" id="cb72-2" title="2"><span class="kw">confint</span>(mod1.lm)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># la fonction confint présente les intervalles de confiance (95% par défaut)</span></a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="kw">confint</span>(mod1.lm)</a></code></pre></div>
 <pre><code>##                                                                             2.5 %
 ## (Intercept)                                                             1.6256451
 ## occupChomeur                                                            0.6818472
@@ -1101,8 +1111,8 @@ div.tocify {
 ## nivetudEnseignement technique ou professionnel long                     0.36154943
 ## nivetudEnseignement superieur y compris technique superieur            -0.21595530
 ## sexeFemme                                                               0.08174873</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Pour le tableau ANOVA appliqué au modèle de régression</span></a>
-<a class="sourceLine" id="cb74-2" title="2"><span class="kw">anova</span>(mod1.lm)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Pour le tableau ANOVA appliqué au modèle de régression</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="kw">anova</span>(mod1.lm)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: heures.tv
@@ -1113,23 +1123,23 @@ div.tocify {
 ## Residuals 1868 5228.8   2.799                                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co"># La fonction fitted fournit les valeurs ajustées</span></a>
-<a class="sourceLine" id="cb76-2" title="2"><span class="kw">head</span>(<span class="kw">fitted</span>(mod1.lm))</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># La fonction fitted fournit les valeurs ajustées</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="kw">head</span>(<span class="kw">fitted</span>(mod1.lm))</a></code></pre></div>
 <pre><code>##        1        3        4        5        6        7 
 ## 1.323013 2.419306 1.401561 3.129941 1.996692 3.172880</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># La fonction resid() founit les résidus de la régression</span></a>
-<a class="sourceLine" id="cb78-2" title="2"><span class="kw">head</span>(<span class="kw">resid</span>(mod1.lm))</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># La fonction resid() founit les résidus de la régression</span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="kw">head</span>(<span class="kw">resid</span>(mod1.lm))</a></code></pre></div>
 <pre><code>##            1            3            4            5            6            7 
 ## -1.323013191 -2.419305719  0.598438657 -0.129941371  0.003307646 -0.272879932</code></pre>
 <p><br></p>
 <h2 id="régression-logistique-binaire">10. Régression logistique binaire</h2>
 <p><em>Prédire une variable dépendante dichotomique sur la base des valeurs de variables indépendantes</em></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co"># Fonction glm</span></a>
-<a class="sourceLine" id="cb80-2" title="2">mod.reg &lt;-<span class="st"> </span><span class="kw">glm</span>(sport <span class="op">~</span><span class="st"> </span>sexe <span class="op">+</span><span class="st"> </span>nivetud <span class="op">+</span><span class="st"> </span>qualif, bd, <span class="dt">family =</span> <span class="kw">binomial</span>(logit))</a>
-<a class="sourceLine" id="cb80-3" title="3"></a>
-<a class="sourceLine" id="cb80-4" title="4"><span class="co"># La fonction glm permet de calculer plusieurs modèles statistiques donc il faut indiquer à glm avec l’argument family=binomial(logit) </span></a></code></pre></div>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Applique fonction summary au modèle pour voir résultatsles valeurs des coefficients</span></a>
-<a class="sourceLine" id="cb81-2" title="2"><span class="kw">summary</span>(mod.reg)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># Fonction glm</span></a>
+<a class="sourceLine" id="cb77-2" title="2">mod.reg &lt;-<span class="st"> </span><span class="kw">glm</span>(sport <span class="op">~</span><span class="st"> </span>sexe <span class="op">+</span><span class="st"> </span>nivetud <span class="op">+</span><span class="st"> </span>qualif, bd, <span class="dt">family =</span> <span class="kw">binomial</span>(logit))</a>
+<a class="sourceLine" id="cb77-3" title="3"></a>
+<a class="sourceLine" id="cb77-4" title="4"><span class="co"># La fonction glm permet de calculer plusieurs modèles statistiques donc il faut indiquer à glm avec l’argument family=binomial(logit) </span></a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># Applique fonction summary au modèle pour voir résultatsles valeurs des coefficients</span></a>
+<a class="sourceLine" id="cb78-2" title="2"><span class="kw">summary</span>(mod.reg)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = sport ~ sexe + nivetud + qualif, family = binomial(logit), 
@@ -1231,12 +1241,12 @@ div.tocify {
 ## AIC: 1887
 ## 
 ## Number of Fisher Scoring iterations: 14</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># La fonction coef permet aussi d&#39;obtenir les coefficients individuellement</span></a>
-<a class="sourceLine" id="cb83-2" title="2"><span class="kw">coef</span>(mod.reg)[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co"># La fonction coef permet aussi d&#39;obtenir les coefficients individuellement</span></a>
+<a class="sourceLine" id="cb80-2" title="2"><span class="kw">coef</span>(mod.reg)[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    15.51047</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># La fonction exp pour les odds ratio et leurs intervalles de confiance</span></a>
-<a class="sourceLine" id="cb85-2" title="2"><span class="kw">exp</span>(<span class="kw">coef</span>(mod.reg))</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="co"># La fonction exp pour les odds ratio et leurs intervalles de confiance</span></a>
+<a class="sourceLine" id="cb82-2" title="2"><span class="kw">exp</span>(<span class="kw">coef</span>(mod.reg))</a></code></pre></div>
 <pre><code>##                                                            (Intercept) 
 ##                                                  5446419.8378982935101 
 ##                                                              sexeFemme 
@@ -1267,25 +1277,27 @@ div.tocify {
 ##                                                        0.6645837426705 
 ##                                                            qualifAutre 
 ##                                                        1.1307466368239</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Aussi la fonction odds.ratio(mod.reg) du module questionr</span></a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># Aussi la fonction odds.ratio(mod.reg) du module questionr</span></a></code></pre></div>
 <p><br></p>
 <h2 id="visualiser-les-résultats-dun-modèle">11. Visualiser les résultats d’un modèle</h2>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># Résultat de l&#39;ANOVA</span></a>
-<a class="sourceLine" id="cb88-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(mod.aov))</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Résultat de l&#39;ANOVA</span></a>
+<a class="sourceLine" id="cb85-2" title="2"><span class="kw">plot</span>(<span class="kw">allEffects</span>(mod.aov))</a></code></pre></div>
 <p><img src="8-analyses_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># Résultat de la régression linéaire - effet de tous les prédicteurs</span></a>
-<a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3"><span class="kw">plot</span>(<span class="kw">allEffects</span>(mod1.lm))</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Résultat de la régression linéaire - effet de tous les prédicteurs</span></a>
+<a class="sourceLine" id="cb86-2" title="2"></a>
+<a class="sourceLine" id="cb86-3" title="3"><span class="kw">plot</span>(<span class="kw">allEffects</span>(mod1.lm))</a></code></pre></div>
 <p><img src="8-analyses_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># Résultat de la régression linéaire - effet d&#39;un seul prédicteur</span></a>
-<a class="sourceLine" id="cb90-2" title="2"></a>
-<a class="sourceLine" id="cb90-3" title="3"><span class="kw">plot</span>(<span class="kw">Effect</span>(<span class="st">&quot;occup&quot;</span>, <span class="dt">mod=</span>mod1.lm))</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Résultat de la régression linéaire - effet d&#39;un seul prédicteur</span></a>
+<a class="sourceLine" id="cb87-2" title="2"></a>
+<a class="sourceLine" id="cb87-3" title="3"><span class="kw">plot</span>(<span class="kw">Effect</span>(<span class="st">&quot;occup&quot;</span>, <span class="dt">mod=</span>mod1.lm))</a></code></pre></div>
 <p><img src="8-analyses_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><br></p>
+<hr />
 </div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgNzogVGVzdHMgc3RhdGlzdGlxdWVzIg0KYXV0aG9yOiAiQ2Fyb2xpbmUgUGF0ZW5hdWRlIDxicj4gQmlibGlvdGjDqWNhaXJlIC0gQmlibGlvdGjDqHF1ZSBkZXMgbGV0dHJlcyBldCBzY2llbmNlcyBodW1haW5lcyINCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCm91dHB1dDogDQogIGh0bWxfZG9jdW1lbnQ6IA0KICAgIHRoZW1lOiBjZXJ1bGVhbg0KICAgIGhpZ2hsaWdodDogaGFkZG9jaw0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19mbG9hdDogDQogICAgICBjb2xsYXBzZWQ6IHRydWUNCiAgICAgIFNtb290aF9zY3JvbGw6IHRydWUNCiAgICB0b2NfZGVwdGg6IDINCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlDQpjc3M6IGhpZGUuY3NzDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KPHNjcmlwdCBzcmM9ImhpZGVPdXRwdXQuanMiPjwvc2NyaXB0Pg0KDQpgYGB7cn0NCiMgQ2hhcmdlbWVudCBkZXMgbW9kdWxlcyBuw6ljZXNzYWlyZXMNCmxpYnJhcnkoY2FyKQ0KbGlicmFyeShxdWVzdGlvbnIpDQpsaWJyYXJ5KGVmZmVjdHMpDQoNCiMgQWpvdXRlciBsYSBmb25jdGlvbiBkZSB0w6lsw6ljaGFyZ2VtZW50IHNpIG7DqWNlc3NhaXJlOg0KIyBpbnN0YWxsLnBhY2thZ2VzKCJjYXIiLCBkZXBlbmRlbmNpZXM9VFJVRSkNCiMgaW5zdGFsbC5wYWNrYWdlcygicXVlc3Rpb25yIiwgZGVwZW5kZW5jaWVzPVRSVUUpDQojIGluc3RhbGwucGFja2FnZXMoImVmZmVjdHMiLCBkZXBlbmRlbmNpZXM9VFJVRSkNCg0KIyBUw6lsw6ljaGFyZ2VtZW50IGRlIGxhIGJhc2UgZGUgZG9ubsOpZXMgaGR2MjAwMyBkdSBtb2R1bGUgcXVlc3Rpb25yDQojIChFeHRyYWl0IGRlIGwnZW5xdcOqdGUgIkhpc3RvaXJlIGRlIHZpZSIgZGUgbCdJbnNlZSAtIGh0dHBzOi8vd3d3Lmluc2VlLmZyL2ZyL3N0YXRpc3RpcXVlcy8yNTMyMjQ0KQ0KZGF0YShoZHYyMDAzKQ0KDQojIENvcGllIGRlIGxhIGJhc2UgZGUgZG9ubsOpZXMgZGFucyB1biBvYmpldCAoZGF0YXRhYmxlKSBub21tw6kgYmQNCmJkIDwtIGhkdjIwMDMNCmBgYA0KDQo8YnI+DQoNCiMgMS4gQW5hbHlzZXMgc3RhdGlzdGlxdWVzDQoNCiogT24gcmV0cm91dmUgdW5lIG11bHRpdHVkZSBkZSBtb2R1bGVzIGTDqWRpw6lzIGF1eCBtw6l0aG9kZXMgc3RhdGlzdGlxdWVzIChjb21tZSBzdGF0cywgTUFTUywgRmFjdG9NaW5lUiwgcGxtLCBnbG0pLiANCiogTGEgbcOqbWUgbcOpdGhvZGUgcGV1dCBzZSB0cm91dmVyIGF2ZWMgdmFyaWFudGVzIGRhbnMgcGx1c2lldXJzIG1vZHVsZXMuIA0KKiBMZXMgZXhlbXBsZXMgY2ktZGVzc291cyBwcm92aWVubmVudCBwcmluY2lwYWxlbWVudCBkdSBtb2R1bGUgc3RhdHMgKG1vZHVsZSBwYXIgZMOpZmF1dCkgb8O5IGwnb24gcmV0cm91dmUgZGUgbm9tYnJldXNlcyBmb25jdGlvbnMgcG91ciBkaWZmw6lyZW50cyB0eXBlcyBkJ2FuYWx5c2UNCg0KPGJyPg0KDQojIyAxLjEuIE5vdGF0aW9uIGZvcm11bGUgZXQgb2JqZXQgbW9kw6hsZQ0KDQpgYGB7ciwgZXZhbD1GQUxTRX0NCm1vZCA8LSBub20udGVzdChWRCB+IFZJKQ0KYGBgDQoNCiogU291dmVudCB1dGlsaXPDqSBkYW5zIGxlcyBtb2TDqGxlcyBkJ2FuYWx5c2UgKHLDqWdyZXNzaW9ucy4uLikgZXQgbGVzIGdyYXBoaXF1ZXMuDQoqIFBldXQgcydpbnRlcnByw6l0ZXIgY29tbWUgZW4gImZvbmN0aW9uIGRlLi4uIjogdmFyaWFibGUgZMOpcGVuZGFudGUgKGVmZmV0KSBlbiBmb25jdGlvbiAofikgZGUgbGEgdmFyIGluZMOpcGVuZGFudGUgKGNhdXNlKQ0KKiBUb3V0ZXMgbGVzIGZvbmN0aW9ucyBuJ2FjY2VwdGVudCBwYXMgbGEgbm90YXRpb24gZm9ybXVsZSwgbWFpcyBlc3QgdXRpbGlzw6kgcG91ciBsYSBwbHVwYXJ0IGRlcyBtb2TDqGxlcyBkJ2FuYWx5c2UNCiogT24gc3RvY2tlIGwnYW5hbHlzZSBkYW5zIHVuIG9iamV0IHF1aSBjb250aWVuZHJhIGxlcyByw6lzdWx0YXRzIHF1aSwgc2Vsb24gbCdhbmFseXNlLCBpbmNsdWVyb250IHVuIGVuc2VtYmxlIGQnw6lsw6ltZW50cyBkJ2luZm9ybWF0aW9uIGF1eHF1ZWxzIG9uIHBvdXJyYSBhY2PDqWRlciBkZSBkZXV4IGZhw6dvbnM6DQoNCkVuIHBhc3NhbnQgbm90cmUgb2JqZXQtbW9kw6hsZSDDoCBkaWZmw6lyZW50ZXMgZm9uY3Rpb25zIGfDqW7DqXJpcXVlcyAoc2Vsb24gbGUgdHlwZSBkZSB0ZXN0KToNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQptb2QgPC0gbG0oeSB+IHgsIGRhdGE9Tm9tT2JqZXQpICMgQ3LDqWVyIHNvbiBvYmpldCBtb2TDqGxlDQptb2QgICAgICAgICAgICAgICAgICAgICAgICAgICAgICMgcsOpc3Vtw6kgZGVzIHLDqXN1bHRhdHMNCnN1bW1hcnkobW9kKSAgICAgICAgICAgICAgICAgICAgIyBlbnNlbWJsZSBkZXMgcsOpc3VsdGF0cyBkw6l0YWlsbMOpcw0KY29lZihtb2QpICAgICAgICAgICAgICAgICAgICAgICAjIGNvZWZmaWNpZW50cyBldCBlcnJldXJzIHN0YW5kYXJkcw0KcmVzaWR1YWxzKG1vZCkgICAgICAgICAgICAgICAgICAjIHLDqXNpZHVzDQpjb25maW50KG1vZCkgICAgICAgICAgICAgICAgICAgICMgaW50ZXJ2YWxsZXMgZGUgY29uZmlhbmNlDQpmaXR0ZWQobW9kKSAgICAgICAgICAgICAgICAgICAgICMgdmFsZXVycyBhanVzdMOpZXMNCmFub3ZhKG1vZCkgICAgICAgICAgICAgICAgICAgICAgIyBhcHBsaXF1ZXIgYW5hbHlzZSBkZSB2YXJpYW5jZSBzdXIgbW9kw6hsZQ0KcHJlZGljdChtb2QpICAgICAgICAgICAgICAgICAgICAjIGNhbGN1bGVyIGRlcyB2YWxldXJzIHByw6lkaXRlcyDDoCBwYXJ0aXIgZCd1biBtb2TDqGxlDQpwbG90KG1vZCkgICAgICAgICAgICAgICAgICAgICAgICMgZXQgbm9tYnJldXNlcyBhdXRyZXMgZm9uY3Rpb25zIGdyYXBoaXF1ZXMgIA0KYGBgDQoNCkVuIHV0aWxpc2FudCBsYSBmb25jdGlvbiBuYW1lcyhtb2QpIGV0IGVuIHPDqWxlY3Rpb25uYW50IGluZGl2aWR1ZWxsZW1lbnQgbGUgbm9tIGRlIGwnw6lsw6ltZW50IGF2ZWMgbCdvcMOpcmF0ZXVyICQ6DQogDQpgYGB7ciwgZXZhbD1GQUxTRX0NCm1vZCA8LSBsbSh5IH4geCkgIyBDcsOpZXIgc29uIG9iamV0IG1vZMOobGUNCm5hbWVzKG1vZCkgICAgICAgIyBWb2lyIGxlcyDDqWzDqW1lbnRzIGR1IHLDqXN1bHRhdA0KbW9kJGNvZWZmaWNpZW50cyAjIFPDqWxlY3Rpb25uZXIgbCfDqWzDqW1lbnQgaW5kaXZpZHVlbA0KYGBgDQogKsOAIG5vdGVyOiBwYXIgZMOpZmF1dCBsZXMgcsOpc3VsdGF0cyBzb250IHByw6lzZW50w6lzIHNlbG9uIGxhIG5vdGF0aW9uIHNjaWVudGlmaXF1ZS4gUG91ciBsYSBkw6lzYWN0aXZlciB1dGlsaXNlciBsJ2luc3RydWN0aW9uOiBvcHRpb25zKHNjaXBlbiA9IDk5OSkqDQogDQo8YnI+DQoNCiMjIDEuMi4gTGVzIG1vZGFsaXTDqXMgZGUgcsOpZsOpcmVuY2UNCi0gRGFucyBSLCBpbCBuJ2VzdCBwYXMgbsOpY2Vzc2FpcmUgZGUgcmVjb2RlciBzZXMgdmFyaWFibGVzIGVuICJkdW1teSIsIGxlcyBhbmFseXNlcyBzJ2VuIGNoYXJnZW50IHBhciBkw6lmYXV0IGxvcnNxdSdvbiB1dGlsaXNlIGRlcyB2YXJpYWJsZXMgcXVhbGl0YXRpdmVzLg0KLSBNYWlzIGF0dGVudGlvbiDDoCBsYSBtb2RhbGl0w6kgZGUgcsOpZsOpcmVuY2UgZGVzIGZhY3RldXJzIGTDqWZpbmllIHBhciBkw6lmYXV0OiBsYSBwcmVtacOocmUgZGFucyBsYSBsaXN0ZSBkZXMgbml2ZWF1eC4NCg0KPGRpdiBjbGFzcz0iZm9sZCBvIj4NCmBgYHtyfQ0KIyBQb3VyIHZvaXIgbGEgbW9kYWxpdMOpIGRlIHLDqWbDqXJlbmNlIC0gcHJlbWnDqHJlIGxpc3TDqWUNCmxldmVscyhiZCRzcG9ydCkNCmBgYA0KDQpgYGB7cn0NCiMgUG91ciBtb2RpZmllciBsYSBjYXTDqWdvcmllIGRlIHLDqWbDqXJlbmNlDQpiZCRzcG9ydCA8LSByZWxldmVsKGJkJHNwb3J0LCByZWYgPSAiT3VpIikNCmBgYA0KDQo8YnI+DQoNCiMjIDIuIEludGVydmFsbGUgZGUgY29uZmlhbmNlDQoNCmBgYHtyfQ0KIyBJbnRlcnZhbGxlIGRlIGNvbmZpYW5jZSBk4oCZdW5lIHByb3BvcnRpb24NCg0KIyBmb25jdGlvbiBwcm9wLnRlc3QNCnByb3AudGVzdCh0YWJsZShiZCRzcG9ydCkpDQoNCiMgQ2FsY3VsIGwnaW50ZXJ2YWxsZSBwb3VyIGxhIHByZW1pw6hyZSBjYXTDqWdvcmllIGR1IHRhYmxlYXUNCmBgYA0KDQpgYGB7cn0NCm9wdGlvbnMoc2NpcGVuID0gOTk5KQ0KcHJvcC50ZXN0KHRhYmxlKHJlbGV2ZWwoYmQkc3BvcnQsICJPdWkiKSkpDQoNCiMgTW9kaWZpZXIgbGEgY2F0w6lnb3JpZSBkZSByw6lmw6lyZW5jZSBhdmVjIGxhIGZvbmN0aW9uIHJlbGV2ZWwgZGlyZWN0ZW1lbnQgZGFucyBsYSBmb25jdGlvbiB0YWJsZSgpDQpgYGANCg0KDQpgYGB7cn0NCiMgSW50ZXJ2YWxsZSBkZSBjb25maWFuY2UgZCd1bmUgbW95ZW5uZQ0KDQojIEZvbmN0aW9uIHQudGVzdA0KIyBDaGFuZ2VyIGxlIG5pdmVhdSBkZSBjb25maWFuY2UgYXZlYyBsJ2FyZ3VtZW50IChiZCRhZ2UsIGNvbmYubGV2ZWw9LngpDQp0LnRlc3QoYmQkYWdlLCBjb25mLmxldmVsPS45OSkNCmBgYA0KDQo8YnI+DQoNCiMjIDMuICBUZXN0IGR1IEtoaS1jYXJyw6kNCg0KYGBge3J9DQojIFBhc3NlIGxhIHRhYmxlIGNvbW1lIGFyZ3VtZW50IMOgIGxhIGZvbmN0aW9uIGNoaXNxLnRlc3QoKSAoTW9kdWxlIHF1ZXN0aW9ucikNCg0KbW9kLmNoaSA8LSBjaGlzcS50ZXN0KGJkJHNwb3J0LCBiZCRzZXhlKSANCg0KIyBBcHBsaXF1ZSBjb3JyZWN0aW9uIHBhciBkw6lmYXV0LCBzaW5vbiBham91dGVyIGFyZ3VtZW50OiAsY29ycmVjdD1GQUxTRQ0KYGBgDQoNCmBgYHtyfQ0KbW9kLmNoaQ0KYGBgDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBuYW1lcygpIHBvdXIgdm9pciBsZXMgw6lsw6ltZW50cyBkJ2luZm9ybWF0aW9uIGRlIG5vcyByw6lzdWx0YXRzDQpuYW1lcyhtb2QuY2hpKQ0KYGBgDQoNCmBgYHtyfQ0KIyBWb2lyIGxlcyB2YWxldXJzIGF0dGVuZHVlcw0KbW9kLmNoaSRleHBlY3RlZA0KYGBgDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBjaGlzcS5yZXNpZHVhbHMoKSBkdSBtb2R1bGUgcXVlc3Rpb25yIHBvdXIgbGVzIHLDqXNpZHVzDQp0YWIgPC0gdGFibGUoYmQkc3BvcnQsIGJkJHNleGUpDQpjaGlzcS5yZXNpZHVhbHModGFiKSANCmBgYA0KDQoNCjxicj4NCg0KIyMgNC4gVGVzdCBkZSBmaXNoZXINCg0KYGBge3J9DQpmaXNoZXIudGVzdChiZCRzcG9ydCwgYmQkc2V4ZSkNCmBgYA0KDQo8YnI+DQoNCiMjIDUuIERpZmbDqXJlbmNlIGRlIG1veWVubmVzIGVudHJlIGRldXggZ3JvdXBlcyAoVGVzdCBUKQ0KDQoqVsOpcmlmaWVyIHNpIGxlcyBtb3llbm5lcyBkJ3VuZSB2YXJpYWJsZSBxdWFudGl0YXRpdmUgZGUgZGV1eCBncm91cGVzIHNvbnQgc3RhdGlzdGlxdWVtZW50IGRpZmbDqXJlbnRlcyoNCg0KYGBge3J9DQojIEV4cGxvcmVyIGxlcyBzdGF0aXN0aXF1ZXMgZGVzY3JpcHRpdmVzIHNlbG9uIGxlcyBncm91cGVzIGF2ZWMgbGEgZm9uY3Rpb24gYnkoKQ0KDQpieShiZCRhZ2UsIGJkJHNwb3J0LCBGVU49c3VtbWFyeSkNCmJ5KGJkJGFnZSwgYmQkc3BvcnQsIEZVTj12YXIpDQpgYGANCg0KYGBge3J9DQojIE5vcm1hbGl0w6kgZGVzIGRpc3RyaWJ1dGlvbnMgLSBUZXN0IGRlIFNoYXBpcm8tV2lsaw0KDQojIyBBdmVjIGxhIGZvbmN0aW9uIGJ5DQpieShiZCRhZ2UsIGJkJHNwb3J0LCBGVU49c2hhcGlyby50ZXN0KQ0KYGBgDQoNCmBgYHtyfQ0KIyDDiWdhbGl0w6kgZGVzIHZhcmlhbmNlcyAtIHRlc3QgRg0KDQp2YXIudGVzdChhZ2UgfiBzcG9ydCwgZGF0YSA9IGJkKQ0KYGBgDQoNCg0KYGBge3J9DQojIFRlc3QgZGUgTGV2ZW5lIChtb2R1bGUgY2FyKQ0KDQpsZXZlbmVUZXN0KGJkJGFnZSwgYmQkc3BvcnQpICMgQWNjZXB0ZSBhdXNzaSBub3RhdGlvbiBmb3JtdWxlDQpgYGANCg0KDQpgYGB7cn0NCiMgVGVzdCBUIA0KDQp0LnRlc3QoYWdlIH4gc3BvcnQsIGRhdGEgPSBiZCkNCg0KIyBQYXIgZMOpZmF1dCwgbGEgZm9uY3Rpb24gdC50ZXN0IGVzdCB1biB0ZXN0IGRlIFdlbHNoIHF1aSBuZSBzdXBwb3NlIHBhcyDDqWdhbGl0w6kgZGVzIHZhcmlhbmNlcw0KYGBgDQoNCg0KYGBge3J9DQojIFBvdXIgdW4gdGVzdCB0IGNsYXNzaXF1ZSwgYWpvdXRlciBsJ2FyZ3VtZW50IHZhci5lcXVhbCA9IFRSVUUNCg0KdC50ZXN0KGFnZSB+IHNwb3J0LCBkYXRhPWJkLCB2YXIuZXF1YWw9IFRSVUUpDQoNCiMgUG91ciB1biB0ZXN0IGQnw6ljaGFudGlsbG9ucyBhcHBhcmnDqXMgKG1lc3VyZXMgcsOpcMOpdMOpZXMpLCBham91dGVyIGFyZ3VtZW50IHBhaXJlZD1UUlVFIChzYW5zIG5vdGF0aW9uIGZvcm11bGUpDQpgYGANCg0KPGJyPg0KDQojIyA2LiBUZXN0IFdpbGNveG9uL01hbm4tV2hpdG5leSAodGVzdCBub24tcGFyYW3DqXRyaXF1ZSBwYXJtaSBkJ2F1dHJlcykNCg0KYGBge3J9DQp3aWxjb3gudGVzdChhZ2UgfiBzcG9ydCwgZGF0YSA9IGJkKQ0KYGBgDQoNCjxicj4NCg0KIyMgNy4gRGlmZsOpcmVuY2UgZGUgbW95ZW5uZSBwb3VyIHBsdXMgZGUgZGV1eCBncm91cGVzIChBTk9WQSkNCirDiXZhbHVlciBsYSByZWxhdGlvbiBlbnRyZSB1bmUgdmFyaWFibGUgcXVhbnRpdGF0aXZlIGV0IHVuZSB2YXJpYWJsZSBxdWFsaXRhdGl2ZSBhdmVjIHBsdXMgZGUgZGV1eCBtb2RhbGl0w6lzKg0KDQpgYGB7cn0NCiMgRXhwbG9yZXIgbGVzIHN0YXRpc3RpcXVlcyBkZXNjcmlwdGl2ZXMgYXZlYyBsYSBmb25jdGlvbiB0YXBwbHkoKQ0KdGFwcGx5KGJkJGhldXJlcy50diwgYmQkb2NjdXAsIG1lYW4sIG5hLnJtPVQpDQoNCiMgVsOpcmlmaWVyIHNpIGxlcyBtb3llbm5lcyBzZW1ibGVudCBkaWZmw6lyZW50ZXMgZW50cmUgbGVzIGdyb3VwZXMNCmBgYA0KDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBhb3YNCg0KbW9kLmFvdiA8LSBhb3YoaGV1cmVzLnR2IH4gb2NjdXAsIGRhdGE9YmQpDQoNCiMgQ3LDqcOpIHVuIG9iamV0IGNvbnRlbmFudCBsZSBtb2TDqGxlDQojIFBvdXIgdm9pciBlZmZldCBjb21iaW7DqSBlbnRyZSBmYWN0ZXVycyBtb2QuYW92IDwtIGFvdihoZXVyZXMudHYgfiBvY2N1cCpzZXhlLCBiZCkNCmBgYA0KDQoNCmBgYHtyfQ0KbW9kLmFvdiAgICMgVm9pciB1biByw6lzdW3DqSBkdSBtb2TDqGxlDQpgYGANCg0KDQpgYGB7cn0NCiMgQXBwbGlxdWUgbGEgZm9uY3Rpb24gc3VtbWFyeSDDoCBsJ29iamV0IG1vZMOobGUgcG91ciB2b2lyIHLDqXN1bHRhdHMgZMOpdGFpbGzDqXMNCg0Kc3VtbWFyeShtb2QuYW92KQ0KYGBgDQoNCg0KYGBge3J9DQojIEZvbmN0aW9uIGxtIA0KDQptb2QubG0gPC0gbG0oaGV1cmVzLnR2IH4gb2NjdXAsIGJkKQ0KDQojIFBldXQgw6lnYWxlbWVudCB1dGlsaXNlciBmb25jdGlvbiBkZSByw6lncmVzc2lvbiBsaW7DqWFpcmUgcG91ciBhbmFseXNlIGRlIHZhcmlhbmNlDQojIFBlcm1ldCBkZSB2b2lyIGxlcyBjb250cmFzdGVzIGVudHJlIGxlcyBkaWZmw6lyZW50cyBncm91cGVzDQojIExhIG1vZGFsaXTDqSBkZSByw6lmw6lyZW5jZSBlc3QgIkV4ZXJjZSB1bmUgcHJvZmVzc2lvbiIgKGxldmVscyhiZCRvY2N1cCkpDQojIFBvdXIgY2hhbmdlciBtb2RhbGl0w6kgZGUgcsOpZsOpcmVuY2UsIHV0aWxpc2VyIGxhIGNvbW1hbmRlIHJlbGV2ZWw6IG1vZC5sbSA8LSBsbShkaWZmIH4gcmVsZXZlbChvY2N1cCwgcmVmPSJFdHVkaWFudCwgZWxldmUiKSwgZGF0YT1iZCkNCiMgUG9zc8OoZGUgYXVzc2kgdW4gYXJndW1lbnQgc3Vic2V0PSBwZXJtZXR0YW50IGRlIHPDqWxlY3Rpb25uZXIgZGVzIG1vZGFsaXTDqXMuIFBhciBleGVtcGxlOiANCiMgbW9kMi5sbSA8LSBsbShoZXVyZXMudHYgfiBvY2N1cCwgYmQsIHN1YnNldCA9IG9jY3VwICVpbiUgYygiRXhlcmNlIHVuZSBwcm9mZXNzaW9uIiwgIkNob21ldXIiLCAiRXR1ZGlhbnQsIGVsZXZlIikpDQpgYGANCg0KYGBge3J9DQojIFLDqXN1bcOpIGRlIGNvZWZmaWNpZW50cw0KbW9kLmxtIA0KYGBgDQoNCg0KYGBge3J9DQojIEFwcGxpcXVlIGxhIGZvbmN0aW9uIHN1bW1hcnkgw6AgbCdvYmpldCBtb2TDqGxlOg0KIyBDb2VmZmljaWVudHMgKyBUZXN0cyBhc3NvY2nDqXMgKFRlc3QgdCwgZGVncsOpIGRlIHNpZ25pZmljYXRpdml0w6kpDQpzdW1tYXJ5KG1vZC5sbSkNCmBgYA0KDQoNCmBgYHtyfQ0KYW5vdmEobW9kLmxtKQ0KDQojIFBldXQgYXVzc2kgb2J0ZW5pciBkZXMgcsOpc3VsdGF0cyBkJ2FuYWx5c2UgZGUgdmFyaWFuY2UgKHNvbW1lIGRlcyBjYXJyw6lzLCBkZWdyw6kgZGUgbGliZXJ0w6ksICB2YWxldXIgZGUgRi4uLikgZW4gYXBwbGlxdWFudCBhbm92YSDDoCBsJ29iamV0IG1vZMOobGUNCiMgw4Agbm90ZXI6IExlcyBmb25jdGlvbnMgYW92KCkgZXQgYW5vdmEoKSByZXRvdXJuZSBsYSBzb21tZSBkZXMgY2FycsOpcyBkZSB0eXBlIEkNCmBgYA0KDQo8YnI+DQoNCiMjIDguIENvcnLDqWxhdGlvbnMNCg0KYGBge3J9DQojIEZvbmN0aW9uIGNvcigpDQoNCmNvcihiZCRhZ2UsIGJkJGhldXJlcy50diwgdXNlPSJwYWlyd2lzZSIpDQoNCiMgTWF0cmljZSBkZSBjb3Jyw6lsYXRpb25zIHBvdXIgZGV1eCB2YXJpYWJsZXMgcXVhbnRpIG91IHBsdXMNCiMgcGFpcndpc2U6IG4ndXRpbGlzZXIgcXVlIGxlcyBwYWlyZXMgZCdvYnNlcnZhdGlvbnMgY29tcGzDqHRlcw0KIyBwb3VyIFNwZWFybWFuLCByYWpvdXRlciBhcmd1bWVudCBtZXRob2QgPSAic3BlYXJtYW4iDQojIGluc3RydWN0aW9uIHN1aXZhbnRlIHNpIHBsdXMgZGUgZGV1eCB2YXJpYWJsZXM6IGNvcihiZFssYygiYWdlIiwgImhldXJlcy50diIsICJmcmVyZXMuc29ldXJzIildLCB1c2U9J3BhaXJ3aXNlJykNCmBgYA0KDQpgYGB7cn0NCiMgRm9uY3Rpb24gY29yLnRlc3QoKQ0KDQpjb3IudGVzdChiZCRhZ2UsIGJkJGhldXJlcy50dikNCg0KIyBPdSBub3RhdGlvbiBmb3JtdWxlIGNvci50ZXN0KCB+IGFnZSArIGhldXJlcy50diwgYmQpDQpgYGANCg0KPGJyPg0KDQojIyA5LiBSw6lncmVzc2lvbiBsaW7DqWFpcmUNCipQcsOpZGlyZSBsYSB2YWxldXIgZCd1bmUgdmFyaWFibGUgZMOpcGVuZGFudGUgY29udGludWUgc3VyIGxhIGJhc2UgZGVzIHZhbGV1cnMgZGUgdmFyaWFibGVzIGluZMOpcGVuZGFudGVzKg0KDQoqKkZvbmN0aW9uIGxtKCkqKg0KDQpgYGB7cn0NCiMgUXVlbGxlcyB2YXJpYWJsZXMgcHLDqWRpc2VudCBsZXMgaGV1cmVzIGRlIHTDqWzDqSDDqWNvdXTDqWVzDQoNCm1vZDEubG0gPC0gbG0oaGV1cmVzLnR2IH4gb2NjdXAgKyBuaXZldHVkICsgc2V4ZSwgZGF0YT1iZCkgDQoNCiMgT24gc3RvY2tlIGxlIHLDqXN1bHRhdCBkYW5zIHVuIG9iamV0IG1vZMOobGUgcG91ciBwb3V2b2lyIGxlIG1hbmlwdWxlciBhdmVjIGQnYXV0cmVzIGZvbmN0aW9ucw0KIyBQb3VyIGxpbWl0ZXIgw6AgdW4gc291cy1ncm91cGU6IGFyZ3VtZW50ICIsIHN1YnNldD1hZ2U+NTAiDQpgYGANCg0KDQpgYGB7cn0NCiMgUGFzc2Ugbm90cmUgb2JqZXQgbW9kw6hsZSDDoCBsYSBmb25jdGlvbiBzdW1tYXJ5IHBvdXIgdm9pciANCiMgbGUgdGFibGVhdSBkZXMgY29lZmZpY2llbnRzIGV0IGxldXIgdGVzdCBkZSBzaWduaWZpY2F0aXZpdMOpDQpzdW1tYXJ5KG1vZDEubG0pDQpgYGANCg0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gY29lZiBwcsOpc2VudGUgbGVzIGNvZWZmaWNpZW50cyBkdSBtb2TDqGxlIGRlIHLDqWdyZXNzaW9uIGV0IHBldXQgcydhcHBsaXF1ZXIgaW5kaXZpZHVlbGxlbWVudCANCmNvZWYobW9kMS5sbSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBsYSBmb25jdGlvbiBjb25maW50IHByw6lzZW50ZSBsZXMgaW50ZXJ2YWxsZXMgZGUgY29uZmlhbmNlICg5NSUgcGFyIGTDqWZhdXQpDQpjb25maW50KG1vZDEubG0pDQpgYGANCg0KDQpgYGB7cn0NCiMgUG91ciBsZSB0YWJsZWF1IEFOT1ZBIGFwcGxpcXXDqSBhdSBtb2TDqGxlIGRlIHLDqWdyZXNzaW9uDQphbm92YShtb2QxLmxtKQ0KYGBgDQoNCg0KYGBge3J9DQojIExhIGZvbmN0aW9uIGZpdHRlZCBmb3Vybml0IGxlcyB2YWxldXJzIGFqdXN0w6llcw0KaGVhZChmaXR0ZWQobW9kMS5sbSkpDQpgYGANCg0KYGBge3J9DQojIExhIGZvbmN0aW9uIHJlc2lkKCkgZm91bml0IGxlcyByw6lzaWR1cyBkZSBsYSByw6lncmVzc2lvbg0KaGVhZChyZXNpZChtb2QxLmxtKSkNCmBgYA0KDQo8YnI+DQoNCiMjIDEwLiBSw6lncmVzc2lvbiBsb2dpc3RpcXVlIGJpbmFpcmUNCg0KKlByw6lkaXJlIHVuZSB2YXJpYWJsZSBkw6lwZW5kYW50ZSBkaWNob3RvbWlxdWUgc3VyIGxhIGJhc2UgZGVzIHZhbGV1cnMgZGUgdmFyaWFibGVzIGluZMOpcGVuZGFudGVzKg0KDQpgYGB7cn0NCiMgRm9uY3Rpb24gZ2xtDQptb2QucmVnIDwtIGdsbShzcG9ydCB+IHNleGUgKyBuaXZldHVkICsgcXVhbGlmLCBiZCwgZmFtaWx5ID0gYmlub21pYWwobG9naXQpKQ0KDQojIExhIGZvbmN0aW9uIGdsbSBwZXJtZXQgZGUgY2FsY3VsZXIgcGx1c2lldXJzIG1vZMOobGVzIHN0YXRpc3RpcXVlcyBkb25jIGlsIGZhdXQgaW5kaXF1ZXIgw6AgZ2xtIGF2ZWMgbOKAmWFyZ3VtZW50IGZhbWlseT1iaW5vbWlhbChsb2dpdCkgDQpgYGANCg0KDQpgYGB7cn0NCiMgQXBwbGlxdWUgZm9uY3Rpb24gc3VtbWFyeSBhdSBtb2TDqGxlIHBvdXIgdm9pciByw6lzdWx0YXRzbGVzIHZhbGV1cnMgZGVzIGNvZWZmaWNpZW50cw0Kc3VtbWFyeShtb2QucmVnKQ0KYGBgDQoNCg0KYGBge3J9DQojIExhIGZvbmN0aW9uIGNvZWYgcGVybWV0IGF1c3NpIGQnb2J0ZW5pciBsZXMgY29lZmZpY2llbnRzIGluZGl2aWR1ZWxsZW1lbnQNCmNvZWYobW9kLnJlZylbMV0NCmBgYA0KDQoNCmBgYHtyfQ0KIyBMYSBmb25jdGlvbiBleHAgcG91ciBsZXMgb2RkcyByYXRpbyBldCBsZXVycyBpbnRlcnZhbGxlcyBkZSBjb25maWFuY2UNCmV4cChjb2VmKG1vZC5yZWcpKQ0KDQojIEF1c3NpIGxhIGZvbmN0aW9uIG9kZHMucmF0aW8obW9kLnJlZykgZHUgbW9kdWxlIHF1ZXN0aW9ucg0KYGBgDQoNCjxicj4NCg0KIyMgMTEuIFZpc3VhbGlzZXIgbGVzIHLDqXN1bHRhdHMgZCd1biBtb2TDqGxlDQoNCmBgYHtyfQ0KIyBSw6lzdWx0YXQgZGUgbCdBTk9WQQ0KcGxvdChhbGxFZmZlY3RzKG1vZC5hb3YpKQ0KYGBgDQoNCg0KYGBge3J9DQojIFLDqXN1bHRhdCBkZSBsYSByw6lncmVzc2lvbiBsaW7DqWFpcmUgLSBlZmZldCBkZSB0b3VzIGxlcyBwcsOpZGljdGV1cnMNCg0KcGxvdChhbGxFZmZlY3RzKG1vZDEubG0pKQ0KYGBgDQoNCg0KYGBge3J9DQojIFLDqXN1bHRhdCBkZSBsYSByw6lncmVzc2lvbiBsaW7DqWFpcmUgLSBlZmZldCBkJ3VuIHNldWwgcHLDqWRpY3RldXINCg0KcGxvdChFZmZlY3QoIm9jY3VwIiwgbW9kPW1vZDEubG0pKQ0KYGBgDQo8L2Rpdj4NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgNzogVGVzdHMgc3RhdGlzdGlxdWVzIg0Kb3V0cHV0OiANCiAgaHRtbF9kb2N1bWVudDogDQogICAgdGhlbWU6IGNlcnVsZWFuDQogICAgaGlnaGxpZ2h0OiBoYWRkb2NrDQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiANCiAgICAgIGNvbGxhcHNlZDogdHJ1ZQ0KICAgICAgU21vb3RoX3Njcm9sbDogdHJ1ZQ0KICAgIHRvY19kZXB0aDogMg0KICAgIGNvZGVfZG93bmxvYWQ6IHRydWUNCmNzczogaGlkZS5jc3MNCi0tLQ0KDQpDYXJvbGluZSBQYXRlbmF1ZGUgPGJyPiANCipbQmlibGlvdGjDqWNhaXJlIC0gQmlibGlvdGjDqHF1ZSBkZXMgbGV0dHJlcyBldCBzY2llbmNlcyBodW1haW5lc10oaHR0cHM6Ly9iaWIudW1vbnRyZWFsLmNhL2d1aWRlcy9kb25uZWVzLXN0YXRpc3RpcXVlcy1nZW9zcGF0aWFsZXMvZG9ubmVlcy1zdGF0aXN0aXF1ZXMpKiA8YnI+IA0KMjUgb2N0b2JyZSAyMDIwDQoNCjxicj4NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KPHNjcmlwdCBzcmM9ImhpZGVPdXRwdXQuanMiPjwvc2NyaXB0Pg0KDQpgYGB7cn0NCiMgQ2hhcmdlbWVudCBkZXMgbW9kdWxlcyBuw6ljZXNzYWlyZXMNCmxpYnJhcnkoY2FyKQ0KbGlicmFyeShxdWVzdGlvbnIpDQpsaWJyYXJ5KGVmZmVjdHMpDQoNCiMgQWpvdXRlciBsYSBmb25jdGlvbiBkZSB0w6lsw6ljaGFyZ2VtZW50IHNpIG7DqWNlc3NhaXJlOg0KIyBpbnN0YWxsLnBhY2thZ2VzKCJjYXIiLCBkZXBlbmRlbmNpZXM9VFJVRSkNCiMgaW5zdGFsbC5wYWNrYWdlcygicXVlc3Rpb25yIiwgZGVwZW5kZW5jaWVzPVRSVUUpDQojIGluc3RhbGwucGFja2FnZXMoImVmZmVjdHMiLCBkZXBlbmRlbmNpZXM9VFJVRSkNCg0KIyBUw6lsw6ljaGFyZ2VtZW50IGRlIGxhIGJhc2UgZGUgZG9ubsOpZXMgaGR2MjAwMyBkdSBtb2R1bGUgcXVlc3Rpb25yDQojIChFeHRyYWl0IGRlIGwnZW5xdcOqdGUgIkhpc3RvaXJlIGRlIHZpZSIgZGUgbCdJbnNlZSAtIGh0dHBzOi8vd3d3Lmluc2VlLmZyL2ZyL3N0YXRpc3RpcXVlcy8yNTMyMjQ0KQ0KZGF0YShoZHYyMDAzKQ0KDQojIENvcGllIGRlIGxhIGJhc2UgZGUgZG9ubsOpZXMgZGFucyB1biBvYmpldCAoZGF0YXRhYmxlKSBub21tw6kgYmQNCmJkIDwtIGhkdjIwMDMNCmBgYA0KDQo8YnI+DQoNCiMgMS4gQW5hbHlzZXMgc3RhdGlzdGlxdWVzDQoNCiogT24gcmV0cm91dmUgdW5lIG11bHRpdHVkZSBkZSBtb2R1bGVzIGTDqWRpw6lzIGF1eCBtw6l0aG9kZXMgc3RhdGlzdGlxdWVzIChjb21tZSBzdGF0cywgTUFTUywgRmFjdG9NaW5lUiwgcGxtLCBnbG0pLiANCiogTGEgbcOqbWUgbcOpdGhvZGUgcGV1dCBzZSB0cm91dmVyIGF2ZWMgdmFyaWFudGVzIGRhbnMgcGx1c2lldXJzIG1vZHVsZXMuIA0KKiBMZXMgZXhlbXBsZXMgY2ktZGVzc291cyBwcm92aWVubmVudCBwcmluY2lwYWxlbWVudCBkdSBtb2R1bGUgc3RhdHMgKG1vZHVsZSBwYXIgZMOpZmF1dCkgb8O5IGwnb24gcmV0cm91dmUgZGUgbm9tYnJldXNlcyBmb25jdGlvbnMgcG91ciBkaWZmw6lyZW50cyB0eXBlcyBkJ2FuYWx5c2UuDQoNCjxicj4NCg0KIyMgMS4xLiBOb3RhdGlvbiBmb3JtdWxlIGV0IG9iamV0IG1vZMOobGUNCg0KYGBge3IsIGV2YWw9RkFMU0V9DQptb2QgPC0gbm9tLnRlc3QoVkQgfiBWSSkNCmBgYA0KDQoqIFNvdXZlbnQgdXRpbGlzw6kgZGFucyBsZXMgbW9kw6hsZXMgZCdhbmFseXNlIChyw6lncmVzc2lvbnMuLi4pIGV0IGxlcyBncmFwaGlxdWVzLg0KKiBQZXV0IHMnaW50ZXJwcsOpdGVyIGNvbW1lIGVuICJmb25jdGlvbiBkZS4uLiI6IHZhcmlhYmxlIGTDqXBlbmRhbnRlIChlZmZldCkgZW4gZm9uY3Rpb24gKH4pIGRlIGxhIHZhciBpbmTDqXBlbmRhbnRlIChjYXVzZSkuDQoqIFRvdXRlcyBsZXMgZm9uY3Rpb25zIG4nYWNjZXB0ZW50IHBhcyBsYSBub3RhdGlvbiBmb3JtdWxlLCBtYWlzIGVzdCB1dGlsaXPDqWUgcG91ciBsYSBwbHVwYXJ0IGRlcyBtb2TDqGxlcyBkJ2FuYWx5c2UuDQoqIE9uIHN0b2NrZSBsJ2FuYWx5c2UgZGFucyB1biBvYmpldCBxdWkgY29udGllbmRyYSBsZXMgcsOpc3VsdGF0cyBxdWksIHNlbG9uIGwnYW5hbHlzZSwgaW5jbHVlcm9udCB1biBlbnNlbWJsZSBkJ8OpbMOpbWVudHMgZCdpbmZvcm1hdGlvbiBhdXhxdWVscyBvbiBwb3VycmEgYWNjw6lkZXIgZGUgZGV1eCBmYcOnb25zOg0KDQpFbiBwYXNzYW50IG5vdHJlIG9iamV0LW1vZMOobGUgw6AgZGlmZsOpcmVudGVzIGZvbmN0aW9ucyBnw6luw6lyaXF1ZXMgKHNlbG9uIGxlIHR5cGUgZGUgdGVzdCk6DQoNCmBgYHtyLCBldmFsPUZBTFNFfQ0KbW9kIDwtIGxtKHkgfiB4LCBkYXRhPU5vbU9iamV0KSAjIENyw6llciBzb24gb2JqZXQgbW9kw6hsZQ0KbW9kICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIHLDqXN1bcOpIGRlcyByw6lzdWx0YXRzDQpzdW1tYXJ5KG1vZCkgICAgICAgICAgICAgICAgICAgICMgZW5zZW1ibGUgZGVzIHLDqXN1bHRhdHMgZMOpdGFpbGzDqXMNCmNvZWYobW9kKSAgICAgICAgICAgICAgICAgICAgICAgIyBjb2VmZmljaWVudHMgZXQgZXJyZXVycyBzdGFuZGFyZHMNCnJlc2lkdWFscyhtb2QpICAgICAgICAgICAgICAgICAgIyByw6lzaWR1cw0KY29uZmludChtb2QpICAgICAgICAgICAgICAgICAgICAjIGludGVydmFsbGVzIGRlIGNvbmZpYW5jZQ0KZml0dGVkKG1vZCkgICAgICAgICAgICAgICAgICAgICAjIHZhbGV1cnMgYWp1c3TDqWVzDQphbm92YShtb2QpICAgICAgICAgICAgICAgICAgICAgICMgYXBwbGlxdWVyIGFuYWx5c2UgZGUgdmFyaWFuY2Ugc3VyIG1vZMOobGUNCnByZWRpY3QobW9kKSAgICAgICAgICAgICAgICAgICAgIyBjYWxjdWxlciBkZXMgdmFsZXVycyBwcsOpZGl0ZXMgw6AgcGFydGlyIGQndW4gbW9kw6hsZQ0KcGxvdChtb2QpICAgICAgICAgICAgICAgICAgICAgICAjIGV0IG5vbWJyZXVzZXMgYXV0cmVzIGZvbmN0aW9ucyBncmFwaGlxdWVzICANCmBgYA0KDQpFbiB1dGlsaXNhbnQgbGEgZm9uY3Rpb24gbmFtZXMoTm9tT2JqZXQpIGV0IGVuIHPDqWxlY3Rpb25uYW50IGluZGl2aWR1ZWxsZW1lbnQgbGUgbm9tIGRlIGwnw6lsw6ltZW50IGF2ZWMgbCdvcMOpcmF0ZXVyICQ6DQogDQpgYGB7ciwgZXZhbD1GQUxTRX0NCm1vZCA8LSBsbSh5IH4geCkgIyBDcsOpZXIgc29uIG9iamV0IG1vZMOobGUNCm5hbWVzKG1vZCkgICAgICAgIyBWb2lyIGxlcyDDqWzDqW1lbnRzIGR1IHLDqXN1bHRhdA0KbW9kJGNvZWZmaWNpZW50cyAjIFPDqWxlY3Rpb25uZXIgbCfDqWzDqW1lbnQgaW5kaXZpZHVlbA0KYGBgDQogDQo8YnI+DQogDQogKirDgCBub3RlcjogcGFyIGTDqWZhdXQgbGVzIHLDqXN1bHRhdHMgc29udCBwcsOpc2VudMOpcyBzZWxvbiBsYSBub3RhdGlvbiBzY2llbnRpZmlxdWUuIFBvdXIgbGEgZMOpc2FjdGl2ZXIgdXRpbGlzZXIgbCdpbnN0cnVjdGlvbjogb3B0aW9ucyhzY2lwZW4gPSA5OTkpLiBQb3VyIGxhIHLDqWFjdGl2ZXI6IG9wdGlvbnMoc2NpcGVuID0gMCkqKg0KIA0KPGJyPg0KDQojIyAxLjIuIExlcyBtb2RhbGl0w6lzIGRlIHLDqWbDqXJlbmNlDQotIERhbnMgUiwgaWwgbidlc3QgcGFzIG7DqWNlc3NhaXJlIGRlIHJlY29kZXIgc2VzIHZhcmlhYmxlcyBlbiAiZHVtbXkiLCBsZXMgYW5hbHlzZXMgcydlbiBjaGFyZ2VudCBwYXIgZMOpZmF1dCBsb3JzcXUnb24gdXRpbGlzZSBkZXMgdmFyaWFibGVzIHF1YWxpdGF0aXZlcy4NCi0gTWFpcyBhdHRlbnRpb24gw6AgbGEgbW9kYWxpdMOpIGRlIHLDqWbDqXJlbmNlIGRlcyBmYWN0ZXVycyBkw6lmaW5pZSBwYXIgZMOpZmF1dDogbGEgcHJlbWnDqHJlIGRhbnMgbGEgbGlzdGUgZGVzIG5pdmVhdXguDQoNCjxkaXYgY2xhc3M9ImZvbGQgbyI+DQpgYGB7cn0NCiMgUG91ciB2b2lyIGxhIG1vZGFsaXTDqSBkZSByw6lmw6lyZW5jZSAtIHByZW1pw6hyZSBsaXN0w6llDQpsZXZlbHMoYmQkc3BvcnQpDQpgYGANCg0KYGBge3J9DQojIFBvdXIgbW9kaWZpZXIgbGEgY2F0w6lnb3JpZSBkZSByw6lmw6lyZW5jZQ0KYmQkc3BvcnQgPC0gcmVsZXZlbChiZCRzcG9ydCwgcmVmID0gIk91aSIpDQpgYGANCg0KPGJyPg0KDQojIyAyLiBJbnRlcnZhbGxlIGRlIGNvbmZpYW5jZQ0KDQpgYGB7cn0NCiMgSW50ZXJ2YWxsZSBkZSBjb25maWFuY2UgZOKAmXVuZSBwcm9wb3J0aW9uDQoNCiMgZm9uY3Rpb24gcHJvcC50ZXN0DQojIENhbGN1bCBsJ2ludGVydmFsbGUgcG91ciBsYSBwcmVtacOocmUgY2F0w6lnb3JpZSBkdSB0YWJsZWF1DQpwcm9wLnRlc3QodGFibGUoYmQkc3BvcnQpKQ0KYGBgDQoNCmBgYHtyfQ0Kb3B0aW9ucyhzY2lwZW4gPSA5OTkpICMgZMOpc2FjdGl2ZXIgbGEgbm90YXRpb24gc2NpZW50aWZpcXVlDQoNCiMgTW9kaWZpZXIgbGEgY2F0w6lnb3JpZSBkZSByw6lmw6lyZW5jZSBhdmVjIGxhIGZvbmN0aW9uIHJlbGV2ZWwgZGlyZWN0ZW1lbnQgZGFucyBsYSBmb25jdGlvbiB0YWJsZSgpDQpwcm9wLnRlc3QodGFibGUocmVsZXZlbChiZCRzcG9ydCwgIk91aSIpKSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBJbnRlcnZhbGxlIGRlIGNvbmZpYW5jZSBkJ3VuZSBtb3llbm5lDQoNCiMgRm9uY3Rpb24gdC50ZXN0DQojIENoYW5nZXIgbGUgbml2ZWF1IGRlIGNvbmZpYW5jZSBhdmVjIGwnYXJndW1lbnQgKGJkJGFnZSwgY29uZi5sZXZlbD0ueCkNCnQudGVzdChiZCRhZ2UsIGNvbmYubGV2ZWw9Ljk5KQ0KYGBgDQoNCjxicj4NCg0KIyMgMy4gIFRlc3QgZHUgS2hpLWNhcnLDqQ0KDQpgYGB7cn0NCiMgUGFzc2UgbGVzIHZhcmlhYmxlcyBjb21tZSBhcmd1bWVudCDDoCBsYSBmb25jdGlvbiBjaGlzcS50ZXN0KCkgKE1vZHVsZSBxdWVzdGlvbnIpDQoNCm1vZC5jaGkgPC0gY2hpc3EudGVzdChiZCRzcG9ydCwgYmQkc2V4ZSkgDQoNCiMgQXBwbGlxdWUgY29ycmVjdGlvbiBwYXIgZMOpZmF1dCwgc2lub24gYWpvdXRlciBhcmd1bWVudDogLGNvcnJlY3Q9RkFMU0UNCmBgYA0KDQpgYGB7cn0NCm1vZC5jaGkNCmBgYA0KDQpgYGB7cn0NCiMgRm9uY3Rpb24gbmFtZXMoKSBwb3VyIHZvaXIgbGVzIMOpbMOpbWVudHMgZCdpbmZvcm1hdGlvbiBkZSBub3MgcsOpc3VsdGF0cw0KbmFtZXMobW9kLmNoaSkNCmBgYA0KDQpgYGB7cn0NCiMgVm9pciBsZXMgdmFsZXVycyBhdHRlbmR1ZXMNCm1vZC5jaGkkZXhwZWN0ZWQNCmBgYA0KDQpgYGB7cn0NCiMgRm9uY3Rpb24gY2hpc3EucmVzaWR1YWxzKCkgZHUgbW9kdWxlIHF1ZXN0aW9uciBwb3VyIGxlcyByw6lzaWR1cw0KdGFiIDwtIHRhYmxlKGJkJHNwb3J0LCBiZCRzZXhlKQ0KY2hpc3EucmVzaWR1YWxzKHRhYikgDQpgYGANCg0KDQo8YnI+DQoNCiMjIDQuIFRlc3QgZGUgZmlzaGVyDQoNCmBgYHtyfQ0KZmlzaGVyLnRlc3QoYmQkc3BvcnQsIGJkJHNleGUpDQpgYGANCg0KPGJyPg0KDQojIyA1LiBEaWZmw6lyZW5jZSBkZSBtb3llbm5lcyBlbnRyZSBkZXV4IGdyb3VwZXMgKFRlc3QgVCkNCg0KKlbDqXJpZmllciBzaSBsZXMgbW95ZW5uZXMgZCd1bmUgdmFyaWFibGUgcXVhbnRpdGF0aXZlIGRlIGRldXggZ3JvdXBlcyBzb250IHN0YXRpc3RpcXVlbWVudCBkaWZmw6lyZW50ZXMqDQoNCmBgYHtyfQ0KIyBFeHBsb3JlciBsZXMgc3RhdGlzdGlxdWVzIGRlc2NyaXB0aXZlcyBzZWxvbiBsZXMgZ3JvdXBlcyBhdmVjIGxhIGZvbmN0aW9uIGJ5KCkNCg0KYnkoYmQkYWdlLCBiZCRzcG9ydCwgRlVOPXN1bW1hcnkpDQpieShiZCRhZ2UsIGJkJHNwb3J0LCBGVU49dmFyKQ0KYGBgDQoNCmBgYHtyfQ0KIyBOb3JtYWxpdMOpIGRlcyBkaXN0cmlidXRpb25zIC0gVGVzdCBkZSBTaGFwaXJvLVdpbGsNCg0KIyMgQXZlYyBsYSBmb25jdGlvbiBieQ0KYnkoYmQkYWdlLCBiZCRzcG9ydCwgRlVOPXNoYXBpcm8udGVzdCkNCmBgYA0KDQpgYGB7cn0NCiMgw4lnYWxpdMOpIGRlcyB2YXJpYW5jZXMgLSB0ZXN0IEYNCg0KdmFyLnRlc3QoYWdlIH4gc3BvcnQsIGRhdGEgPSBiZCkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBUZXN0IGRlIExldmVuZSAobW9kdWxlIGNhcikNCg0KbGV2ZW5lVGVzdChiZCRhZ2UsIGJkJHNwb3J0KSAjIEFjY2VwdGUgYXVzc2kgbm90YXRpb24gZm9ybXVsZQ0KYGBgDQoNCg0KYGBge3J9DQojIFRlc3QgVCANCg0KdC50ZXN0KGFnZSB+IHNwb3J0LCBkYXRhID0gYmQpDQoNCiMgUGFyIGTDqWZhdXQsIGxhIGZvbmN0aW9uIHQudGVzdCBlc3QgdW4gdGVzdCBkZSBXZWxzaCBxdWkgbmUgc3VwcG9zZSBwYXMgw6lnYWxpdMOpIGRlcyB2YXJpYW5jZXMNCmBgYA0KDQoNCmBgYHtyfQ0KIyBQb3VyIHVuIHRlc3QgdCBjbGFzc2lxdWUsIGFqb3V0ZXIgbCdhcmd1bWVudCB2YXIuZXF1YWwgPSBUUlVFDQoNCnQudGVzdChhZ2UgfiBzcG9ydCwgZGF0YT1iZCwgdmFyLmVxdWFsPSBUUlVFKQ0KDQojIFBvdXIgdW4gdGVzdCBkJ8OpY2hhbnRpbGxvbnMgYXBwYXJpw6lzIChtZXN1cmVzIHLDqXDDqXTDqWVzKSwgYWpvdXRlciBhcmd1bWVudCBwYWlyZWQ9VFJVRSAoc2FucyBub3RhdGlvbiBmb3JtdWxlKQ0KYGBgDQoNCjxicj4NCg0KIyMgNi4gVGVzdCBXaWxjb3hvbi9NYW5uLVdoaXRuZXkgKHRlc3Qgbm9uLXBhcmFtw6l0cmlxdWUgcGFybWkgZCdhdXRyZXMpDQoNCmBgYHtyfQ0Kd2lsY294LnRlc3QoYWdlIH4gc3BvcnQsIGRhdGEgPSBiZCkNCmBgYA0KDQo8YnI+DQoNCiMjIDcuIERpZmbDqXJlbmNlIGRlIG1veWVubmUgcG91ciBwbHVzIGRlIGRldXggZ3JvdXBlcyAoQU5PVkEpDQoNCirDiXZhbHVlciBsYSByZWxhdGlvbiBlbnRyZSB1bmUgdmFyaWFibGUgcXVhbnRpdGF0aXZlIGV0IHVuZSB2YXJpYWJsZSBxdWFsaXRhdGl2ZSBhdmVjIHBsdXMgZGUgZGV1eCBtb2RhbGl0w6lzKg0KDQpgYGB7cn0NCiMgRXhwbG9yZXIgbGVzIHN0YXRpc3RpcXVlcyBkZXNjcmlwdGl2ZXMgYXZlYyBsYSBmb25jdGlvbiB0YXBwbHkoKQ0KIyBWw6lyaWZpZXIgc2kgbGVzIG1veWVubmVzIHNlbWJsZW50IGRpZmbDqXJlbnRlcyBlbnRyZSBsZXMgZ3JvdXBlcw0KdGFwcGx5KGJkJGhldXJlcy50diwgYmQkb2NjdXAsIG1lYW4sIG5hLnJtPVQpDQpgYGANCg0KDQpgYGB7cn0NCiMgRm9uY3Rpb24gYW92DQoNCm1vZC5hb3YgPC0gYW92KGhldXJlcy50diB+IG9jY3VwLCBkYXRhPWJkKQ0KDQojIENyw6nDqSB1biBvYmpldCBjb250ZW5hbnQgbGUgbW9kw6hsZQ0KIyBQb3VyIHZvaXIgZWZmZXQgY29tYmluw6kgZW50cmUgZmFjdGV1cnMgbW9kLmFvdiA8LSBhb3YoaGV1cmVzLnR2IH4gb2NjdXAqc2V4ZSwgYmQpDQpgYGANCg0KDQpgYGB7cn0NCm1vZC5hb3YgICAjIFZvaXIgdW4gcsOpc3Vtw6kgZHUgbW9kw6hsZQ0KYGBgDQoNCg0KYGBge3J9DQojIEFwcGxpcXVlIGxhIGZvbmN0aW9uIHN1bW1hcnkgw6AgbCdvYmpldCBtb2TDqGxlIHBvdXIgdm9pciByw6lzdWx0YXRzIGTDqXRhaWxsw6lzDQoNCnN1bW1hcnkobW9kLmFvdikNCmBgYA0KDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBsbSANCg0KbW9kLmxtIDwtIGxtKGhldXJlcy50diB+IG9jY3VwLCBiZCkNCg0KIyBQZXV0IMOpZ2FsZW1lbnQgdXRpbGlzZXIgZm9uY3Rpb24gZGUgcsOpZ3Jlc3Npb24gbGluw6lhaXJlIHBvdXIgYW5hbHlzZSBkZSB2YXJpYW5jZQ0KIyBQZXJtZXQgZGUgdm9pciBsZXMgY29udHJhc3RlcyBlbnRyZSBsZXMgZGlmZsOpcmVudHMgZ3JvdXBlcw0KIyBMYSBtb2RhbGl0w6kgZGUgcsOpZsOpcmVuY2UgZXN0ICJFeGVyY2UgdW5lIHByb2Zlc3Npb24iIChsZXZlbHMoYmQkb2NjdXApKQ0KIyBQb3VyIGNoYW5nZXIgbW9kYWxpdMOpIGRlIHLDqWbDqXJlbmNlLCB1dGlsaXNlciBsYSBjb21tYW5kZSByZWxldmVsOiBtb2QubG0gPC0gbG0oZGlmZiB+IHJlbGV2ZWwob2NjdXAsIHJlZj0iRXR1ZGlhbnQsIGVsZXZlIiksIGRhdGE9YmQpDQojIFBvc3PDqGRlIGF1c3NpIHVuIGFyZ3VtZW50IHN1YnNldD0gcGVybWV0dGFudCBkZSBzw6lsZWN0aW9ubmVyIGRlcyBtb2RhbGl0w6lzLiBQYXIgZXhlbXBsZTogDQojIG1vZDIubG0gPC0gbG0oaGV1cmVzLnR2IH4gb2NjdXAsIGJkLCBzdWJzZXQgPSBvY2N1cCAlaW4lIGMoIkV4ZXJjZSB1bmUgcHJvZmVzc2lvbiIsICJDaG9tZXVyIiwgIkV0dWRpYW50LCBlbGV2ZSIpKQ0KYGBgDQoNCmBgYHtyfQ0KIyBSw6lzdW3DqSBkZSBjb2VmZmljaWVudHMNCm1vZC5sbSANCmBgYA0KDQoNCmBgYHtyfQ0KIyBBcHBsaXF1ZSBsYSBmb25jdGlvbiBzdW1tYXJ5IMOgIGwnb2JqZXQgbW9kw6hsZToNCiMgQ29lZmZpY2llbnRzICsgVGVzdHMgYXNzb2Npw6lzIChUZXN0IHQsIGRlZ3LDqSBkZSBzaWduaWZpY2F0aXZpdMOpKQ0Kc3VtbWFyeShtb2QubG0pDQpgYGANCg0KDQpgYGB7cn0NCmFub3ZhKG1vZC5sbSkNCg0KIyBQZXV0IGF1c3NpIG9idGVuaXIgZGVzIHLDqXN1bHRhdHMgZCdhbmFseXNlIGRlIHZhcmlhbmNlIChzb21tZSBkZXMgY2FycsOpcywgZGVncsOpIGRlIGxpYmVydMOpLCAgdmFsZXVyIGRlIEYuLi4pIGVuIGFwcGxpcXVhbnQgYW5vdmEgw6AgbCdvYmpldCBtb2TDqGxlDQojIMOAIG5vdGVyOiBMZXMgZm9uY3Rpb25zIGFvdigpIGV0IGFub3ZhKCkgcmV0b3VybmUgbGEgc29tbWUgZGVzIGNhcnLDqXMgZGUgdHlwZSBJDQpgYGANCg0KPGJyPg0KDQojIyA4LiBDb3Jyw6lsYXRpb25zDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBjb3IoKQ0KDQpjb3IoYmQkYWdlLCBiZCRoZXVyZXMudHYsIHVzZT0icGFpcndpc2UiKQ0KDQojIE1hdHJpY2UgZGUgY29ycsOpbGF0aW9ucyBwb3VyIGRldXggdmFyaWFibGVzIHF1YW50aSBvdSBwbHVzDQojIHBhaXJ3aXNlOiBuJ3V0aWxpc2VyIHF1ZSBsZXMgcGFpcmVzIGQnb2JzZXJ2YXRpb25zIGNvbXBsw6h0ZXMNCiMgcG91ciBTcGVhcm1hbiwgcmFqb3V0ZXIgYXJndW1lbnQgbWV0aG9kID0gInNwZWFybWFuIg0KIyBpbnN0cnVjdGlvbiBzdWl2YW50ZSBzaSBwbHVzIGRlIGRldXggdmFyaWFibGVzOiBjb3IoYmRbLGMoImFnZSIsICJoZXVyZXMudHYiLCAiZnJlcmVzLnNvZXVycyIpXSwgdXNlPSdwYWlyd2lzZScpDQpgYGANCg0KYGBge3J9DQojIEZvbmN0aW9uIGNvci50ZXN0KCkNCg0KY29yLnRlc3QoYmQkYWdlLCBiZCRoZXVyZXMudHYpDQoNCiMgT3Ugbm90YXRpb24gZm9ybXVsZSBjb3IudGVzdCggfiBhZ2UgKyBoZXVyZXMudHYsIGJkKQ0KYGBgDQoNCjxicj4NCg0KIyMgOS4gUsOpZ3Jlc3Npb24gbGluw6lhaXJlDQoqUHLDqWRpcmUgbGEgdmFsZXVyIGQndW5lIHZhcmlhYmxlIGTDqXBlbmRhbnRlIGNvbnRpbnVlIHN1ciBsYSBiYXNlIGRlcyB2YWxldXJzIGRlIHZhcmlhYmxlcyBpbmTDqXBlbmRhbnRlcyoNCg0KYGBge3J9DQojIEZvbmN0aW9uIGxtKCkNCg0KIyBRdWVsbGVzIHZhcmlhYmxlcyBwcsOpZGlzZW50IGxlcyBoZXVyZXMgZGUgdMOpbMOpIMOpY291dMOpZXMNCg0KbW9kMS5sbSA8LSBsbShoZXVyZXMudHYgfiBvY2N1cCArIG5pdmV0dWQgKyBzZXhlLCBkYXRhPWJkKSANCg0KIyBPbiBzdG9ja2UgbGUgcsOpc3VsdGF0IGRhbnMgdW4gb2JqZXQgbW9kw6hsZSBwb3VyIHBvdXZvaXIgbGUgbWFuaXB1bGVyIGF2ZWMgZCdhdXRyZXMgZm9uY3Rpb25zDQojIFBvdXIgbGltaXRlciDDoCB1biBzb3VzLWdyb3VwZTogYXJndW1lbnQgIiwgc3Vic2V0PWFnZT41MCINCmBgYA0KDQoNCmBgYHtyfQ0KIyBQYXNzZSBub3RyZSBvYmpldCBtb2TDqGxlIMOgIGxhIGZvbmN0aW9uIHN1bW1hcnkgcG91ciB2b2lyIA0KIyBsZSB0YWJsZWF1IGRlcyBjb2VmZmljaWVudHMgZXQgbGV1ciB0ZXN0IGRlIHNpZ25pZmljYXRpdml0w6kNCnN1bW1hcnkobW9kMS5sbSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBMYSBmb25jdGlvbiBjb2VmIHByw6lzZW50ZSBsZXMgY29lZmZpY2llbnRzIGR1IG1vZMOobGUgZGUgcsOpZ3Jlc3Npb24gZXQgcGV1dCBzJ2FwcGxpcXVlciBpbmRpdmlkdWVsbGVtZW50IA0KY29lZihtb2QxLmxtKQ0KYGBgDQoNCg0KYGBge3J9DQojIGxhIGZvbmN0aW9uIGNvbmZpbnQgcHLDqXNlbnRlIGxlcyBpbnRlcnZhbGxlcyBkZSBjb25maWFuY2UgKDk1JSBwYXIgZMOpZmF1dCkNCmNvbmZpbnQobW9kMS5sbSkNCmBgYA0KDQoNCmBgYHtyfQ0KIyBQb3VyIGxlIHRhYmxlYXUgQU5PVkEgYXBwbGlxdcOpIGF1IG1vZMOobGUgZGUgcsOpZ3Jlc3Npb24NCmFub3ZhKG1vZDEubG0pDQpgYGANCg0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gZml0dGVkIGZvdXJuaXQgbGVzIHZhbGV1cnMgYWp1c3TDqWVzDQpoZWFkKGZpdHRlZChtb2QxLmxtKSkNCmBgYA0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gcmVzaWQoKSBmb3VuaXQgbGVzIHLDqXNpZHVzIGRlIGxhIHLDqWdyZXNzaW9uDQpoZWFkKHJlc2lkKG1vZDEubG0pKQ0KYGBgDQoNCjxicj4NCg0KIyMgMTAuIFLDqWdyZXNzaW9uIGxvZ2lzdGlxdWUgYmluYWlyZQ0KDQoqUHLDqWRpcmUgdW5lIHZhcmlhYmxlIGTDqXBlbmRhbnRlIGRpY2hvdG9taXF1ZSBzdXIgbGEgYmFzZSBkZXMgdmFsZXVycyBkZSB2YXJpYWJsZXMgaW5kw6lwZW5kYW50ZXMqDQoNCmBgYHtyfQ0KIyBGb25jdGlvbiBnbG0NCm1vZC5yZWcgPC0gZ2xtKHNwb3J0IH4gc2V4ZSArIG5pdmV0dWQgKyBxdWFsaWYsIGJkLCBmYW1pbHkgPSBiaW5vbWlhbChsb2dpdCkpDQoNCiMgTGEgZm9uY3Rpb24gZ2xtIHBlcm1ldCBkZSBjYWxjdWxlciBwbHVzaWV1cnMgbW9kw6hsZXMgc3RhdGlzdGlxdWVzIGRvbmMgaWwgZmF1dCBpbmRpcXVlciDDoCBnbG0gYXZlYyBs4oCZYXJndW1lbnQgZmFtaWx5PWJpbm9taWFsKGxvZ2l0KSANCmBgYA0KDQoNCmBgYHtyfQ0KIyBBcHBsaXF1ZSBmb25jdGlvbiBzdW1tYXJ5IGF1IG1vZMOobGUgcG91ciB2b2lyIHLDqXN1bHRhdHNsZXMgdmFsZXVycyBkZXMgY29lZmZpY2llbnRzDQpzdW1tYXJ5KG1vZC5yZWcpDQpgYGANCg0KDQpgYGB7cn0NCiMgTGEgZm9uY3Rpb24gY29lZiBwZXJtZXQgYXVzc2kgZCdvYnRlbmlyIGxlcyBjb2VmZmljaWVudHMgaW5kaXZpZHVlbGxlbWVudA0KY29lZihtb2QucmVnKVsxXQ0KYGBgDQoNCg0KYGBge3J9DQojIExhIGZvbmN0aW9uIGV4cCBwb3VyIGxlcyBvZGRzIHJhdGlvIGV0IGxldXJzIGludGVydmFsbGVzIGRlIGNvbmZpYW5jZQ0KZXhwKGNvZWYobW9kLnJlZykpDQoNCiMgQXVzc2kgbGEgZm9uY3Rpb24gb2Rkcy5yYXRpbyhtb2QucmVnKSBkdSBtb2R1bGUgcXVlc3Rpb25yDQpgYGANCg0KPGJyPg0KDQojIyAxMS4gVmlzdWFsaXNlciBsZXMgcsOpc3VsdGF0cyBkJ3VuIG1vZMOobGUNCg0KYGBge3J9DQojIFLDqXN1bHRhdCBkZSBsJ0FOT1ZBDQpwbG90KGFsbEVmZmVjdHMobW9kLmFvdikpDQpgYGANCg0KDQpgYGB7cn0NCiMgUsOpc3VsdGF0IGRlIGxhIHLDqWdyZXNzaW9uIGxpbsOpYWlyZSAtIGVmZmV0IGRlIHRvdXMgbGVzIHByw6lkaWN0ZXVycw0KDQpwbG90KGFsbEVmZmVjdHMobW9kMS5sbSkpDQpgYGANCg0KDQpgYGB7cn0NCiMgUsOpc3VsdGF0IGRlIGxhIHLDqWdyZXNzaW9uIGxpbsOpYWlyZSAtIGVmZmV0IGQndW4gc2V1bCBwcsOpZGljdGV1cg0KDQpwbG90KEVmZmVjdCgib2NjdXAiLCBtb2Q9bW9kMS5sbSkpDQpgYGANCg0KPGJyPg0KDQoqKioNCg0KPC9kaXY+DQo=</div>
 
 
 </div>

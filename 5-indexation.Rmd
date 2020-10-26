@@ -1,7 +1,5 @@
 ---
 title: "Capsule 4: Indexation ou la sélection d'éléments"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -14,6 +12,12 @@ output:
     code_download: true
 css: hide.css
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -46,6 +50,7 @@ bd <- hdv2003
 
 <div class="fold o">
 
+Petit rappel:
 ```{r}
 # Un dataframe est composé de deux dimensions, rangées et colonnes
 # Chaque élément qui compose ces dimensions (observations/variables) est "indexé"
@@ -101,6 +106,7 @@ bd[ ,-c(3,6)]	# Toutes les variables sauf 3 et 6
 bd[3:6, ]       # Sélectionner les observations de 3 à 6
 ``` 
 
+<br>
 
 ### 1.3. Pour sélectionner des variables ET des observations
 
@@ -124,7 +130,7 @@ bd2
 
 
 ```{r}
-bd["relig"] # Sélectionner une variable
+bd["relig"] # Sélectionner une variable (contenu textuel entre guillemets simples ou doubles)
 ```
 
 ```{r}
@@ -254,14 +260,13 @@ bd.cadre3 <- subset(bd, qualif=="Cadre" & age<50, select= c(id,qualif, age))
 Plusieurs fonctions sont à connaitre lorsque l'on travaille avec des données qui incluent des valeurs manquantes:
 
 ```{r}
-is.na(bd$age)
-
-# Test logique :  vrai ou faux
-# Identifier les cas qui ont une valeur manquante dans une variable sous forme de vecteur logique
+# Test logique: identifie les cas qui ont une valeur manquante dans une variable sous forme de vecteur logique
+is.na(bd$age) 
 ```
 
 ```{r}
-which(is.na(bd), arr.ind=TRUE) # Identifier les cas qui ont une valeur manquante dans le jeu de données complet
+# Identifier les cas qui ont une valeur manquante dans le jeu de données complet
+which(is.na(bd), arr.ind=TRUE) 
 
 # is.na()  applique test logique
 # which()  retourne les numéros de lignes qui remplissent la condition (TRUE)
@@ -271,23 +276,23 @@ which(is.na(bd), arr.ind=TRUE) # Identifier les cas qui ont une valeur manquante
 ```
 
 ```{r}
-sum(is.na(bd$qualif)) # Compte des valeurs manquantes dans une variable
+# Compte des valeurs manquantes dans une variable
+sum(is.na(bd$qualif)) 
 ```
 
 ```{r}
-sum(!is.na(bd$qualif)) # Compte des valeurs non manquantes (! sauf) dans une variable
+# Compte des valeurs non manquantes (! sauf) dans une variable
+sum(!is.na(bd$qualif)) 
 ```
 
 ```{r}
 # Élimiter toutes les observations ayant au moins une valeur manquante à travers les colonnes.
-
 bd.omit <- na.omit(bd) 
 ```
 
 ```{r}
 # Créer une nouvelle base de données en éliminant tous les cas qui ont au moins une valeur manquante 
 # dans la variable qualif
-
 bd.omit.qualif <- bd[!is.na(bd$qualif), ] 
 
 # OU
@@ -296,7 +301,17 @@ bd.complete.qualif <-bd[complete.cases(bd$qualif), ]
 ```
 
 ```{r}
-bd$age[which(is.na(bd$age))] <- mean(bd$age, na.rm=TRUE) # Imputation: remplacer NA par la moyenne
+# Recoder des valeurs manquantes
+bd[bd==99] <- NA 
 ```
+
+```{r}
+# Imputation: remplacer NA par la moyenne
+bd$age[which(is.na(bd$age))] <- mean(bd$age, na.rm=TRUE) 
+```
+
+<br>
+
+***
 
 </div>

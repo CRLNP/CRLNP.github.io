@@ -1,13 +1,11 @@
 output_dir: "."
+name: "https://crlnp.github.io/"
 description: |
   Introduction au langage R dans l'environnement Google Colab
 navbar:
   title: Intro R
-  logo:
-    image: markdown/logo-udem-blanc.png
-    href: https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques
   right:
-  - text: Preambule Google Colab
+  - text: Preambule
     href: 1-preambule-colab.html
   - text: Qu'est-ce que R?
     href: 2-langage-r.html
@@ -25,4 +23,11 @@ navbar:
     href: 8-analyses.html
   - text: Graphiques
     href: 9-graphiques.html
-output: distill::distill_article
+  - text: Liens
+    href: 10-ressources.html
+  - icon: fab fa-github
+    href: https://github.com/CRLNP/CRLNP.github.io
+output: 
+  distill::distill_article:
+    toc: true
+

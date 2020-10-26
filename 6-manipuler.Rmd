@@ -1,7 +1,5 @@
 ---
 title: "Capsule 5: Manipuler des variables"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -11,9 +9,15 @@ output:
       collapsed: true
       Smooth_scroll: true
     toc_depth: 3
-code_download: true
+    code_download: true
 css: hide.css
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -44,7 +48,7 @@ bd <- hdv2003
 
 # Manipuler des variables
 
-*   Dans la capsule précédente, nous avons utilisé l'indexation pour sélectionner et créer des éléments en plaçant l’opérateur d’indexation  [ ] à la droite de l’opérateur **<-** :  bd2 <- bd[1:100, ] 
+*   Dans la capsule précédente, nous avons utilisé l'indexation pour sélectionner et créer des éléments en plaçant l’opérateur d’indexation  [ ] à la droite de l’opérateur **<-** :  `bd2 <- bd[1:100, ]` 
 *   Mais l’indexation permet aussi de modifier des éléments sélectionnés à la gauche de l'opérateur **<-** par des valeurs inscrites à sa droite.
 
 <br>
@@ -74,13 +78,13 @@ bd$sexe[1]
 
 
 ```{r}
-# Modifier la valeur (information textuelle entre guillemet)
+# Modifier la valeur (valeur textuelle entre guillemet)
 bd$sexe[1] <- "Homme"
 ```
 
 
 ```{r}
-bd$sexe[1] <- "Autre" # Non! Puisque c'est un facteur (ça fonctionnerait pour une variable "caractère")
+bd$sexe[1] <- "Autre" # NON! Puisque c'est un facteur, la modalité (levels) doit avoir été prévue (ça fonctionnerait pour une variable "caractère")
 ```
 
 
@@ -127,7 +131,7 @@ names(bd) # Lister l'ensemble des noms de variables
 ```{r}
 # Avec la fonction "rename.variable" du module "questionr"
 
-rename.variable(bd, "clso", "Classe")  # "ancien nom", "nouveau nom"
+rename.variable(bd, "clso", "Classe")  # (NomObjet, "ancien nom", "nouveau nom")
 ```
 
 <br>
@@ -160,7 +164,7 @@ bd$sport[bd$sport == "Oui"] <- "OUI"
 
 
 ```{r}
-# On peut d'abord transfomer la variable "sport" en format caractère et renommer les modalités
+# On peut d'abord transfomer le facteur en format caractère et ensuite en renommer les modalités
 bd$lecture <- as.character(bd$lecture)
 bd$lecture[bd$lecture=="Non"]<- "NON"
 bd$lecture[bd$lecture=="Oui"]<- "OUI"
@@ -172,12 +176,12 @@ str(bd$lecture)
 
 
 ```{r}
-# Pour reconvertir la variable caractère en facteur, utiliser la fonction factor
+# Pour reconvertir la variable caractère en facteur, utiliser la fonction factor()
 bd$lecture <- factor(bd$lecture)
 ```
 
-* À noter: tous les formats de variables peuvent être transformés avec les fonctions: *as.numeric*, *as.character*, *as.factor*
-* Attention, certaines transformations de formats sont plus délicates que d'autres
+* À noter: tous les formats de variables peuvent être transformés avec les fonctions: *as.numeric*, *as.character*, *as.factor*.
+* Attention, certaines transformations de formats sont plus délicates que d'autres.
 
 <br>
 
@@ -187,9 +191,9 @@ bd$lecture <- factor(bd$lecture)
 
 ```{r}
 # On procède de la même façon que pour renommer. 
-# L'agrégation se fait donc simplement en attribuant le même nom à différentes catégories
-# On peut d'abord transformer la variable en format caractère comme ci-haut avec la fonction as.character()
-# On peut également recoder directement dans une nouvelle variable (ici bd$relig.rec) qui sera en format caractère
+# L'agrégation se fait donc simplement en attribuant le même nom à différentes catégories.
+# On peut d'abord transformer la variable en format caractère comme ci-haut avec la fonction as.character().
+# On peut également recoder directement dans une nouvelle variable (ici bd$relig.rec) qui sera en format caractère.
 
 # Agréger et renommer des catégories de la variable "relig"
 bd$relig.rec[bd$relig == "Pratiquant regulier"] <- "Pratiquant"
@@ -216,7 +220,7 @@ bd$relig.rec2 <- factor(bd$relig, levels = c("Pratiquant regulier","Pratiquant o
 labels = c("Pratiquant", "Pratiquant", "Croyant", "Athée", "ND", "ND"))
 
 # Argument levels= permet de lister (et réordonner au besoin) les niveaux présents dans le facteur.
-# Argument labels= permet de spécifier de nouveaux intitulés et d'agréger les niveaux listés 
+# Argument labels= permet de spécifier de nouveaux intitulés et d'agréger les niveaux listés. 
 # selon l'ordre dans l'argument levels.
 # Pour des facteurs ordonnés (variables ordinales), remplacer la fonction factor() par ordered().
 ```
@@ -239,23 +243,23 @@ bd$occup.dico <- ifelse(bd$occup=="Exerce une profession", "Actif", "Inactif")
 ```
 
 ```{r}
-# La variable recodée sera de type character
+# La variable recodée sera de type caractère
 str(bd$occup.dico)
 ```
 
 
 ```{r, eval=FALSE}
-# Deux variables : Créer une variable identifiant si les répondants sont des femmes retraitées, Oui ou Non:
-#
-# Créer une variable identifiant les femmes retraitées
+# Deux variables : 
+# Créer une variable identifiant si les répondants sont des femmes retraitées, Oui ou Non:
+
 bd$femme.ret <- ifelse(bd$sexe == "Femme" & bd$occup == "Retraite", "Oui", "Non")
 
-# ifelse() peut être utiliser pour recoder en dichotomique une variable numérique : 
-# bd$age >=50 (la variable résultante sera de format caractère)
+# ifelse() peut aussi être utilisée pour recoder en dichotomique une variable numérique : 
+# bd$age >=50 (la variable sera de format caractère)
 ```
 
 ```{r}
-# La variable recodée sera de type character
+# La variable recodée sera de type caractère
 str(bd$femme.ret)
 ```
 
@@ -266,9 +270,8 @@ str(bd$femme.ret)
 ```{r}
 # Avec la fonction cut(): découpe la variable quantitative
 
-bd$age.cat <- cut(bd$age, breaks=c(0, 20, 40, 60, 80, 100), 
-labels=c("20 ans et moins", "21 à 40", "41 à 60", "61 à 80", "81 et plus"), 
-ordered_result=TRUE, )
+bd$age.cat <- cut(bd$age, breaks=c(0, 20, 40, 60, 80, 100), labels=c("20 ans et moins", "21 à 40", "41 à 60", "61 à 80", "81 et plus"), ordered_result=TRUE)
+
 
 # breaks=: limites des catégories.
 # (peut aussi simplement indiquer le nombre de groupes (breaks=5), mais le résultat n'est pas optimal)
@@ -301,5 +304,10 @@ bd$age.ecart <- bd$age - mean(bd$age, na.rm = TRUE) # écart entre l'âge du ré
 bd$sum <- rowSums (bd[ , c("var1", "var2", "var3")], na.rm=TRUE)
 bd$moy<- rowMeans (bd[ , c("var1", "var2", "var3")], na.rm=TRUE)
 ```
+
+<br>
+
+***
+
 
 </div>

@@ -1,0 +1,63 @@
+---
+title: "Capsule 10: Ressources"
+output: 
+  html_document: 
+    theme: cerulean
+    highlight: haddock
+    toc: true
+    toc_float: 
+      collapsed: true
+      Smooth_scroll: true
+    toc_depth: 3
+    code_download: true
+---
+
+<br>
+
+## Ressources utiles
+
+<br>
+
+- Joseph Larmarange et als, 2020, [Analyse-R Introduction à l’analyse d’enquêtes avec R et RStudio](https://larmarange.github.io/analyse-R/ )
+- Julien Barnier, 2020, [Introduction à R et au tidyverse](https://juba.github.io/tidyverse/)
+- Rebaudo, 2019, 
+[Se former au logiciel R : initiation et perfectionnement](https://myrbookfr.netlify.com/myRBook_FR.pdf)
+- Jean-Herman Guay, [Statistiques en sciences humaines avec R](https://atrium.umontreal.ca/primo-explore/fulldisplay?docid=UM-ALEPH002264738&context=L&vid=UM&search_scope=Tout_sauf_articles&isFrbr=true&tab=default_tab&lang=fr_FR)
+    [+ Site pédagogique pour les usagers francophones de R](http://dimension.usherbrooke.ca/dimension/v2ssrcadre.html)
+- [Manny Gimond, 2020, Exploratory Data Analysis in R](https://mgimond.github.io/ES218/index.html)
+- [Jean R. Lobry, 2018, Graphiques de base](http://pbil.univ-lyon1.fr/R/pdf/lang04.pdf)
+- [Catalogue Sofia -  Sujet: R Langage de programmation](https://atrium.umontreal.ca/primo-explore/search?vid=UM&lang=fr_FR&sortby=rank&mode=advanced)
+- [The R Manuals (Guides de base)](https://cran.r-project.org/manuals.html)
+- [CRAN Task Views (ressources spécialisées selon les "disciplines")](https://cran.r-project.org/web/views/)
+- [Quick-R (pratique pour les fonctions)](https://www.statmethods.net/)
+- [R Bloggers (se tenir informé)](https://www.r-bloggers.com/)
+- [RStudio Cheat Sheets](https://rstudio.com/resources/cheatsheets/)
+- [RDocumentation](http://www.rdocumentation.org/)
+- [R for Data Science](https://r4ds.had.co.nz/)
+- Poser des questions: https://stackoverflow.com/ ...
+
+<br>
+
+### Interfaces graphiques
+
+<br>
+-  John Fox, 2005, ["The R Commander: A Basic-Statistics Graphical User Interface to R"](https://www.jstatsoft.org/article/view/v014i09), Journal of Statistical Software, Volume 14, Issue 9. 
+
+```{r, echo = FALSE,  out.width = "60%"}
+knitr::include_graphics("markdown/rcommander.jpg") 
+```
+
+*Pour installer [`Rcommander`](https://cran.r-project.org/web/packages/Rcmdr/index.html), préférable d’utiliser le **R** de base et non **RStudio** et exécuter la commande: install.packages("Rcmdr")  *
+
+<br>
+
+> "I think that serious prospective users of R should be encouraged to use the command-line interface along with a script editor of some sort."
+> John Fox
+
+<br>
+
+- Application [Bluesky](https://www.jstatsoft.org/article/view/v014i09) : R + interface graphique similaire à SPSS.
+
+```{r, echo = FALSE,  out.width = "60%"}
+knitr::include_graphics("markdown/bluesky.jpg") 
+```

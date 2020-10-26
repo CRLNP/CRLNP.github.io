@@ -9,9 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Caroline Patenaude   Bibliothécaire - Bibliothèque des lettres et sciences humaines" />
 
-<meta name="date" content="2020-10-17" />
 
 <title>Capsule 5: Manipuler des variables</title>
 
@@ -25,6 +23,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -204,6 +204,9 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
+}
+#rmd-source-code {
+  display: none;
 }
 </style>
 
@@ -385,6 +388,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -488,7 +494,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="1-preambule-colab.html">Preambule Google Colab</a>
+  <a href="1-preambule-colab.html">Preambule</a>
 </li>
 <li>
   <a href="2-langage-r.html">Qu'est-ce que R?</a>
@@ -514,6 +520,15 @@ div.tocify {
 <li>
   <a href="9-graphiques.html">Graphiques</a>
 </li>
+<li>
+  <a href="10-ressources.html">Liens</a>
+</li>
+<li>
+  <a href="https://github.com/CRLNP/CRLNP.github.io">
+    <span class="fab fa fab fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -521,15 +536,22 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Capsule 5: Manipuler des variables</h1>
-<h4 class="author">Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines</h4>
-<h4 class="date">2020-10-17</h4>
 
 </div>
 
 
+<p>Caroline Patenaude <br> <em><a href="https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques">Bibliothécaire - Bibliothèque des lettres et sciences humaines</a></em> <br> 25 octobre 2020</p>
+<p><br></p>
 <script src="hideOutput.js"></script>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Chargement des modules nécessaires</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(questionr)</a>
@@ -547,7 +569,7 @@ div.tocify {
 <div class="fold o">
 <h1 id="manipuler-des-variables">Manipuler des variables</h1>
 <ul>
-<li>Dans la capsule précédente, nous avons utilisé l’indexation pour sélectionner et créer des éléments en plaçant l’opérateur d’indexation [ ] à la droite de l’opérateur <strong>&lt;-</strong> : bd2 &lt;- bd[1:100, ]</li>
+<li>Dans la capsule précédente, nous avons utilisé l’indexation pour sélectionner et créer des éléments en plaçant l’opérateur d’indexation [ ] à la droite de l’opérateur <strong>&lt;-</strong> : <code>bd2 &lt;- bd[1:100, ]</code></li>
 <li>Mais l’indexation permet aussi de modifier des éléments sélectionnés à la gauche de l’opérateur <strong>&lt;-</strong> par des valeurs inscrites à sa droite.</li>
 </ul>
 <p><br></p>
@@ -564,9 +586,9 @@ div.tocify {
 <a class="sourceLine" id="cb7-2" title="2">bd<span class="op">$</span>sexe[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## [1] Femme
 ## Levels: Homme Femme</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Modifier la valeur (information textuelle entre guillemet)</span></a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Modifier la valeur (valeur textuelle entre guillemet)</span></a>
 <a class="sourceLine" id="cb9-2" title="2">bd<span class="op">$</span>sexe[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Homme&quot;</span></a></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">bd<span class="op">$</span>sexe[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Autre&quot;</span> <span class="co"># Non! Puisque c&#39;est un facteur (ça fonctionnerait pour une variable &quot;caractère&quot;)</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">bd<span class="op">$</span>sexe[<span class="dv">1</span>] &lt;-<span class="st"> &quot;Autre&quot;</span> <span class="co"># NON! Puisque c&#39;est un facteur, la modalité (levels) doit avoir été prévue (ça fonctionnerait pour une variable &quot;caractère&quot;)</span></a></code></pre></div>
 <pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, 1, value = structure(c(NA, 2L, 1L, 1L, :
 ## invalid factor level, NA generated</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Il faut d&#39;abord modifier les niveaux permis avec la fonction factor() et son argument levels=</span></a>
@@ -594,7 +616,7 @@ div.tocify {
 <h3 id="renommer-une-seule-variable">2.2. Renommer une seule variable</h3>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Avec la fonction &quot;rename.variable&quot; du module &quot;questionr&quot;</span></a>
 <a class="sourceLine" id="cb21-2" title="2"></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="kw">rename.variable</span>(bd, <span class="st">&quot;clso&quot;</span>, <span class="st">&quot;Classe&quot;</span>)  <span class="co"># &quot;ancien nom&quot;, &quot;nouveau nom&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb21-3" title="3"><span class="kw">rename.variable</span>(bd, <span class="st">&quot;clso&quot;</span>, <span class="st">&quot;Classe&quot;</span>)  <span class="co"># (NomObjet, &quot;ancien nom&quot;, &quot;nouveau nom&quot;)</span></a></code></pre></div>
 <pre><code>##        id age  SEXE
 ## 1       1  38 Autre
 ## 2       2  23 Femme
@@ -12618,25 +12640,25 @@ div.tocify {
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">bd<span class="op">$</span>sport[bd<span class="op">$</span>sport <span class="op">==</span><span class="st"> &quot;Oui&quot;</span>] &lt;-<span class="st"> &quot;OUI&quot;</span></a></code></pre></div>
 <pre><code>## Warning in `[&lt;-.factor`(`*tmp*`, bd$sport == &quot;Oui&quot;, value =
 ## structure(c(NA_integer_, : invalid factor level, NA generated</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># On peut d&#39;abord transfomer la variable &quot;sport&quot; en format caractère et renommer les modalités</span></a>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># On peut d&#39;abord transfomer le facteur en format caractère et ensuite en renommer les modalités</span></a>
 <a class="sourceLine" id="cb29-2" title="2">bd<span class="op">$</span>lecture &lt;-<span class="st"> </span><span class="kw">as.character</span>(bd<span class="op">$</span>lecture)</a>
 <a class="sourceLine" id="cb29-3" title="3">bd<span class="op">$</span>lecture[bd<span class="op">$</span>lecture<span class="op">==</span><span class="st">&quot;Non&quot;</span>]&lt;-<span class="st"> &quot;NON&quot;</span></a>
 <a class="sourceLine" id="cb29-4" title="4">bd<span class="op">$</span>lecture[bd<span class="op">$</span>lecture<span class="op">==</span><span class="st">&quot;Oui&quot;</span>]&lt;-<span class="st"> &quot;OUI&quot;</span></a></code></pre></div>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">str</span>(bd<span class="op">$</span>lecture)</a></code></pre></div>
 <pre><code>##  chr [1:2000] &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; &quot;NON&quot; ...</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Pour reconvertir la variable caractère en facteur, utiliser la fonction factor</span></a>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Pour reconvertir la variable caractère en facteur, utiliser la fonction factor()</span></a>
 <a class="sourceLine" id="cb32-2" title="2">bd<span class="op">$</span>lecture &lt;-<span class="st"> </span><span class="kw">factor</span>(bd<span class="op">$</span>lecture)</a></code></pre></div>
 <ul>
-<li>À noter: tous les formats de variables peuvent être transformés avec les fonctions: <em>as.numeric</em>, <em>as.character</em>, <em>as.factor</em></li>
-<li>Attention, certaines transformations de formats sont plus délicates que d’autres</li>
+<li>À noter: tous les formats de variables peuvent être transformés avec les fonctions: <em>as.numeric</em>, <em>as.character</em>, <em>as.factor</em>.</li>
+<li>Attention, certaines transformations de formats sont plus délicates que d’autres.</li>
 </ul>
 <p><br></p>
 <h2 id="redoderagréger-des-modalités-de-variables-catégorielles">5. Redoder/agréger des modalités de variables catégorielles</h2>
 <h3 id="avec-lindexation-par-condition">5.1. Avec l’indexation par condition</h3>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># On procède de la même façon que pour renommer. </span></a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="co"># L&#39;agrégation se fait donc simplement en attribuant le même nom à différentes catégories</span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="co"># On peut d&#39;abord transformer la variable en format caractère comme ci-haut avec la fonction as.character()</span></a>
-<a class="sourceLine" id="cb33-4" title="4"><span class="co"># On peut également recoder directement dans une nouvelle variable (ici bd$relig.rec) qui sera en format caractère</span></a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="co"># L&#39;agrégation se fait donc simplement en attribuant le même nom à différentes catégories.</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="co"># On peut d&#39;abord transformer la variable en format caractère comme ci-haut avec la fonction as.character().</span></a>
+<a class="sourceLine" id="cb33-4" title="4"><span class="co"># On peut également recoder directement dans une nouvelle variable (ici bd$relig.rec) qui sera en format caractère.</span></a>
 <a class="sourceLine" id="cb33-5" title="5"></a>
 <a class="sourceLine" id="cb33-6" title="6"><span class="co"># Agréger et renommer des catégories de la variable &quot;relig&quot;</span></a>
 <a class="sourceLine" id="cb33-7" title="7">bd<span class="op">$</span>relig.rec[bd<span class="op">$</span>relig <span class="op">==</span><span class="st"> &quot;Pratiquant regulier&quot;</span>] &lt;-<span class="st"> &quot;Pratiquant&quot;</span></a>
@@ -12655,7 +12677,7 @@ div.tocify {
 <a class="sourceLine" id="cb36-4" title="4"><span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Pratiquant&quot;</span>, <span class="st">&quot;Pratiquant&quot;</span>, <span class="st">&quot;Croyant&quot;</span>, <span class="st">&quot;Athée&quot;</span>, <span class="st">&quot;ND&quot;</span>, <span class="st">&quot;ND&quot;</span>))</a>
 <a class="sourceLine" id="cb36-5" title="5"></a>
 <a class="sourceLine" id="cb36-6" title="6"><span class="co"># Argument levels= permet de lister (et réordonner au besoin) les niveaux présents dans le facteur.</span></a>
-<a class="sourceLine" id="cb36-7" title="7"><span class="co"># Argument labels= permet de spécifier de nouveaux intitulés et d&#39;agréger les niveaux listés </span></a>
+<a class="sourceLine" id="cb36-7" title="7"><span class="co"># Argument labels= permet de spécifier de nouveaux intitulés et d&#39;agréger les niveaux listés. </span></a>
 <a class="sourceLine" id="cb36-8" title="8"><span class="co"># selon l&#39;ordre dans l&#39;argument levels.</span></a>
 <a class="sourceLine" id="cb36-9" title="9"><span class="co"># Pour des facteurs ordonnés (variables ordinales), remplacer la fonction factor() par ordered().</span></a></code></pre></div>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">str</span>(bd<span class="op">$</span>relig.rec2) </a></code></pre></div>
@@ -12669,34 +12691,33 @@ div.tocify {
 <a class="sourceLine" id="cb39-5" title="5"><span class="co"># Test de condition</span></a>
 <a class="sourceLine" id="cb39-6" title="6"><span class="co"># valeur à assigner si le test est vrai (&quot;Actif&quot;)</span></a>
 <a class="sourceLine" id="cb39-7" title="7"><span class="co"># valeur à assigner si le test est faux (&quot;Inactif&quot;)</span></a></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># La variable recodée sera de type character</span></a>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># La variable recodée sera de type caractère</span></a>
 <a class="sourceLine" id="cb40-2" title="2"><span class="kw">str</span>(bd<span class="op">$</span>occup.dico)</a></code></pre></div>
 <pre><code>##  chr [1:2000] &quot;Actif&quot; &quot;Inactif&quot; &quot;Actif&quot; &quot;Actif&quot; &quot;Inactif&quot; &quot;Actif&quot; &quot;Inactif&quot; ...</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Deux variables : Créer une variable identifiant si les répondants sont des femmes retraitées, Oui ou Non:</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="co">#</span></a>
-<a class="sourceLine" id="cb42-3" title="3"><span class="co"># Créer une variable identifiant les femmes retraitées</span></a>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Deux variables : </span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="co"># Créer une variable identifiant si les répondants sont des femmes retraitées, Oui ou Non:</span></a>
+<a class="sourceLine" id="cb42-3" title="3"></a>
 <a class="sourceLine" id="cb42-4" title="4">bd<span class="op">$</span>femme.ret &lt;-<span class="st"> </span><span class="kw">ifelse</span>(bd<span class="op">$</span>sexe <span class="op">==</span><span class="st"> &quot;Femme&quot;</span> <span class="op">&amp;</span><span class="st"> </span>bd<span class="op">$</span>occup <span class="op">==</span><span class="st"> &quot;Retraite&quot;</span>, <span class="st">&quot;Oui&quot;</span>, <span class="st">&quot;Non&quot;</span>)</a>
 <a class="sourceLine" id="cb42-5" title="5"></a>
-<a class="sourceLine" id="cb42-6" title="6"><span class="co"># ifelse() peut être utiliser pour recoder en dichotomique une variable numérique : </span></a>
-<a class="sourceLine" id="cb42-7" title="7"><span class="co"># bd$age &gt;=50 (la variable résultante sera de format caractère)</span></a></code></pre></div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># La variable recodée sera de type character</span></a>
+<a class="sourceLine" id="cb42-6" title="6"><span class="co"># ifelse() peut aussi être utilisée pour recoder en dichotomique une variable numérique : </span></a>
+<a class="sourceLine" id="cb42-7" title="7"><span class="co"># bd$age &gt;=50 (la variable sera de format caractère)</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># La variable recodée sera de type caractère</span></a>
 <a class="sourceLine" id="cb43-2" title="2"><span class="kw">str</span>(bd<span class="op">$</span>femme.ret)</a></code></pre></div>
 <pre><code>##  NULL</code></pre>
 <p><br></p>
 <h2 id="recoder-des-variables-numériques-en-catégorielles-transformer-en-facteur">6. Recoder des variables numériques en catégorielles (transformer en facteur)</h2>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># Avec la fonction cut(): découpe la variable quantitative</span></a>
 <a class="sourceLine" id="cb45-2" title="2"></a>
-<a class="sourceLine" id="cb45-3" title="3">bd<span class="op">$</span>age.cat &lt;-<span class="st"> </span><span class="kw">cut</span>(bd<span class="op">$</span>age, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>), </a>
-<a class="sourceLine" id="cb45-4" title="4"><span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;20 ans et moins&quot;</span>, <span class="st">&quot;21 à 40&quot;</span>, <span class="st">&quot;41 à 60&quot;</span>, <span class="st">&quot;61 à 80&quot;</span>, <span class="st">&quot;81 et plus&quot;</span>), </a>
-<a class="sourceLine" id="cb45-5" title="5"><span class="dt">ordered_result=</span><span class="ot">TRUE</span>, )</a>
-<a class="sourceLine" id="cb45-6" title="6"></a>
-<a class="sourceLine" id="cb45-7" title="7"><span class="co"># breaks=: limites des catégories.</span></a>
-<a class="sourceLine" id="cb45-8" title="8"><span class="co"># (peut aussi simplement indiquer le nombre de groupes (breaks=5), mais le résultat n&#39;est pas optimal)</span></a>
-<a class="sourceLine" id="cb45-9" title="9"><span class="co"># (40,60]: signifie que 40 est exclu et 60 est inclu, donc 41 à 60.</span></a>
-<a class="sourceLine" id="cb45-10" title="10"><span class="co"># labels: intitulés.</span></a>
-<a class="sourceLine" id="cb45-11" title="11"><span class="co"># include.lowest=T: valeur minimale est incluse dans la première classe </span></a>
-<a class="sourceLine" id="cb45-12" title="12"><span class="co"># (par défaut, la borne de gauche des intervalles est ouverte).</span></a>
-<a class="sourceLine" id="cb45-13" title="13"><span class="co"># ordered_result=: définir une variable ordinale.</span></a></code></pre></div>
+<a class="sourceLine" id="cb45-3" title="3">bd<span class="op">$</span>age.cat &lt;-<span class="st"> </span><span class="kw">cut</span>(bd<span class="op">$</span>age, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>), <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;20 ans et moins&quot;</span>, <span class="st">&quot;21 à 40&quot;</span>, <span class="st">&quot;41 à 60&quot;</span>, <span class="st">&quot;61 à 80&quot;</span>, <span class="st">&quot;81 et plus&quot;</span>), <span class="dt">ordered_result=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb45-4" title="4"></a>
+<a class="sourceLine" id="cb45-5" title="5"></a>
+<a class="sourceLine" id="cb45-6" title="6"><span class="co"># breaks=: limites des catégories.</span></a>
+<a class="sourceLine" id="cb45-7" title="7"><span class="co"># (peut aussi simplement indiquer le nombre de groupes (breaks=5), mais le résultat n&#39;est pas optimal)</span></a>
+<a class="sourceLine" id="cb45-8" title="8"><span class="co"># (40,60]: signifie que 40 est exclu et 60 est inclu, donc 41 à 60.</span></a>
+<a class="sourceLine" id="cb45-9" title="9"><span class="co"># labels: intitulés.</span></a>
+<a class="sourceLine" id="cb45-10" title="10"><span class="co"># include.lowest=T: valeur minimale est incluse dans la première classe </span></a>
+<a class="sourceLine" id="cb45-11" title="11"><span class="co"># (par défaut, la borne de gauche des intervalles est ouverte).</span></a>
+<a class="sourceLine" id="cb45-12" title="12"><span class="co"># ordered_result=: définir une variable ordinale.</span></a></code></pre></div>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">str</span>(bd<span class="op">$</span>age.cat)</a></code></pre></div>
 <pre><code>##  Ord.factor w/ 5 levels &quot;20 ans et moins&quot;&lt;..: 2 2 3 2 4 2 3 3 1 2 ...</code></pre>
 <p><br></p>
@@ -12706,8 +12727,11 @@ div.tocify {
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Calculer un score d&#39;items (moyenne ou somme)</span></a>
 <a class="sourceLine" id="cb50-2" title="2">bd<span class="op">$</span>sum &lt;-<span class="st"> </span><span class="kw">rowSums</span> (bd[ , <span class="kw">c</span>(<span class="st">&quot;var1&quot;</span>, <span class="st">&quot;var2&quot;</span>, <span class="st">&quot;var3&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb50-3" title="3">bd<span class="op">$</span>moy&lt;-<span class="st"> </span><span class="kw">rowMeans</span> (bd[ , <span class="kw">c</span>(<span class="st">&quot;var1&quot;</span>, <span class="st">&quot;var2&quot;</span>, <span class="st">&quot;var3&quot;</span>)], <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p><br></p>
+<hr />
 </div>
 
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkNhcHN1bGUgNTogTWFuaXB1bGVyIGRlcyB2YXJpYWJsZXMiDQpvdXRwdXQ6IA0KICBodG1sX2RvY3VtZW50OiANCiAgICB0aGVtZTogY2VydWxlYW4NCiAgICBoaWdobGlnaHQ6IGhhZGRvY2sNCiAgICB0b2M6IHRydWUNCiAgICB0b2NfZmxvYXQ6IA0KICAgICAgY29sbGFwc2VkOiB0cnVlDQogICAgICBTbW9vdGhfc2Nyb2xsOiB0cnVlDQogICAgdG9jX2RlcHRoOiAzDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZQ0KY3NzOiBoaWRlLmNzcw0KLS0tDQoNCkNhcm9saW5lIFBhdGVuYXVkZSA8YnI+IA0KKltCaWJsaW90aMOpY2FpcmUgLSBCaWJsaW90aMOocXVlIGRlcyBsZXR0cmVzIGV0IHNjaWVuY2VzIGh1bWFpbmVzXShodHRwczovL2JpYi51bW9udHJlYWwuY2EvZ3VpZGVzL2Rvbm5lZXMtc3RhdGlzdGlxdWVzLWdlb3NwYXRpYWxlcy9kb25uZWVzLXN0YXRpc3RpcXVlcykqIDxicj4gDQoyNSBvY3RvYnJlIDIwMjANCg0KPGJyPg0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQo8c2NyaXB0IHNyYz0iaGlkZU91dHB1dC5qcyI+PC9zY3JpcHQ+DQoNCg0KDQpgYGB7cn0NCiMgQ2hhcmdlbWVudCBkZXMgbW9kdWxlcyBuw6ljZXNzYWlyZXMNCmxpYnJhcnkocXVlc3Rpb25yKQ0KDQojIEFqb3V0ZXIgbGEgZm9uY3Rpb24gZGUgdMOpbMOpY2hhcmdlbWVudCBzaSBuw6ljZXNzYWlyZToNCiMgaW5zdGFsbC5wYWNrYWdlcygicXVlc3Rpb25yIiwgZGVwZW5kZW5jaWVzPVRSVUUpDQoNCiMgVMOpbMOpY2hhcmdlbWVudCBkZSBsYSBiYXNlIGRlIGRvbm7DqWVzIGhkdjIwMDMgZHUgbW9kdWxlIHF1ZXN0aW9ucg0KIyAoRXh0cmFpdCBkZSBsJ2VucXXDqnRlICJIaXN0b2lyZSBkZSB2aWUiIGRlIGwnSW5zZWUgLSBodHRwczovL3d3dy5pbnNlZS5mci9mci9zdGF0aXN0aXF1ZXMvMjUzMjI0NCkNCmRhdGEoaGR2MjAwMykNCg0KIyBDb3BpZSBkZSBsYSBiYXNlIGRlIGRvbm7DqWVzIGRhbnMgdW4gb2JqZXQgKGRhdGF0YWJsZSkgbm9tbcOpIGJkDQpiZCA8LSBoZHYyMDAzDQpgYGANCg0KPGJyPg0KDQo8ZGl2IGNsYXNzPSJmb2xkIG8iPg0KDQojIE1hbmlwdWxlciBkZXMgdmFyaWFibGVzDQoNCiogICBEYW5zIGxhIGNhcHN1bGUgcHLDqWPDqWRlbnRlLCBub3VzIGF2b25zIHV0aWxpc8OpIGwnaW5kZXhhdGlvbiBwb3VyIHPDqWxlY3Rpb25uZXIgZXQgY3LDqWVyIGRlcyDDqWzDqW1lbnRzIGVuIHBsYcOnYW50IGzigJlvcMOpcmF0ZXVyIGTigJlpbmRleGF0aW9uICBbIF0gw6AgbGEgZHJvaXRlIGRlIGzigJlvcMOpcmF0ZXVyICoqPC0qKiA6ICBgYmQyIDwtIGJkWzE6MTAwLCBdYCANCiogICBNYWlzIGzigJlpbmRleGF0aW9uIHBlcm1ldCBhdXNzaSBkZSBtb2RpZmllciBkZXMgw6lsw6ltZW50cyBzw6lsZWN0aW9ubsOpcyDDoCBsYSBnYXVjaGUgZGUgbCdvcMOpcmF0ZXVyICoqPC0qKiBwYXIgZGVzIHZhbGV1cnMgaW5zY3JpdGVzIMOgIHNhIGRyb2l0ZS4NCg0KPGJyPg0KDQojIyAxLiBNb2RpZmllciB1bmUgdmFsZXVyIGRlIHZhcmlhYmxlDQoNCmBgYHtyfQ0KIyBTw6lsZWN0aW9ubmVyIGxhIHByZW1pw6hyZSBvYnNlcnZhdGlvbiBkZSBsYSB2YXJpYWJsZSBxdWFudGl0YXRpdmUgYWdlIA0KYmQkYWdlWzFdDQpgYGANCg0KDQpgYGB7cn0NCiMgTW9kaWZpZXIgbGEgdmFsZXVyIA0KYmQkYWdlWzFdIDwtICAzOA0KYGBgDQoNCmBgYHtyfQ0KIyBMYSB2YWxldXIgaW5pdGlhbGUgYSDDqXTDqSBjaGFuZ8OpZQ0KYmQkYWdlWzFdDQpgYGANCg0KYGBge3J9DQojIFPDqWxlY3Rpb25uZXIgbGEgcHJlbWnDqHJlIG9ic2VydmF0aW9uIGRlIGxhIHZhcmlhYmxlIHF1YWxpdGF0aXZlIChmYWN0b3IpIHNleGUgDQpiZCRzZXhlWzFdDQpgYGANCg0KDQpgYGB7cn0NCiMgTW9kaWZpZXIgbGEgdmFsZXVyICh2YWxldXIgdGV4dHVlbGxlIGVudHJlIGd1aWxsZW1ldCkNCmJkJHNleGVbMV0gPC0gIkhvbW1lIg0KYGBgDQoNCg0KYGBge3J9DQpiZCRzZXhlWzFdIDwtICJBdXRyZSIgIyBOT04hIFB1aXNxdWUgYydlc3QgdW4gZmFjdGV1ciwgbGEgbW9kYWxpdMOpIChsZXZlbHMpIGRvaXQgYXZvaXIgw6l0w6kgcHLDqXZ1ZSAow6dhIGZvbmN0aW9ubmVyYWl0IHBvdXIgdW5lIHZhcmlhYmxlICJjYXJhY3TDqHJlIikNCmBgYA0KDQoNCmBgYHtyfQ0KIyBJbCBmYXV0IGQnYWJvcmQgbW9kaWZpZXIgbGVzIG5pdmVhdXggcGVybWlzIGF2ZWMgbGEgZm9uY3Rpb24gZmFjdG9yKCkgZXQgc29uIGFyZ3VtZW50IGxldmVscz0NCmJkJHNleGUgPC0gZmFjdG9yKGJkJHNleGUsIGxldmVscz1jKCJGZW1tZSIsICJIb21tZSIsICJBdXRyZSIpKSANCmBgYA0KDQpgYGB7cn0NCmxldmVscyhiZCRzZXhlKQ0KYGBgDQoNCmBgYHtyfQ0KYmQkc2V4ZVsxXSA8LSAiQXV0cmUiICMgSWwgZXN0IG1haW50ZW5hbnQgcG9zc2libGUgZCdhc3NpZ25lciBsYSB2YWxldXIgIkF1dHJlIg0KYGBgDQoNCmBgYHtyfQ0KYmQkc2V4ZVsxXSANCmBgYA0KDQo8YnI+DQoNCiMjIDIuIFJlbm9tbWVyIHVuZSB2YXJpYWJsZQ0KDQo8YnI+DQoNCiMjIyAyLjEuIFJlbm9tbWVyIHVuZSBvdSBwbHVzaWV1cnMgdmFyaWFibGVzOiANCg0KYGBge3J9DQojIE1vZGlmaWVyIHVuIG91IHF1ZWxxdWVzIG5vbXMgZGUgdmFyaWFibGVzIGF2ZWMgbGEgZm9uY3Rpb24gbmFtZXMoKSBldCBsJ2luZGV4YXRpb24gcGFyIHBvc2l0aW9uDQoNCm5hbWVzKGJkKVtjKDMsNCldIDwtIGMoIlNFWEUiLCAiTklWRVRVRCIpDQpgYGANCg0KDQpgYGB7cn0NCm5hbWVzKGJkKSAjIExpc3RlciBsJ2Vuc2VtYmxlIGRlcyBub21zIGRlIHZhcmlhYmxlcw0KYGBgDQoNCjxicj4NCg0KIyMjIDIuMi4gUmVub21tZXIgdW5lIHNldWxlIHZhcmlhYmxlDQoNCmBgYHtyfQ0KIyBBdmVjIGxhIGZvbmN0aW9uICJyZW5hbWUudmFyaWFibGUiIGR1IG1vZHVsZSAicXVlc3Rpb25yIg0KDQpyZW5hbWUudmFyaWFibGUoYmQsICJjbHNvIiwgIkNsYXNzZSIpICAjIChOb21PYmpldCwgImFuY2llbiBub20iLCAibm91dmVhdSBub20iKQ0KYGBgDQoNCjxicj4NCg0KIyMgMy4gU3VwcHJpbWVyIHVuZSBvdSBwbHVzaWV1cnMgdmFyaWFibGVzDQoNCmBgYHtyfQ0KYmQkY3Vpc2luZSA8LSBOVUxMICMgc3VwcHJpbWVyIHVuZSB2YXJpYWJsZQ0KYGBgDQoNCg0KYGBge3J9DQpiZFsgLGMoNSwxNSldIDwtIE5VTEwgIyBTdXBwcmltZXIgcGx1c2lldXJzIHZhcmlhYmxlcw0KYGBgDQoNCjxicj4NCg0KIyMgNC4gIFJlbm9tbWVyIGRlcyBtb2RhbGl0w6lzIGRlIHZhcmlhYmxlcyBjYXTDqWdvcmllbGxlcw0KDQojIyMgTGEgcHJvY8OpZHVyZSBkaWZmw6hyZSBlbiBmb25jdGlvbiBkdSBmb3JtYXQgZGUgbGEgdmFyaWFibGUgcXVhbGl0YXRpdmU6ICpjaGFyYWN0ZXIqIG91ICpmYWN0b3IqDQoNCmBgYHtyfQ0KIyBBdmVjIGwnaW5kZXhhdGlvbiBwYXIgY29uZGl0aW9uDQoNCiMgU2kgbGEgdmFyaWFibGUgcXVhbGl0YXRpdmUgZXN0IGRlIHR5cGUgImNoYXJhY3RlciIsIG9uIHBldXQgcHJvY8OpZGVyIGNvbW1lIHN1aXQNCiMgTWFpcyBzaSBjJ2VzdCB1biAiZmFjdG9yIiwgb24gbmUgcGV1dCBlbiByZW5vbW1lciBkaXJlY3RlbWVudCBsZXMgbW9kYWxpdMOpcyAobml2ZWF1eCkgDQpiZCRzcG9ydFtiZCRzcG9ydCA9PSAiTm9uIl0gPC0gIk5PTiINCmJkJHNwb3J0W2JkJHNwb3J0ID09ICJPdWkiXSA8LSAiT1VJIg0KYGBgDQoNCg0KYGBge3J9DQojIE9uIHBldXQgZCdhYm9yZCB0cmFuc2ZvbWVyIGxlIGZhY3RldXIgZW4gZm9ybWF0IGNhcmFjdMOocmUgZXQgZW5zdWl0ZSBlbiByZW5vbW1lciBsZXMgbW9kYWxpdMOpcw0KYmQkbGVjdHVyZSA8LSBhcy5jaGFyYWN0ZXIoYmQkbGVjdHVyZSkNCmJkJGxlY3R1cmVbYmQkbGVjdHVyZT09Ik5vbiJdPC0gIk5PTiINCmJkJGxlY3R1cmVbYmQkbGVjdHVyZT09Ik91aSJdPC0gIk9VSSINCmBgYA0KDQpgYGB7cn0NCnN0cihiZCRsZWN0dXJlKQ0KYGBgDQoNCg0KYGBge3J9DQojIFBvdXIgcmVjb252ZXJ0aXIgbGEgdmFyaWFibGUgY2FyYWN0w6hyZSBlbiBmYWN0ZXVyLCB1dGlsaXNlciBsYSBmb25jdGlvbiBmYWN0b3IoKQ0KYmQkbGVjdHVyZSA8LSBmYWN0b3IoYmQkbGVjdHVyZSkNCmBgYA0KDQoqIMOAIG5vdGVyOiB0b3VzIGxlcyBmb3JtYXRzIGRlIHZhcmlhYmxlcyBwZXV2ZW50IMOqdHJlIHRyYW5zZm9ybcOpcyBhdmVjIGxlcyBmb25jdGlvbnM6ICphcy5udW1lcmljKiwgKmFzLmNoYXJhY3RlciosICphcy5mYWN0b3IqLg0KKiBBdHRlbnRpb24sIGNlcnRhaW5lcyB0cmFuc2Zvcm1hdGlvbnMgZGUgZm9ybWF0cyBzb250IHBsdXMgZMOpbGljYXRlcyBxdWUgZCdhdXRyZXMuDQoNCjxicj4NCg0KIyMgNS4gUmVkb2Rlci9hZ3LDqWdlciBkZXMgbW9kYWxpdMOpcyBkZSB2YXJpYWJsZXMgY2F0w6lnb3JpZWxsZXMNCg0KIyMjIDUuMS4gQXZlYyBsJ2luZGV4YXRpb24gcGFyIGNvbmRpdGlvbg0KDQpgYGB7cn0NCiMgT24gcHJvY8OoZGUgZGUgbGEgbcOqbWUgZmHDp29uIHF1ZSBwb3VyIHJlbm9tbWVyLiANCiMgTCdhZ3LDqWdhdGlvbiBzZSBmYWl0IGRvbmMgc2ltcGxlbWVudCBlbiBhdHRyaWJ1YW50IGxlIG3Dqm1lIG5vbSDDoCBkaWZmw6lyZW50ZXMgY2F0w6lnb3JpZXMuDQojIE9uIHBldXQgZCdhYm9yZCB0cmFuc2Zvcm1lciBsYSB2YXJpYWJsZSBlbiBmb3JtYXQgY2FyYWN0w6hyZSBjb21tZSBjaS1oYXV0IGF2ZWMgbGEgZm9uY3Rpb24gYXMuY2hhcmFjdGVyKCkuDQojIE9uIHBldXQgw6lnYWxlbWVudCByZWNvZGVyIGRpcmVjdGVtZW50IGRhbnMgdW5lIG5vdXZlbGxlIHZhcmlhYmxlIChpY2kgYmQkcmVsaWcucmVjKSBxdWkgc2VyYSBlbiBmb3JtYXQgY2FyYWN0w6hyZS4NCg0KIyBBZ3LDqWdlciBldCByZW5vbW1lciBkZXMgY2F0w6lnb3JpZXMgZGUgbGEgdmFyaWFibGUgInJlbGlnIg0KYmQkcmVsaWcucmVjW2JkJHJlbGlnID09ICJQcmF0aXF1YW50IHJlZ3VsaWVyIl0gPC0gIlByYXRpcXVhbnQiDQpiZCRyZWxpZy5yZWNbYmQkcmVsaWcgPT0gIlByYXRpcXVhbnQgb2NjYXNpb25uZWwiXSA8LSAiUHJhdGlxdWFudCINCmJkJHJlbGlnLnJlY1tiZCRyZWxpZyA9PSAiQXBwYXJ0ZW5hbmNlIHNhbnMgcHJhdGlxdWUiXSA8LSAiQ3JveWFudCINCmJkJHJlbGlnLnJlY1tiZCRyZWxpZyA9PSAiTmkgY3JveWFuY2UgbmkgYXBwYXJ0ZW5hbmNlIl0gPC0gIkF0aMOpZSINCmJkJHJlbGlnLnJlY1tiZCRyZWxpZyA9PSAiUmVqZXQiXSA8LSAiTkQiDQpiZCRyZWxpZy5yZWNbYmQkcmVsaWcgPT0gIk5TUCBvdSBOVlBSIl0gPC0gIk5EIg0KYGBgDQoNCg0KYGBge3J9DQpzdHIoYmQkcmVsaWcucmVjKQ0KYGBgDQoNCjxicj4NCg0KIyMjIDUuMi4gQXZlYyBsYSBmb25jdGlvbiBmYWN0b3IoKSBldCBzZXMgYXJndW1lbnRzIGxldmVscz0gZXQgbGFiZWxzPQ0KDQpgYGB7cn0NCiMgTCdvcHRpb24gbGFiZWxzIGRlIGxhIGZvbmN0aW9uIGZhY3RvciBwZXJtZXQgYXVzc2kgZGUgcmVub21tZXIgb3UgYWdyw6lnZXIgbGVzIG5pdmVhdXggZCd1biBmYWN0ZXVyDQpiZCRyZWxpZy5yZWMyIDwtIGZhY3RvcihiZCRyZWxpZywgbGV2ZWxzID0gYygiUHJhdGlxdWFudCByZWd1bGllciIsIlByYXRpcXVhbnQgb2NjYXNpb25uZWwiLCANCiJBcHBhcnRlbmFuY2Ugc2FucyBwcmF0aXF1ZSIsICJOaSBjcm95YW5jZSBuaSBhcHBhcnRlbmFuY2UiLCAiUmVqZXQiLCAiTlNQIG91IE5WUFIiKSwgDQpsYWJlbHMgPSBjKCJQcmF0aXF1YW50IiwgIlByYXRpcXVhbnQiLCAiQ3JveWFudCIsICJBdGjDqWUiLCAiTkQiLCAiTkQiKSkNCg0KIyBBcmd1bWVudCBsZXZlbHM9IHBlcm1ldCBkZSBsaXN0ZXIgKGV0IHLDqW9yZG9ubmVyIGF1IGJlc29pbikgbGVzIG5pdmVhdXggcHLDqXNlbnRzIGRhbnMgbGUgZmFjdGV1ci4NCiMgQXJndW1lbnQgbGFiZWxzPSBwZXJtZXQgZGUgc3DDqWNpZmllciBkZSBub3V2ZWF1eCBpbnRpdHVsw6lzIGV0IGQnYWdyw6lnZXIgbGVzIG5pdmVhdXggbGlzdMOpcy4gDQojIHNlbG9uIGwnb3JkcmUgZGFucyBsJ2FyZ3VtZW50IGxldmVscy4NCiMgUG91ciBkZXMgZmFjdGV1cnMgb3Jkb25uw6lzICh2YXJpYWJsZXMgb3JkaW5hbGVzKSwgcmVtcGxhY2VyIGxhIGZvbmN0aW9uIGZhY3RvcigpIHBhciBvcmRlcmVkKCkuDQpgYGANCg0KYGBge3J9DQpzdHIoYmQkcmVsaWcucmVjMikgDQpgYGANCg0KPGJyPg0KDQojIyMgNS4zLiBBdmVjIGxhIGZvbmN0aW9uIGlmZWxzZSgpDQpgYGB7cn0NCiMgUGVybWV0IGRlIGNyw6llciB1bmUgdmFyaWFibGUgZGljaG90b21pcXVlIHN1ciBsYSBiYXNlIGRlcyB2YWxldXJzIGQndW5lIG91IHBsdXNpZXVycyB2YXJpYWJsZXMgDQoNCiMgVW5lIHZhcmlhYmxlIDogQ3LDqWVyIHVuZSB2YXJpYWJsZSBkaWNob3RvbWlxdWUgaWRlbnRpZmlhbnQgbGVzICJhY3RpZnMiIGV0ICJpbmFjdGlmcyINCmJkJG9jY3VwLmRpY28gPC0gaWZlbHNlKGJkJG9jY3VwPT0iRXhlcmNlIHVuZSBwcm9mZXNzaW9uIiwgIkFjdGlmIiwgIkluYWN0aWYiKSAgDQojIFRlc3QgZGUgY29uZGl0aW9uDQojIHZhbGV1ciDDoCBhc3NpZ25lciBzaSBsZSB0ZXN0IGVzdCB2cmFpICgiQWN0aWYiKQ0KIyB2YWxldXIgw6AgYXNzaWduZXIgc2kgbGUgdGVzdCBlc3QgZmF1eCAoIkluYWN0aWYiKQ0KYGBgDQoNCmBgYHtyfQ0KIyBMYSB2YXJpYWJsZSByZWNvZMOpZSBzZXJhIGRlIHR5cGUgY2FyYWN0w6hyZQ0Kc3RyKGJkJG9jY3VwLmRpY28pDQpgYGANCg0KDQpgYGB7ciwgZXZhbD1GQUxTRX0NCiMgRGV1eCB2YXJpYWJsZXMgOiANCiMgQ3LDqWVyIHVuZSB2YXJpYWJsZSBpZGVudGlmaWFudCBzaSBsZXMgcsOpcG9uZGFudHMgc29udCBkZXMgZmVtbWVzIHJldHJhaXTDqWVzLCBPdWkgb3UgTm9uOg0KDQpiZCRmZW1tZS5yZXQgPC0gaWZlbHNlKGJkJHNleGUgPT0gIkZlbW1lIiAmIGJkJG9jY3VwID09ICJSZXRyYWl0ZSIsICJPdWkiLCAiTm9uIikNCg0KIyBpZmVsc2UoKSBwZXV0IGF1c3NpIMOqdHJlIHV0aWxpc8OpZSBwb3VyIHJlY29kZXIgZW4gZGljaG90b21pcXVlIHVuZSB2YXJpYWJsZSBudW3DqXJpcXVlIDogDQojIGJkJGFnZSA+PTUwIChsYSB2YXJpYWJsZSBzZXJhIGRlIGZvcm1hdCBjYXJhY3TDqHJlKQ0KYGBgDQoNCmBgYHtyfQ0KIyBMYSB2YXJpYWJsZSByZWNvZMOpZSBzZXJhIGRlIHR5cGUgY2FyYWN0w6hyZQ0Kc3RyKGJkJGZlbW1lLnJldCkNCmBgYA0KDQo8YnI+DQoNCiMjIDYuIFJlY29kZXIgZGVzIHZhcmlhYmxlcyBudW3DqXJpcXVlcyBlbiBjYXTDqWdvcmllbGxlcyAodHJhbnNmb3JtZXIgZW4gZmFjdGV1cikNCg0KYGBge3J9DQojIEF2ZWMgbGEgZm9uY3Rpb24gY3V0KCk6IGTDqWNvdXBlIGxhIHZhcmlhYmxlIHF1YW50aXRhdGl2ZQ0KDQpiZCRhZ2UuY2F0IDwtIGN1dChiZCRhZ2UsIGJyZWFrcz1jKDAsIDIwLCA0MCwgNjAsIDgwLCAxMDApLCBsYWJlbHM9YygiMjAgYW5zIGV0IG1vaW5zIiwgIjIxIMOgIDQwIiwgIjQxIMOgIDYwIiwgIjYxIMOgIDgwIiwgIjgxIGV0IHBsdXMiKSwgb3JkZXJlZF9yZXN1bHQ9VFJVRSkNCg0KDQojIGJyZWFrcz06IGxpbWl0ZXMgZGVzIGNhdMOpZ29yaWVzLg0KIyAocGV1dCBhdXNzaSBzaW1wbGVtZW50IGluZGlxdWVyIGxlIG5vbWJyZSBkZSBncm91cGVzIChicmVha3M9NSksIG1haXMgbGUgcsOpc3VsdGF0IG4nZXN0IHBhcyBvcHRpbWFsKQ0KIyAoNDAsNjBdOiBzaWduaWZpZSBxdWUgNDAgZXN0IGV4Y2x1IGV0IDYwIGVzdCBpbmNsdSwgZG9uYyA0MSDDoCA2MC4NCiMgbGFiZWxzOiBpbnRpdHVsw6lzLg0KIyBpbmNsdWRlLmxvd2VzdD1UOiB2YWxldXIgbWluaW1hbGUgZXN0IGluY2x1c2UgZGFucyBsYSBwcmVtacOocmUgY2xhc3NlIA0KIyAocGFyIGTDqWZhdXQsIGxhIGJvcm5lIGRlIGdhdWNoZSBkZXMgaW50ZXJ2YWxsZXMgZXN0IG91dmVydGUpLg0KIyBvcmRlcmVkX3Jlc3VsdD06IGTDqWZpbmlyIHVuZSB2YXJpYWJsZSBvcmRpbmFsZS4NCmBgYA0KDQpgYGB7cn0NCnN0cihiZCRhZ2UuY2F0KQ0KYGBgDQoNCjxicj4NCg0KIyMgNy4gQ3LDqWVyL0NhbGN1bGVyIGRlcyB2YXJpYWJsZXMNCg0KYGBge3J9DQpiZCRhbm5lZSA8LSAyMDAzIC0gYmQkYWdlICAgICMgYW5uw6llIGRlIG5haXNzYW5jZSAoZW5xdcOqdGUgZGF0ZSBkZSAyMDAzKSANCmBgYA0KDQpgYGB7cn0NCmJkJGFnZS5lY2FydCA8LSBiZCRhZ2UgLSBtZWFuKGJkJGFnZSwgbmEucm0gPSBUUlVFKSAjIMOpY2FydCBlbnRyZSBsJ8OiZ2UgZHUgcsOpcG9uZGFudCBldCBsYSBtb3llbm5lDQpgYGANCg0KDQpgYGB7ciwgZXZhbD1GQUxTRX0NCiMgQ2FsY3VsZXIgdW4gc2NvcmUgZCdpdGVtcyAobW95ZW5uZSBvdSBzb21tZSkNCmJkJHN1bSA8LSByb3dTdW1zIChiZFsgLCBjKCJ2YXIxIiwgInZhcjIiLCAidmFyMyIpXSwgbmEucm09VFJVRSkNCmJkJG1veTwtIHJvd01lYW5zIChiZFsgLCBjKCJ2YXIxIiwgInZhcjIiLCAidmFyMyIpXSwgbmEucm09VFJVRSkNCmBgYA0KDQo8YnI+DQoNCioqKg0KDQoNCjwvZGl2Pg0K</div>
 
 
 </div>
@@ -12743,6 +12767,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("6-manipuler.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

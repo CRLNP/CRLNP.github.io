@@ -1,7 +1,5 @@
 ---
 title: "Capsule 2: Importer et explorer un dataframe"
-author: "Caroline Patenaude <br> Bibliothécaire - Bibliothèque des lettres et sciences humaines"
-date: "`r Sys.Date()`"
 output: 
   html_document: 
     theme: cerulean
@@ -13,6 +11,12 @@ output:
     code_download: true
 css: hide.css
 ---
+
+Caroline Patenaude <br> 
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
+25 octobre 2020
+
+<br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -64,37 +68,33 @@ library(help = questionr)
 detach(package:NomModule)     # pour éviter les conflits entre fonctions du même nom
 ```
 
+```{r}
+# Documenter les détails de son environnement de travail (système, packages, versions...)
+sessionInfo() # Important à noter pour assurer la reproductibilité des analyses
+```
+
+
 <br>
 
-# 1. Les objets  
+## 1. Les objets  
 
 
 ```{r}
 # R comme une grosse calculatrice
 
-2+2
+2 + 2 # les espaces n'ont pas d'impact
 ```
 
-<br>  
 
-
-```{r, echo=FALSE}
-knitr::include_graphics("markdown/objet.jpg")
-```  
-
-
+<br>
  
 * Mais l’intérêt du langage est que l’on stocke les valeurs, résultats, les tableaux, fonctions, … dans des *objets* qui pourront être réutilisés dans d’autres objets, fonctions, analyses.  
 
 
-
 <br>  
 
 
-```{r, echo=FALSE}
-knitr::include_graphics("markdown/assignation.jpg")
-```  
-
+![](markdown/assignation.jpg){width=80%}
 
 
 <div class="fold o">
@@ -115,6 +115,13 @@ moyenne <- (12+15+20)/3
 moyenne  # Utilisation implicite de la fonction print() 
 ```
 
+<br>
+
+
+![](markdown/objet.jpg){width=80%}
+
+<br>
+
 **Les noms d’objets**:
 
 - Peuvent contenir des chiffres, lettres et caractères _ et .
@@ -126,12 +133,9 @@ moyenne  # Utilisation implicite de la fonction print()
 <br>  
 
 
+![](markdown/boite3.png){width=60%}
 
-```{r, echo=FALSE}
-knitr::include_graphics("markdown/boite3.png")
-```  
-
-  
+<br>
   
 **Un objet est donc une boite dans laquelle on peut placer un chiffre, un mot, un jeu de données d'un million de répondants, une fonction, un graphique...**  
 
@@ -139,7 +143,7 @@ knitr::include_graphics("markdown/boite3.png")
 <br>
 
 
-# 2. Les opérateurs  
+## 2. Les opérateurs  
 
 
 
@@ -151,7 +155,7 @@ knitr::include_graphics("markdown/boite3.png")
 
 <br>
 
-# 3. Les fonctions  
+## 3. Les fonctions  
 
 
 *  Permettent d’effectuer des tâches prédéfinies comme des analyses, graphiques, calculs, … 
@@ -162,18 +166,14 @@ knitr::include_graphics("markdown/boite3.png")
 <br>  
 
 
-```{r, echo=FALSE}
-
-knitr::include_graphics("markdown/fonction.jpg")
-```  
-
+![](markdown/fonction.jpg){width=80%}
 
 
 <br>  
 
 
 ```{r}
-# Créer un nouvel objet nommé "age" composé d’une série de 5 nombres avec la fonction c() (combiner)
+# Créer un nouvel objet nommé "age" composé d’une série de 5 nombres avec la fonction c() (concaténer)
 age <- c(12, 15, 20, 35, 40) 
 ```
 
@@ -189,19 +189,19 @@ mean(age)
 
 ```{r}
 # Arrondir le résultat sans décimale (argument digits=) en imbriquant la fonction mean() dans la fonction round()
-round(mean(age), 0) 
+round(mean(age), digits=0) 
 ```
 
 <br>
 
-# 4. Les arguments  
+## 4. Les arguments  
 
 
 * Chaque fonction possède une liste plus ou moins longue d’arguments (paramètres ou options) permettant de paramétrer son fonctionnement.
 * Certains arguments ont une valeur par défaut. Si ces valeurs nous conviennent, pas besoin de les indiquer.
 * Si l’argument n’a pas de valeur par défaut, FAUT le renseigner.
 * Pour modifier la valeur d’un argument, on le nomme et change sa valeur à la suite d’un =.
-* La liste d’arguments respecte un ordre. Si on modifie chaque argument dans l’ordre, on peut omettre le nom des arguments. Les arguments peuvent donc être nommés ou non nommés.
+* La liste d’arguments respecte un ordre. Si on modifie chaque argument dans l’ordre, on peut omettre le nom des arguments. Les arguments peuvent donc être nommés ou non (mais pour assurer la reproductibilité, il est recommandé de les nommer).
 * Le premier argument, toujours les données (on ne le nomme généralement pas x=)
 * Comment savoir quels sont les arguments d’une fonction? Taper Help(NomFonction) ou ?NomFonction .
 
@@ -228,19 +228,16 @@ mean(age, na.rm=TRUE)
 
 <br>
 
-# 5. Les types d'objets  
+## 5. Les types d'objets  
 
 
-- Les objets sont caractérisés par **différentes structures**
-- On retrouve **5 différents types de contenants** ayant chacun leurs propriétés 
+- Les objets sont caractérisés par **différentes structures**.
+- On retrouve **5 différents types de contenants** ayant chacun leurs propriétés. 
 
 <br>   
 
 
-```{r, echo=FALSE}
-knitr::include_graphics("markdown/types.jpg")
-```
-
+[![R Data Structures](markdown/types.jpg){width=70%}](https://devopedia.org/r-data-structures) 
 
 1.   **Vecteur**
 2.   Liste
@@ -252,21 +249,20 @@ knitr::include_graphics("markdown/types.jpg")
 <br>  
 
 
-## 5.1. Vecteurs  
+### 5.1. Vecteurs  
 
-
-Définition: 
 
 *  La brique élémentaire = série de valeurs.
 *  En pratique, c’est une variable (mais qui n’est pas dans un tableau) et ses éléments sont ses valeurs.
-*  Objet contenant des valeurs (éléments/composantes) d'un seul **mode**: numérique, textuel, logique. 
+*  Objet contenant des valeurs (éléments/composantes) d'un seul **mode**: numérique, textuel, logique 
+*  On retrouve aussi des types dérivés comme les dates, les **facteurs**, les vecteurs labellisés qui ont des **attributs** particuliers.
 
 ```{r}
-# On créer des vecteurs principalement avec la commande c()
+# On crée des vecteurs principalement avec la commande c()
 
-poids <- c(70, 65, 60)  # vecteur numérique
-sexe <- c("femme", "homme", "femme")  # vecteur textuel
-taille <- c(TRUE, FALSE, FALSE, TRUE)  # vecteur booléen
+poids <- c(70, 65, 60)  # vecteur numérique () - format qui se décline de façon plus détaillée ("numeric", double", "integer", ...)
+sexe <- c("femme", "homme", "femme")  # vecteur textuel (entre guillemets simples ou doubles)
+taille <- c(TRUE, FALSE, FALSE, TRUE)  # vecteur booléen - peut utiliser les raccourcis T/F
 ```
 
 ```{r}
@@ -276,20 +272,21 @@ mode(poids)
 ```
 
 ```{r}
-# On peut faire des calculs entre vecteurs - ex. calcul de l'IMC: poids divisé par taille au carré 
-poids <- c(70, 65, 60)
+# On peut faire des calculs entre vecteurs - exemple, calcul de l'IMC: poids divisé par taille au carré 
+
+poids <- c(70, 65, 60) # crée un vecteur nommé "poids" avec la fonction c() composé de 3 éléments numériques
 ```
 
 ```{r}
-taille <- c(1.45, 1.60, 1.70) ^ 2  
+taille <- c(1.45, 1.60, 1.70) ^ 2  # crée un vecteur nommé "taille" avec la fonction c() composé de 3 éléments numériques au carré
 ```
 
 ```{r}
-IMC <- poids / taille 
+IMC <- poids / taille # diviser l'objet "poids" par l'objet "taille" (Attention! Les vecteurs doivent être de même longueur)
 ```
 
 ```{r}
-IMC
+IMC # voir le contenu de l'objet
 ```
 
 ```{r}
@@ -302,10 +299,10 @@ IMC - mean(IMC) # Calculer la différence face à la moyenne
 
 <br>
 
-## 5.2. Facteurs   
+### 5.2. Facteurs   
 
 
-* Définition: vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.
+* Vecteur avec des attributs spécifiques, dont la structure correspond aux variables qualitatives.
 * Les modalités de la variable correspondent à des "niveaux" (*levels*) uniques et fixes, ie impossible d’assigner une valeur qui n’a pas été préalablement définie comme une des modalités.
 * Des étiquettes (*labels*) peuvent être associées aux niveaux.
 * Lors de l’importation de données, tout dépendant de la fonction d'importation, les variables qualitatives seront importées sous forme de vecteur textuel ou de facteur.
@@ -322,15 +319,12 @@ str(sexe)
 
 <br>
 
-## 5.3. Dataframes  
+### 5.3. Dataframes  
 
-
-*  Définition: Tableau de données pouvant regrouper des vecteurs de différents types (numériques et textuels)
-* Structurellement, le dataframe est une **liste** composées de **vecteurs nommés** (noms de variables uniques) de même **longueur** (nombre d'observations) mais qui peuvent être de **modes différents** (variables numériques, textuelles)
+* Tableau de données pouvant regrouper des vecteurs de différents types (variables numériques et/ou textuelles).
+* Structurellement, le dataframe est une **liste** composées de **vecteurs nommés** (noms de variables uniques) de même **longueur** (nombre d'observations) mais qui peuvent être de **modes différents** (variables numériques, textuelles).
 * C'est donc un tableau avec des colonnes - `ncol()` et des lignes - `nrow()`,  donc 2 dimensions - `dim()`.
-*  Crée un jeu de données avec la fonction data.frame(), mais on le crée rarement manuellement, généralement importé en format .txt, .csv, .spss ...
-
-*  Par défaut, si on ne désactive pas l’option stringsAsFactors à la création d'un dataframe, les vecteurs textuels sont de type facteur
+* Crée un jeu de données avec la fonction data.frame(), mais on le crée rarement manuellement, généralement importé en format .txt, .csv, ...
 
 ```{r}
 # Créer un data frame avec 3 variables (2 vecteurs numériques et 1 vecteur textuel) avec la fonction data.frame()
@@ -338,10 +332,35 @@ age <- c(45,65,22,38,54,31,29,44,56,67)
 poids <- c(150,125,210,175,110,180,130,155,190,120)
 sexe <- c("H","F","F","H","H","F","F","H","F","H")
 bd <- data.frame(age, sexe, poids)
+
+## Plusieurs fonctions permettent de fusionner des colonnes, des lignes et des tables de données: `merge()`, `cbind()` et `rbind()`... 
 ```
 
 ```{r}
 bd 
 ```
+
+<br>
+
+### 5.4. Conclusion: Types d’objets et fonctions utiles  
+
+
+- Les objets dans **R** sont caractérisés par différentes propriétés : ils possèdent au minimum un `mode()`, le type de base de ses composantes, et une longueur – `length()` - le nombre de composantes. 
+
+- La fonction `typeof()` est très similaire au `mode`; elle offre une description un peu plus précise du format de stockage interne d’un objet.
+
+- Les objets ont aussi une `classe()` : c’est une propriété un peu plus complexe (issue du langage S) assignée à un objet pour définir l’information contenue ET déterminer la façon dont l’objet sera traité par certaines fonctions dites génériques, ie dont le résultat dépend dy type d'objet fourni (comme `print()`, `summary()`, `plot()`).
+
+- Bref, le **mode**, le **type** et la **classe** sont souvent pareils, mais pas toujours! La fonction `str()` peut aussi être utile pour plus de détails sur un objet et ses éléments.
+
+- Les objets, en plus de leurs composantes, peuvent aussi posséder des attributs - `attributes()` – métadonnées contenant des informations additionnelles sur l'objet comme des noms - `names()` (étiquettes des éléments) - et des dimensions - `dim()` (colonnes/lignes dans tableaux).
+
+- À noter:
+    + Il est possible de convertir le type (mode) d’un objet avec: `as.character()`, `as.list()`, `as.numeric()`, `as.factor()`. 
+    + Pour vérifier le format, remplacer as. par is : `is.character()`, `is.list()`, `is.numeric()`, `is.factor()`, 
+
+<br>
+
+***
 
 </div>
