@@ -23,8 +23,12 @@ navbar:
     href: 8-analyses.html
   - text: Graphiques
     href: 9-graphiques.html
-  - text: Liens
-    href: 10-ressources.html
+  - text: Plus!
+    menu:
+      - text: "Autres ressources utiles"
+        href: 10-ressources.html
+      - text: "Intro GDR"
+        href: https://crlnp.github.io/intro-gdr/#1
   - icon: fab fa-github
     href: https://github.com/CRLNP/CRLNP.github.io
 output: 

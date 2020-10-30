@@ -25,6 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -33,62 +35,6 @@
   div.column{display: inline-block; vertical-align: top; width: 50%;}
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
-      a.sourceLine { display: inline-block; line-height: 1.25; }
-  a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-  a.sourceLine:empty { height: 1.2em; }
-  .sourceCode { overflow: visible; }
-  code.sourceCode { white-space: pre; position: relative; }
-  div.sourceCode { margin: 1em 0; }
-  pre.sourceCode { margin: 0; }
-  @media screen {
-  div.sourceCode { overflow: auto; }
-  }
-  @media print {
-  code.sourceCode { white-space: pre-wrap; }
-  a.sourceLine { text-indent: -1em; padding-left: 1em; }
-  }
-  pre.numberSource a.sourceLine
-    { position: relative; left: -4em; }
-  pre.numberSource a.sourceLine::before
-    { content: attr(title);
-      position: relative; left: -1em; text-align: right; vertical-align: baseline;
-      border: none; pointer-events: all; display: inline-block;
-      -webkit-touch-callout: none; -webkit-user-select: none;
-      -khtml-user-select: none; -moz-user-select: none;
-      -ms-user-select: none; user-select: none;
-      padding: 0 4px; width: 4em;
-      color: #aaaaaa;
-    }
-  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-  div.sourceCode
-    {  }
-  @media screen {
-  a.sourceLine::before { text-decoration: underline; }
-  }
-  code span.al { color: #ff0000; } /* Alert */
-  code span.an { color: #008000; } /* Annotation */
-  code span.at { } /* Attribute */
-  code span.bu { } /* BuiltIn */
-  code span.cf { color: #0000ff; } /* ControlFlow */
-  code span.ch { color: #008080; } /* Char */
-  code span.cn { } /* Constant */
-  code span.co { color: #008000; } /* Comment */
-  code span.cv { color: #008000; } /* CommentVar */
-  code span.do { color: #008000; } /* Documentation */
-  code span.er { color: #ff0000; font-weight: bold; } /* Error */
-  code span.ex { } /* Extension */
-  code span.im { } /* Import */
-  code span.in { color: #008000; } /* Information */
-  code span.kw { color: #0000ff; } /* Keyword */
-  code span.op { } /* Operator */
-  code span.ot { color: #ff4000; } /* Other */
-  code span.pp { color: #ff4000; } /* Preprocessor */
-  code span.sc { color: #008080; } /* SpecialChar */
-  code span.ss { color: #008080; } /* SpecialString */
-  code span.st { color: #008080; } /* String */
-  code span.va { } /* Variable */
-  code span.vs { color: #008080; } /* VerbatimString */
-  code span.wa { color: #008000; font-weight: bold; } /* Warning */
     </style>
 
 
@@ -526,8 +472,20 @@ div.tocify {
 <li>
   <a href="9-graphiques.html">Graphiques</a>
 </li>
-<li>
-  <a href="10-ressources.html">Liens</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Plus!
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="10-ressources.html">Autres ressources utiles</a>
+    </li>
+    <li>
+      <a href="https://crlnp.github.io/intro-gdr/#1">Intro GDR</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="https://github.com/CRLNP/CRLNP.github.io">
@@ -603,8 +561,8 @@ div.tocify {
 ## loaded via a namespace (and not attached):
 ##  [1] compiler_4.0.3  bookdown_0.21   magrittr_1.5    tools_4.0.3    
 ##  [5] htmltools_0.5.0 rstudioapi_0.11 yaml_2.2.1      distill_0.8    
-##  [9] stringi_1.5.3   rmarkdown_2.4   knitr_1.30      jsonlite_1.7.1 
-## [13] stringr_1.4.0   xfun_0.18       digest_0.6.25   rlang_0.4.8    
+##  [9] stringi_1.5.3   rmarkdown_2.5   knitr_1.30      jsonlite_1.7.1 
+## [13] stringr_1.4.0   xfun_0.18       digest_0.6.27   rlang_0.4.8    
 ## [17] evaluate_0.14</code></pre>
 <p><br></p>
 <div id="les-objets" class="section level2">
@@ -810,7 +768,7 @@ div.tocify {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
