@@ -29,6 +29,8 @@ navbar:
         href: 10-ressources.html
       - text: "Intro GDR"
         href: https://crlnp.github.io/intro-gdr/#1
+      - text: "Reproductibilite"
+        href: https://crlnp.github.io/repro/
   - icon: fab fa-github
     href: https://github.com/CRLNP/CRLNP.github.io
 output: 
