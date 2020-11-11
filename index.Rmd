@@ -4,11 +4,7 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 ---
 
 
-*Consultez et téléchargez les scripts utilisés dans le cadre des [capsules de formation](https://www.youtube.com/watch?v=66GQA9pa9i4&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6) sous forme de documents Rmarkdown*
-
-
-
-
+*Consultez et téléchargez les scripts utilisés dans le cadre des capsules de formation sous forme de documents Rmarkdown*
 
 
 <div class = "right">
@@ -19,23 +15,23 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 
 
 
-- [Capsule préambule](https://www.youtube.com/watch?v=66GQA9pa9i4&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=1 "Capsule préambule sur Youtube"): L'environnement *Google Colab*
+- Capsule préambule: L'environnement *Google Colab*
 
-- [Capsule 1](https://www.youtube.com/watch?v=2XiKWWJmMRg&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=2 "Capsule 1 sur Youtube"): Entrée en matière - Qu'est-ce que R? 
+- Capsule 1: Entrée en matière - Qu'est-ce que R? 
 
-- [Capsule 2](https://www.youtube.com/watch?v=E-ApKAUPJUg&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=3 "Capsule 2 sur Youtube"): Introduction au langage R (objets, fonctions et arguments)
+- Capsule 2: Introduction au langage R (objets, fonctions et arguments)
 
-- [Capsule 3](https://www.youtube.com/watch?v=NnRssgEORT4&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=4 "Capsule 3 sur Youtube"): L'Importation et l'exploration d'un tableau de données
+- Capsule 3: L'Importation et l'exploration d'un tableau de données
 
-- [Capsule 4](https://www.youtube.com/watch?v=0BaDH7tW5Jc&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=5 "Capsule 4 sur Youtube"): L'indexation (sélection de variables et création de sous-groupes)
+- Capsule 4: L'indexation (sélection de variables et création de sous-groupes)
 
-- [Capsule 5](https://www.youtube.com/watch?v=wu7ZN_wQsTY&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=6 "Capsule 5 sur Youtube"): La manipulation de variables (renommer, recoder, agréger, ...)
+- Capsule 5: La manipulation de variables (renommer, recoder, agréger, ...)
 
-- [Capsule 6](https://www.youtube.com/watch?v=-cQp_cy2kII&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=7 "Capsule 6 sur Youtube"): Les statistiques descriptives
+- Capsule 6: Les statistiques descriptives
 
-- [Capsule 7](https://www.youtube.com/watch?v=TxesTeeYbuc&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=8 "Capsule 7 sur Youtube"): L'analyse et les tests statistiques de base
+- Capsule 7: L'analyse et les tests statistiques de base
 
-- [Capsule 8](https://www.youtube.com/watch?v=3tNLUnWzRTI&list=PL1K-7kmyXRXEGXrKXmMZ02IG1YvtKV-q6&index=9 "Capsule 8 sur Youtube"): Les graphiques univariés et bivariés 
+- Capsule 8: Les graphiques univariés et bivariés 
 
 
  > Ces capsules ont été développées et réalisées dans le cadre du cours en ligne **Introduction à la science des données sociales**, développé par le professeur [Éric Lacourse](https://socio.umontreal.ca/repertoire-departement/professeurs/professeur/in/in14715/sg/%C3%89ric%20Lacourse/), qui sera offert via la plateforme [EDUlib](https://catalogue.edulib.org/fr/institutions/umontreal/) de l'Université de Montréal à partir de janvier 2021.

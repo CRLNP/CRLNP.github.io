@@ -31,6 +31,8 @@ navbar:
         href: https://crlnp.github.io/intro-gdr/#1
       - text: "Reproductibilite"
         href: https://crlnp.github.io/repro/
+      - text: "R Markdown"
+        href: https://crlnp.github.io/intro-rmarkdown/
   - icon: fab fa-github
     href: https://github.com/CRLNP/CRLNP.github.io
 output: 
