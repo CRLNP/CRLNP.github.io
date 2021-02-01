@@ -13,9 +13,13 @@ output:
 css: hide.css
 ---
 
+<script src="hideOutput.js"></script>
+
 Caroline Patenaude <br> 
-*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
-25 octobre 2020
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* 
+<br> 
+
+[Script Colab](https://github.com/Cours-EDUlib/FAS-ISDS/blob/main/module-4/4_1_statistiques_descriptives.ipynb) | [Script R](https://github.com/Cours-EDUlib/FAS-ISDS/blob/main/module-4/4.1-statistiques-descriptives.R) 
 
 <br>
 
@@ -23,9 +27,9 @@ Caroline Patenaude <br>
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<script src="hideOutput.js"></script>
 
 
+<div class="fold o">
 ```{r}
 # Chargement des modules nécessaires
 library(car)
@@ -59,7 +63,6 @@ bd <- hdv2003
 *   C’est une fonction dont le comportement s’adapte au type d’objet
 *   Élimine d'emblée valeurs manquantes
 
-<div class="fold o">
 ```{r}
 summary(bd) # base de données 
 ```

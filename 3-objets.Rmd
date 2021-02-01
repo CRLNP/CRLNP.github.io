@@ -1,5 +1,5 @@
 ---
-title: "Capsule 2: Importer et explorer un dataframe"
+title: "Capsule 2: Les objets, les fonctions et leurs arguments"
 output: 
   html_document: 
     theme: cerulean
@@ -7,20 +7,26 @@ output:
     toc: true
     toc_float: 
       collapsed: false
-      Smooth_scroll: false
+      Smooth_scroll: true
+    toc_depth: 3
     code_download: true
 css: hide.css
 ---
 
+
 Caroline Patenaude <br> 
-*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
-25 octobre 2020
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* 
+<br>
+
+[Script Colab](https://github.com/Cours-EDUlib/FAS-ISDS/blob/main/module-3/3-4_les_objets.ipynb) | [Script R](https://github.com/Cours-EDUlib/FAS-ISDS/blob/main/module-3/3.4-les-objets.R) 
 
 <br>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<div class="fold o">
 
 **Télécharger et charger les packages utilisés**    
 
@@ -97,7 +103,7 @@ sessionInfo() # Important à noter pour assurer la reproductibilité des analyse
 ![](markdown/assignation.jpg){width=80%}
 
 
-<div class="fold o">
+
 
 ```{r}
 # Calcul simple
@@ -362,5 +368,3 @@ bd
 <br>
 
 ***
-
-</div>

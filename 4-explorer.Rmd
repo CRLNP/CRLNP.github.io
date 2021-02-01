@@ -14,8 +14,10 @@ css: hide.css
 ---
 
 Caroline Patenaude <br> 
-*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)* <br> 
-25 octobre 2020
+*[Bibliothécaire - Bibliothèque des lettres et sciences humaines](https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques)*
+ <br> 
+ 
+[Script Colab](https://github.com/Cours-EDUlib/FAS-ISDS/blob/main/module-3/3-5_importer_explorer.ipynb) | [Script R](https://github.com/Cours-EDUlib/FAS-ISDS/blob/main/module-3/3.5-importer-explorer.R) 
 
 <br>
 

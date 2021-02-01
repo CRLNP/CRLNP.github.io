@@ -4,8 +4,8 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 ---
 
 
-*Consultez et téléchargez les scripts utilisés dans le cadre des capsules de formation sous forme de documents Rmarkdown*
-
+Capsules réalisées dans le cadre du Mooc [**Introduction à la science des données sociales**](https://catalogue.edulib.org/fr/cours/UMontreal-ISDS/) offert sur la plateforme *EDUlib* de l'Université de Montréal à partir du 1er février 2021.
+<br>
 
 <div class = "right">
 
@@ -13,28 +13,27 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 
 </div>
 
-
-
-- Capsule préambule: L'environnement *Google Colab*
+<br>
+- Préambule: L'environnement *Google Colab*
 
 - Capsule 1: Entrée en matière - Qu'est-ce que R? 
 
-- Capsule 2: Introduction au langage R (objets, fonctions et arguments)
+- [Capsule 2](https://www.youtube.com/watch?v=8waxlbZ_4IM): Introduction au langage R (objets, fonctions et arguments)
 
-- Capsule 3: L'Importation et l'exploration d'un tableau de données
+- [Capsule 3](https://www.youtube.com/watch?v=XQIucO6E2dY): L'Importation et l'exploration d'un tableau de données
 
-- Capsule 4: L'indexation (sélection de variables et création de sous-groupes)
+- [Capsule 4](https://www.youtube.com/watch?v=2VLkZUzHo84): L'indexation (sélection de variables et création de sous-groupes)
 
-- Capsule 5: La manipulation de variables (renommer, recoder, agréger, ...)
+- [Capsule 5](https://www.youtube.com/watch?v=A_TLW5Wm2HM): La manipulation de variables (renommer, recoder, agréger, ...)
 
-- Capsule 6: Les statistiques descriptives
+- [Capsule 6](https://www.youtube.com/watch?v=4OthfYikrNY): Les statistiques descriptives
 
-- Capsule 7: L'analyse et les tests statistiques de base
+- [Capsule 7](https://www.youtube.com/watch?v=frysx9Ib8Aw): L'analyse et les tests statistiques de base
 
-- Capsule 8: Les graphiques univariés et bivariés 
+- [Capsule 8](https://www.youtube.com/watch?v=rGN1Z1fJ-C8): Les graphiques univariés et bivariés 
 
 
- > Ces capsules ont été développées et réalisées dans le cadre du cours en ligne **Introduction à la science des données sociales**, développé par le professeur [Éric Lacourse](https://socio.umontreal.ca/repertoire-departement/professeurs/professeur/in/in14715/sg/%C3%89ric%20Lacourse/), qui sera offert via la plateforme [EDUlib](https://catalogue.edulib.org/fr/institutions/umontreal/) de l'Université de Montréal à partir de janvier 2021.
+
 
 <style>
 
@@ -42,7 +41,7 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
   position: absolute;
   clear:left; 
   right: 0px;
-  margin-top: 70px;
+  margin-top: 120px;
   padding: 0px;
 }
 </style>
