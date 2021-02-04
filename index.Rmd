@@ -4,7 +4,8 @@ description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines
 ---
 
 
-Capsules réalisées dans le cadre du Mooc [**Introduction à la science des données sociales**](https://catalogue.edulib.org/fr/cours/UMontreal-ISDS/) offert sur la plateforme *EDUlib* de l'Université de Montréal à partir du 1er février 2021.
+Capsules réalisées dans le cadre du Mooc [*Introduction à la science des données sociales*](https://catalogue.edulib.org/fr/cours/UMontreal-ISDS/) offert sur la plateforme *EDUlib* de l'Université de Montréal. <br>
+**[Inscription](https://cours.edulib.org/login?course_id=course-v1:UMontreal+FAS-ISDS+A2020&enrollment_action=enroll) gratuite et ouverte à tous!**
 <br>
 
 <div class = "right">
@@ -13,26 +14,16 @@ Capsules réalisées dans le cadre du Mooc [**Introduction à la science des don
 
 </div>
 
-<br>
+
 - Préambule: L'environnement *Google Colab*
-
 - Capsule 1: Entrée en matière - Qu'est-ce que R? 
-
-- [Capsule 2](https://www.youtube.com/watch?v=8waxlbZ_4IM): Introduction au langage R (objets, fonctions et arguments)
-
-- [Capsule 3](https://www.youtube.com/watch?v=XQIucO6E2dY): L'Importation et l'exploration d'un tableau de données
-
-- [Capsule 4](https://www.youtube.com/watch?v=2VLkZUzHo84): L'indexation (sélection de variables et création de sous-groupes)
-
-- [Capsule 5](https://www.youtube.com/watch?v=A_TLW5Wm2HM): La manipulation de variables (renommer, recoder, agréger, ...)
-
-- [Capsule 6](https://www.youtube.com/watch?v=4OthfYikrNY): Les statistiques descriptives
-
-- [Capsule 7](https://www.youtube.com/watch?v=frysx9Ib8Aw): L'analyse et les tests statistiques de base
-
-- [Capsule 8](https://www.youtube.com/watch?v=rGN1Z1fJ-C8): Les graphiques univariés et bivariés 
-
-
+- Capsule 2: Introduction au langage R (objets, fonctions et arguments)
+- Capsule 3: L'Importation et l'exploration d'un tableau de données
+- Capsule 4: L'indexation (sélection de variables et création de sous-groupes)
+- Capsule 5: La manipulation de variables (renommer, recoder, agréger, ...)
+- Capsule 6: Les statistiques descriptives
+- Capsule 7: L'analyse et les tests statistiques de base
+- Capsule 8: Les graphiques univariés et bivariés 
 
 
 <style>
@@ -41,7 +32,7 @@ Capsules réalisées dans le cadre du Mooc [**Introduction à la science des don
   position: absolute;
   clear:left; 
   right: 0px;
-  margin-top: 120px;
+  margin-top: 98px;
   padding: 0px;
 }
 </style>
