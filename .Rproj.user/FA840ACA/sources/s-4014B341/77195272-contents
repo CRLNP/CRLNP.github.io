@@ -1,0 +1,39 @@
+---
+title: "Atelier Premiers pas avec R -> Site d'accompagnement"
+description: Caroline Patenaude - Bibliothèque des lettres et sciences humaines<br> https://bib.umontreal.ca/guides/donnees-statistiques-geospatiales/donnees-statistiques
+---
+
+
+Capsules réalisées dans le cadre du Mooc [*Introduction à la science des données sociales*](https://catalogue.edulib.org/fr/cours/UMontreal-ISDS/) offert sur la plateforme *EDUlib* de l'Université de Montréal. <br>
+**[Inscription](https://cours.edulib.org/login?course_id=course-v1:UMontreal+FAS-ISDS+A2020&enrollment_action=enroll) gratuite et ouverte à tous!**
+<br>
+
+<div class = "right">
+
+<img src="markdown/colab2.png" width="200px" />
+
+</div>
+
+
+- Préambule: L'environnement *Google Colab*
+- Capsule 1: Entrée en matière - Qu'est-ce que R? 
+- Capsule 2: Introduction au langage R (objets, fonctions et arguments)
+- Capsule 3: L'Importation et l'exploration d'un tableau de données
+- Capsule 4: L'indexation (sélection de variables et création de sous-groupes)
+- Capsule 5: La manipulation de variables (renommer, recoder, agréger, ...)
+- Capsule 6: Les statistiques descriptives
+- Capsule 7: L'analyse et les tests statistiques de base
+- Capsule 8: Les graphiques univariés et bivariés 
+
+
+<style>
+
+.right {
+  position: absolute;
+  clear:left; 
+  right: 0px;
+  margin-top: 98px;
+  padding: 0px;
+}
+</style>
+
